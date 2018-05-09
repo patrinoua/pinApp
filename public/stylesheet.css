@@ -24,6 +24,39 @@ body {
     justify-items: center;
     align-items: center;
 }
+/* ********* M ************* */
+/* *********** A *********** */
+/* ************* P ********* */
+.mapAppComponent {
+    width: 90vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+.mapContainer {
+    width: 60%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    background-color: grey;
+}
+.mapArea {
+    background-color: pink;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px grey;
+    margin-top: 50px;
+    height: 50%;
+    width: 60%;
+}
+
+
+
 /* ******** CHAT ******** */
 .chatComponent {
     width: 90vw;
@@ -55,6 +88,9 @@ body {
     border-radius: 5px;
     border: 0.5px solid lightgrey;
 }
+
+
+
 #navigation {
     width: 95%;
     height: 50px;

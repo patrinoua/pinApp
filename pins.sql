@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS pins CASCADE;
+
+CREATE TABLE pins(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(250) NOT NULL,
+    picture VARCHAR(250),
+    description VARCHAR(1250)
+);
