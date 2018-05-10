@@ -14,10 +14,9 @@ class MapApp extends React.Component {
         return (
             <div className="mapAppComponent">
 
-                <h1> Welcome to map!</h1>
+                <h1 className="titleFonts"> Welcome to mapApp!</h1>
                 <MapContainer />
                 <div className="mapArea">
-                    <p>here is the map area...</p>
                 </div>
             </div>
         );

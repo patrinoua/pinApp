@@ -27,6 +27,11 @@ body {
 /* ********* M ************* */
 /* *********** A *********** */
 /* ************* P ********* */
+.titleFonts{
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    color: #f20909;
+}
 .mapAppComponent {
     width: 90vw;
     height: 100vh;
@@ -46,12 +51,15 @@ body {
     position: relative;
     background-color: grey;
 }
+
 .mapArea {
+    background-image: url('/map.png');
+    background-size: contain;
     background-color: pink;
     border-radius: 20px;
     box-shadow: 2px 2px 2px grey;
     margin-top: 50px;
-    height: 50%;
+    height: 60%;
     width: 60%;
 }
 
