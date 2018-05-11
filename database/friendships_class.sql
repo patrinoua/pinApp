@@ -4,7 +4,7 @@ CREATE TABLE friendships(
     receiver_id INTEGER NOT NULL,
     status INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 -- status
 -- 1 - pending

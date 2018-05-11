@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
+import axios from "./axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import Map from "./mapContainer2";
 const mapStateToProps = function(state) {
     return {
         onlineUsers: state.onlineUsers
@@ -11,7 +11,22 @@ const mapStateToProps = function(state) {
 };
 class MapApp extends React.Component {
     render() {
-        return <h1> Welcome to map!</h1>;
+        const style = {
+            width: "60vw",
+            height: "50vh",
+            position: "absolute",
+            top: "20vh",
+            left: "5vh"
+        };
+        // if (!this.props.loaded) {
+        //     return <div>Loading...</div>;
+        // }
+
+        return (
+            <React.Fragment>
+                <Map google={this.props.google} style={style} />
+            </React.Fragment>
+        );
     }
 }
 
