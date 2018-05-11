@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 // import { GoogleApiWrapper } from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-export class MapContainer extends React.Component {
+class MapContainer extends React.Component {
 
     fetchPlaces(mapProps, map) {
       const {google} = mapProps;
@@ -12,10 +12,12 @@ export class MapContainer extends React.Component {
     }
 
     render() {
+        console.log('this.props', this.props);
       return (
         <Map google={this.props.google}
           onReady={this.fetchPlaces}
-          visible={false}>
+          visible={true}>
+         
             {/*<Listing places={this.state.places} />*/}
         </Map>
       )

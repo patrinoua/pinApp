@@ -54,7 +54,15 @@ exports.updateBio=(bio, id)=>{
                      RETURNING bio
                     `,[bio, id]);
 }
+exports.updateUserInfo=(id, first, last, email, pass)=>{
 
+    console.log('About to give',id, first, last, email, pass);
+    return db.query(`UPDATE users
+                     SET first = $2, last=$3, email=$4, pass=$5
+                     WHERE id = $1
+                     RETURNING *
+                    `,[id, first, last, email, pass]);
+}
 // ******* CHECK FRIENDSHIP STATUS ********
 exports.checkFriendshipStatus=(requester_id, receiver_id)=>{
     return db.query(`SELECT requester_id, receiver_id, status FROM friendships
@@ -109,17 +117,3 @@ exports.getUsersByIds = (array)=>{
         SELECT id, first, last, profilepic FROM users
         WHERE id = ANY($1)`,[array]);
 }
-
-// exports.findRequests = (receiver_id)=>{
-//     return db.query(`SELECT * FROM friendshipStatus
-//                      WHERE receiver_id = $1`, [receiver_id]);
-// }
-//
-
-// exports.getFriendById= (id)=>{
-//     return db.query(`SELECT * FROM users
-//                      WHERE id = $1
-//                      ORDER BY id DESC
-//                     `,[id]);
-//
-// }

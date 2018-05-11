@@ -74,7 +74,7 @@ export default class App extends React.Component {
             );
         }
         return (
-            <div>
+            <div className="routeContainer">
                 <BrowserRouter>
                     <div className="container">
                         <Navigation
