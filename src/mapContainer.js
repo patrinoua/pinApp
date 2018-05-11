@@ -70,35 +70,7 @@ class MapContainer extends React.Component {
             return <h1>map not ready</h1>;
         }
 
-        return (
-            <Map
-                style={style}
-                initialCenter={{
-                    lat: this.state.lat,
-                    lng: this.state.lng
-                }}
-                zoom={14}
-                google={this.props.google}
-                zoom={15}
-                onClick={this.mapClicked}
-                onReady={this.fetchPlaces}
-                visible={true}
-            >
-                <Marker
-                    onClick={this.onMarkerClick}
-                    name={"Current location"}
-                />
-                <Marker
-                    onClick={this.onMarkerClick}
-                    name={"Your position"}
-                    position={{ lat: 52.4919246, lng: 13.360039599999999 }}
-                    icon={{
-                        url:
-                            "http://icon-park.com/imagefiles/location_map_pin_light_blue5.png",
-                        anchor: new google.maps.Point(10, 10),
-                        scaledSize: new google.maps.Size(130, 30)
-                    }}
-                />
+class MapContainer extends React.Component {
 
                 <InfoWindow>
                     <div>

@@ -71,5 +71,4 @@ export class EditBio extends React.Component{
             </div>
         )
     }
-
 }

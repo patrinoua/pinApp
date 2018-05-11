@@ -14,6 +14,16 @@ export class ProfilePage extends React.Component {
         this.submitNewBioButton = this.submitNewBioButton.bind(this);
         this.editBioButton = this.editBioButton.bind(this);
         this.changeBio = this.changeBio.bind(this);
+        this.toggleEditor = this.toggleEditor.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.saveNewInputValue = this.saveNewInputValue.bind(this);
+    }
+
+    toggleEditor() {
+        console.log('toggleEditor!!!');
+        this.setState({
+            editorIsVisible: !this.state.editorIsVisible
+        });
     }
     toggleBioEditor() {
         this.setState({
@@ -30,14 +40,41 @@ export class ProfilePage extends React.Component {
             editBioIsVisible: !this.state.editBioIsVisible
         });
     }
-
     changeBio(newBio) {
-        console.log("let us try this and go to bed", newBio);
         this.setState({
             bio: newBio
         });
     }
+    inputField(inputValue, state){
+        console.log('lalala',name);
+        return(<div>I wonder...</div>)
+    }
 
+    handleChange(e){
+        this[e.target.name]=e.target.value;
+    }
+
+    saveNewInputValue(){
+        let inputName = this.first||this.lastname;
+        // console.log("inputName",inputName,this.first||this.lastname );
+        // {this.lastname}||{this.first}||{this.email}||
+        console.log("this!!",this);
+        axios.post(`/updateUserInfo/`,{
+            first:this.first,
+            last:this.lastname,
+            email:this.email,
+            pass: this.pass,
+            bio: this.bio
+        })
+        // .then(response=>{
+        //     if(response.data.success){
+                // this.props.changeBio(response.data.bio)
+                // setTimeout(this.toggleEditor,300);
+        //     }else{
+        //         console.log('response.data in register error ',response.data.errorMsg);
+        //     }
+        // }).catch(err=>{console.log('PROBLEM :(',err);})
+    }
     render() {
         let pic = this.props.profilePic;
 
@@ -49,31 +86,148 @@ export class ProfilePage extends React.Component {
         if (this.state.bio) {
             bio = this.state.bio;
         }
-        console.log('props, state',this.props.first, this.state);
+
+        console.log("this.state.editorIsVisible",this.state.editorIsVisible);
+
         return (
-            <div className="profileContainerOwn">
-                <div className="pictureContainerOwn">
-                <p>Welcome, {this.props.first}</p>
-                    <div className="profilePicOwn">
-                        <img src={pic} />
+            <div className="editProfileContainer">
+                <div className="editProfileContainerLeft">
+                    <div className="pictureContainerOwn">
+                    <p>Welcome, {this.props.first}</p>
+                        <div className="profilePicOwn">
+                            <img src={pic} />
+                        </div>
                     </div>
                 </div>
-                {this.state.editBioIsVisible ? (
-                    <EditBio
-                        bio={bio}
-                        edit={this.editBioButton}
-                        toggleBioEditor={this.toggleBioEditor}
-                        saveNewBio={this.saveNewBio}
-                        changeBio={this.changeBio}
-                    />
-                ) : (
-                    <ExistingBio
-                        bio={bio}
-                        toggleBioEditor={this.toggleBioEditor}
-                        submit={this.submitNewBioButton}
-                        changeBio={this.changeBio}
-                    />
-                )}
+                <div className="editProfileContainerRight">
+
+                    <div className="editBioContainer">
+                        <div className="editBioBox">
+                            {this.state.editBioIsVisible ? (
+                                <EditBio
+                                bio={bio}
+                                edit={this.editBioButton}
+                                toggleBioEditor={this.toggleBioEditor}
+                                saveNewBio={this.saveNewBio}
+                                changeBio={this.changeBio}
+                                />
+                            ) : (
+                                <ExistingBio
+                                bio={bio}
+                                toggleBioEditor={this.toggleBioEditor}
+                                submit={this.submitNewBioButton}
+                                changeBio={this.changeBio}
+                                />
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="profileInfoContainer">
+                        <div className="profileInfoBox">
+
+                            {this.state.editorIsVisible
+                            &&(<div className="existingValues">
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Firstname
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <input id="first" onChange={this.handleChange} className="inputField" name="first" placeholder="Firstname"/>
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Lastname
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <input id="lastname" onChange={this.handleChange} className="inputField" name="lastname" placeholder={this.props.last}/>
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Email
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <input id="email" onChange={this.handleChange} className="inputField" name="email" placeholder="email"/>
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Password
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <input id="pass" onChange={this.handleChange} className="inputField" name="pass" placeholder="*******"/>
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Bio
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <textarea id="bio" onChange={this.handleChange} className="inputField editBioTextArea" name="bio" placeholder={this.props.bio}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                            ||(<div className="editingValues">
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Firstname
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            {this.props.first}
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Lastname
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            {this.props.last}
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Email
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            {this.props.email}
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Password
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                        ********
+                                        </div>
+                                    </div>
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                        Bio
+                                        </div>
+                                        <div className="inputPropertyValue bioDisplayTextArea">
+                                        {this.props.bio}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                            }
+
+                        </div>
+                        <div className="profileInfoButtons">
+                            {this.state.editorIsVisible
+                            &&(
+                            <div className="editButtons">
+                                <button className="editInfoButton subtleButton"  onClick={this.saveNewInputValue}>Save</button>
+                                <button className="editInfoButton subtleButton"  onClick={this.toggleEditor}>Cancel</button>
+                            </div>
+                            )||
+                            <button className="editInfoButton subtleButton" onClick={this.toggleEditor}>EDIT</button>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

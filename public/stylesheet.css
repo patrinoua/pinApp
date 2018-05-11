@@ -20,6 +20,14 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+.routeContainer {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     background-size: auto 100%;
     background-repeat: cover;
     background-repeat: no-repeat;
@@ -108,8 +116,8 @@ body {
 }
 
 #navigation {
-    width: 95%;
     height: 50px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -130,15 +138,14 @@ body {
     padding: 20px;
 }
 
+/******** EDIT PROFILE  ***********/
+
 .profileContainerUser {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* align-items: space-between; */
     padding: 20px;
     position: relative;
-    /* height: 50%; */
-    /* align-items: stretch; */
     width: 100%;
     justify-content: center;
 }
@@ -159,24 +166,112 @@ body {
     justify-content: center;
 }
 
-.profileContainerOwn {
-    display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* align-items: space-between; */
-    padding: 20px;
+.editProfileContainer {
+    height: 100%;
     position: relative;
-    /* height: 50%; */
-    /* align-items: stretch; */
-    width: 100%;
+    padding: 20px;
+    display: flex;
     justify-content: center;
 }
 
+.editProfileContainerLeft {
+    width: 50%;
+    display: flex;
+    padding: 20px;
+    position: relative;
+}
+
+.editProfileContainerRight {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+}
+
+.editBioContainer {
+    padding: 20px;
+}
+
+.editBioBox {
+    display: flex;
+    width: 300px;
+}
+
+.profileInfoContainer {
+    padding: 20px;
+    /* background-color: blue; */
+}
+
+.profileInfoButtons {
+    padding: 20px;
+}
+
+.profileInfoBox {
+    /* background-color: orange; */
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.editProfile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profileInputField {
+    display: grid;
+    grid-template-columns: 100px 200px;
+    justify-items: start;
+    padding: 3px;
+}
+
+.inputPropertyName {
+    padding: 3px;
+}
+
+.inputPropertyValue {}
+
+.editButtons {
+    width: 100px;
+    display: flex;
+}
+
+.bioContainer {
+    position: relative;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    /* width: 50%; */
+}
+
+.bioDisplayTextArea {
+    display: flex;
+    width: 80%;
+    height: 80px;
+    font-size: 0.9em;
+}
+
+.editBioTextArea {
+    width: 90%;
+    height: 80px;
+    border: 0.5px solid lightgrey;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    overflow: auto;
+    resize: none;
+    outline: none;
+}
+
 .pictureContainerOwn {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .profilePicOwn {
@@ -195,7 +290,6 @@ body {
 .profilePicOwn img {
     max-width: 100%;
     padding: 10px;
-    max-height: 100%;
 }
 
 .profilePic img {
@@ -225,21 +319,6 @@ body {
     border-radius: 30px;
     flex-direction: column;
     align-items: center;
-}
-
-.bioContainer {
-    align-self: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-}
-
-.bioDisplayTextArea {
-    width: 80%;
-    height: 100px;
-    border: 0.5px solid lightgrey;
 }
 
 /* FRIENDS COMPONENT  */
@@ -487,6 +566,18 @@ button {
 button:hover {
     cursor: pointer;
     background-color: #f6f6f6;
+}
+
+.subtleButton {
+    border: none;
+    width: 60px;
+    margin: 10px;
+    font-size: 1em;
+}
+
+.editButtons {
+    width: 100px;
+    display: flex;
 }
 
 /* button {
