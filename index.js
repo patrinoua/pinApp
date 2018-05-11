@@ -103,13 +103,13 @@ app.get("/getUser/:userId", requireLogin, function(req, res) {
     } else {
         db
             .getUserInfoById(req.params.userId)
-            .then(userInfo => {
+            .then((userInfo) => {
                 console.log("userInfo: for user with id...", userInfo.rows[0]);
                 res.json({
                     user: userInfo.rows[0]
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log("problem with getting userInfo", err);
             });
     }
@@ -148,7 +148,7 @@ app.post("/register", function(req, res) {
                 console.log("user managed to register");
                 console.log(req.body.first, req.body.last, req.body.email);
                 hashPassword(req.body.password)
-                    .then(hashedPassword => {
+                    .then((hashedPassword) => {
                         db
                             .saveUser(
                                 req.body.first,
@@ -156,7 +156,7 @@ app.post("/register", function(req, res) {
                                 req.body.email,
                                 hashedPassword
                             )
-                            .then(result => {
+                            .then((result) => {
                                 console.log(
                                     "HAHA! user registered:",
                                     result.rows[0]
@@ -179,14 +179,14 @@ app.post("/register", function(req, res) {
                                     success: true
                                 });
                             })
-                            .catch(err => {
+                            .catch((err) => {
                                 console.log(err);
                                 res.json({
                                     success: false
                                 });
                             });
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         console.log(err);
                         res.json({
                             success: false
@@ -212,7 +212,7 @@ app.post("/login", function(req, res) {
 
     if (req.body.email && req.body.password) {
         //     console.log('user gave email and password. checking if user exists:\n');
-        db.getUserInfoByEmail(req.body.email).then(userInfo => {
+        db.getUserInfoByEmail(req.body.email).then((userInfo) => {
             if (userInfo.rows[0]) {
                 // console.log('userInfo after logging in:', userInfo);
                 req.session.user = {
@@ -228,7 +228,7 @@ app.post("/login", function(req, res) {
                 // console.log("req.session.user in login", req.session.user);
                 db
                     .checkPassword(req.body.password, userInfo.rows[0].pass)
-                    .then(doesMatch => {
+                    .then((doesMatch) => {
                         if (doesMatch) {
                             console.log("passwords match");
                             res.json({
@@ -241,7 +241,7 @@ app.post("/login", function(req, res) {
                             );
                         }
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         console.log("error when checking passwords", err);
                     });
             } else {
@@ -276,7 +276,7 @@ app.post("/editBio", function(req, res) {
     if (req.body.bio) {
         db
             .updateBio(req.body.bio, id)
-            .then(updatedBio => {
+            .then((updatedBio) => {
                 console.log("managed to update bio...", updatedBio.rows[0]);
                 req.session.user.bio = updatedBio.rows[0].bio;
                 res.json({
@@ -284,7 +284,7 @@ app.post("/editBio", function(req, res) {
                     bio: updatedBio.rows[0].bio
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log("problem when updating bio", err);
             });
     }
@@ -303,7 +303,7 @@ app.post("/updateProfilePic", uploader.single("file"), s3.upload, function(
 
         db
             .updateProfilePic(imageUrl, req.session.user.email)
-            .then(result => {
+            .then((result) => {
                 console.log("added to db: ", result.rows[0]);
                 req.session.user.profilePic = imageUrl;
                 res.json({
@@ -312,7 +312,7 @@ app.post("/updateProfilePic", uploader.single("file"), s3.upload, function(
                     success: true
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log("problem with adding to db: ", err);
             });
     } else {
@@ -324,7 +324,7 @@ app.get("/checkFriendshipStatus", function(req, res) {
     // console.log(" /checkFriendshipStatus' : req.session.user.id, req.session.user.id",req.session.user.user_id, req.session.user.id);
     db
         .checkFriendshipStatus(req.session.user.id, req.query.otherId)
-        .then(status => {
+        .then((status) => {
             // status.rows[0] ? console.log("the status is... ",status.rows[0].status) : console.log("the status is... ",status.rows[0]) ;
             if (!status.rows[0]) {
                 res.json({});
@@ -343,7 +343,7 @@ app.post("/updateFriendshipStatus", function(req, res) {
             req.body.id,
             req.body.status
         )
-        .then(status => {
+        .then((status) => {
             if (!status.rows[0] && req.body.status == 1) {
                 db
                     .sendFriendRequest(
@@ -351,7 +351,7 @@ app.post("/updateFriendshipStatus", function(req, res) {
                         req.body.id,
                         req.body.status
                     )
-                    .then(status => {
+                    .then((status) => {
                         res.json({
                             friendshipStatus: status.rows[0]
                         });
@@ -367,7 +367,7 @@ app.post("/updateFriendshipStatus", function(req, res) {
 app.get("/getFriendsAndWannabes", function(req, res) {
     db
         .getFriendsAndWannabes(req.session.user.id)
-        .then(status => {
+        .then((status) => {
             if (!status.rows) {
                 res.json({});
             } else {
@@ -376,7 +376,7 @@ app.get("/getFriendsAndWannabes", function(req, res) {
                 });
             }
         })
-        .catch(err => {
+        .catch((err) => {
             console.log("err when getting friends", err);
         });
 });
@@ -422,15 +422,15 @@ io.on("connection", function(socket) {
         userId: session.user.id
     });
 
-    let onlineUsersIdAll = onlineUsers.map(onlineUser => onlineUser.userId);
+    let onlineUsersIdAll = onlineUsers.map((onlineUser) => onlineUser.userId);
 
-    db.getUsersByIds(onlineUsersIdAll).then(users => {
+    db.getUsersByIds(onlineUsersIdAll).then((users) => {
         // console.log("emiting online users", users.rows);
         socket.emit("onlineUsers", users.rows);
     });
 
     if (
-        onlineUsers.filter(user => {
+        onlineUsers.filter((user) => {
             return user.userId == session.user.id;
         }).length == 1
     ) {
@@ -446,11 +446,11 @@ io.on("connection", function(socket) {
     socket.on("disconnect", function() {
         console.log(`socket with the id ${socket.id} is now disconnected`);
 
-        onlineUsers = onlineUsers.filter(user => {
+        onlineUsers = onlineUsers.filter((user) => {
             return user.socketId !== socket.id;
         });
 
-        if (!onlineUsers.find(user => user.userId == session.user.id)) {
+        if (!onlineUsers.find((user) => user.userId == session.user.id)) {
             const { id } = session.user;
             io.sockets.emit("userLeft", { id });
         }
