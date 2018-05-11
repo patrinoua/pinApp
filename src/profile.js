@@ -49,10 +49,12 @@ export class ProfilePage extends React.Component {
         if (this.state.bio) {
             bio = this.state.bio;
         }
+        console.log('props, state',this.props.first, this.state);
         return (
-            <div className="profileContainer">
-                <div className="pictureContainer">
-                    <div className="profilePic">
+            <div className="profileContainerOwn">
+                <div className="pictureContainerOwn">
+                <p>Welcome, {this.props.first}</p>
+                    <div className="profilePicOwn">
                         <img src={pic} />
                     </div>
                 </div>
@@ -118,7 +120,7 @@ export function UploadProfilePic(props) {
     }
     return (
         <div className="uploader">
-            <div className="centerText"> Change profile picture? </div>
+            <div className="centerText"> Change profile picture </div>
             <input type="file" className="inputButton" onChange={getFile} />
             <button type="button" onClick={upload}>
                 {" "}

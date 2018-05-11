@@ -37,10 +37,10 @@ export class OtherProfilePage extends React.Component{
             pic='/neo.png'
         }
         return(
-            <div className="profileContainer">
-            <div className = "pictureContainer" >
+            <div className="profileContainerUser">
+            <div className = "pictureContainerUser" >
                 {this.state.first }       {this.state.last}
-                <div className="profilePic"><img src={pic} /> </div>
+                <div className="profilePicUser"><img src={pic} /> </div>
                 <div className = "bioContainer">
                     {this.state.bio }
                 </div>
