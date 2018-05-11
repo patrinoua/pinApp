@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import axios from "./axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Map from "./mapContainer2";
+// import Map from "./mapContainer";
 const mapStateToProps = function(state) {
     return {
         onlineUsers: state.onlineUsers
