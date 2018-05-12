@@ -263,39 +263,44 @@ app.post("/wrongLogin", function(req, res) {
     console.log("inside wrong login post:");
 });
 
-app.post("/updateUserInfo/",function(req,ser){
-    console.log('req.body',req.body);
-    if(req.body.pass){
+app.post("/updateUserInfo/", function(req, ser) {
+    console.log("req.body", req.body);
+    if (req.body.pass) {
         hashPassword(req.body.pass)
-        .then(hashedPassword=>{
-            console.log('hashedPassword',hashedPassword);
-            console.log("time for the second db query");
-            db.updateUserInfo(req.session.user.id, req.body.first, req.body.last, req.body.email, hashedPassword)
-            .then((result) => {
-                console.log(
-                    "HAHA! updated user",
-                    result.rows[0]
-                );
-                req.session.user = {
-                    first: req.body.first,
-                    last: req.body.last,
-                    email: req.body.email,
-                    id: result.rows[0].id,
-                    bio: result.rows[0].bio
-                };
-                console.log('req.session.user',req.session.user);
-                // res.json({req.session.user})
-
+            .then((hashedPassword) => {
+                console.log("hashedPassword", hashedPassword);
+                console.log("time for the second db query");
+                db
+                    .updateUserInfo(
+                        req.session.user.id,
+                        req.body.first,
+                        req.body.last,
+                        req.body.email,
+                        hashedPassword
+                    )
+                    .then((result) => {
+                        console.log("HAHA! updated user", result.rows[0]);
+                        req.session.user = {
+                            first: req.body.first,
+                            last: req.body.last,
+                            email: req.body.email,
+                            id: result.rows[0].id,
+                            bio: result.rows[0].bio
+                        };
+                        console.log("req.session.user", req.session.user);
+                        // res.json({req.session.user})
+                    })
+                    .catch((err) => {
+                        console.log("opss..", err);
+                    });
             })
-            .catch(err=>{console.log("opss..",err);})
-
-        })
-        .catch(err=>{console.log('err when hashing pass',err);})
-    }else {
-        console.log('no pass given');
+            .catch((err) => {
+                console.log("err when hashing pass", err);
+            });
+    } else {
+        console.log("no pass given");
     }
-
-})
+});
 
 app.post("/editBio", function(req, res) {
     console.log("updating biooo!");
@@ -370,7 +375,54 @@ app.get("/checkFriendshipStatus", function(req, res) {
             }
         });
 });
+app.post("/categorySelect", (req, res) => {
+    console.log(req.body.marker);
+    db
+        .selectCategory(req.body.marker)
+        .then((result) => {
+            console.log(result.rows);
+            res.json({
+                marker: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in selectCategory: ${err}`);
+        });
+});
+app.get("/getMarker", (req, res) => {
+    db
+        .getMarkerInfo(req.session.user.id)
+        .then((result) => {
+            res.json({
+                marker: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in getMarkerInfo: ${err}`);
+        });
+});
+app.post("/markerPic", (req, res) => {
+    console.log("this is the req", req);
 
+    db
+        .insertMarkerPic(
+            req.session.user.id,
+
+            req.body.description,
+            req.body.title,
+            req.body.catagory,
+            req.body.lat,
+            req.body.lng
+        )
+        .then((result) => {
+            res.json({
+                marker: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in insertMargerPic: ${err}`);
+        });
+});
 app.post("/updateFriendshipStatus", function(req, res) {
     db
         .updateFriendshipStatus(
@@ -444,6 +496,10 @@ server.listen(8080);
 let onlineUsers = [];
 
 io.on("connection", function(socket) {
+    //////// marker socket stuff ////////
+    socket.on("makeNewMarker", (data) => {});
+
+    /////// end marker socket stuff ///////
     console.log(`socket with the id ${socket.id} is now connected`);
     const session = socket.request.session;
 
