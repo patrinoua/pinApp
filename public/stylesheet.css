@@ -205,6 +205,8 @@ body {
 
 .profileInfoButtons {
     padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .profileInfoBox {
@@ -233,7 +235,11 @@ body {
     padding: 3px;
 }
 
-.inputPropertyValue {}
+.inputPropertyValue {
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+}
 
 .editButtons {
     width: 100px;
@@ -257,7 +263,7 @@ body {
 
 .editBioTextArea {
     width: 90%;
-    height: 80px;
+    height: 50px;
     border: 0.5px solid lightgrey;
     display: flex;
     justify-content: flex-start;
@@ -285,6 +291,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .profilePicOwn img {
@@ -571,8 +578,9 @@ button:hover {
 .subtleButton {
     border: none;
     width: 60px;
-    margin: 10px;
-    font-size: 1em;
+    margin: 5px;
+    font-size: 0.8em;
+    display: inline;
 }
 
 .editButtons {
@@ -629,6 +637,13 @@ button:hover {
 
 .icons:hover {
     cursor: pointer;
+}
+.editIcon{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 15px;
+    top:15px;
 }
 
 .center {

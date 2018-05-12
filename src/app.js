@@ -29,6 +29,7 @@ export default class App extends React.Component {
     }
 
     toggleUploader() {
+        console.log('toggle uploader!');
         this.setState({
             toggleUploader: !this.state.toggleUploader
         });
@@ -40,7 +41,7 @@ export default class App extends React.Component {
     }
     changeImage(img) {
         this.setState({
-            profilePic: img,
+            profilepic: img,
             uploaderIsVisible: false
         });
     }
@@ -78,10 +79,10 @@ export default class App extends React.Component {
         });
     }
     componentWillReceiveProps() {
-        console.log("inside componentWillReceiveProps");
+        console.log("inside componentWillReceiveProps state:",this.state);
     }
     render() {
-        if (!this.state.first) {
+        if (!this.state) {
             return (
                 <div>
                     <p> LOADING </p>

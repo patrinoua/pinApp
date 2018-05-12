@@ -72,7 +72,7 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 app.use(function(req, res, next) {
-    console.log(`The url is ${req.url}`);
+    // console.log(`The url is ${req.url}`);
     // console.log('req.session.user :',req.session.user);
     next();
 });
@@ -167,7 +167,7 @@ app.post("/register", function(req, res) {
                                     email: req.body.email,
                                     id: result.rows[0].id,
                                     bio: result.rows[0].bio,
-                                    profilePic: result.rows[0].profilepic,
+                                    profilepic: result.rows[0].profilepic,
                                     isLoggedIn: true
                                 };
 
@@ -220,7 +220,7 @@ app.post("/login", function(req, res) {
                     first: userInfo.rows[0].first,
                     last: userInfo.rows[0].last,
                     email: userInfo.rows[0].email,
-                    profilePic: userInfo.rows[0].profilepic,
+                    profilepic: userInfo.rows[0].profilepic,
                     bio: userInfo.rows[0].bio,
                     sex: userInfo.rows[0].sex,
                     isLoggedIn: true
@@ -265,34 +265,33 @@ app.post("/wrongLogin", function(req, res) {
 
 app.post("/updateUserInfo/",function(req, res){
     console.log('req.body',req.body);
-    if(req.body.pass){
-        hashPassword(req.body.pass)
-        .then(hashedPassword=>{
-            console.log('hashedPassword',hashedPassword);
-            console.log("time for the second db query");
-            db.updateUserInfo(req.session.user.id, req.body.first, req.body.last, req.body.email, req.body.bio, hashedPassword)
-            .then((result) => {
-                console.log(
-                    "updated user!\n",
-                    result.rows[0]
-                );
-                req.session.user = {
-                    id: result.rows[0].id,
-                    first: req.body.first,
-                    last: req.body.last,
-                    email: req.body.email,
-                    bio: result.rows[0].bio
-                };
-                console.log('req.session.user',req.session.user);
-                res.json({user : req.session.user})
+    let first = req.body.first || req.session.user.first;
+    let last = req.body.last || req.session.user.last;
+    let email = req.body.email || req.session.user.email;
+    let bio = req.body.bio || req.session.user.bio;
+    let password = req.body.pass;
 
-            })
-            .catch(err=>{console.log("opss..",err);})
-        })
-        .catch(err=>{console.log('err when hashing pass',err);})
-    }else {
-        console.log('no pass given');
-    }
+    console.log('updateUserInfo:',req.session.user.id, first, last, email, bio, password);
+
+    db.updateUserInfo(req.session.user.id, first, last, email, bio, password)
+    .then((result) => {
+        console.log(
+            "updated user!\n",
+            result.rows[0]
+        );
+        req.session.user = {
+            id: result.rows[0].id,
+            first: result.rows[0].first,
+            last: result.rows[0].last,
+            email: result.rows[0].email,
+            bio: result.rows[0].bio,
+            profilepic: result.rows[0].profilepic,
+            sex: result.rows[0].sex
+        };
+        console.log('req.session.user',req.session.user);
+        res.json({user : req.session.user})
+    })
+    .catch(err=>{console.log("opss.!!!.",err);})
 
 })
 
@@ -324,7 +323,7 @@ app.post("/editBio", function(req, res) {
     }
 });
 
-app.post("/updateProfilePic", uploader.single("file"), s3.upload, function(
+app.post("/updateProfilepic", uploader.single("file"), s3.upload, function(
     req,
     res
 ) {
@@ -333,41 +332,36 @@ app.post("/updateProfilePic", uploader.single("file"), s3.upload, function(
     console.log("req.file.filename", req.file.filename);
     if (req.file) {
         const imageUrl = config.s3Url + req.file.filename;
-        console.log("jksdhakjdhakjdhajksdhaksjdhkaj");
-
-        db
-            .updateProfilePic(imageUrl, req.session.user.email)
-            .then((result) => {
-                console.log("added to db: ", result.rows[0]);
-                req.session.user.profilePic = imageUrl;
-                res.json({
-                    imageUrl: imageUrl,
-                    images: result.rows[0],
-                    success: true
-                });
-            })
-            .catch((err) => {
-                console.log("problem with adding to db: ", err);
+        db.updateProfilepic(imageUrl, req.session.user.email)
+        .then((result) => {
+            console.log("added to db: ", result.rows[0]);
+            req.session.user.profilepic = imageUrl;
+            res.json({
+                profilepic: imageUrl,
+                images: result.rows[0],
+                success: true
             });
+        })
+        .catch((err) => {
+            console.log("problem with adding to db: ", err);
+        });
     } else {
         console.log("boo...");
     }
 });
 
 app.get("/checkFriendshipStatus", function(req, res) {
-    // console.log(" /checkFriendshipStatus' : req.session.user.id, req.session.user.id",req.session.user.user_id, req.session.user.id);
-    db
-        .checkFriendshipStatus(req.session.user.id, req.query.otherId)
-        .then((status) => {
-            // status.rows[0] ? console.log("the status is... ",status.rows[0].status) : console.log("the status is... ",status.rows[0]) ;
-            if (!status.rows[0]) {
-                res.json({});
-            } else {
-                res.json({
-                    friendshipStatus: status.rows[0]
-                });
-            }
-        });
+    db.checkFriendshipStatus(req.session.user.id, req.query.otherId)
+    .then((status) => {
+        // status.rows[0] ? console.log("the status is... ",status.rows[0].status) : console.log("the status is... ",status.rows[0]) ;
+        if (!status.rows[0]) {
+            res.json({});
+        } else {
+            res.json({
+                friendshipStatus: status.rows[0]
+            });
+        }
+    });
 });
 
 app.post("/updateFriendshipStatus", function(req, res) {
@@ -421,6 +415,7 @@ app.get("/logout", function(req, res) {
 });
 
 app.get("*", function(req, res) {
+    // console.log('req.session.user in *',req.session.user);
     if (req.url == "/welcome" && req.session.user) {
         res.redirect("/");
         return;
@@ -443,7 +438,7 @@ server.listen(8080);
 let onlineUsers = [];
 
 io.on("connection", function(socket) {
-    console.log(`socket with the id ${socket.id} is now connected`);
+    // console.log(`socket with the id ${socket.id} is now connected`);
     const session = socket.request.session;
 
     if (!session.user) {
@@ -478,7 +473,7 @@ io.on("connection", function(socket) {
     }
 
     socket.on("disconnect", function() {
-        console.log(`socket with the id ${socket.id} is now disconnected`);
+        // console.log(`socket with the id ${socket.id} is now disconnected`);
 
         onlineUsers = onlineUsers.filter((user) => {
             return user.socketId !== socket.id;
@@ -497,18 +492,3 @@ io.on("connection", function(socket) {
         message: "Welome. It is nice to see you"
     });
 });
-
-//not sure if this is in use:
-// app.get('/getFriendById', requireLogin, function(req,res){
-//     console.log("req.params.id",req.query.id);
-//     db.getFriendById(req.query.id)
-//     .then(friend=>{
-//         console.log('found friend:', friend.rows);
-//         res.json({
-//             friend: friend.rows[0]
-//         })
-//     })
-//     .catch(err=>{
-//         console.log('err when getting friend', err);
-//     })
-// })

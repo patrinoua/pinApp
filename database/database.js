@@ -1,5 +1,6 @@
 var bcrypt = require("bcryptjs");
 var spicedPg = require("../node_modules/spiced-pg");
+const hashPassword = require("../config/hashPassword").hashPassword;
 
 var db;
 if (process.env.DATABASE_URL) {
@@ -46,39 +47,42 @@ exports.checkPassword = (
 };
 
 // ******* INSERT IMAGES *******
-exports.updateProfilePic = (profilePic, email) => {
+exports.updateProfilepic = (profilepic, email) => {
     return db.query(
         `UPDATE users
-                     SET profilePic = $1
+                     SET profilepic = $1
                      WHERE email = $2
                      RETURNING *
                      `,
-        [profilePic, email]
+        [profilepic, email]
     );
 };
 // ******* INSERT BIO *******
 
-exports.updateBio = (bio, id) => {
-    // console.log('in database...',bio, id);
-    return db.query(
-        `UPDATE users
-                     SET bio = $1
-                     WHERE id = $2
-                     RETURNING bio
-                    `,
-        [bio, id]
-    );
-};
 exports.updateUserInfo = (id, first, last, email, bio, pass) => {
-    console.log("About to give", id, first, last, email, bio, pass);
-    return db.query(
-        `UPDATE users
-                     SET first = $2, last=$3, email=$4, bio=$5, pass=$6
-                     WHERE id = $1
-                     RETURNING *
-                    `,
-        [id, first, last, email, bio, pass]
-    );
+
+    if(pass){
+        return hashPassword(pass)
+        .then((hashedPassword)=>{
+            return db.query(
+                `UPDATE users
+                SET first = $2, last=$3, email=$4, bio=$5, pass=$6
+                WHERE id = $1
+                RETURNING *
+                `,
+                [id, first, last, email, bio, hashedPassword]
+            );
+        }).catch(err=>{console.log('err when hashing in db',err);})
+    }else{
+        return db.query(
+            `UPDATE users
+                         SET first = $2, last=$3, email=$4, bio=$5
+                         WHERE id = $1
+                         RETURNING *
+                        `,
+            [id, first, last, email, bio]
+        );
+    }
 };
 // ******* CHECK FRIENDSHIP STATUS ********
 exports.checkFriendshipStatus = (requester_id, receiver_id) => {
