@@ -334,7 +334,9 @@ const mapStateToProps = function(state) {
 // console.log("this is the wrapper", wrapper);
 // export default wrapper(connect(mapStateToProps))(MapContainer);
 // export default connect(mapStateToProps)(MapContainer);
-
 export default GoogleApiWrapper({
     apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
-})(MapContainer);
+})(connect(mapStateToProps)(MapContainer));
+// export default GoogleApiWrapper({
+//     apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+// })(MapContainer);
