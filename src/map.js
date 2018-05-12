@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import axios from "./axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import Map from "./mapContainer";
+import MapContainer from "./mapContainer";
 const mapStateToProps = function(state) {
     return {
         onlineUsers: state.onlineUsers
@@ -24,7 +24,7 @@ class MapApp extends React.Component {
 
         return (
             <React.Fragment>
-                <Map google={this.props.google} style={style} />
+                <MapContainer google={this.props.google} style={style} />
             </React.Fragment>
         );
     }

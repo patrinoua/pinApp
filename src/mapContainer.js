@@ -19,11 +19,11 @@ class MapContainer extends React.Component {
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
     }
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevProps.google !== this.props.google) {
-    //         this.loadMap();
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.google !== this.props.google) {
+            this.loadMap();
+        }
+    }
     onMarkerClick(props, marker, e) {
         console.log(props.position);
         // console.log(marker);
@@ -121,23 +121,23 @@ export default GoogleApiWrapper({
     apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
 })(MapContainer);
 
-export class Map extends React.Component {
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.google !== this.props.google) {
-            this.loadMap();
-        }
-    }
-    componentDidMount() {
-        this.loadMap();
-    }
-    loadMap() {
-        if (this.props && this.props.google) {
-            // google is available
-            const { google } = this.props;
-            const maps = google.maps;
-        }
-    }
-    render() {
-        return <div ref="map">Loading map...</div>;
-    }
-}
+// export class Map extends React.Component {
+//     componentDidUpdate(prevProps, prevState) {
+//         if (prevProps.google !== this.props.google) {
+//             this.loadMap();
+//         }
+//     }
+//     componentDidMount() {
+//         this.loadMap();
+//     }
+//     loadMap() {
+//         if (this.props && this.props.google) {
+//             // google is available
+//             const { google } = this.props;
+//             const maps = google.maps;
+//         }
+//     }
+//     render() {
+//         return <div ref="map">Loading map...</div>;
+//     }
+// }
