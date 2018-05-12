@@ -5,7 +5,7 @@ var db;
 if (process.env.DATABASE_URL) {
     db = spicedPg(process.env.DATABASE_URL);
 } else {
-    db = spicedPg("postgres:funky:chicken@localhost:5432/angeliki");
+    db = spicedPg("postgres:funky:chicken@localhost:5432/mapappdb");
 }
 // ************** REGISTRATION *************
 exports.saveUser = (first, last, email, password) => {
