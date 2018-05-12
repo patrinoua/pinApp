@@ -25,6 +25,7 @@ export default class App extends React.Component {
         this.toggleUploader = this.toggleUploader.bind(this);
         this.fileToUpload = {};
         this.state.toggleUploader = false;
+        this.changeInputValues = this.changeInputValues.bind(this);
     }
 
     toggleUploader() {
@@ -43,12 +44,26 @@ export default class App extends React.Component {
             uploaderIsVisible: false
         });
     }
+
+    changeInputValues(inputValues) {
+        console.log('changeinputvalues...',inputValues);
+        let {id , first, last, email, bio} = inputValues;
+        this.setState({
+            id,
+            first,
+            last,
+            email,
+            bio
+        })
+    }
+
     hideUploader() {
         console.log("hiding uploader...");
         this.setState({
             uploaderIsVisible: false
         });
     }
+
     componentDidMount() {
         axios.get("/getUser").then(response => {
             if (response.data.success) {
@@ -92,11 +107,11 @@ export default class App extends React.Component {
                                     toggleUploader={this.toggleUploader}
                                     makeUploaderVisible={this.showUploader}
                                     hideUploader={this.hideUploader}
+                                    changeInputValues={this.changeInputValues}
                                 />
                             )}
                         />
                         <Route
-                            exact
                             path="/user"
                             render={() => (
                                 <ProfilePage
@@ -104,6 +119,7 @@ export default class App extends React.Component {
                                     toggleUploader={this.toggleUploader}
                                     makeUploaderVisible={this.showUploader}
                                     hideUploader={this.hideUploader}
+                                    changeInputValues={this.changeInputValues}
                                 />
                             )}
                         />

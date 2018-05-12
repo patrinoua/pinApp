@@ -69,15 +69,15 @@ exports.updateBio = (bio, id) => {
         [bio, id]
     );
 };
-exports.updateUserInfo = (id, first, last, email, pass) => {
-    console.log("About to give", id, first, last, email, pass);
+exports.updateUserInfo = (id, first, last, email, bio, pass) => {
+    console.log("About to give", id, first, last, email, bio, pass);
     return db.query(
         `UPDATE users
-                     SET first = $2, last=$3, email=$4, pass=$5
+                     SET first = $2, last=$3, email=$4, bio=$5, pass=$6
                      WHERE id = $1
                      RETURNING *
                     `,
-        [id, first, last, email, pass]
+        [id, first, last, email, bio, pass]
     );
 };
 // ******* CHECK FRIENDSHIP STATUS ********

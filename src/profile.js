@@ -17,14 +17,24 @@ export class ProfilePage extends React.Component {
         this.toggleEditor = this.toggleEditor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.saveNewInputValue = this.saveNewInputValue.bind(this);
+
+        // this.changeInputValues = this.changeInputValues.bind(this);
     }
 
+    componentDidMount(){
+        console.log('mounted!');
+        console.log('this.props', this.props);
+        console.log('this.state', this.state);
+    }
     toggleEditor() {
-        console.log('toggleEditor!!!');
+        console.log('toggleEditor:');
+        console.log('this.props', this.props);
+        console.log('this.state', this.state);
         this.setState({
             editorIsVisible: !this.state.editorIsVisible
         });
     }
+
     toggleBioEditor() {
         this.setState({
             editBioIsVisible: !this.state.editBioIsVisible
@@ -45,6 +55,11 @@ export class ProfilePage extends React.Component {
             bio: newBio
         });
     }
+
+    // changeInputValues(inputValues) {
+    //     console.log('mpainei');
+    //     this.props.changeInputValues(inputValues);
+    // }
     inputField(inputValue, state){
         console.log('lalala',name);
         return(<div>I wonder...</div>)
@@ -56,36 +71,38 @@ export class ProfilePage extends React.Component {
 
     saveNewInputValue(){
         let inputName = this.first||this.lastname;
-        // console.log("inputName",inputName,this.first||this.lastname );
-        // {this.lastname}||{this.first}||{this.email}||
         console.log("this!!",this);
         axios.post(`/updateUserInfo/`,{
             first:this.first,
             last:this.lastname,
             email:this.email,
-            pass: this.pass,
-            bio: this.bio
+            bio: this.bio,
+            pass: this.pass
         })
-        // .then(response=>{
-        //     if(response.data.success){
-                // this.props.changeBio(response.data.bio)
-                // setTimeout(this.toggleEditor,300);
-        //     }else{
-        //         console.log('response.data in register error ',response.data.errorMsg);
-        //     }
-        // }).catch(err=>{console.log('PROBLEM :(',err);})
+        .then(response=>{
+            if(response.data.user){
+                console.log("response.data.user",response.data.user);
+                // let {id , first, last, email, bio} = response.data.user;
+                // console.log('id , first, last, email, bio',id , first, last, email, bio);
+                // this.setState({
+                //     id,
+                //     first,
+                //     last,
+                //     email,
+                //     bio
+                // })
+                console.log('props..',this.props);
+                this.props.changeInputValues(response.data.user)
+                // this.changeInputValues(response.data.user);
+                setTimeout(this.toggleEditor,300);
+            }else{
+                console.log('response.data in register error ',response.data.errorMsg);
+            }
+        }).catch(err=>{console.log('PROBLEM :(',err);})
     }
     render() {
-        let pic = this.props.profilePic;
-
-        if (!pic) {
-            pic = "/neo.png";
-        }
-
-        let bio = this.props.bio;
-        if (this.state.bio) {
-            bio = this.state.bio;
-        }
+        let pic = this.props.profilePic || "/neo.png";
+        let bio = this.props.bio || "Tell us something about urself!";
 
         console.log("this.state.editorIsVisible",this.state.editorIsVisible);
 
@@ -101,38 +118,16 @@ export class ProfilePage extends React.Component {
                 </div>
                 <div className="editProfileContainerRight">
 
-                    <div className="editBioContainer">
-                        <div className="editBioBox">
-                            {this.state.editBioIsVisible ? (
-                                <EditBio
-                                bio={bio}
-                                edit={this.editBioButton}
-                                toggleBioEditor={this.toggleBioEditor}
-                                saveNewBio={this.saveNewBio}
-                                changeBio={this.changeBio}
-                                />
-                            ) : (
-                                <ExistingBio
-                                bio={bio}
-                                toggleBioEditor={this.toggleBioEditor}
-                                submit={this.submitNewBioButton}
-                                changeBio={this.changeBio}
-                                />
-                            )}
-                        </div>
-                    </div>
-
                     <div className="profileInfoContainer">
                         <div className="profileInfoBox">
-
                             {this.state.editorIsVisible
-                            &&(<div className="existingValues">
+                            &&(<div className="editingValues">
                                     <div className="profileInputField">
                                         <div className="inputPropertyName">
                                         Firstname
                                         </div>
                                         <div className="inputPropertyValue">
-                                            <input id="first" onChange={this.handleChange} className="inputField" name="first" placeholder="Firstname"/>
+                                            <input id="first" onChange={this.handleChange} className="inputField" name="first" placeholder={this.props.first}/>
                                         </div>
                                     </div>
                                     <div className="profileInputField">
@@ -148,7 +143,7 @@ export class ProfilePage extends React.Component {
                                         Email
                                         </div>
                                         <div className="inputPropertyValue">
-                                            <input id="email" onChange={this.handleChange} className="inputField" name="email" placeholder="email"/>
+                                            <input id="email" onChange={this.handleChange} className="inputField" name="email" placeholder={this.props.email}/>
                                         </div>
                                     </div>
                                     <div className="profileInputField">
@@ -164,12 +159,12 @@ export class ProfilePage extends React.Component {
                                         Bio
                                         </div>
                                         <div className="inputPropertyValue">
-                                            <textarea id="bio" onChange={this.handleChange} className="inputField editBioTextArea" name="bio" placeholder={this.props.bio}/>
+                                            <textarea id="bio" onChange={this.handleChange} className="inputField editBioTextArea" name="bio" placeholder={bio}/>
                                         </div>
                                     </div>
                                 </div>
                             )
-                            ||(<div className="editingValues">
+                            ||(<div className="existingValues">
                                     <div className="profileInputField">
                                         <div className="inputPropertyName">
                                         Firstname
@@ -207,7 +202,7 @@ export class ProfilePage extends React.Component {
                                         Bio
                                         </div>
                                         <div className="inputPropertyValue bioDisplayTextArea">
-                                        {this.props.bio}
+                                            {bio}
                                         </div>
                                     </div>
                                 </div>
