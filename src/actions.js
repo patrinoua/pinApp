@@ -44,7 +44,6 @@ export async function denyFriend(id) {
 }
 
 export async function onlineUsers(array) {
-    console.log("ACTION: onlineUsers", array);
     return {
         type: "ONLINE_USERS",
         onlineUsers: array

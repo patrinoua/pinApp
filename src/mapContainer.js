@@ -14,6 +14,12 @@ class MapContainer extends React.Component {
         this.onMarkerClick = this.onMarkerClick.bind(this);
         this.onMapClicked = this.onMapClicked.bind(this);
         // this.getLng = this.getLng.bind(this);
+        console.log("---------------------------------------");
+        console.log("IN MapContainer");
+        console.log("this.props:\n",this.props);
+        console.log("\nthis.props.google:\n",this.props.google);
+        console.log(" \nthis.state:", this.state);
+
     }
     fetchPlaces(mapProps, map) {
         const { google } = mapProps;

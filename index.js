@@ -263,32 +263,31 @@ app.post("/wrongLogin", function(req, res) {
     console.log("inside wrong login post:");
 });
 
-app.post("/updateUserInfo/",function(req,ser){
+app.post("/updateUserInfo/",function(req, res){
     console.log('req.body',req.body);
     if(req.body.pass){
         hashPassword(req.body.pass)
         .then(hashedPassword=>{
             console.log('hashedPassword',hashedPassword);
             console.log("time for the second db query");
-            db.updateUserInfo(req.session.user.id, req.body.first, req.body.last, req.body.email, hashedPassword)
+            db.updateUserInfo(req.session.user.id, req.body.first, req.body.last, req.body.email, req.body.bio, hashedPassword)
             .then((result) => {
                 console.log(
-                    "HAHA! updated user",
+                    "updated user!\n",
                     result.rows[0]
                 );
                 req.session.user = {
+                    id: result.rows[0].id,
                     first: req.body.first,
                     last: req.body.last,
                     email: req.body.email,
-                    id: result.rows[0].id,
                     bio: result.rows[0].bio
                 };
                 console.log('req.session.user',req.session.user);
-                // res.json({req.session.user})
+                res.json({user : req.session.user})
 
             })
             .catch(err=>{console.log("opss..",err);})
-
         })
         .catch(err=>{console.log('err when hashing pass',err);})
     }else {
