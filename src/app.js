@@ -12,6 +12,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import OnlineUsers from "./onlineUsers";
 import Chat from "./chat";
 import MapApp from "./map";
+import MapAppREDUX from "./mapREDUX";
 
 // import { EditBio , ExistingBio } from './bio';
 
@@ -139,7 +140,8 @@ export default class App extends React.Component {
                             component={OnlineUsers}
                         />
                         <Route exact path="/chat" component={Chat} />
-                        <Route exact path="/map" component={MapApp} />
+                        {/*<Route exact path="/map" component={MapApp} />*/}
+                        <Route exact path="/mapREDUX" component={MapAppREDUX} />
                     </div>
                 </BrowserRouter>
                 {this.state.toggleUploader && (

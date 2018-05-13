@@ -398,7 +398,31 @@ app.get("/getMarker", (req, res) => {
             console.log(`error in getMarkerInfo: ${err}`);
         });
 });
-app.post("/uploadMarkerPic", uploader.single("file"), s3.upload, function(
+
+app.post("/insertNewPin", (req, res) => {
+
+    db
+        .insertNewPin(
+            req.session.user.id,
+            req.body.description,
+            req.body.title,
+            req.body.category,
+            req.body.lat,
+            req.body.lng
+        )
+        .then((result) => {
+            req.session.markerId = result.rows[0].id;
+            console.log("in the info insert",result.rows[0]);
+            res.json({
+                marker: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in insertMargerPic: ${err}`);
+        });
+});
+
+app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
     req,
     res
 ) {
@@ -415,29 +439,7 @@ app.post("/uploadMarkerPic", uploader.single("file"), s3.upload, function(
             console.log(`error in POST/upload: ${err}`);
         });
 });
-app.post("/markerInfo", (req, res) => {
-    console.log("this is the req", req);
 
-    db
-        .updateMarkerStuff(
-            req.session.user.id,
-
-            req.body.description,
-            req.body.title,
-            req.body.catagory,
-            req.body.lat,
-            req.body.lng
-        )
-        .then((result) => {
-            req.session.markerId = result.rows[0].id;
-            res.json({
-                marker: result.rows[0]
-            });
-        })
-        .catch((err) => {
-            console.log(`error in insertMargerPic: ${err}`);
-        });
-});
 app.post("/updateFriendshipStatus", function(req, res) {
     db
         .updateFriendshipStatus(

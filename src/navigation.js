@@ -6,6 +6,7 @@ import { Logo, Login } from "./welcome";
 import { ProfilePic } from "./profile";
 // import { OnlineUsers } from "./onlineUsers";
 import MapApp from "./map";
+import MapAppREDUX from "./mapREDUX";
 import Chat from "./chat";
 
 export default function Navigation(props) {
@@ -17,7 +18,8 @@ export default function Navigation(props) {
             <Link to="/onlineUsers"> Online </Link>
             <Link to="/friends"> Friends </Link>
             <Link to="/chat"> Chat </Link>
-            <Link to="/map"> MapApp </Link>
+            {/*<Link to="/map"> MapApp </Link>*/}
+            <Link to="/mapREDUX"> MapAppREDUX </Link>
             <ProfilePic {...props} />
         </div>
     );

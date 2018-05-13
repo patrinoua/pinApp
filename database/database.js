@@ -163,7 +163,7 @@ exports.selectCategory = (array) => {
     return db.query(`SELECT * FROM pins WHERE category = ANY($1)`, [array]);
 };
 
-exports.updateMarkerStuff = (id, description, title, catagory, lat, lng) => {
+exports.insertNewPin = (id, description, title, catagory, lat, lng) => {
     return db.query(
         `INSERT INTO pins (user_id,  description, title,category, lat, lng) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
         [id, description, title, catagory, lat, lng]

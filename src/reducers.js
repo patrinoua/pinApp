@@ -1,4 +1,4 @@
-export default function reducer(state = {}, action) {
+export default function reducer(state = {markersArray: []}, action) {
     if (action.type == "RECEIVE_FRIENDS_AND_WANNABES") {
         // console.log("action", action);
         state = Object.assign({}, state, {
@@ -83,6 +83,20 @@ export default function reducer(state = {}, action) {
             onlineUsers: state.onlineUsers.filter(user => {
                 return user.id != action.userId;
             })
+        };
+    }
+    if (action.type == "INSERT_PIN_INFO") {
+        console.log("action",action);
+        state = {
+            ...state,
+            markersArray: state.markersArray.concat(action.pinInfo)
+        };
+    }
+    if (action.type == "GET_PIN_INFO") {
+        console.log("action",action);
+        state = {
+            ...state,
+            markersArray: [...action.pinsArray]
         };
     }
 
