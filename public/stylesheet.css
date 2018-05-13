@@ -35,12 +35,7 @@ body {
     align-items: center;
 }
 
-/* ********* M ************* */
-
-/* *********** A *********** */
-
-/* ************* P ********* */
-
+/* ********* MAP ************* */
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
@@ -138,7 +133,7 @@ body {
     padding: 20px;
 }
 
-/******** EDIT PROFILE  ***********/
+/********** EDIT PROFILE  ***********/
 
 .profileContainerUser {
     display: flex;
@@ -166,7 +161,7 @@ body {
     justify-content: center;
 }
 
-.editProfileContainer {
+.profileEditorContainer {
     height: 100%;
     position: relative;
     padding: 20px;
@@ -174,20 +169,73 @@ body {
     justify-content: center;
 }
 
-.editProfileContainerLeft {
-    width: 50%;
+.profileEditorContainerLeft {
+    width: 20%;
+    min-width: 200px;
+
     display: flex;
-    padding: 20px;
+    flex-direction: column;
     position: relative;
+    padding: 20px;
+}
+.profilePicFrame{
+    display: flex;
+    position: relative;
+
+}
+.profilePicOwn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 9px;
 }
 
-.editProfileContainerRight {
+.profilePicCircle{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.profilePicOwn img {
+    /* max-height: 100%;
+    max-width: 100%; */
+}
+
+.profileEditorContainerRight {
     width: 50%;
     display: flex;
     flex-direction: column;
     padding: 20px;
     position: relative;
 }
+
+.profileInfoContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    /* background-color: blue; */
+}
+.existingValues, .editingValues{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .editProfile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+} */
 
 .editBioContainer {
     padding: 20px;
@@ -196,32 +244,6 @@ body {
 .editBioBox {
     display: flex;
     width: 300px;
-}
-
-.profileInfoContainer {
-    padding: 20px;
-    /* background-color: blue; */
-}
-
-.profileInfoButtons {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.profileInfoBox {
-    /* background-color: orange; */
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
-
-.editProfile {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .profileInputField {
@@ -273,36 +295,11 @@ body {
     outline: none;
 }
 
-.pictureContainerOwn {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profilePicOwn {
-    /* max-width: 400px;
-    max-height: 400px; */
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.profilePicOwn img {
-    max-width: 100%;
-    padding: 10px;
-}
 
 .profilePic img {
-    max-width: 100%;
+    max-width: 200px;
+    max-height: 200px;
     padding: 10px;
-    max-height: 100%;
 }
 
 .profilePicButtons {
@@ -316,11 +313,12 @@ body {
 .uploader {
     position: absolute;
     justify-content: center;
+    height: 200px;
     top: 70px;
     left: 10%;
     right: 10%;
     display: flex;
-    background-color: white;
+    background-color: rgba(255,255,255,0.9);
     border: 2px solid grey;
     margin: 20px;
     border-radius: 30px;
@@ -328,7 +326,7 @@ body {
     align-items: center;
 }
 
-/* FRIENDS COMPONENT  */
+/********** FRIENDS COMPONENT  **************/
 
 .friendsComponent {
     width: 90vw;
@@ -492,6 +490,8 @@ body {
     padding: 10px 0;
 }
 
+/*********** ONLINE USERS ***********/
+
 .onlineUsersList {
     display: flex;
     flex-direction: column;
@@ -520,14 +520,7 @@ body {
 .onlineUserText {
     padding: 7px;
 }
-
-/* #lala{
-    border:none;
-    padding: 0;
-    margin: 0;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-} */
-
+/************ FORM ***************/
 .form {
     width: 300px;
     display: flex;
@@ -548,6 +541,8 @@ body {
     justify-content: center;
     margin: 5px;
 }
+
+/************ BUTTONS ***************/
 
 .inputButton {
     width: 162px;
@@ -578,7 +573,7 @@ button:hover {
 .subtleButton {
     border: none;
     width: 60px;
-    margin: 5px;
+    margin: 10px;
     font-size: 0.8em;
     display: inline;
 }
@@ -642,10 +637,13 @@ button:hover {
     width: 15px;
     height: 15px;
     position: absolute;
-    right: 15px;
-    top:15px;
+    right: 25px;
+    top: 25px;
+    opacity: 0.2;
 }
-
+.editIcon:hover{
+    opacity: 0.8;
+}
 .center {
     display: flex;
     flex-direction: column;

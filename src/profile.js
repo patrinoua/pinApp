@@ -16,12 +16,6 @@ export class ProfilePage extends React.Component {
         this.saveNewInputValue = this.saveNewInputValue.bind(this);
     }
 
-    componentDidMount(){
-        // console.log('mounted!');
-        // console.log('this.props', this.props);
-        // console.log('this.state', this.state);
-    }
-
     toggleEditor() {
         this.setState({
             editorIsVisible: !this.state.editorIsVisible
@@ -57,8 +51,15 @@ export class ProfilePage extends React.Component {
         }).catch(err=>{console.log('PROBLEM :(',err);})
     }
     render() {
+
         let pic = this.state.profilepic || this.props.profilepic || "/neo.png";
         let bio = this.props.bio || "Tell us something about urself!";
+
+        const style={
+            backgroundImage:`url(${pic})`,
+            backgroundColor:'purple',
+            backgroundSize:'cover'
+        }
 
         const existingValue = (textToShow, propertyKey)=>{
             return(
@@ -86,20 +87,26 @@ export class ProfilePage extends React.Component {
         }
 
         return (
-            <div className="editProfileContainer">
-                <div className="editProfileContainerLeft">
-                    <div className="pictureContainerOwn">
-                        <p>Welcome, {this.props.first}</p>
-                        <div className="profilePicOwn">
-                            <img src={pic} />
-                            <img src="edit.png" className="icons editIcon" onClick={this.props.toggleUploader}/>
+            <div className="profileEditorContainer">
+
+                <div className="profileEditorContainerLeft">
+                <p>Welcome, {this.props.first}</p>
+                    {/*<div className="profilePicFrame">*/}
+                        <div className="profilePicFrame">
+                            <div className="profilePicOwn">
+                                <div className="profilePicCircle" style={style}>
+                                    {/*<img src={pic} />*/}
+                                </div>
+                                <img src="edit.png" className="icons editIcon" onClick={this.props.toggleUploader}/>
+                            </div>
+
                         </div>
-                    </div>
+                    {/*</div>*/}
+
                 </div>
-                <div className="editProfileContainerRight">
+                <div className="profileEditorContainerRight">
 
                     <div className="profileInfoContainer">
-                        <div className="profileInfoBox">
                             {this.state.editorIsVisible
                             &&(<div className="editingValues">
                                     {inputField('Firstname',this.props.first)}
@@ -117,6 +124,10 @@ export class ProfilePage extends React.Component {
                                             <textarea id="bio" onChange={this.handleChange} className="inputField editBioTextArea" name="bio" defaultValue={bio}/>
                                         </div>
                                     </div>
+                                    <div className="editButtons">
+                                        <button className="editInfoButton subtleButton"  onClick={this.saveNewInputValue}>Save</button>
+                                        <button className="editInfoButton subtleButton"  onClick={this.toggleEditor}>Cancel</button>
+                                    </div>
                                 </div>
                             )
                             ||(<div className="existingValues">
@@ -125,20 +136,12 @@ export class ProfilePage extends React.Component {
                                 {existingValue('Email',this.props.email)}
                                 {existingValue('Password','*******')}
                                 {existingValue('Bio',bio)}
+                                <button className="editInfoButton subtleButton" onClick={this.toggleEditor}>Edit</button>
+
                                 </div>
+
                             )}
-                        </div>
-                        <div className="profileInfoButtons">
-                            {this.state.editorIsVisible
-                            &&(
-                            <div className="editButtons">
-                                <button className="editInfoButton subtleButton"  onClick={this.saveNewInputValue}>Save</button>
-                                <button className="editInfoButton subtleButton"  onClick={this.toggleEditor}>Cancel</button>
-                            </div>
-                            )||
-                            <button className="editInfoButton subtleButton" onClick={this.toggleEditor}>EDIT</button>
-                            }
-                        </div>
+
                     </div>
                 </div>
             </div>
