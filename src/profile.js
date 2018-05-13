@@ -21,34 +21,41 @@ export class ProfilePage extends React.Component {
             editorIsVisible: !this.state.editorIsVisible
         });
     }
-    inputField(inputValue, state){
-        console.log('lalala',name);
-        return(<div>I wonder...</div>)
+    inputField(inputValue, state) {
+        console.log("lalala", name);
+        return <div>I wonder...</div>;
     }
-    changeInputValues(inputValues){
-        this.props.changeInputValues(inputValues)
+    changeInputValues(inputValues) {
+        this.props.changeInputValues(inputValues);
     }
-    handleChange(e){
-        this[e.target.name]=e.target.value;
+    handleChange(e) {
+        this[e.target.name] = e.target.value;
     }
-    saveNewInputValue(){
-        let inputName = this.first||this.lastname;
-        axios.post(`/updateUserInfo/`,{
-            first:this.first,
-            last:this.lastname,
-            email:this.email,
-            bio: this.bio,
-            pass: this.pass
-        })
-        .then(response=>{
-            if(response.data.user){
-                console.log("response.data.user",response.data.user);
-                this.props.changeInputValues(response.data.user)
-                setTimeout(this.toggleEditor,300);
-            }else{
-                console.log('response.data in register error ',response.data.errorMsg);
-            }
-        }).catch(err=>{console.log('PROBLEM :(',err);})
+    saveNewInputValue() {
+        let inputName = this.first || this.lastname;
+        axios
+            .post(`/updateUserInfo/`, {
+                first: this.first,
+                last: this.lastname,
+                email: this.email,
+                bio: this.bio,
+                pass: this.pass
+            })
+            .then((response) => {
+                if (response.data.user) {
+                    console.log("response.data.user", response.data.user);
+                    this.props.changeInputValues(response.data.user);
+                    setTimeout(this.toggleEditor, 300);
+                } else {
+                    console.log(
+                        "response.data in register error ",
+                        response.data.errorMsg
+                    );
+                }
+            })
+            .catch((err) => {
+                console.log("PROBLEM :(", err);
+            });
     }
     render() {
 
@@ -64,27 +71,27 @@ export class ProfilePage extends React.Component {
         const existingValue = (textToShow, propertyKey)=>{
             return(
                 <div className="profileInputField">
-                    <div className="inputPropertyName">
-                    {textToShow}
-                    </div>
-                    <div className="inputPropertyValue">
-                    {propertyKey}
-                    </div>
+                    <div className="inputPropertyName">{textToShow}</div>
+                    <div className="inputPropertyValue">{propertyKey}</div>
                 </div>
-            )
-        }
-        const inputField = (textToShow, propertyKey)=>{
-            return(
+            );
+        };
+        const inputField = (textToShow, propertyKey) => {
+            return (
                 <div className="profileInputField">
-                    <div className="inputPropertyName">
-                    {textToShow}
-                    </div>
+                    <div className="inputPropertyName">{textToShow}</div>
                     <div className="inputPropertyValue">
-                        <input id="first" onChange={this.handleChange} className="inputField" name="first" defaultValue={propertyKey}/>
+                        <input
+                            id="first"
+                            onChange={this.handleChange}
+                            className="inputField"
+                            name="first"
+                            defaultValue={propertyKey}
+                        />
                     </div>
                 </div>
-            )
-        }
+            );
+        };
 
         return (
             <div className="profileEditorContainer">
@@ -113,15 +120,33 @@ export class ProfilePage extends React.Component {
                                     {inputField('Lastname',this.props.last)}
                                     {inputField('Email',this.props.email)}
                                     <div className="profileInputField">
-                                        <div className="inputPropertyName"> Password </div>
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Password{" "}
+                                        </div>
                                         <div className="inputPropertyValue">
-                                            <input id="pass" onChange={this.handleChange} className="inputField" name="pass" placeholder="*******"/>
+                                            <input
+                                                id="pass"
+                                                onChange={this.handleChange}
+                                                className="inputField"
+                                                name="pass"
+                                                placeholder="*******"
+                                            />
                                         </div>
                                     </div>
                                     <div className="profileInputField">
-                                        <div className="inputPropertyName"> Bio  </div>
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Bio{" "}
+                                        </div>
                                         <div className="inputPropertyValue">
-                                            <textarea id="bio" onChange={this.handleChange} className="inputField editBioTextArea" name="bio" defaultValue={bio}/>
+                                            <textarea
+                                                id="bio"
+                                                onChange={this.handleChange}
+                                                className="inputField editBioTextArea"
+                                                name="bio"
+                                                defaultValue={bio}
+                                            />
                                         </div>
                                     </div>
                                     <div className="editButtons">
@@ -173,7 +198,7 @@ export function UploadProfilePic(props) {
         var formData = new FormData();
         var app = this;
         formData.append("file", file);
-        axios.post("/updateProfilepic", formData).then(response => {
+        axios.post("/updateProfilepic", formData).then((response) => {
             console.log("response: ", response);
             if (response.data.success) {
                 props.changeImage(response.data.profilepic);
@@ -198,7 +223,11 @@ export function UploadProfilePic(props) {
                     {" "}
                     Upload{" "}
                 </button>
-                <button type="button" className="subtleButton" onClick={closePopUp}>
+                <button
+                    type="button"
+                    className="subtleButton"
+                    onClick={closePopUp}
+                >
                     {" "}
                     Cancel{" "}
                 </button>

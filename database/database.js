@@ -60,20 +60,22 @@ exports.updateProfilepic = (profilepic, email) => {
 // ******* INSERT BIO *******
 
 exports.updateUserInfo = (id, first, last, email, bio, pass) => {
-
-    if(pass){
+    if (pass) {
         return hashPassword(pass)
-        .then((hashedPassword)=>{
-            return db.query(
-                `UPDATE users
+            .then((hashedPassword) => {
+                return db.query(
+                    `UPDATE users
                 SET first = $2, last=$3, email=$4, bio=$5, pass=$6
                 WHERE id = $1
                 RETURNING *
                 `,
-                [id, first, last, email, bio, hashedPassword]
-            );
-        }).catch(err=>{console.log('err when hashing in db',err);})
-    }else{
+                    [id, first, last, email, bio, hashedPassword]
+                );
+            })
+            .catch((err) => {
+                console.log("err when hashing in db", err);
+            });
+    } else {
         return db.query(
             `UPDATE users
                          SET first = $2, last=$3, email=$4, bio=$5
@@ -161,7 +163,7 @@ exports.selectCategory = (array) => {
     return db.query(`SELECT * FROM pins WHERE category = ANY($1)`, [array]);
 };
 
-exports.insertMarkerPic = (id, description, title, catagory, lat, lng) => {
+exports.updateMarkerStuff = (id, description, title, catagory, lat, lng) => {
     return db.query(
         `INSERT INTO pins (user_id,  description, title,category, lat, lng) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
         [id, description, title, catagory, lat, lng]
@@ -169,4 +171,10 @@ exports.insertMarkerPic = (id, description, title, catagory, lat, lng) => {
 };
 exports.getMarkerInfo = (id) => {
     return db.query(`SELECT * FROM pins WHERE user_id=$1`, [id]);
+};
+exports.saveMarkerImage = (url, id) => {
+    return db.query(`UPDATE pins SET url = $1  WHERE id = $2 RETURNING *`, [
+        url,
+        id
+    ]);
 };

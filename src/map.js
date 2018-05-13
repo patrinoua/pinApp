@@ -31,11 +31,6 @@ class MapApp extends React.Component {
             top: "20vh",
             left: "5vh"
         };
-        console.log("****************************");
-        console.log("IN MAP");
-        console.log("this.props:\n", this.props);
-        console.log("\nthis.props.google:", this.props.google);
-        console.log(" \nthis.state:", this.state);
 
         // if (!this.props.loaded) {
         //     return <div>Loading...</div>;

@@ -23,11 +23,11 @@ CREATE TABLE friendships(
 
 CREATE TABLE pins(
     id SERIAL PRIMARY KEY,
-    title VARCHAR(250) NOT NULL,
+    title VARCHAR(250) ,
     category VARCHAR(250),
     url VARCHAR(250),
-    lat VARCHAR(250) NOT NULL,
-    lng VARCHAR(250) NOT NULL,
+    lat VARCHAR(250),
+    lng VARCHAR(250),
     description VARCHAR(1250),
     user_id INTEGER, FOREIGN KEY(user_id) REFERENCES users (id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

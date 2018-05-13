@@ -263,37 +263,44 @@ app.post("/wrongLogin", function(req, res) {
     console.log("inside wrong login post:");
 });
 
-app.post("/updateUserInfo/",function(req, res){
-    console.log('req.body',req.body);
+app.post("/updateUserInfo/", function(req, res) {
+    console.log("req.body", req.body);
     let first = req.body.first || req.session.user.first;
     let last = req.body.last || req.session.user.last;
     let email = req.body.email || req.session.user.email;
     let bio = req.body.bio || req.session.user.bio;
     let password = req.body.pass;
 
-    console.log('updateUserInfo:',req.session.user.id, first, last, email, bio, password);
+    console.log(
+        "updateUserInfo:",
+        req.session.user.id,
+        first,
+        last,
+        email,
+        bio,
+        password
+    );
 
-    db.updateUserInfo(req.session.user.id, first, last, email, bio, password)
-    .then((result) => {
-        console.log(
-            "updated user!\n",
-            result.rows[0]
-        );
-        req.session.user = {
-            id: result.rows[0].id,
-            first: result.rows[0].first,
-            last: result.rows[0].last,
-            email: result.rows[0].email,
-            bio: result.rows[0].bio,
-            profilepic: result.rows[0].profilepic,
-            sex: result.rows[0].sex
-        };
-        console.log('req.session.user',req.session.user);
-        res.json({user : req.session.user})
-    })
-    .catch(err=>{console.log("opss.!!!.",err);})
-
-})
+    db
+        .updateUserInfo(req.session.user.id, first, last, email, bio, password)
+        .then((result) => {
+            console.log("updated user!\n", result.rows[0]);
+            req.session.user = {
+                id: result.rows[0].id,
+                first: result.rows[0].first,
+                last: result.rows[0].last,
+                email: result.rows[0].email,
+                bio: result.rows[0].bio,
+                profilepic: result.rows[0].profilepic,
+                sex: result.rows[0].sex
+            };
+            console.log("req.session.user", req.session.user);
+            res.json({ user: req.session.user });
+        })
+        .catch((err) => {
+            console.log("opss.!!!.", err);
+        });
+});
 
 app.post("/editBio", function(req, res) {
     console.log("updating biooo!");
@@ -332,36 +339,38 @@ app.post("/updateProfilepic", uploader.single("file"), s3.upload, function(
     console.log("req.file.filename", req.file.filename);
     if (req.file) {
         const imageUrl = config.s3Url + req.file.filename;
-        db.updateProfilepic(imageUrl, req.session.user.email)
-        .then((result) => {
-            console.log("added to db: ", result.rows[0]);
-            req.session.user.profilepic = imageUrl;
-            res.json({
-                profilepic: imageUrl,
-                images: result.rows[0],
-                success: true
+        db
+            .updateProfilepic(imageUrl, req.session.user.email)
+            .then((result) => {
+                console.log("added to db: ", result.rows[0]);
+                req.session.user.profilepic = imageUrl;
+                res.json({
+                    profilepic: imageUrl,
+                    images: result.rows[0],
+                    success: true
+                });
+            })
+            .catch((err) => {
+                console.log("problem with adding to db: ", err);
             });
-        })
-        .catch((err) => {
-            console.log("problem with adding to db: ", err);
-        });
     } else {
         console.log("boo...");
     }
 });
 
 app.get("/checkFriendshipStatus", function(req, res) {
-    db.checkFriendshipStatus(req.session.user.id, req.query.otherId)
-    .then((status) => {
-        // status.rows[0] ? console.log("the status is... ",status.rows[0].status) : console.log("the status is... ",status.rows[0]) ;
-        if (!status.rows[0]) {
-            res.json({});
-        } else {
-            res.json({
-                friendshipStatus: status.rows[0]
-            });
-        }
-    });
+    db
+        .checkFriendshipStatus(req.session.user.id, req.query.otherId)
+        .then((status) => {
+            // status.rows[0] ? console.log("the status is... ",status.rows[0].status) : console.log("the status is... ",status.rows[0]) ;
+            if (!status.rows[0]) {
+                res.json({});
+            } else {
+                res.json({
+                    friendshipStatus: status.rows[0]
+                });
+            }
+        });
 });
 app.post("/categorySelect", (req, res) => {
     console.log(req.body.marker);
@@ -389,11 +398,28 @@ app.get("/getMarker", (req, res) => {
             console.log(`error in getMarkerInfo: ${err}`);
         });
 });
-app.post("/markerPic", (req, res) => {
+app.post("/uploadMarkerPic", uploader.single("file"), s3.upload, function(
+    req,
+    res
+) {
+    let url = `${config.s3Url}${req.file.filename}`;
+    db
+        .saveMarkerImage(url, req.session.markerId)
+        .then((result) => {
+            res.json({
+                success: true,
+                url: result.rows[0].url
+            });
+        })
+        .catch((err) => {
+            console.log(`error in POST/upload: ${err}`);
+        });
+});
+app.post("/markerInfo", (req, res) => {
     console.log("this is the req", req);
 
     db
-        .insertMarkerPic(
+        .updateMarkerStuff(
             req.session.user.id,
 
             req.body.description,
@@ -403,6 +429,7 @@ app.post("/markerPic", (req, res) => {
             req.body.lng
         )
         .then((result) => {
+            req.session.markerId = result.rows[0].id;
             res.json({
                 marker: result.rows[0]
             });
