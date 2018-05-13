@@ -60,9 +60,6 @@ class MapContainer extends React.Component {
             lat: clickEvent.latLng.lat(),
             lng: clickEvent.latLng.lng()
         });
-
-        console.log(clickEvent.latLng.lat());
-        console.log(clickEvent.latLng.lng());
     }
     componentDidMount() {
         axios
@@ -84,12 +81,16 @@ class MapContainer extends React.Component {
         this[e.target.name] = e.target.value;
     }
     setFile(e) {
-        this[e.target.name] = e.target.files[0];
+        // this[e.target.name] = e.target.files[0];
+        this.setState({
+            file: e.target.files[0]
+        });
         // file = e.target.files[0];
         // this.setState({
         //     file: e.target.files[0]
         // });
     }
+
     checkValue(e) {
         this.catagory = e.target.value;
         this[e.target.name] = e.target.value;
@@ -97,11 +98,9 @@ class MapContainer extends React.Component {
         this.state.arrayOfCatagory.push(e.target.value);
     }
     sendCatagory(e) {
-        console.log(this.state.arrayOfCatagory);
         axios
             .post("/categorySelect", { marker: this.state.arrayOfCatagory })
             .then((response) => {
-                console.log(response.data);
                 document.getElementById("myForm").reset();
                 this.setState({
                     markerToShow: response.data.marker,
@@ -113,11 +112,6 @@ class MapContainer extends React.Component {
             });
     }
     upload(e) {
-        const formData = new FormData();
-        console.log(this.file);
-
-        // formData.append("file", this.file);
-        console.log(formData);
         let obj = {
             description: this.description,
             title: this.title,
@@ -126,15 +120,26 @@ class MapContainer extends React.Component {
             lng: this.state.lng
         };
         axios
-            .post("/markerPic", obj)
+            .post("/markerInfo", obj)
             .then((response) => {
-                console.log(response.data);
-                let arr = [];
-                arr.push(response.data.marker);
-                this.setState({
-                    markerToShow: [...arr],
-                    showMarkerInput: null
-                });
+                const formData = new FormData();
+                let old = response.data;
+                formData.append("file", this.state.file);
+                axios
+                    .post("/uploadMarkerPic", formData)
+                    .then((resp) => {
+                        let arr = [];
+                        old.marker.url = resp.data.url;
+                        arr.push(old.marker);
+                        let arr2 = this.state.markerToShow.concat(arr);
+                        this.setState({
+                            markerToShow: [...arr2],
+                            showMarkerInput: null
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(`error in pic upload: ${err}`);
+                    });
             })
             .catch(function(err) {
                 console.log("there was an error in upload", err);
@@ -228,8 +233,7 @@ class MapContainer extends React.Component {
                                         lng: item.lng
                                     }}
                                     icon={{
-                                        url:
-                                            "http://icon-park.com/imagefiles/location_map_pin_light_blue5.png",
+                                        url: item.url,
                                         anchor: new google.maps.Point(10, 10),
                                         scaledSize: new google.maps.Size(30, 30)
                                     }}

@@ -16,7 +16,7 @@ export class ProfilePage extends React.Component {
         this.saveNewInputValue = this.saveNewInputValue.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         // console.log('mounted!');
         // console.log('this.props', this.props);
         // console.log('this.state', this.state);
@@ -27,63 +27,70 @@ export class ProfilePage extends React.Component {
             editorIsVisible: !this.state.editorIsVisible
         });
     }
-    inputField(inputValue, state){
-        console.log('lalala',name);
-        return(<div>I wonder...</div>)
+    inputField(inputValue, state) {
+        console.log("lalala", name);
+        return <div>I wonder...</div>;
     }
-    changeInputValues(inputValues){
-        this.props.changeInputValues(inputValues)
+    changeInputValues(inputValues) {
+        this.props.changeInputValues(inputValues);
     }
-    handleChange(e){
-        this[e.target.name]=e.target.value;
+    handleChange(e) {
+        this[e.target.name] = e.target.value;
     }
-    saveNewInputValue(){
-        let inputName = this.first||this.lastname;
-        axios.post(`/updateUserInfo/`,{
-            first:this.first,
-            last:this.lastname,
-            email:this.email,
-            bio: this.bio,
-            pass: this.pass
-        })
-        .then(response=>{
-            if(response.data.user){
-                console.log("response.data.user",response.data.user);
-                this.props.changeInputValues(response.data.user)
-                setTimeout(this.toggleEditor,300);
-            }else{
-                console.log('response.data in register error ',response.data.errorMsg);
-            }
-        }).catch(err=>{console.log('PROBLEM :(',err);})
+    saveNewInputValue() {
+        let inputName = this.first || this.lastname;
+        axios
+            .post(`/updateUserInfo/`, {
+                first: this.first,
+                last: this.lastname,
+                email: this.email,
+                bio: this.bio,
+                pass: this.pass
+            })
+            .then((response) => {
+                if (response.data.user) {
+                    console.log("response.data.user", response.data.user);
+                    this.props.changeInputValues(response.data.user);
+                    setTimeout(this.toggleEditor, 300);
+                } else {
+                    console.log(
+                        "response.data in register error ",
+                        response.data.errorMsg
+                    );
+                }
+            })
+            .catch((err) => {
+                console.log("PROBLEM :(", err);
+            });
     }
     render() {
         let pic = this.state.profilepic || this.props.profilepic || "/neo.png";
         let bio = this.props.bio || "Tell us something about urself!";
 
-        const existingValue = (textToShow, propertyKey)=>{
-            return(
+        const existingValue = (textToShow, propertyKey) => {
+            return (
                 <div className="profileInputField">
-                    <div className="inputPropertyName">
-                    {textToShow}
-                    </div>
+                    <div className="inputPropertyName">{textToShow}</div>
+                    <div className="inputPropertyValue">{propertyKey}</div>
+                </div>
+            );
+        };
+        const inputField = (textToShow, propertyKey) => {
+            return (
+                <div className="profileInputField">
+                    <div className="inputPropertyName">{textToShow}</div>
                     <div className="inputPropertyValue">
-                    {propertyKey}
+                        <input
+                            id="first"
+                            onChange={this.handleChange}
+                            className="inputField"
+                            name="first"
+                            defaultValue={propertyKey}
+                        />
                     </div>
                 </div>
-            )
-        }
-        const inputField = (textToShow, propertyKey)=>{
-            return(
-                <div className="profileInputField">
-                    <div className="inputPropertyName">
-                    {textToShow}
-                    </div>
-                    <div className="inputPropertyValue">
-                        <input id="first" onChange={this.handleChange} className="inputField" name="first" defaultValue={propertyKey}/>
-                    </div>
-                </div>
-            )
-        }
+            );
+        };
 
         return (
             <div className="editProfileContainer">
@@ -92,52 +99,90 @@ export class ProfilePage extends React.Component {
                         <p>Welcome, {this.props.first}</p>
                         <div className="profilePicOwn">
                             <img src={pic} />
-                            <img src="edit.png" className="icons editIcon" onClick={this.props.toggleUploader}/>
+                            <img
+                                src="edit.png"
+                                className="icons editIcon"
+                                onClick={this.props.toggleUploader}
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="editProfileContainerRight">
-
                     <div className="profileInfoContainer">
                         <div className="profileInfoBox">
-                            {this.state.editorIsVisible
-                            &&(<div className="editingValues">
-                                    {inputField('Firstname',this.props.first)}
-                                    {inputField('Lastname',this.props.last)}
-                                    {inputField('Email',this.props.email)}
+                            {(this.state.editorIsVisible && (
+                                <div className="editingValues">
+                                    {inputField("Firstname", this.props.first)}
+                                    {inputField("Lastname", this.props.last)}
+                                    {inputField("Email", this.props.email)}
                                     <div className="profileInputField">
-                                        <div className="inputPropertyName"> Password </div>
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Password{" "}
+                                        </div>
                                         <div className="inputPropertyValue">
-                                            <input id="pass" onChange={this.handleChange} className="inputField" name="pass" placeholder="*******"/>
+                                            <input
+                                                id="pass"
+                                                onChange={this.handleChange}
+                                                className="inputField"
+                                                name="pass"
+                                                placeholder="*******"
+                                            />
                                         </div>
                                     </div>
                                     <div className="profileInputField">
-                                        <div className="inputPropertyName"> Bio  </div>
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Bio{" "}
+                                        </div>
                                         <div className="inputPropertyValue">
-                                            <textarea id="bio" onChange={this.handleChange} className="inputField editBioTextArea" name="bio" defaultValue={bio}/>
+                                            <textarea
+                                                id="bio"
+                                                onChange={this.handleChange}
+                                                className="inputField editBioTextArea"
+                                                name="bio"
+                                                defaultValue={bio}
+                                            />
                                         </div>
                                     </div>
                                 </div>
-                            )
-                            ||(<div className="existingValues">
-                                {existingValue('Firstname',this.props.first)}
-                                {existingValue('Lastname',this.props.last)}
-                                {existingValue('Email',this.props.email)}
-                                {existingValue('Password','*******')}
-                                {existingValue('Bio',bio)}
+                            )) || (
+                                <div className="existingValues">
+                                    {existingValue(
+                                        "Firstname",
+                                        this.props.first
+                                    )}
+                                    {existingValue("Lastname", this.props.last)}
+                                    {existingValue("Email", this.props.email)}
+                                    {existingValue("Password", "*******")}
+                                    {existingValue("Bio", bio)}
                                 </div>
                             )}
                         </div>
                         <div className="profileInfoButtons">
-                            {this.state.editorIsVisible
-                            &&(
-                            <div className="editButtons">
-                                <button className="editInfoButton subtleButton"  onClick={this.saveNewInputValue}>Save</button>
-                                <button className="editInfoButton subtleButton"  onClick={this.toggleEditor}>Cancel</button>
-                            </div>
-                            )||
-                            <button className="editInfoButton subtleButton" onClick={this.toggleEditor}>EDIT</button>
-                            }
+                            {(this.state.editorIsVisible && (
+                                <div className="editButtons">
+                                    <button
+                                        className="editInfoButton subtleButton"
+                                        onClick={this.saveNewInputValue}
+                                    >
+                                        Save
+                                    </button>
+                                    <button
+                                        className="editInfoButton subtleButton"
+                                        onClick={this.toggleEditor}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            )) || (
+                                <button
+                                    className="editInfoButton subtleButton"
+                                    onClick={this.toggleEditor}
+                                >
+                                    EDIT
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -170,7 +215,7 @@ export function UploadProfilePic(props) {
         var formData = new FormData();
         var app = this;
         formData.append("file", file);
-        axios.post("/updateProfilepic", formData).then(response => {
+        axios.post("/updateProfilepic", formData).then((response) => {
             console.log("response: ", response);
             if (response.data.success) {
                 props.changeImage(response.data.profilepic);
@@ -195,7 +240,11 @@ export function UploadProfilePic(props) {
                     {" "}
                     Upload{" "}
                 </button>
-                <button type="button" className="subtleButton" onClick={closePopUp}>
+                <button
+                    type="button"
+                    className="subtleButton"
+                    onClick={closePopUp}
+                >
                     {" "}
                     Cancel{" "}
                 </button>
