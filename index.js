@@ -363,7 +363,54 @@ app.get("/checkFriendshipStatus", function(req, res) {
         }
     });
 });
+app.post("/categorySelect", (req, res) => {
+    console.log(req.body.marker);
+    db
+        .selectCategory(req.body.marker)
+        .then((result) => {
+            console.log(result.rows);
+            res.json({
+                marker: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in selectCategory: ${err}`);
+        });
+});
+app.get("/getMarker", (req, res) => {
+    db
+        .getMarkerInfo(req.session.user.id)
+        .then((result) => {
+            res.json({
+                marker: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in getMarkerInfo: ${err}`);
+        });
+});
+app.post("/markerPic", (req, res) => {
+    console.log("this is the req", req);
 
+    db
+        .insertMarkerPic(
+            req.session.user.id,
+
+            req.body.description,
+            req.body.title,
+            req.body.catagory,
+            req.body.lat,
+            req.body.lng
+        )
+        .then((result) => {
+            res.json({
+                marker: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in insertMargerPic: ${err}`);
+        });
+});
 app.post("/updateFriendshipStatus", function(req, res) {
     db
         .updateFriendshipStatus(

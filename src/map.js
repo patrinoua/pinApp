@@ -4,7 +4,7 @@ import axios from "./axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import MapContainer from "./mapContainer";
-
+import { emit } from "./socket";
 const mapStateToProps = function(state) {
     return {
         onlineUsers: state.onlineUsers
@@ -12,6 +12,17 @@ const mapStateToProps = function(state) {
 };
 
 class MapApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            lat: null,
+            lng: null
+        };
+        this.makeNewMarker = this.makeNewMarker.bind(this);
+    }
+    makeNewMarker(obj) {
+        emit("makeNewMarker", obj);
+    }
     render() {
         const style = {
             width: "60vw",
@@ -22,8 +33,8 @@ class MapApp extends React.Component {
         };
         console.log("****************************");
         console.log("IN MAP");
-        console.log("this.props:\n",this.props);
-        console.log("\nthis.props.google:",this.props.google);
+        console.log("this.props:\n", this.props);
+        console.log("\nthis.props.google:", this.props.google);
         console.log(" \nthis.state:", this.state);
 
         // if (!this.props.loaded) {
@@ -32,7 +43,10 @@ class MapApp extends React.Component {
 
         return (
             <React.Fragment>
-                <MapContainer style={style} />
+                <MapContainer
+                    style={style}
+                    makeNewMarker={this.makeNewMarker}
+                />
             </React.Fragment>
         );
     }
