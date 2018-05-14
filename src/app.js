@@ -98,38 +98,53 @@ export default class App extends React.Component {
         return (
             <div className="routeContainer">
                 <BrowserRouter>
-                    <div className="container">
-                        <Navigation
-                            {...this.state}
-                            toggleUploader={this.toggleUploader}
-                            makeUploaderVisible={this.showUploader}
-                            hideUploader={this.hideUploader}
-                        />
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <ProfilePage
-                                    {...this.state}
-                                    toggleUploader={this.toggleUploader}
-                                    makeUploaderVisible={this.showUploader}
-                                    hideUploader={this.hideUploader}
-                                    changeInputValues={this.changeInputValues}
-                                />
-                            )}
-                        />
-                        <Route
-                            path="/user"
-                            render={() => (
-                                <ProfilePage
-                                    {...this.state}
-                                    toggleUploader={this.toggleUploader}
-                                    makeUploaderVisible={this.showUploader}
-                                    hideUploader={this.hideUploader}
-                                    changeInputValues={this.changeInputValues}
-                                />
-                            )}
-                        />
+                <div className="appContainer">
+
+                    <Navigation
+                        {...this.state}
+                        toggleUploader={this.toggleUploader}
+                        makeUploaderVisible={this.showUploader}
+                        hideUploader={this.hideUploader}
+                    />
+
+                    <Route exact path="/" render={() => (
+                            <ProfilePage
+                                {...this.state}
+                                toggleUploader={this.toggleUploader}
+                                makeUploaderVisible={this.showUploader}
+                                hideUploader={this.hideUploader}
+                                changeInputValues={this.changeInputValues}
+                            />
+                        )}
+                    />
+                    <Route path="/user" render={() => (
+                            <ProfilePage
+                                {...this.state}
+                                toggleUploader={this.toggleUploader}
+                                makeUploaderVisible={this.showUploader}
+                                hideUploader={this.hideUploader}
+                                changeInputValues={this.changeInputValues}
+                            />
+                        )}
+                    />
+
+                    {/*<div className="mapContainer">
+
+                        <div className="mapContainerLeft">
+
+                            <div className="insertNewPin">
+                            </div>
+                            <div className="categoriesList">
+                            </div>
+                        </div>
+                        <div className="mapContainerRight">
+
+                            <div className="mapArea">
+                            </div>
+                        </div>
+                    </div>*/}
+
+                        {/*
 
                         <Route
                             exact
@@ -139,23 +154,21 @@ export default class App extends React.Component {
 
                         <Route exact path="/friends" component={Friends} />
 
-                        <Route
-                            exact
-                            path="/onlineUsers"
-                            component={OnlineUsers}
-                        />
-                        <Route exact path="/chat" component={Chat} />
+                        <Route exact path="/onlineUsers" component={OnlineUsers}
+                        />*/}
+
+                        {/*<Route exact path="/chat" component={Chat} />*/}
                         {/*<Route exact path="/map" component={MapApp} />*/}
                         {/* <Route exact path="/mapREDUX" component={MapAppREDUX} /> */}
-                        <Route
-                            path="/mapREDUX"
-                            render={() => (
+
+                        {/*<Route path="/mapREDUX" render={() => (
                                 <MapAppREDUX
                                     lat={this.state.lat}
                                     lng={this.state.lng}
                                 />
                             )}
-                        />
+                        />*/}
+
                     </div>
                 </BrowserRouter>
                 {this.state.toggleUploader && (

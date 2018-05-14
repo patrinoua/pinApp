@@ -94,25 +94,19 @@ export class ProfilePage extends React.Component {
         };
 
         return (
-            <div className="profileEditorContainer">
-
-                <div className="profileEditorContainerLeft">
+            <div className="profilePageContainer">
+                <div className="profilePageContainerLeft">
                 <p>Welcome, {this.props.first}</p>
-                    {/*<div className="profilePicFrame">*/}
-                        <div className="profilePicFrame">
-                            <div className="profilePicOwn">
-                                <div className="profilePicCircle" style={style}>
-                                    {/*<img src={pic} />*/}
-                                </div>
-                                <img src="edit.png" className="icons editIcon" onClick={this.props.toggleUploader}/>
+                    <div className="profilePicFrame">
+                        <div className="profilePicOwn">
+                            <div className="profilePicCircle" style={style}>
+                                {/*<img src={pic} />*/}
                             </div>
-
+                            <img src="/editWhite.png" className="icons editIcon" onClick={this.props.toggleUploader}/>
                         </div>
-                    {/*</div>*/}
-
+                    </div>
                 </div>
-                <div className="profileEditorContainerRight">
-
+                <div className="profilePageContainerRight">
                     <div className="profileInfoContainer">
                             {this.state.editorIsVisible
                             &&(<div className="editingValues">
@@ -160,7 +154,10 @@ export class ProfilePage extends React.Component {
                                 {existingValue('Lastname',this.props.last)}
                                 {existingValue('Email',this.props.email)}
                                 {existingValue('Password','*******')}
-                                {existingValue('Bio',bio)}
+                                <div className="profileInputField">
+                                    <div className="inputPropertyName">Bio</div>
+                                    <div className="inputPropertyValue" style={{width:130+"px", paddingBottom:20+"px"}}>{bio}</div>
+                                </div>
                                 <button className="editInfoButton subtleButton" onClick={this.toggleEditor}>Edit</button>
 
                                 </div>
