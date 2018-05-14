@@ -42,42 +42,27 @@ class AddNewPin extends React.Component {
         // this.state.arrayOfCategory.push(e.target.value);
     }
     insertPinInfo(e) {
+        let pinColor = {
+            museums: "/pins/bluePin.png",
+            bars: "/pins/pinkPin.png",
+            restaurants: "/pins/yellowPin.png",
+            parks: "/pins/greenPin.png",
+            sightseeing: "/pins/purplePin.png"
+        };
+        let cat = this.category
         let pinInfo = {
             description: this.description,
             title: this.title,
             category: this.category,
             lat: this.props.lat,
-            lng: this.props.lng
+            lng: this.props.lng,
+            color: pinColor[cat]
         };
         const formData = new FormData();
         formData.append("file", this.state.file);
 
         this.props.dispatch(insertPinInfo({formData, pinInfo}))
-        // axios
-        //     .post("/markerInfo", pinInfo)
-        //     .then((response) => {
-        //         const formData = new FormData();
-        //         let old = response.data;
-        //         formData.append("file", this.state.file);
-        //         axios
-        //             .post("/uploadMarkerPic", formData)
-        //             .then((resp) => {
-        //                 let arr = [];
-        //                 old.marker.url = resp.data.url;
-        //                 arr.push(old.marker);
-        //                 let arr2 = this.state.markerToShow.concat(arr);
-        //                 this.setState({
-        //                     markerToShow: [...arr2],
-        //                     showMarkerInput: null
-        //                 });
-        //             })
-        //             .catch((err) => {
-        //                 console.log(`error in pic upload: ${err}`);
-        //             });
-        //     })
-        //     .catch(function(err) {
-        //         console.log("there was an error in upload", err);
-        //     });
+
     }
 
     render() {

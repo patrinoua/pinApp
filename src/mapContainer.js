@@ -233,7 +233,7 @@ class MapContainer extends React.Component {
                                         lng: item.lng
                                     }}
                                     icon={{
-                                        url: item.url,
+                                        url: item.color,
                                         anchor: new google.maps.Point(10, 10),
                                         scaledSize: new google.maps.Size(30, 30)
                                     }}

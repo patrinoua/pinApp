@@ -29,6 +29,7 @@ CREATE TABLE pins(
     lat VARCHAR(250),
     lng VARCHAR(250),
     description VARCHAR(1250),
+    color VARCHAR(250),
     user_id INTEGER, FOREIGN KEY(user_id) REFERENCES users (id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

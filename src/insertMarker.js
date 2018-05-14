@@ -45,12 +45,20 @@ export class InsertMarker extends React.Component {
         this.state.arrayOfCatagory.push(e.target.value);
     }
     upload(e) {
+        let pinColor = {
+            museums: "/pins/bluePin.png",
+            bars: "/pins/pinkPin.png",
+            restaurants: "/pins/yellowPin.png",
+            parks: "/pins/greenPin.png",
+            sightseeing: "/pins/purplePin.png"
+        }
         let obj = {
             description: this.description,
             title: this.title,
             catagory: this.catagory,
             lat: this.state.lat,
-            lng: this.state.lng
+            lng: this.state.lng,
+            color: pinColor.this.catagory
         };
         axios
             .post("/markerInfo", obj)

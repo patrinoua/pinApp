@@ -67,6 +67,12 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            });
+        });
         axios.get("/getUser").then(response => {
             if (response.data.success) {
                 // console.log("response.data.user?????",response.data.user);
@@ -86,7 +92,7 @@ export default class App extends React.Component {
         if (!this.state) {
             return (
                 <div>
-                    <p> LOADING </p>
+                    <p> LOADING... </p>
                 </div>
             );
         }
@@ -141,7 +147,16 @@ export default class App extends React.Component {
                         />
                         <Route exact path="/chat" component={Chat} />
                         {/*<Route exact path="/map" component={MapApp} />*/}
-                        <Route exact path="/mapREDUX" component={MapAppREDUX} />
+                        {/* <Route exact path="/mapREDUX" component={MapAppREDUX} /> */}
+                        <Route
+                            path="/mapREDUX"
+                            render={() => (
+                                <MapAppREDUX
+                                    lat={this.state.lat}
+                                    lng={this.state.lng}
+                                />
+                            )}
+                        />
                     </div>
                 </BrowserRouter>
                 {this.state.toggleUploader && (

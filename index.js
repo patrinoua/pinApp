@@ -85,6 +85,7 @@ function requireLogin(req, res, next) {
     }
 }
 
+
 app.get("/getUser", requireLogin, function(req, res) {
     res.json({
         success: true,
@@ -408,7 +409,8 @@ app.post("/insertNewPin", (req, res) => {
             req.body.title,
             req.body.category,
             req.body.lat,
-            req.body.lng
+            req.body.lng,
+            req.body.color
         )
         .then((result) => {
             req.session.markerId = result.rows[0].id;
@@ -418,7 +420,7 @@ app.post("/insertNewPin", (req, res) => {
             });
         })
         .catch((err) => {
-            console.log(`error in insertMargerPic: ${err}`);
+            console.log(`error in insertMarkerPic: ${err}`);
         });
 });
 

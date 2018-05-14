@@ -163,10 +163,10 @@ exports.selectCategory = (array) => {
     return db.query(`SELECT * FROM pins WHERE category = ANY($1)`, [array]);
 };
 
-exports.insertNewPin = (id, description, title, catagory, lat, lng) => {
+exports.insertNewPin = (id, description, title, catagory, lat, lng, color) => {
     return db.query(
-        `INSERT INTO pins (user_id,  description, title,category, lat, lng) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [id, description, title, catagory, lat, lng]
+        `INSERT INTO pins (user_id,  description, title,category, lat, lng, color) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+        [id, description, title, catagory, lat, lng, color]
     );
 };
 exports.getMarkerInfo = (id) => {

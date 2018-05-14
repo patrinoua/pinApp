@@ -12,9 +12,7 @@ class MapContainerREDUX extends React.Component{
         this.state = {
             lat: null,
             lng: null
-            // showMarkerInput: null,
-            // markerToShow: [],
-            // arrayOfCatagory: []
+
         };
         this.state.addNewPinIsVisible = false
         this.mapClicked = this.mapClicked.bind(this);
@@ -23,12 +21,12 @@ class MapContainerREDUX extends React.Component{
 
     componentDidMount(){
         this.props.dispatch(getPinInfo())
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            });
-        });
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //     this.setState({
+        //         lat: position.coords.latitude,
+        //         lng: position.coords.longitude
+        //     });
+        // });
     }
     toggleAddNewPinComponent(){
         console.log('toggling add new pin component....addNewPinIsVisible',this.state.addNewPinIsVisible);
@@ -52,16 +50,16 @@ class MapContainerREDUX extends React.Component{
             top: "20vh",
             left: "5vh"
         };
-        if (!this.state.lat) {
-            return <h1>map not ready</h1>;
+        if (!this.props.lat) {
+            return <img src="/monky.gif"/>;
         }
         return(
             <React.Fragment>
                 <Map
                     style={style}
                     initialCenter={{
-                        lat: this.state.lat,
-                        lng: this.state.lng
+                        lat: this.props.lat,
+                        lng: this.props.lng
                     }}
                     zoom={14}
                     google={this.props.google}
@@ -87,9 +85,9 @@ class MapContainerREDUX extends React.Component{
                                         lng: item.lng
                                     }}
                                     icon={{
-                                        url: item.url,
+                                        url: item.color,
                                         anchor: new google.maps.Point(10, 10),
-                                        scaledSize: new google.maps.Size(30, 30)
+                                        scaledSize: new google.maps.Size(25, 35)
                                     }}
                                 />
                             );
