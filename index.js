@@ -85,7 +85,6 @@ function requireLogin(req, res, next) {
     }
 }
 
-
 app.get("/getUser", requireLogin, function(req, res) {
     res.json({
         success: true,
@@ -376,7 +375,7 @@ app.get("/checkFriendshipStatus", function(req, res) {
 app.post("/categorySelect", (req, res) => {
     console.log(req.body.marker);
     db
-        .selectCategory(req.body.marker)
+        .selectCategory(req.body.marker, req.session.user.id)
         .then((result) => {
             console.log(result.rows);
             res.json({
@@ -401,7 +400,6 @@ app.get("/getMarker", (req, res) => {
 });
 
 app.post("/insertNewPin", (req, res) => {
-
     db
         .insertNewPin(
             req.session.user.id,
@@ -414,7 +412,7 @@ app.post("/insertNewPin", (req, res) => {
         )
         .then((result) => {
             req.session.markerId = result.rows[0].id;
-            console.log("in the info insert",result.rows[0]);
+            console.log("in the info insert", result.rows[0]);
             res.json({
                 marker: result.rows[0]
             });

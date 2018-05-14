@@ -159,8 +159,8 @@ exports.getUsersByIds = (array) => {
     );
 };
 ////////// map stuff //////////////
-exports.selectCategory = (array) => {
-    return db.query(`SELECT * FROM pins WHERE category = ANY($1)`, [array]);
+exports.selectCategory = (array, id) => {
+    return db.query(`SELECT * FROM pins WHERE category = ANY($1) AND user_id = $2`, [array, id]);
 };
 
 exports.insertNewPin = (id, description, title, catagory, lat, lng, color) => {
