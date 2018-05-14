@@ -5,7 +5,6 @@ import axios from "axios";
 import { Logo, Login } from "./welcome";
 import { ProfilePic } from "./profile";
 // import { OnlineUsers } from "./onlineUsers";
-import MapApp from "./map";
 import MapAppREDUX from "./mapREDUX";
 import Chat from "./chat";
 

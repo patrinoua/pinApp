@@ -5,22 +5,43 @@ import { Link } from "react-router-dom";
 import axios from "./axios";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import AddNewPin from "./addNewPin";
-import { getPinInfo } from "./actions";
-class MapContainerREDUX extends React.Component{
+import { getPinInfo, selectActionBycategory } from "./actions";
+class MapContainerREDUX extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lat: null,
-            lng: null
-
+            arrayOfCategory: [],
+            showCategorySelect: false,
+            copyOfPinsArray: [],
+            addMyPinLocationVisible: false
         };
-        this.state.addNewPinIsVisible = false
+        // this.textInput = React.createRef();
+        this.state.addNewPinIsVisible = false;
         this.mapClicked = this.mapClicked.bind(this);
-        this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(this);
+        this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(
+            this
+        );
+        this.selectBycategory = this.selectBycategory.bind(this);
+        this.checkValue = this.checkValue.bind(this);
+        this.toggleSelectCategory = this.toggleSelectCategory.bind(this);
+        this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
+            this
+        );
     }
 
-    componentDidMount(){
-        this.props.dispatch(getPinInfo())
+    componentDidMount() {
+        axios
+            .get("/getMarker")
+            .then((response) => {
+                this.setState({
+                    copyOfPinsArray: response.data.marker
+                });
+            })
+            .catch((err) => {
+                console.log(`error in pic getPinInfo: ${err}`);
+            });
+        this.props.dispatch(getPinInfo());
+
         // navigator.geolocation.getCurrentPosition((position) => {
         //     this.setState({
         //         lat: position.coords.latitude,
@@ -28,11 +49,20 @@ class MapContainerREDUX extends React.Component{
         //     });
         // });
     }
-    toggleAddNewPinComponent(){
-        console.log('toggling add new pin component....addNewPinIsVisible',this.state.addNewPinIsVisible);
+    toggleAddMyPinLocationVisible() {
         this.setState({
-            addNewPinIsVisible:!this.state.addNewPinIsVisible
-        })
+            addMyPinLocationVisible: !this.state.addMyPinLocationVisible
+        });
+    }
+    toggleAddNewPinComponent() {
+        this.setState({
+            addNewPinIsVisible: !this.state.addNewPinIsVisible
+        });
+    }
+    toggleSelectCategory() {
+        this.setState({
+            showCategorySelect: !this.state.showCategorySelect
+        });
     }
     mapClicked(mapProps, map, clickEvent) {
         this.toggleAddNewPinComponent();
@@ -41,7 +71,32 @@ class MapContainerREDUX extends React.Component{
             lng: clickEvent.latLng.lng()
         });
     }
+    checkValue(e) {
+        if (e.target.checked) {
+            this.state.arrayOfCategory.push(e.target.value);
+            console.log(this.state.arrayOfCategory);
+        } else {
+            let arr = this.state.arrayOfCategory.filter((item) => {
+                return item != e.target.value;
+            });
 
+            this.setState({
+                arrayOfCategory: arr
+            });
+        }
+    }
+    selectBycategory(e) {
+        this.props.dispatch(
+            selectActionBycategory(
+                this.state.arrayOfCategory,
+                this.state.copyOfPinsArray
+            )
+        );
+        document.getElementById("myForm").reset();
+        this.setState({
+            arrayOfCategory: []
+        });
+    }
     render() {
         const style = {
             width: "60vw",
@@ -50,16 +105,75 @@ class MapContainerREDUX extends React.Component{
             top: "20vh",
             left: "5vh"
         };
-        if (!this.props.lat) {
-            return <img src="/monky.gif"/>;
-        }
-        return(
+        // if (!this.props.lat) {
+        //     return <img src="/monky.gif" />;
+        // }
+
+        return (
             <React.Fragment>
+                <button onClick={this.toggleSelectCategory}>categories</button>
+                <button onClick={this.toggleAddMyPinLocationVisible}>
+                    drop pin
+                </button>
+                {this.state.showCategorySelect && (
+                    <div className="catagoryHolder">
+                        <form id="myForm">
+                            <input
+                                type="checkbox"
+                                id="museums"
+                                name="museums"
+                                value="museums"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="museums">Museums</label>
+                            <input
+                                type="checkbox"
+                                id="bars"
+                                name="bars"
+                                value="bars"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="bars">Bars</label>
+                            <input
+                                type="checkbox"
+                                id="restaurants"
+                                name="restaurants"
+                                value="restaurants"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="restaurants">Restaurants</label>
+                            <input
+                                type="checkbox"
+                                id="parks"
+                                name="parks"
+                                value="parks"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="parks">Parks</label>
+                            <input
+                                type="checkbox"
+                                id="sightseeing"
+                                name="sightseeing"
+                                value="sightseeing"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="sightseeing">Sightseeing</label>
+                        </form>
+                        <button onClick={this.selectBycategory}>Submit</button>
+                    </div>
+                )}
                 <Map
                     style={style}
                     initialCenter={{
-                        lat: this.props.lat,
-                        lng: this.props.lng
+                        // lat: this.props.lat,
+                        // lng: this.props.lng
+                        lat: 52.4918854,
+                        lng: 13.360088699999999
                     }}
                     zoom={14}
                     google={this.props.google}
@@ -86,26 +200,36 @@ class MapContainerREDUX extends React.Component{
                                     }}
                                     icon={{
                                         url: item.color,
-                                        anchor: new google.maps.Point(10, 10),
+                                        anchor: new google.maps.Point(0, 0),
                                         scaledSize: new google.maps.Size(25, 35)
                                     }}
                                 />
                             );
-                        })
-                    }
+                        })}
 
-                    {this.state.addNewPinIsVisible&&(<AddNewPin lat={this.state.lat}
-                                lng={this.state.lng}
-                    />)}
-
+                    {this.state.addNewPinIsVisible && (
+                        <AddNewPin
+                            lat={this.state.lat}
+                            lng={this.state.lng}
+                            toggleAddNewPinComponent={
+                                this.toggleAddNewPinComponent
+                            }
+                        />
+                    )}
+                    {this.state.addMyPinLocationVisible && (
+                        <AddNewPin
+                            lat={this.props.lat}
+                            lng={this.props.lng}
+                            toggleAddMyPinLocationVisible={
+                                this.toggleAddMyPinLocationVisible
+                            }
+                        />
+                    )}
                 </Map>
             </React.Fragment>
-        )
+        );
     }
 }
-
-
-
 
 const mapStateToProps = function(state) {
     return {

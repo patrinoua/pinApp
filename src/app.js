@@ -11,7 +11,6 @@ import Friends from "./friends";
 import { composeWithDevTools } from "redux-devtools-extension";
 import OnlineUsers from "./onlineUsers";
 import Chat from "./chat";
-import MapApp from "./map";
 import MapAppREDUX from "./mapREDUX";
 
 // import { EditBio , ExistingBio } from './bio';
@@ -30,7 +29,7 @@ export default class App extends React.Component {
     }
 
     toggleUploader() {
-        console.log('toggle uploader!');
+        console.log("toggle uploader!");
         this.setState({
             toggleUploader: !this.state.toggleUploader
         });
@@ -48,15 +47,15 @@ export default class App extends React.Component {
     }
 
     changeInputValues(inputValues) {
-        console.log('changeinputvalues...',inputValues);
-        let {id , first, last, email, bio} = inputValues;
+        console.log("changeinputvalues...", inputValues);
+        let { id, first, last, email, bio } = inputValues;
         this.setState({
             id,
             first,
             last,
             email,
             bio
-        })
+        });
     }
 
     hideUploader() {
@@ -67,13 +66,13 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            });
-        });
-        axios.get("/getUser").then(response => {
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //     this.setState({
+        //         lat: position.coords.latitude,
+        //         lng: position.coords.longitude
+        //     });
+        // });
+        axios.get("/getUser").then((response) => {
             if (response.data.success) {
                 // console.log("response.data.user?????",response.data.user);
                 this.setState(response.data.user);
@@ -86,7 +85,7 @@ export default class App extends React.Component {
         });
     }
     componentWillReceiveProps() {
-        console.log("inside componentWillReceiveProps state:",this.state);
+        console.log("inside componentWillReceiveProps state:", this.state);
     }
     render() {
         if (!this.state) {
