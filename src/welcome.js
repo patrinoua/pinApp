@@ -24,7 +24,7 @@ export function Logo() {
         <div className="logo">
             <a href="/user">
                 {" "}
-                <img className="logoImg" src="/logo.png" />{" "}
+                <img className="logoImg" src="/pinAppLogo.png" />{" "}
             </a>
         </div>
     );

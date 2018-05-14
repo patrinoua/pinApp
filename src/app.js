@@ -11,7 +11,6 @@ import Friends from "./friends";
 import { composeWithDevTools } from "redux-devtools-extension";
 import OnlineUsers from "./onlineUsers";
 import Chat from "./chat";
-import MapApp from "./map";
 import MapAppREDUX from "./mapREDUX";
 
 // import { EditBio , ExistingBio } from './bio';

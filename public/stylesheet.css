@@ -1,3 +1,6 @@
+main{
+    background-color: #fffafa;
+}
 .simpleText {
     color: lightgrey;
     /* font-family: 'Cutive Mono', monospace; */
@@ -33,6 +36,46 @@ body {
     background-repeat: no-repeat;
     justify-items: center;
     align-items: center;
+}
+/************NAVIGATION*****************/
+
+#navigation {
+    /* padding: 20px; */
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: lightgrey;
+    background-color: purple;
+    /* font-family: 'Cutive Mono', monospace; */
+    font-weight: 100;
+}
+
+#navigation a {
+    color: grey;
+    text-decoration: none;
+    display: flex;
+    align-content: center;
+}
+.navigationBarRight{
+    display: flex;
+    margin-right: 15px;
+}
+.navigationIcon{
+    height: 35px;
+    margin: 10px;
+}
+.logoIconMenu{
+    margin: 10px;
+    max-height: 70px;
+}
+.navigationIcon:hover{
+    cursor: pointer;
+}
+
+.logoBig {
+    max-width: 25%;
+    padding: 20px;
 }
 
 /* ********* MAP ************* */
@@ -110,28 +153,6 @@ body {
     border: 0.5px solid lightgrey;
 }
 
-#navigation {
-    height: 50px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: lightgrey;
-    /* font-family: 'Cutive Mono', monospace; */
-    font-weight: 100;
-}
-
-#navigation a {
-    color: grey;
-    text-decoration: none;
-    display: flex;
-    align-content: center;
-}
-
-.logoBig {
-    max-width: 25%;
-    padding: 20px;
-}
 
 /********** EDIT PROFILE  ***********/
 
@@ -612,9 +633,9 @@ button:hover {
     left: 10px;
 }
 
-.logoImg {
-    max-height: 40px;
-}
+/* .logoImg {
+    max-height: 60px;
+} */
 
 .userImage {
     overflow: hidden;
