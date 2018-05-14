@@ -13,7 +13,13 @@ class MapContainerREDUX extends React.Component {
             arrayOfCategory: [],
             showCategorySelect: false,
             copyOfPinsArray: [],
-            addMyPinLocationVisible: false
+            addMyPinLocationVisible: false,
+            myLat: null,
+            myLng: null,
+            watchId: null,
+            activeMarker: {},
+            selectedPlace: {},
+            showingInfoWindow: false
         };
         // this.textInput = React.createRef();
         this.state.addNewPinIsVisible = false;
@@ -24,6 +30,7 @@ class MapContainerREDUX extends React.Component {
         this.selectBycategory = this.selectBycategory.bind(this);
         this.checkValue = this.checkValue.bind(this);
         this.toggleSelectCategory = this.toggleSelectCategory.bind(this);
+        this.watchMyLocation = this.watchMyLocation.bind(this);
         this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
             this
         );
@@ -49,6 +56,30 @@ class MapContainerREDUX extends React.Component {
         //     });
         // });
     }
+
+    watchMyLocation() {
+        if (!this.state.myLat) {
+            this.state.watchId = navigator.geolocation.watchPosition((pos) => {
+                this.setState({
+                    myLat: pos.coords.latitude,
+                    myLng: pos.coords.longitude
+                });
+            }, error);
+
+            function error(err) {
+                console.log(
+                    `error in watchMyLocation: ${err.code} ${err.message}`
+                );
+            }
+        } else {
+            navigator.geolocation.clearWatch(this.state.watchId);
+            this.setState({
+                myLat: null,
+                myLng: null,
+                watchId: null
+            });
+        }
+    }
     toggleAddMyPinLocationVisible() {
         this.setState({
             addMyPinLocationVisible: !this.state.addMyPinLocationVisible
@@ -66,6 +97,11 @@ class MapContainerREDUX extends React.Component {
     }
     mapClicked(mapProps, map, clickEvent) {
         this.toggleAddNewPinComponent();
+        //   if (this.state.showingInfoWindow)
+        // this.setState({
+        //   activeMarker: null,
+        //   showingInfoWindow: false
+        // });
         this.setState({
             lat: clickEvent.latLng.lat(),
             lng: clickEvent.latLng.lng()
@@ -112,86 +148,88 @@ class MapContainerREDUX extends React.Component {
 
         return (
             <React.Fragment>
-
-                {/*<div className="chicken">*/}
-
-                    <button onClick={this.toggleSelectCategory}>categories</button>
-                    <button onClick={this.toggleAddMyPinLocationVisible}>
-                        drop pin
-                    </button>
-                    {this.state.showCategorySelect && (
-                        <div className="catagoryHolder">
-                            <form id="myForm">
-                                <input
-                                    type="checkbox"
-                                    id="museums"
-                                    name="museums"
-                                    value="museums"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="museums">Museums</label>
-                                <input
-                                    type="checkbox"
-                                    id="bars"
-                                    name="bars"
-                                    value="bars"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="bars">Bars</label>
-                                <input
-                                    type="checkbox"
-                                    id="restaurants"
-                                    name="restaurants"
-                                    value="restaurants"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="restaurants">Restaurants</label>
-                                <input
-                                    type="checkbox"
-                                    id="parks"
-                                    name="parks"
-                                    value="parks"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="parks">Parks</label>
-                                <input
-                                    type="checkbox"
-                                    id="sightseeing"
-                                    name="sightseeing"
-                                    value="sightseeing"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="sightseeing">Sightseeing</label>
-                            </form>
-                            <button onClick={this.selectBycategory}>Submit</button>
-                        </div>
-                    )}
-
-
-                    <Map
-                        style={style}
-                        initialCenter={{
-                            // lat: this.props.lat,
-                            // lng: this.props.lng
-                            lat: 52.4918854,
-                            lng: 13.360088699999999
-                        }}
-                        zoom={14}
-                        google={this.props.google}
-                        zoom={15}
-                        onClick={this.mapClicked}
-                        onReady={this.fetchPlaces}
-                        visible={true}
-                    >
+                <button onClick={this.toggleSelectCategory}>categories</button>
+                <button onClick={this.watchMyLocation}>show my location</button>
+                <button onClick={this.toggleAddMyPinLocationVisible}>
+                    drop pin
+                </button>
+                {this.state.showCategorySelect && (
+                    <div className="catagoryHolder">
+                        <form id="myForm">
+                            <input
+                                type="checkbox"
+                                id="museums"
+                                name="museums"
+                                value="museums"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="museums">Museums</label>
+                            <input
+                                type="checkbox"
+                                id="bars"
+                                name="bars"
+                                value="bars"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="bars">Bars</label>
+                            <input
+                                type="checkbox"
+                                id="restaurants"
+                                name="restaurants"
+                                value="restaurants"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="restaurants">Restaurants</label>
+                            <input
+                                type="checkbox"
+                                id="parks"
+                                name="parks"
+                                value="parks"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="parks">Parks</label>
+                            <input
+                                type="checkbox"
+                                id="sightseeing"
+                                name="sightseeing"
+                                value="sightseeing"
+                                className="check"
+                                onClick={this.checkValue}
+                            />
+                            <label htmlFor="sightseeing">Sightseeing</label>
+                        </form>
+                        <button onClick={this.selectBycategory}>Submit</button>
+                    </div>
+                )}
+                <Map
+                    style={style}
+                    initialCenter={{
+                        // lat: this.props.lat,
+                        // lng: this.props.lng
+                        lat: 52.4918854,
+                        lng: 13.360088699999999
+                    }}
+                    zoom={14}
+                    google={this.props.google}
+                    zoom={15}
+                    onClick={this.mapClicked}
+                    onReady={this.fetchPlaces}
+                    visible={true}
+                >
+                    {this.state.myLat && (
                         <Marker
-                            onClick={this.onMarkerClick}
-                            name={"Current location"}
+                            icon={{
+                                url: "/dot.png",
+                                anchor: new google.maps.Point(0, 0),
+                                scaledSize: new google.maps.Size(10, 10)
+                            }}
                         />
+                    )}
+                    
 
                         {this.props.markersArray &&
                             this.props.markersArray.map((item) => {
