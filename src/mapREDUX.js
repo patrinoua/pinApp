@@ -13,7 +13,13 @@ class MapContainerREDUX extends React.Component {
             arrayOfCategory: [],
             showCategorySelect: false,
             copyOfPinsArray: [],
-            addMyPinLocationVisible: false
+            addMyPinLocationVisible: false,
+            myLat: null,
+            myLng: null,
+            watchId: null,
+            activeMarker: {},
+            selectedPlace: {},
+            showingInfoWindow: false
         };
         // this.textInput = React.createRef();
         this.state.addNewPinIsVisible = false;
@@ -24,6 +30,7 @@ class MapContainerREDUX extends React.Component {
         this.selectBycategory = this.selectBycategory.bind(this);
         this.checkValue = this.checkValue.bind(this);
         this.toggleSelectCategory = this.toggleSelectCategory.bind(this);
+        this.watchMyLocation = this.watchMyLocation.bind(this);
         this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
             this
         );
@@ -49,6 +56,30 @@ class MapContainerREDUX extends React.Component {
         //     });
         // });
     }
+
+    watchMyLocation() {
+        if (!this.state.myLat) {
+            this.state.watchId = navigator.geolocation.watchPosition((pos) => {
+                this.setState({
+                    myLat: pos.coords.latitude,
+                    myLng: pos.coords.longitude
+                });
+            }, error);
+
+            function error(err) {
+                console.log(
+                    `error in watchMyLocation: ${err.code} ${err.message}`
+                );
+            }
+        } else {
+            navigator.geolocation.clearWatch(this.state.watchId);
+            this.setState({
+                myLat: null,
+                myLng: null,
+                watchId: null
+            });
+        }
+    }
     toggleAddMyPinLocationVisible() {
         this.setState({
             addMyPinLocationVisible: !this.state.addMyPinLocationVisible
@@ -66,6 +97,11 @@ class MapContainerREDUX extends React.Component {
     }
     mapClicked(mapProps, map, clickEvent) {
         this.toggleAddNewPinComponent();
+        //   if (this.state.showingInfoWindow)
+        // this.setState({
+        //   activeMarker: null,
+        //   showingInfoWindow: false
+        // });
         this.setState({
             lat: clickEvent.latLng.lat(),
             lng: clickEvent.latLng.lng()
@@ -112,6 +148,7 @@ class MapContainerREDUX extends React.Component {
         return (
             <React.Fragment>
                 <button onClick={this.toggleSelectCategory}>categories</button>
+                <button onClick={this.watchMyLocation}>show my location</button>
                 <button onClick={this.toggleAddMyPinLocationVisible}>
                     drop pin
                 </button>
@@ -182,10 +219,15 @@ class MapContainerREDUX extends React.Component {
                     onReady={this.fetchPlaces}
                     visible={true}
                 >
-                    <Marker
-                        onClick={this.onMarkerClick}
-                        name={"Current location"}
-                    />
+                    {this.state.myLat && (
+                        <Marker
+                            icon={{
+                                url: "/dot.png",
+                                anchor: new google.maps.Point(0, 0),
+                                scaledSize: new google.maps.Size(10, 10)
+                            }}
+                        />
+                    )}
 
                     {this.props.markersArray &&
                         this.props.markersArray.map((item) => {
@@ -225,6 +267,15 @@ class MapContainerREDUX extends React.Component {
                             }
                         />
                     )}
+                    {/* <InfoWindow
+                        marker={this.state.activeMarker}
+                        onClose={this.onInfoWindowClose}
+                        visible={this.state.showingInfoWindow}
+                    >
+                        <div className="infoWindow">
+                            <h1>{this.state.selectedPlace.name}</h1>
+                        </div>
+                    </InfoWindow> */}
                 </Map>
             </React.Fragment>
         );

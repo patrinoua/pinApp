@@ -1,6 +1,7 @@
-main{
+main {
     background-color: #fffafa;
 }
+
 .simpleText {
     color: lightgrey;
     /* font-family: 'Cutive Mono', monospace; */
@@ -37,6 +38,7 @@ body {
     justify-items: center;
     align-items: center;
 }
+
 /************NAVIGATION*****************/
 
 #navigation {
@@ -57,19 +59,23 @@ body {
     display: flex;
     align-content: center;
 }
-.navigationBarRight{
+
+.navigationBarRight {
     display: flex;
     margin-right: 15px;
 }
-.navigationIcon{
+
+.navigationIcon {
     height: 35px;
     margin: 10px;
 }
-.logoIconMenu{
+
+.logoIconMenu {
     margin: 10px;
     max-height: 70px;
 }
-.navigationIcon:hover{
+
+.navigationIcon:hover {
     cursor: pointer;
 }
 
@@ -79,6 +85,7 @@ body {
 }
 
 /* ********* MAP ************* */
+
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
@@ -153,7 +160,6 @@ body {
     border: 0.5px solid lightgrey;
 }
 
-
 /********** EDIT PROFILE  ***********/
 
 .profileContainerUser {
@@ -193,17 +199,17 @@ body {
 .profileEditorContainerLeft {
     width: 20%;
     min-width: 200px;
-
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 20px;
 }
-.profilePicFrame{
+
+.profilePicFrame {
     display: flex;
     position: relative;
-
 }
+
 .profilePicOwn {
     display: flex;
     align-items: center;
@@ -212,7 +218,7 @@ body {
     padding: 9px;
 }
 
-.profilePicCircle{
+.profilePicCircle {
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -221,7 +227,6 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-
 }
 
 .profilePicOwn img {
@@ -241,10 +246,11 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     /* background-color: blue; */
 }
-.existingValues, .editingValues{
+
+.existingValues, .editingValues {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -316,7 +322,6 @@ body {
     outline: none;
 }
 
-
 .profilePic img {
     max-width: 200px;
     max-height: 200px;
@@ -339,7 +344,7 @@ body {
     left: 10%;
     right: 10%;
     display: flex;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid grey;
     margin: 20px;
     border-radius: 30px;
@@ -541,7 +546,9 @@ body {
 .onlineUserText {
     padding: 7px;
 }
+
 /************ FORM ***************/
+
 .form {
     width: 300px;
     display: flex;
@@ -654,7 +661,8 @@ button:hover {
 .icons:hover {
     cursor: pointer;
 }
-.editIcon{
+
+.editIcon {
     width: 15px;
     height: 15px;
     position: absolute;
@@ -662,9 +670,11 @@ button:hover {
     top: 25px;
     opacity: 0.2;
 }
-.editIcon:hover{
+
+.editIcon:hover {
     opacity: 0.8;
 }
+
 .center {
     display: flex;
     flex-direction: column;
@@ -718,4 +728,12 @@ button:hover {
 
 .inputfile+label * {
     pointer-events: none;
+}
+
+/* ////////// InfoWindow ////////////// */
+
+.infoWindow {
+    background-color: red;
+    width: 20vw;
+    height: 50vh;
 }
