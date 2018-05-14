@@ -4,8 +4,8 @@ const compression = require("compression");
 const db = require("./database/database");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
-const hashPassword = require("./config/hashPassword").hashPassword;
-const { secret } = require("./config/secrets.json");
+const { hashPassword } = require("./database/database");
+const secret = require("./config.json");
 const csurf = require("csurf");
 
 const server = require("http").Server(app);
@@ -52,7 +52,7 @@ app.use(bodyParser.json());
 
 // I CHANGED STUFF HERE !
 const cookieSessionMiddleWare = cookieSession({
-    secret: secret,
+    secret: secret.secret,
     maxAge: 1000 * 60 * 60 * 24 * 14
     // maxAge: 60000 //1 minute
 });

@@ -139,9 +139,8 @@ class MapContainer extends React.Component {
             width: "60vw",
             height: "50vh",
             position: "absolute",
-            top: "20%",
-            left: "20%"
-
+            top: "10vh",
+            left: "-30vw"
         };
         // if (!this.props.lat) {
         //     return <img src="/monky.gif" />;
@@ -231,49 +230,47 @@ class MapContainer extends React.Component {
                         />
                     )}
 
+                    {this.props.markersArray &&
+                        this.props.markersArray.map((item) => {
+                            return (
+                                <Marker
+                                    key={item.id}
+                                    onClick={this.onMarkerClick}
+                                    name={item.title}
+                                    position={{
+                                        lat: item.lat,
+                                        lng: item.lng
+                                    }}
+                                    icon={{
+                                        url: item.color,
+                                        anchor: new google.maps.Point(0, 0),
+                                        scaledSize: new google.maps.Size(25, 35)
+                                    }}
+                                />
+                            );
+                        })}
 
-                        {this.props.markersArray &&
-                            this.props.markersArray.map((item) => {
-                                return (
-                                    <Marker
-                                        key={item.id}
-                                        onClick={this.onMarkerClick}
-                                        name={item.title}
-                                        position={{
-                                            lat: item.lat,
-                                            lng: item.lng
-                                        }}
-                                        icon={{
-                                            url: item.color,
-                                            anchor: new google.maps.Point(0, 0),
-                                            scaledSize: new google.maps.Size(25, 35)
-                                        }}
-                                    />
-                                );
-                            })}
-
-                        {this.state.addNewPinIsVisible && (
-                            <AddNewPin
-                                lat={this.state.lat}
-                                lng={this.state.lng}
-                                toggleAddNewPinComponent={
-                                    this.toggleAddNewPinComponent
-                                }
-                            />
-                        )}
-                        {this.state.addMyPinLocationVisible && (
-                            <AddNewPin
-                                lat={this.props.lat}
-                                lng={this.props.lng}
-                                toggleAddMyPinLocationVisible={
-                                    this.toggleAddMyPinLocationVisible
-                                }
-                            />
-                        )}
-                    </Map>
+                    {this.state.addNewPinIsVisible && (
+                        <AddNewPin
+                            lat={this.state.lat}
+                            lng={this.state.lng}
+                            toggleAddNewPinComponent={
+                                this.toggleAddNewPinComponent
+                            }
+                        />
+                    )}
+                    {this.state.addMyPinLocationVisible && (
+                        <AddNewPin
+                            lat={this.props.lat}
+                            lng={this.props.lng}
+                            toggleAddMyPinLocationVisible={
+                                this.toggleAddMyPinLocationVisible
+                            }
+                        />
+                    )}
+                </Map>
 
                 {/*</div>*/}
-
             </React.Fragment>
         );
     }

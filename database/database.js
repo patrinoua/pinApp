@@ -1,6 +1,5 @@
 var bcrypt = require("bcryptjs");
 var spicedPg = require("../node_modules/spiced-pg");
-const hashPassword = require("../config/hashPassword").hashPassword;
 
 var db;
 if (process.env.DATABASE_URL) {
@@ -8,6 +7,23 @@ if (process.env.DATABASE_URL) {
 } else {
     db = spicedPg("postgres:funky:chicken@localhost:5432/mapappdb");
 }
+
+function hashPassword(plainTextPassword) {
+    return new Promise(function(resolve, reject) {
+        bcrypt.genSalt(function(err, salt) {
+            if (err) {
+                return reject(err);
+            }
+            bcrypt.hash(plainTextPassword, salt, function(err, hash) {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(hash);
+            });
+        });
+    });
+}
+exports.hashPassword = hashPassword;
 // ************** REGISTRATION *************
 exports.saveUser = (first, last, email, password) => {
     return db.query(
@@ -160,7 +176,10 @@ exports.getUsersByIds = (array) => {
 };
 ////////// map stuff //////////////
 exports.selectCategory = (array, id) => {
-    return db.query(`SELECT * FROM pins WHERE category = ANY($1) AND user_id = $2`, [array, id]);
+    return db.query(
+        `SELECT * FROM pins WHERE category = ANY($1) AND user_id = $2`,
+        [array, id]
+    );
 };
 
 exports.insertNewPin = (id, description, title, catagory, lat, lng, color) => {
