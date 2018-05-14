@@ -11,7 +11,7 @@ import Friends from "./friends";
 import { composeWithDevTools } from "redux-devtools-extension";
 import OnlineUsers from "./onlineUsers";
 import Chat from "./chat";
-import MapAppREDUX from "./mapREDUX";
+import MapContainer from "./mapcontainer";
 
 // import { EditBio , ExistingBio } from './bio';
 
@@ -159,16 +159,14 @@ export default class App extends React.Component {
 
                         {/*<Route exact path="/chat" component={Chat} />*/}
                         {/*<Route exact path="/map" component={MapApp} />*/}
-                        {/* <Route exact path="/mapREDUX" component={MapAppREDUX} /> */}
 
-                        {/*<Route path="/mapREDUX" render={() => (
-                                <MapAppREDUX
+                        <Route path="/map" render={() => (
+                                <MapContainer
                                     lat={this.state.lat}
                                     lng={this.state.lng}
                                 />
                             )}
-                        />*/}
-
+                        />
                     </div>
                 </BrowserRouter>
                 {this.state.toggleUploader && (

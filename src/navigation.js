@@ -5,7 +5,7 @@ import axios from "axios";
 import { Logo, Login } from "./welcome";
 import { ProfilePic } from "./profile";
 // import { OnlineUsers } from "./onlineUsers";
-import MapAppREDUX from "./mapREDUX";
+import MapContainer from "./mapcontainer";
 import Chat from "./chat";
 
 export default function Navigation(props) {
@@ -22,7 +22,7 @@ export default function Navigation(props) {
                 {/*<Link to="/chat"> Chat </Link>*/}
                 {/*<Link to="/mapREDUX"> MapAppREDUX </Link>*/}
                 <div className="navigationBarRight">
-                    <Link to="/mapREDUX"> <img src="/icons/redPin.png" className="navigationIcon"/> </Link>
+                    <Link to="/map"> <img src="/icons/redPin.png" className="navigationIcon"/> </Link>
                     <Link to="/editProfile"> <img src="/icons/burgerMenuIcon.png" className="navigationIcon"/> </Link>
                     <Link to="/editProfile">  </Link>
                     <Link to="/user"> <img src="/icons/redUserIcon.png" className="navigationIcon"/> </Link>
