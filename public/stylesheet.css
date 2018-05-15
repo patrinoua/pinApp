@@ -112,15 +112,16 @@ body {
 /* ********* MAP ************* */
 
 .mapContainer {
-    width: 90%;
-    height: 90%;
+    animation: 3s ease-in;
+    width: 95vw;
+    height: 88vh;
     margin: 10px 10px;
     display: flex;
     /* flex-direction: column; */
     justify-items: center;
     align-items: center;
     position: relative;
-    background-color: grey;
+    /* background-color: grey; */
 }
 .mapContainerLeft{
     width:30%;
@@ -129,52 +130,59 @@ body {
     flex-direction: column;
     align-items:center;
     justify-content: center;
-    background-color: yellow;
 }
-.insertNewPin{
-    width: 50px;
-    height: 50px;
-    background-color: green;
-    margin: 10px;
-    box-shadow: 2px 2px 2px grey;
 
+.categoryList{
+    width: 25vw;
+    height: 50vh;
+    /* background-color: green; */
+    margin: 10px;
+    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.categoriesList{
-    width: 150px;
-    height: 250px;
-    background-color: green;
-    margin: 10px;
-    box-shadow: 2px 2px 2px grey;
-
+.categoryItem{
+    /* background-color: black; */
+    width: 90%;
+    /* height: 30px; */
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+.categoryItemPinIcon{
+    max-width: 20px;
+    height: auto;
+    padding: 0 10px;
+}
+.categoryItemPinIcon:hover{
+    cursor: pointer;
+}
+.categoryItemText{
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
 }
 .mapContainerRight{
     width:70%;
     height: 100%;
-    background-color: pink;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-/*
-.mapAppComponent {
-    width: 90vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    position: relative;
-} */
 
 .mapArea {
-    background-image: url('/map.png');
+    /* background-image: url('/map.png'); */
     background-size: contain;
     background-color: pink;
     border-radius: 20px;
-    box-shadow: 2px 2px 2px grey;
-    margin-top: 50px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     height: 60%;
     width: 70%;
+    position: relative;
 }
 
 /* ******** CHAT ******** */
@@ -793,6 +801,7 @@ button:hover {
 .inputfile:focus+label, .inputfile+label:hover {
     color: red;
 }
+
 
 .inputfile:focus+label {
     outline: 1px dotted #000;
