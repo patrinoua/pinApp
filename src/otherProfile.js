@@ -10,7 +10,6 @@ import { getPinInfo, getUserPinInfo, selectActionBycategory } from "./actions";
 
 import PinClick from "./PinClick.js";
 
-
 export class OtherProfilePage extends React.Component {
     constructor(props) {
         super(props);
@@ -85,7 +84,10 @@ export class OtherProfilePage extends React.Component {
         });
     }
     componentDidMount() {
-        // console.log("this.props.match.params.id!!!!",this.props.match.params.id);
+        console.log(
+            "this.props.match.params.id!!!!",
+            this.props.match.params.id
+        );
         // console.log('loggint routerProps',this.props.routerProps.match.params.id);
         axios
             .get(`/getUser/${this.props.match.params.id}`)
@@ -101,29 +103,29 @@ export class OtherProfilePage extends React.Component {
                 }
             })
             .catch((err) => {
-                console.log("oh no!!!",err);
+                console.log("oh no!!!", err);
             });
-            // axios
-            //     .get("/getMarker")
-            //     //pass the id
-            //     //use the same function that is used on the server
-            //     .then((response) => {
-            //         console.log('response...',response.data.marker);
-            //         this.setState({
-            //             copyOfPinsArray: response.data.marker
-            //         });
-            //     })
-            //     .catch((err) => {
-            //         console.log(`error in pic getPinInfo: ${err}`);
-            //     });
-            // this.props.dispatch(getUserPinInfo());
+        // axios
+        //     .get("/getMarker")
+        //     //pass the id
+        //     //use the same function that is used on the server
+        //     .then((response) => {
+        //         console.log('response...',response.data.marker);
+        //         this.setState({
+        //             copyOfPinsArray: response.data.marker
+        //         });
+        //     })
+        //     .catch((err) => {
+        //         console.log(`error in pic getPinInfo: ${err}`);
+        //     });
+        // this.props.dispatch(getUserPinInfo());
 
-            // navigator.geolocation.getCurrentPosition((position) => {
-            //     this.setState({
-            //         lat: position.coords.latitude,
-            //         lng: position.coords.longitude
-            //     });
-            // });
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //     this.setState({
+        //         lat: position.coords.latitude,
+        //         lng: position.coords.longitude
+        //     });
+        // });
     }
 
     render() {
@@ -158,9 +160,7 @@ export class OtherProfilePage extends React.Component {
         };
         return (
             <div className="profileContainerUser">
-
                 <div className="infoContainerUser">
-
                     <div className="profilePicUser">
                         <img src={pic} />{" "}
                     </div>
@@ -168,9 +168,7 @@ export class OtherProfilePage extends React.Component {
                         <div className="nameUser">
                             {this.state.first} {this.state.last}
                         </div>
-                        <div className="bioUser">
-                             {this.state.bio}
-                        </div>
+                        <div className="bioUser">{this.state.bio}</div>
                     </div>
                     <div className="centerStuff">
                         <FriendButton otherId={this.props.match.params.id} />
@@ -235,7 +233,6 @@ export class OtherProfilePage extends React.Component {
                                 }}
                                 zoom={14}
                                 google={this.props.google}
-                                zoom={15}
                                 onClick={this.mapClicked}
                                 onReady={this.fetchPlaces}
                                 visible={true}
@@ -365,7 +362,6 @@ export class OtherProfilePage extends React.Component {
 
                     </div>
                 </div>*/}
-
             </div>
         );
     }

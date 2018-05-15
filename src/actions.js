@@ -94,7 +94,7 @@ export function insertPinInfo(info) {
 }
 export function getPinInfo() {
     return axios
-        .get("/getUMarker")
+        .get("/getMarker")
         .then((response) => {
             return {
                 type: "GET_PIN_INFO",
@@ -106,11 +106,14 @@ export function getPinInfo() {
         });
 }
 export function getUserPinInfo(id) {
-    console.log('getUserPinInfo action',id);
+    console.log("getUserPinInfo action", id);
     return axios
         .get("/getUserMarkers")
         .then((response) => {
-            console.log('response in getUserPinInfo action',response.data.marker);
+            console.log(
+                "response in getUserPinInfo action",
+                response.data.marker
+            );
             return {
                 type: "GET_PIN_INFO",
                 pinsArray: response.data.marker
