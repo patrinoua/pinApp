@@ -23,8 +23,8 @@ class MapContainer extends React.Component {
             selectedPlace: {},
             showingInfoWindow: false,
             addNewPinIsVisible: false,
-            clickedPinId: 4,
-            pinClickVisible: true,
+            clickedPinId: null,
+            pinClickVisible: false,
             mapHasBinClicked: false
         };
 
@@ -118,17 +118,18 @@ class MapContainer extends React.Component {
         });
     }
     mapHasBinClicked() {
+        this.toggleAddNewPinComponent();
         this.setState({
             mapHasBinClicked: !this.state.mapHasBinClicked
         });
     }
     mapClicked(mapProps, map, clickEvent) {
         this.mapHasBinClicked();
-        //   if (this.state.showingInfoWindow)
-        // this.setState({
-        //   activeMarker: null,
-        //   showingInfoWindow: false
-        // });
+        // if (this.state.showingInfoWindow)
+        //     this.setState({
+        //         activeMarker: null,
+        //         showingInfoWindow: false
+        //     });
         this.setState({
             lat: clickEvent.latLng.lat(),
             lng: clickEvent.latLng.lng()
