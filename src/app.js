@@ -120,7 +120,7 @@ export default class App extends React.Component {
                             )}
                         />
                         <Route
-                            path="/user"
+                            exact path="/user"
                             render={() => (
                                 <ProfilePage
                                     {...this.state}
@@ -131,7 +131,8 @@ export default class App extends React.Component {
                                 />
                             )}
                         />
-
+                        <Route path="/friends" component={Friends} />
+                        <Route exact path="/user/:id" component={OtherProfilePage} />
                         {/*<div className="mapContainer">
 
                         <div className="mapContainerLeft">
@@ -150,11 +151,7 @@ export default class App extends React.Component {
 
                         {/*
 
-                        <Route
-                            exact
-                            path="/user/:id"
-                            component={OtherProfilePage}
-                        />
+
 
                         <Route exact path="/friends" component={Friends} />
 

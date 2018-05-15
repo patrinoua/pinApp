@@ -7,10 +7,9 @@ import axios from "./axios";
 export function Welcome() {
     return (
         <div id="welcome">
-            <img src="/logo.png" className="logoBig" />
             <HashRouter>
-                <div className="container">
-                    <h1>Welcome!</h1>
+                <div className="welcomeContainer">
+                <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
                     <Route exact path="/" component={Register} />
                     <Route path="/login" component={Login} />
                 </div>
@@ -24,7 +23,7 @@ export function Logo() {
         <div className="logo">
             <a href="/user">
                 {" "}
-                <img className="logoImg" src="/pinAppLogo.png" />{" "}
+                <img className="welcomePageLogoImg" src="/pinAppLogo.png" />{" "}
             </a>
         </div>
     );
@@ -64,7 +63,7 @@ export class Register extends React.Component {
     }
     render() {
         return (
-            <div className="form">
+            <div className="welcomeForm">
                 <h1> Register </h1>
                 <div className="error">
                     {this.state.error && (
@@ -137,7 +136,7 @@ export class Login extends React.Component {
     render() {
         console.log(this.state);
         return (
-            <div className="form">
+            <div className="welcomeForm">
                 <h1> Login </h1>
                 {this.state.error && (
                     <div className="errMsg"> {this.state.errorMsg} </div>

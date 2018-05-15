@@ -5,6 +5,16 @@ main {
     }
 }
 
+body {
+    font: 14px "Helvetica";
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0px;
+    text-align: center;
+    justify-content: center;
+}
+
+
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
@@ -18,15 +28,6 @@ main {
     font-weight: 100;
 }
 
-body {
-    font: 14px "Helvetica";
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin: 0px;
-    text-align: center;
-    justify-content: center;
-}
-
 /* .container {
     height: 100vh;
     width: 100vw;
@@ -34,6 +35,33 @@ body {
     display: flex;
     flex-direction: column;
 } */
+
+/* ********* Welcome Container ************* */
+/* .welcomeContainer {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+.welcomeContainer {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    /* display: grid;
+    grid-template-rows: 20% 20% 50%;
+    justify-content: center;
+    align-items: center; */
+    /* padding: 30px; */
+}
+.welcomePageLogoImg {
+    height: 20vh;
+    padding-top:10vh;
+    padding-bottom: 5vh;
+}
+/* ********* Route Container ************* */
 
 .routeContainer {
     height: 100vh;
@@ -357,33 +385,38 @@ body {
 /********************************/
 
 /********************************/
+/**********OtherProfile***************/
 
-/* .profileContainerUser {
+.profileContainerUser {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     padding: 20px;
     position: relative;
-    width: 100%;
+    width: 90%;
     justify-content: center;
-} */
+}
 
-/* .pictureContainer {
+.pictureContainerUser {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-} */
+}
 
-/* .profilePicUser {
-    max-width: 400px;
-    max-height: 400px;
+.profilePicUser {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-} */
-
+}
+.profilePicUser img{
+    max-width: 150px;
+    height: auto;
+}
 /* .editProfile {
     width: 100%;
     display: flex;
@@ -675,6 +708,25 @@ body {
     justify-content: center;
     margin: 5px;
 }
+.welcomeForm {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: "Cutive Mono", monospace;
+}
+
+.welcomeForm input {
+    display: block;
+    padding: 8px;
+    border-radius: 2px;
+    font-size: 14px;
+    justify-self: center;
+    justify-content: center;
+    margin: 5px;
+}
 
 /************ BUTTONS ***************/
 
@@ -686,13 +738,14 @@ body {
 button {
     display: block;
     /* background-color: #f1f1f1; */
-    color: #696969;
+    color: red;
+    /* color: #696969; */
     font-size: 1.1em;
     /* padding: 8px; */
     border: 2px solid #f6f6f6;
     border-radius: 20px;
     /* font-size:14px; */
-    width: 100px;
+    /* width: 100px; */
     /* margin: 10px; */
     margin: 15px;
     font-family: "Cutive Mono", monospace;
@@ -746,9 +799,6 @@ button:hover {
     left: 10px;
 }
 
-/* .logoImg {
-    max-height: 60px;
-} */
 
 .userImage {
     overflow: hidden;

@@ -16,7 +16,7 @@ export class OtherProfilePage extends React.Component {
             .get(`/getUser/${this.props.match.params.id}`)
             .then((response) => {
                 if (response.data) {
-                    // console.log("response.data.user",response.data.user);
+                    console.log("response.data.user",response.data.user);
                     this.setState(response.data.user);
                 } else {
                     console.log(
@@ -46,6 +46,9 @@ export class OtherProfilePage extends React.Component {
                     </div>
                     <div className="bioContainer">{this.state.bio}</div>
                     <FriendButton otherId={this.props.match.params.id} />
+                </div>
+                <div className="mapArea">
+                    Map Area
                 </div>
             </div>
         );
