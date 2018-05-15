@@ -65,8 +65,6 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 app.use(function(req, res, next) {
-    // console.log(`The url is ${req.url}`);
-    // console.log('req.session.user :',req.session.user);
     next();
 });
 app.use(csurf());
@@ -91,26 +89,16 @@ app.get("/getUser", requireLogin, function(req, res) {
 });
 
 app.get("/getUser/:userId", requireLogin, function(req, res) {
-    if (req.session.user.id == req.params.userId) {
-        console.log(
-            "req.session.user.id == req.params.userId",
-            req.session.user.id == req.params.userId
-        );
-        console.log("req.session.user", req.session.user);
-        console.log("in some wAY they should go back to /user...");
-    } else {
-        db
-            .getUserInfoById(req.params.userId)
-            .then((userInfo) => {
-                console.log("userInfo: for user with id...", userInfo.rows[0]);
-                res.json({
-                    user: userInfo.rows[0]
-                });
-            })
-            .catch((err) => {
-                console.log("problem with getting userInfo", err);
+    db
+        .getUserInfoById(req.params.userId)
+        .then((userInfo) => {
+            res.json({
+                user: userInfo.rows[0]
             });
-    }
+        })
+        .catch((err) => {
+            console.log("problem with getting userInfo", err);
+        });
 });
 
 app.get("/welcome", function(req, res) {
@@ -122,29 +110,20 @@ app.get("/welcome", function(req, res) {
 });
 
 app.post("/register", function(req, res) {
-    console.log("user trying to register");
-    console.log("req.body...", req.body);
-    console.log("req.body.email...", req.body.email);
     db.checkForUser(req.body.email).then(function(result) {
-        console.log("result...", result);
         if (result.rows[0]) {
-            console.log("!result.rows[0]", result.rows[0]);
             req.session.email = req.body.email;
-            console.log("email exists... go to login.");
             res.json({
                 success: false,
                 errorMsg: "User exists. go to login"
             });
         } else if (!result.rows[0]) {
-            console.log("we have a new user to register!");
             if (
                 req.body.first &&
                 req.body.last &&
                 req.body.email &&
                 req.body.password
             ) {
-                console.log("user managed to register");
-                console.log(req.body.first, req.body.last, req.body.email);
                 hashPassword(req.body.password)
                     .then((hashedPassword) => {
                         db
@@ -155,10 +134,6 @@ app.post("/register", function(req, res) {
                                 hashedPassword
                             )
                             .then((result) => {
-                                console.log(
-                                    "HAHA! user registered:",
-                                    result.rows[0]
-                                );
                                 req.session.user = {
                                     first: req.body.first,
                                     last: req.body.last,
@@ -169,10 +144,6 @@ app.post("/register", function(req, res) {
                                     isLoggedIn: true
                                 };
 
-                                console.log(
-                                    "new user req.session.user:",
-                                    req.session.user
-                                );
                                 res.json({
                                     success: true
                                 });
@@ -191,7 +162,6 @@ app.post("/register", function(req, res) {
                         });
                     });
             } else {
-                console.log("please fill out everything");
                 res.json({
                     success: false,
                     errorMsg: "please fill out everything"
@@ -202,17 +172,13 @@ app.post("/register", function(req, res) {
 });
 
 app.post("/login", function(req, res) {
-    console.log("req.session.user from /login post", req.session.user);
     if (req.session.user) {
-        console.log("user is already logged in.");
         res.redirect("/");
     }
 
     if (req.body.email && req.body.password) {
-        //     console.log('user gave email and password. checking if user exists:\n');
         db.getUserInfoByEmail(req.body.email).then((userInfo) => {
             if (userInfo.rows[0]) {
-                // console.log('userInfo after logging in:', userInfo);
                 req.session.user = {
                     id: userInfo.rows[0].id,
                     first: userInfo.rows[0].first,
@@ -223,12 +189,10 @@ app.post("/login", function(req, res) {
                     sex: userInfo.rows[0].sex,
                     isLoggedIn: true
                 };
-                // console.log("req.session.user in login", req.session.user);
                 db
                     .checkPassword(req.body.password, userInfo.rows[0].pass)
                     .then((doesMatch) => {
                         if (doesMatch) {
-                            console.log("passwords match");
                             res.json({
                                 success: true,
                                 user: req.session.user
@@ -257,32 +221,18 @@ app.get("/wrongLogin", function(req, res) {
         errorMsg: req.query.errMsg
     });
 });
-app.post("/wrongLogin", function(req, res) {
-    console.log("inside wrong login post:");
-});
+app.post("/wrongLogin", function(req, res) {});
 
 app.post("/updateUserInfo/", function(req, res) {
-    console.log("req.body", req.body);
     let first = req.body.first || req.session.user.first;
     let last = req.body.last || req.session.user.last;
     let email = req.body.email || req.session.user.email;
     let bio = req.body.bio || req.session.user.bio;
     let password = req.body.pass;
 
-    console.log(
-        "updateUserInfo:",
-        req.session.user.id,
-        first,
-        last,
-        email,
-        bio,
-        password
-    );
-
     db
         .updateUserInfo(req.session.user.id, first, last, email, bio, password)
         .then((result) => {
-            console.log("updated user!\n", result.rows[0]);
             req.session.user = {
                 id: result.rows[0].id,
                 first: result.rows[0].first,
@@ -292,7 +242,7 @@ app.post("/updateUserInfo/", function(req, res) {
                 profilepic: result.rows[0].profilepic,
                 sex: result.rows[0].sex
             };
-            console.log("req.session.user", req.session.user);
+
             res.json({ user: req.session.user });
         })
         .catch((err) => {
@@ -301,21 +251,11 @@ app.post("/updateUserInfo/", function(req, res) {
 });
 
 app.post("/editBio", function(req, res) {
-    console.log("updating biooo!");
-    console.log("req.body.bio", req.body.bio);
-    console.log("req.session.user", req.session.user);
-    console.log(
-        "req.session.user.id, req.session.user.id",
-        req.session.user.id,
-        req.session.user.id
-    );
     let id = req.session.user.id || req.session.user.id;
-    console.log("req.session.user.id", id);
     if (req.body.bio) {
         db
             .updateBio(req.body.bio, id)
             .then((updatedBio) => {
-                console.log("managed to update bio...", updatedBio.rows[0]);
                 req.session.user.bio = updatedBio.rows[0].bio;
                 res.json({
                     success: true,
@@ -332,15 +272,11 @@ app.post("/updateProfilepic", uploader.single("file"), s3.upload, function(
     req,
     res
 ) {
-    console.log("req.session", req.session.user.email);
-    console.log("config.s3Url", config.s3Url);
-    console.log("req.file.filename", req.file.filename);
     if (req.file) {
         const imageUrl = config.s3Url + req.file.filename;
         db
             .updateProfilepic(imageUrl, req.session.user.email)
             .then((result) => {
-                console.log("added to db: ", result.rows[0]);
                 req.session.user.profilepic = imageUrl;
                 res.json({
                     profilepic: imageUrl,
@@ -351,8 +287,6 @@ app.post("/updateProfilepic", uploader.single("file"), s3.upload, function(
             .catch((err) => {
                 console.log("problem with adding to db: ", err);
             });
-    } else {
-        console.log("boo...");
     }
 });
 
@@ -360,7 +294,6 @@ app.get("/checkFriendshipStatus", function(req, res) {
     db
         .checkFriendshipStatus(req.session.user.id, req.query.otherId)
         .then((status) => {
-            // status.rows[0] ? console.log("the status is... ",status.rows[0].status) : console.log("the status is... ",status.rows[0]) ;
             if (!status.rows[0]) {
                 res.json({});
             } else {
@@ -371,11 +304,9 @@ app.get("/checkFriendshipStatus", function(req, res) {
         });
 });
 app.post("/categorySelect", (req, res) => {
-    console.log(req.body.marker);
     db
         .selectCategory(req.body.marker, req.session.user.id)
         .then((result) => {
-            console.log(result.rows);
             res.json({
                 marker: result.rows
             });
@@ -397,9 +328,8 @@ app.get("/getMarker", (req, res) => {
         });
 });
 app.get("/getUserMarkers", (req, res) => {
-    console.log("getUserMarkers req",req);
     db
-        .getMarkerInfo(req.session.user.id)
+        .getMarkerInfo(req.query.id)
         .then((result) => {
             res.json({
                 marker: result.rows
@@ -423,7 +353,6 @@ app.post("/insertNewPin", (req, res) => {
         )
         .then((result) => {
             req.session.markerId = result.rows[0].id;
-            console.log("in the info insert", result.rows[0]);
             res.json({
                 marker: result.rows[0]
             });
@@ -433,11 +362,9 @@ app.post("/insertNewPin", (req, res) => {
         });
 });
 app.post("/PinClick", (req, res) => {
-    console.log(req.body.pinId);
     db
         .getPinClickInfo(req.body.pinId)
         .then((result) => {
-            console.log(result.rows[0]);
             result.rows[0].created_at = db.formatDate(
                 result.rows[0].created_at
             );
@@ -496,14 +423,10 @@ app.post("/updateFriendshipStatus", function(req, res) {
 });
 ///////////////////////// search users stuff im adding //////////////////
 app.post("/userName", (req, res) => {
-    // console.log(req.body.name);
     let str = req.body.name;
-    // str = str.slice(0, 1);
-    // console.log(str);
     db
         .nameOfUser(str)
         .then((result) => {
-            console.log(result.rows);
             res.json({
                 data: result.rows
             });
@@ -536,7 +459,6 @@ app.get("/logout", function(req, res) {
 });
 
 app.get("*", function(req, res) {
-    // console.log('req.session.user in *',req.session.user);
     if (req.url == "/welcome" && req.session.user) {
         res.redirect("/");
         return;
@@ -559,7 +481,6 @@ server.listen(8080);
 let onlineUsers = [];
 
 io.on("connection", function(socket) {
-    // console.log(`socket with the id ${socket.id} is now connected`);
     const session = socket.request.session;
 
     if (!session.user) {
@@ -575,7 +496,6 @@ io.on("connection", function(socket) {
     let onlineUsersIdAll = onlineUsers.map((onlineUser) => onlineUser.userId);
 
     db.getUsersByIds(onlineUsersIdAll).then((users) => {
-        // console.log("emiting online users", users.rows);
         socket.emit("onlineUsers", users.rows);
     });
 
@@ -594,8 +514,6 @@ io.on("connection", function(socket) {
     }
 
     socket.on("disconnect", function() {
-        // console.log(`socket with the id ${socket.id} is now disconnected`);
-
         onlineUsers = onlineUsers.filter((user) => {
             return user.socketId !== socket.id;
         });
@@ -605,9 +523,7 @@ io.on("connection", function(socket) {
             io.sockets.emit("userLeft", { id });
         }
     });
-    socket.on("thanks", function(data) {
-        console.log(data);
-    });
+    socket.on("thanks", function(data) {});
 
     socket.emit("welcome", {
         message: "Welome. It is nice to see you"

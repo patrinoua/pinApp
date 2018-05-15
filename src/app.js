@@ -6,7 +6,7 @@ import { Welcome, Logo, Login } from "./welcome";
 import axios from "./axios";
 import { ProfilePage, ProfilePic, UploadProfilePic, EditBio } from "./profile";
 import Navigation from "./navigation";
-import { OtherProfilePage } from "./otherProfile";
+import OtherProfilePage from "./otherProfile";
 import Friends from "./friends";
 import { composeWithDevTools } from "redux-devtools-extension";
 import OnlineUsers from "./onlineUsers";
@@ -133,10 +133,22 @@ export default class App extends React.Component {
                             )}
                         />
                         <Route path="/friends" component={Friends} />
-                        <Route
+                        {/* <Route
                             exact
                             path="/user/:id"
                             component={OtherProfilePage}
+                        /> */}
+                        <Route
+                            exact
+                            path="/user/:id"
+                            render={(x) => (
+                                <OtherProfilePage
+                                    lat={this.state.lat}
+                                    lng={this.state.lng}
+                                    match={x.match}
+                                    history={x.history}
+                                />
+                            )}
                         />
                         {/*<div className="mapContainer">
 
