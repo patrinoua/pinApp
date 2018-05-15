@@ -326,74 +326,7 @@ class MapContainer extends React.Component {
                             </Map>
                         </div>
                     </div>
-
-                    {/*{this.state.showCategorySelect && (
-                        <div className="catagoryHolder">
-                            <form id="myForm">
-                                <input
-                                    type="checkbox"
-                                    id="museums"
-                                    name="museums"
-                                    value="museums"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="museums">Museums</label>
-                                <input
-                                    type="checkbox"
-                                    id="bars"
-                                    name="bars"
-                                    value="bars"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="bars">Bars</label>
-                                <input
-                                    type="checkbox"
-                                    id="restaurants"
-                                    name="restaurants"
-                                    value="restaurants"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="restaurants">Restaurants</label>
-                                <input
-                                    type="checkbox"
-                                    id="parks"
-                                    name="parks"
-                                    value="parks"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="parks">Parks</label>
-                                <input
-                                    type="checkbox"
-                                    id="sightseeing"
-                                    name="sightseeing"
-                                    value="sightseeing"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="sightseeing">Sightseeing</label>
-                            </form>
-                            <button onClick={this.selectBycategory}>Submit</button>
-                        </div>
-                    )}*/}
                 </div>
-                {this.state.addNewPinIsVisible && (
-                    <AddNewPin
-                        lat={this.props.lat}
-                        lng={this.props.lng}
-                        toggleAddNewPinComponent={this.toggleAddNewPinComponent}
-                    />
-                )}
-                {this.state.mapHasBinClicked && (
-                    <AddNewPin
-                        lat={this.state.lat}
-                        lng={this.state.lng}
-                        mapHasBinClicked={this.mapHasBinClicked}
-                    />
-                )}
             </React.Fragment>
         );
     }
