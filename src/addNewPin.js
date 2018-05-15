@@ -16,7 +16,8 @@ class AddNewPin extends React.Component {
         super(props);
         this.state = {
             lat: null,
-            lng: null
+            lng: null,
+            holder: null
         };
         this.handleChange = this.handleChange.bind(this);
         this.setFile = this.setFile.bind(this);
@@ -38,7 +39,11 @@ class AddNewPin extends React.Component {
     }
     checkValue(e) {
         // this[e.target.name] = e.target.value;
-        this.category = e.target.value;
+        this.category = e.target.name;
+        console.log(e.target.name);
+        this.setState({
+            holder: e.target.name
+        });
         // this.state.arrayOfCategory.push(e.target.value);
     }
     insertPinInfo(e) {
@@ -62,6 +67,7 @@ class AddNewPin extends React.Component {
         formData.append("file", this.state.file);
 
         this.props.dispatch(insertPinInfo({ formData, pinInfo }));
+        this.toggle();
     }
     toggle() {
         if (this.props.toggleAddNewPinComponent) {
@@ -75,19 +81,30 @@ class AddNewPin extends React.Component {
             let str = "/pins/" + color + "Pin.png";
             return (
                 <div className="pinCategory">
-                    <input
+                    {/* <input
                         type="checkbox"
                         id={variable}
                         name={variable}
                         onClick={this.checkValue}
-                    />
+                    /> */}
                     <div className="pinCheckBox">
-                        <img src="/pins/checkbox.png" className="icons" />
+                        <img
+                            src="/pins/checkbox.png"
+                            className="icons"
+                            name={variable}
+                            onClick={this.checkValue}
+                        />
                         <img src={str} className="pinIcon" />
+
+                        {this.state.holder == variable && (
+                            <img
+                                src="/pins/pinkTick.png"
+                                className="tickIcon"
+                            />
+                        )}
                     </div>
                     <div className="pinText">
-                        {/*{text}*/}
-                        <label htmlFor={variable}>{text}</label>
+                        <label>{text}</label>
                     </div>
                 </div>
             );
@@ -106,7 +123,7 @@ class AddNewPin extends React.Component {
                         <div className="pinOptions box">
                             <div className="pinMenu">
                                 <form>
-                                    <div className="pinCategory">
+                                    {/* <div className="pinCategory">
                                         <div className="pinCheckBox">
                                             <img
                                                 src="/pins/checkbox.png"
@@ -122,11 +139,20 @@ class AddNewPin extends React.Component {
                                             />
                                         </div>
                                         <div className="pinText">Museums</div>
-                                    </div>
-                                    {category("green", "Parks")}
-                                    {category("yellow", "Restaurants")}
-                                    {category("pink", "Bars")}
-                                    {category("purple", "Sightseeings")}
+                                    </div> */}
+                                    {category("blue", "Museums", "museums")}
+                                    {category("green", "Parks", "parks")}
+                                    {category(
+                                        "yellow",
+                                        "Restaurants",
+                                        "restaurants"
+                                    )}
+                                    {category("pink", "Bars", "bars")}
+                                    {category(
+                                        "purple",
+                                        "Sightseeing",
+                                        "sightseeing"
+                                    )}
                                 </form>
                             </div>
                             <div className="addPinPicture">
@@ -176,7 +202,7 @@ class AddNewPin extends React.Component {
                     </div>
                 </div>
 
-                <div className="markerInput">
+                {/* <div className="markerInput">
                     <div className="fileUp">
                         <input
                             id="inputfile"
@@ -237,9 +263,9 @@ class AddNewPin extends React.Component {
                                 </label>
                             </div>
                         </form>
-                        {/*<button onClick={this.insertPinInfo}>Submit</button>*/}
+
                     </div>
-                </div>
+                </div> */}
             </React.Fragment>
         );
     }
