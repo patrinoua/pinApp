@@ -34,6 +34,18 @@ export default class PinClick extends React.Component {
         }
         return (
             <React.Fragment>
+                <div className="blackVail" onClick={this.toggle} />
+                <div className="pinClickContainer">
+                    <p id="exit" onClick={this.toggle}>
+                        X
+                    </p>
+                    {/*<div className="fieldsContainer">
+                    </div>*/}
+                </div>
+
+
+
+
                 <div id="clickPinHolder">
                     <div className="">
                         <h1>

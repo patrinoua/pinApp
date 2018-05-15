@@ -79,6 +79,27 @@ class OtherProfilePage extends React.Component {
         });
     }
     componentDidMount() {
+<<<<<<< HEAD
+        console.log(
+            "this.props.match.params.id!!!!",
+            this.props.match.params.id
+        );
+        console.log("this.props.match",this.props.match);
+        // console.log('loggint routerProps',this.props.routerProps.match.params.id);
+        axios
+            .get(`/getUser/${this.props.match.params.id}`)
+            .then((response) => {
+                if (response.data) {
+                    console.log('response.data.user',response.data.user);
+                    this.setState(response.data.user);
+                    this.props.dispatch(getUserPinInfo(response.data.user.id));
+                } else {
+                    console.log(
+                        "response.data in getUser had an error ",
+                        response.data
+                    );
+                }
+=======
         axios
             .get(`/getUserMarkers`, {
                 params: { id: this.props.match.params.id }
@@ -95,6 +116,7 @@ class OtherProfilePage extends React.Component {
             .get(`/getUser/${this.props.match.params.id}`)
             .then((response) => {
                 this.setState({ user: response.data.user });
+>>>>>>> f3f920e172bbef980809906cb0e833944a020606
             })
             .catch((err) => {
                 console.log("oh no!!!", err);
