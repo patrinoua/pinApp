@@ -29,6 +29,16 @@
     z-index: 2;
 }
 
+#exit {
+    position: absolute;
+    top: 18%;
+    right: 18%;
+    font-size: 2vw;
+    color: white;
+    cursor: pointer;
+    z-index: 5;
+}
+
 .newPinContainer {
     width: 100vw;
     height: 100vh;

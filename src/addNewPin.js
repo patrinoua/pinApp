@@ -52,13 +52,19 @@ class AddNewPin extends React.Component {
             bars: "/pins/pinkPin.png",
             restaurants: "/pins/yellowPin.png",
             parks: "/pins/greenPin.png",
-            sightseeing: "/pins/purplePin.png"
+            sightseeing: "/pins/purplePin.png",
+            general: "/pins/greyPin.png"
         };
-        let cat = this.category;
+        let cat;
+        if (!this.category) {
+            cat = "general";
+        } else {
+            cat = this.category;
+        }
         let pinInfo = {
             description: this.description,
             title: this.title,
-            category: this.category,
+            category: cat,
             lat: this.props.lat,
             lng: this.props.lng,
             color: pinColor[cat]
@@ -76,7 +82,17 @@ class AddNewPin extends React.Component {
             this.props.mapHasBinClicked();
         }
     }
+
     render() {
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 27) {
+                if (this.props.toggleAddNewPinComponent) {
+                    this.props.toggleAddNewPinComponent();
+                } else {
+                    this.props.mapHasBinClicked();
+                }
+            }
+        });
         const category = (color, text, variable) => {
             let str = "/pins/" + color + "Pin.png";
             return (
@@ -113,6 +129,9 @@ class AddNewPin extends React.Component {
             <React.Fragment>
                 <div className="blackVail" onClick={this.toggle} />
                 <div className="newPinContainer">
+                    <p id="exit" onClick={this.toggle}>
+                        X
+                    </p>
                     <div className="fieldsContainer">
                         <div className="pinTitle box">
                             <h1>

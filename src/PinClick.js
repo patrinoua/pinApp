@@ -34,22 +34,32 @@ export default class PinClick extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="pinClickHolder">
-                    <h1>{this.state.title}</h1>
-                    <h3>{this.state.category}</h3>
-                    {this.state.url && (
-                        <div>
-                            <img src={this.state.url} />
-                        </div>
-                    )}
-                    {!this.state.url && (
-                        <div>
-                            <img src="/monky.gif" />
-                        </div>
-                    )}
-                    <p>{this.state.description}</p>
-                    <h6>{this.state.created_at}</h6>
-                    <button onClick={this.props.togglePinClick}>Close</button>
+                <div id="clickPinHolder">
+                    <div className="">
+                        <h1>
+                            <img src="/pins/bigPin.png" />
+                            <span className=""> add pin</span>
+                        </h1>
+                    </div>
+                    <div className="pinClickHolder">
+                        <h1>{this.state.title}</h1>
+                        <h3>{this.state.category}</h3>
+                        {this.state.url && (
+                            <div>
+                                <img src={this.state.url} />
+                            </div>
+                        )}
+                        {!this.state.url && (
+                            <div>
+                                <img src="/monky.gif" />
+                            </div>
+                        )}
+                        <p>{this.state.description}</p>
+                        <h6>{this.state.created_at}</h6>
+                        <button onClick={this.props.togglePinClick}>
+                            Close
+                        </button>
+                    </div>
                 </div>
             </React.Fragment>
         );

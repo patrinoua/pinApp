@@ -137,10 +137,6 @@ class MapContainer extends React.Component {
     checkValue(e) {
         if (e.target.checked) {
             this.state.arrayOfCategory.push(e.target.value);
-            console.log(
-                "this.state.arrayOfCategory",
-                this.state.arrayOfCategory
-            );
         } else {
             let arr = this.state.arrayOfCategory.filter((item) => {
                 return item != e.target.value;
@@ -149,11 +145,6 @@ class MapContainer extends React.Component {
             this.setState({
                 arrayOfCategory: arr
             });
-            console.log("e.target.checked", e.target.checked);
-            console.log(
-                "this.state.arrayOfCategory",
-                this.state.arrayOfCategory
-            );
         }
     }
     selectBycategory(e) {
@@ -254,11 +245,10 @@ class MapContainer extends React.Component {
                             <button onClick={this.selectBycategory}>
                                 Submit
                             </button>
-                            {/*<button onClick={this.toggleSelectCategory}>categories</button>
-                            <button onClick={this.watchMyLocation}>show my location</button>
-                            <button onClick={this.toggleAddMyPinLocationVisible}>
-                                drop pin
-                            </button>*/}
+
+                            <button onClick={this.watchMyLocation}>
+                                show my location
+                            </button>
                         </div>
                     </div>
                     <div className="mapContainerRight">
