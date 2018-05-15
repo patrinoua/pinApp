@@ -197,3 +197,33 @@ exports.saveMarkerImage = (url, id) => {
         id
     ]);
 };
+exports.formatDate = (date) => {
+    var monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + " " + monthNames[monthIndex] + " " + year;
+};
+exports.getPinClickInfo = (pinId) => {
+    return db.query(`SELECT * FROM pins WHERE id=$1`, [pinId]);
+};
+exports.nameOfUser = (name) => {
+    name = name + "%";
+
+    return db.query("SELECT * FROM users WHERE first LIKE $1", [name]);
+};

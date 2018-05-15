@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Link, HashRouter, Route } from "react-router-dom";
 
 import { Welcome, Logo, Login } from "./welcome";
-import axios from "axios";
+import axios from "./axios";
 import { ProfilePage, ProfilePic, UploadProfilePic, EditBio } from "./profile";
 import Navigation from "./navigation";
 import { OtherProfilePage } from "./otherProfile";
@@ -98,37 +98,41 @@ export default class App extends React.Component {
         return (
             <div className="routeContainer">
                 <BrowserRouter>
-                <div className="appContainer">
+                    <div className="appContainer">
+                        <Navigation
+                            {...this.state}
+                            toggleUploader={this.toggleUploader}
+                            makeUploaderVisible={this.showUploader}
+                            hideUploader={this.hideUploader}
+                        />
 
-                    <Navigation
-                        {...this.state}
-                        toggleUploader={this.toggleUploader}
-                        makeUploaderVisible={this.showUploader}
-                        hideUploader={this.hideUploader}
-                    />
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <ProfilePage
+                                    {...this.state}
+                                    toggleUploader={this.toggleUploader}
+                                    makeUploaderVisible={this.showUploader}
+                                    hideUploader={this.hideUploader}
+                                    changeInputValues={this.changeInputValues}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/user"
+                            render={() => (
+                                <ProfilePage
+                                    {...this.state}
+                                    toggleUploader={this.toggleUploader}
+                                    makeUploaderVisible={this.showUploader}
+                                    hideUploader={this.hideUploader}
+                                    changeInputValues={this.changeInputValues}
+                                />
+                            )}
+                        />
 
-                    <Route exact path="/" render={() => (
-                            <ProfilePage
-                                {...this.state}
-                                toggleUploader={this.toggleUploader}
-                                makeUploaderVisible={this.showUploader}
-                                hideUploader={this.hideUploader}
-                                changeInputValues={this.changeInputValues}
-                            />
-                        )}
-                    />
-                    <Route path="/user" render={() => (
-                            <ProfilePage
-                                {...this.state}
-                                toggleUploader={this.toggleUploader}
-                                makeUploaderVisible={this.showUploader}
-                                hideUploader={this.hideUploader}
-                                changeInputValues={this.changeInputValues}
-                            />
-                        )}
-                    />
-
-                    {/*<div className="mapContainer">
+                        {/*<div className="mapContainer">
 
                         <div className="mapContainerLeft">
 
@@ -160,7 +164,9 @@ export default class App extends React.Component {
                         {/*<Route exact path="/chat" component={Chat} />*/}
                         {/*<Route exact path="/map" component={MapApp} />*/}
 
-                        <Route path="/map" render={() => (
+                        <Route
+                            path="/map"
+                            render={() => (
                                 <MapContainer
                                     lat={this.state.lat}
                                     lng={this.state.lng}

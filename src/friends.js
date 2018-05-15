@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
+import axios from "./axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -73,11 +73,11 @@ class Friends extends React.Component {
         if (!friends) {
             return null;
         }
-        const existingFriends = this.props.existingFriends.map(existing => {
+        const existingFriends = this.props.existingFriends.map((existing) => {
             return this.friendFormat(existing, "exists");
         });
 
-        const pendingFriends = this.props.pendingFriends.map(pending => {
+        const pendingFriends = this.props.pendingFriends.map((pending) => {
             return this.friendFormat(pending, "pending");
         });
 
@@ -100,13 +100,13 @@ class Friends extends React.Component {
 const mapStateToProps = function(state) {
     // console.log('state!!!',state.friends);
     return {
-        friends: state.friends && state.friends.filter(friends => friends),
+        friends: state.friends && state.friends.filter((friends) => friends),
         existingFriends:
             state.friends &&
-            state.friends.filter(friends => friends.status == 3),
+            state.friends.filter((friends) => friends.status == 3),
         pendingFriends:
             state.friends &&
-            state.friends.filter(friends => friends.status == 1)
+            state.friends.filter((friends) => friends.status == 1)
     };
 };
 

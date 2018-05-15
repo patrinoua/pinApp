@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import axios from "axios";
+import axios from "./axios";
 import { Logo, Login } from "./welcome";
 import { ProfilePic } from "./profile";
 // import { OnlineUsers } from "./onlineUsers";
@@ -13,7 +13,10 @@ export default function Navigation(props) {
         <div className="navigationContainer">
             {/*<Logo />*/}
             <div className="navigationIconBar">
-                <Link to="/mapREDUX"> <img className="logoIconMenu" src="/pinAppLogo.png" /> </Link>
+                <Link to="/mapREDUX">
+                    {" "}
+                    <img className="logoIconMenu" src="/pinAppLogo.png" />{" "}
+                </Link>
                 {/*<Link to="/user"> Hello {props.first}</Link>*/}
                 {/*<a href="/logout"> Logout </a>*/}
                 {/*<Link to="/onlineUsers"> Online </Link>*/}
@@ -22,10 +25,28 @@ export default function Navigation(props) {
                 {/*<Link to="/chat"> Chat </Link>*/}
                 {/*<Link to="/mapREDUX"> MapAppREDUX </Link>*/}
                 <div className="navigationBarRight">
-                    <Link to="/map"> <img src="/icons/redPin.png" className="navigationIcon"/> </Link>
-                    <Link to="/editProfile"> <img src="/icons/burgerMenuIcon.png" className="navigationIcon"/> </Link>
-                    <Link to="/editProfile">  </Link>
-                    <Link to="/user"> <img src="/icons/redUserIcon.png" className="navigationIcon"/> </Link>
+                    <Link to="/map">
+                        {" "}
+                        <img
+                            src="/icons/redPin.png"
+                            className="navigationIcon"
+                        />{" "}
+                    </Link>
+                    <Link to="/editProfile">
+                        {" "}
+                        <img
+                            src="/icons/burgerMenuIcon.png"
+                            className="navigationIcon"
+                        />{" "}
+                    </Link>
+                    <Link to="/editProfile"> </Link>
+                    <Link to="/user">
+                        {" "}
+                        <img
+                            src="/icons/redUserIcon.png"
+                            className="navigationIcon"
+                        />{" "}
+                    </Link>
                     {/*<ProfilePic {...props} />*/}
                     {/*<ProfilePage {...props} />*/}
                 </div>

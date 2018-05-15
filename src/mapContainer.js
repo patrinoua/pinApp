@@ -6,7 +6,8 @@ import axios from "./axios";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import AddNewPin from "./addNewPin";
 import { getPinInfo, selectActionBycategory } from "./actions";
-
+import PinClick from "./PinClick.js";
+import { NamesToShow } from "./NamesToShow";
 class MapContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -21,9 +22,11 @@ class MapContainer extends React.Component {
             activeMarker: {},
             selectedPlace: {},
             showingInfoWindow: false,
-            addNewPinIsVisible: false
+            addNewPinIsVisible: false,
+            clickedPinId: null,
+            pinClickVisible: false
         };
-        // this.textInput = React.createRef();
+
         this.state.addNewPinIsVisible = false;
         this.mapClicked = this.mapClicked.bind(this);
         this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(
@@ -33,7 +36,11 @@ class MapContainer extends React.Component {
         this.checkValue = this.checkValue.bind(this);
         this.toggleSelectCategory = this.toggleSelectCategory.bind(this);
         this.watchMyLocation = this.watchMyLocation.bind(this);
-        this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(this);
+        this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
+            this
+        );
+        this.pinClick = this.pinClick.bind(this);
+        this.togglePinClick = this.togglePinClick.bind(this);
     }
 
     componentDidMount() {
@@ -56,7 +63,20 @@ class MapContainer extends React.Component {
         //     });
         // });
     }
-
+    pinClick(e) {
+        console.log(e.name);
+        this.clickedPinId = e.name;
+        console.log(this.clickedPinId);
+        this.setState({
+            clickedPinId: e.name,
+            pinClickVisible: !this.state.pinClickVisible
+        });
+    }
+    togglePinClick() {
+        this.setState({
+            pinClickVisible: !this.state.pinClickVisible
+        });
+    }
     watchMyLocation() {
         if (!this.state.myLat) {
             this.state.watchId = navigator.geolocation.watchPosition((pos) => {
@@ -86,7 +106,10 @@ class MapContainer extends React.Component {
         });
     }
     toggleAddNewPinComponent() {
-        console.log('toggleAddNewPinComponent,addNewPinIsVisible:',this.addNewPinIsVisible );
+        console.log(
+            "toggleAddNewPinComponent,addNewPinIsVisible:",
+            this.addNewPinIsVisible
+        );
         this.setState({
             addNewPinIsVisible: !this.state.addNewPinIsVisible
         });
@@ -111,7 +134,10 @@ class MapContainer extends React.Component {
     checkValue(e) {
         if (e.target.checked) {
             this.state.arrayOfCategory.push(e.target.value);
-            console.log("this.state.arrayOfCategory",this.state.arrayOfCategory);
+            console.log(
+                "this.state.arrayOfCategory",
+                this.state.arrayOfCategory
+            );
         } else {
             let arr = this.state.arrayOfCategory.filter((item) => {
                 return item != e.target.value;
@@ -120,8 +146,11 @@ class MapContainer extends React.Component {
             this.setState({
                 arrayOfCategory: arr
             });
-            console.log('e.target.checked',e.target.checked);
-            console.log("this.state.arrayOfCategory",this.state.arrayOfCategory);
+            console.log("e.target.checked", e.target.checked);
+            console.log(
+                "this.state.arrayOfCategory",
+                this.state.arrayOfCategory
+            );
         }
     }
     selectBycategory(e) {
@@ -142,14 +171,17 @@ class MapContainer extends React.Component {
             backgroundColor: "pink",
             borderRadius: "20px"
         };
-        console.log("this.state.addNewPinIsVisible",this.state.addNewPinIsVisible);
+        console.log(
+            "this.state.addNewPinIsVisible",
+            this.state.addNewPinIsVisible
+        );
         // if (!this.props.lat) {
         //     return <img src="/monky.gif" />;
         // }
-        const categoryItems = function(color,text, variable, myFunction){
-            let str = "/pins/"+color+"Pin.png"
+        const categoryItems = function(color, text, variable, myFunction) {
+            let str = "/pins/" + color + "Pin.png";
             return (
-                <div className="categoryItem" id="myForm">
+                <div className="categoryItem">
                     <input
                         style={style}
                         type="checkbox"
@@ -159,22 +191,65 @@ class MapContainer extends React.Component {
                         className="check"
                         onClick={myFunction}
                     />
-                    <img src={str} className="categoryItemPinIcon"/>
+                    <img src={str} className="categoryItemPinIcon" />
                     <label htmlFor="museums"> {text} </label>
                 </div>
-            )
-        }
+            );
+        };
         return (
             <React.Fragment>
+                <NamesToShow />
+                {this.state.pinClickVisible &&
+                    this.state.clickedPinId && (
+                        <PinClick
+                            pinId={this.state.clickedPinId}
+                            togglePinClick={this.togglePinClick}
+                        />
+                    )}
                 <div className="mapContainer">
                     <div className="mapContainerLeft">
                         <div className="categoryList">
-                            {categoryItems('plus','Add pin','',this.toggleAddNewPinComponent)}
-                            {categoryItems('blue','Museums', 'museum', this.checkValue)}
-                            {categoryItems('green','Parks','park',this.checkValue)}
-                            {categoryItems('yellow','Restaurants','restaurants', this.checkValue)}
-                            {categoryItems('pink','Bars','bars', this.checkValue)}
-                            {categoryItems('purple','Sightseeings','sightseeing', this.checkValue)}
+                            <form id="myForm">
+                                {categoryItems(
+                                    "plus",
+                                    "Add pin",
+                                    "",
+                                    this.toggleAddNewPinComponent
+                                )}
+                                {categoryItems(
+                                    "blue",
+                                    "museums",
+                                    "museums",
+                                    this.checkValue
+                                )}
+                                {categoryItems(
+                                    "green",
+                                    "Parks",
+                                    "parks",
+                                    this.checkValue
+                                )}
+                                {categoryItems(
+                                    "yellow",
+                                    "restaurants",
+                                    "restaurants",
+                                    this.checkValue
+                                )}
+                                {categoryItems(
+                                    "pink",
+                                    "bars",
+                                    "bars",
+                                    this.checkValue
+                                )}
+                                {categoryItems(
+                                    "purple",
+                                    "sightseeing",
+                                    "sightseeing",
+                                    this.checkValue
+                                )}
+                            </form>
+                            <button onClick={this.selectBycategory}>
+                                Submit
+                            </button>
                             {/*<button onClick={this.toggleSelectCategory}>categories</button>
                             <button onClick={this.watchMyLocation}>show my location</button>
                             <button onClick={this.toggleAddMyPinLocationVisible}>
@@ -184,51 +259,60 @@ class MapContainer extends React.Component {
                     </div>
                     <div className="mapContainerRight">
                         <div className="mapArea">
-                        <Map
-                            style={style}
-                            initialCenter={{
-                                // lat: this.props.lat,
-                                // lng: this.props.lng
-                                lat: 52.4918854,
-                                lng: 13.360088699999999
-                            }}
-                            zoom={14}
-                            google={this.props.google}
-                            zoom={15}
-                            onClick={this.mapClicked}
-                            onReady={this.fetchPlaces}
-                            visible={true}
-                        >
-                            {this.state.myLat && (
-                                <Marker
-                                    icon={{
-                                        url: "/dot.png",
-                                        anchor: new google.maps.Point(0, 0),
-                                        scaledSize: new google.maps.Size(10, 10)
-                                    }}
-                                />
-                            )}
-                            {this.props.markersArray &&
-                                this.props.markersArray.map((item) => {
-                                    return (
-                                        <Marker
-                                            key={item.id}
-                                            onClick={this.onMarkerClick}
-                                            name={item.title}
-                                            position={{
-                                                lat: item.lat,
-                                                lng: item.lng
-                                            }}
-                                            icon={{
-                                                url: item.color,
-                                                anchor: new google.maps.Point(0, 0),
-                                                scaledSize: new google.maps.Size(25, 35)
-                                            }}
-                                        />
-                                    );
-                                })}
+                            <Map
+                                style={style}
+                                initialCenter={{
+                                    // lat: this.props.lat,
+                                    // lng: this.props.lng
+                                    lat: 52.4918854,
+                                    lng: 13.360088699999999
+                                }}
+                                zoom={14}
+                                google={this.props.google}
+                                zoom={15}
+                                onClick={this.mapClicked}
+                                onReady={this.fetchPlaces}
+                                visible={true}
+                            >
+                                {this.state.myLat && (
+                                    <Marker
+                                        icon={{
+                                            url: "/dot.png",
+                                            anchor: new google.maps.Point(0, 0),
+                                            scaledSize: new google.maps.Size(
+                                                10,
+                                                10
+                                            )
+                                        }}
+                                    />
+                                )}
+                                {this.props.markersArray &&
+                                    this.props.markersArray.map((item) => {
+                                        return (
+                                            <Marker
+                                                key={item.id}
+                                                onClick={this.pinClick}
+                                                name={item.id}
+                                                position={{
+                                                    lat: item.lat,
+                                                    lng: item.lng
+                                                }}
+                                                icon={{
+                                                    url: item.color,
+                                                    anchor: new google.maps.Point(
+                                                        0,
+                                                        0
+                                                    ),
+                                                    scaledSize: new google.maps.Size(
+                                                        25,
+                                                        35
+                                                    )
+                                                }}
+                                            />
+                                        );
+                                    })}
 
-                            {/*{this.state.addNewPinIsVisible && (
+                                {/*{this.state.addNewPinIsVisible && (
                                 <AddNewPin
                                     lat={this.state.lat}
                                     lng={this.state.lng}
@@ -246,10 +330,9 @@ class MapContainer extends React.Component {
                                     }
                                 />
                             )}*/}
-                        </Map>
+                            </Map>
                         </div>
                     </div>
-
 
                     {/*{this.state.showCategorySelect && (
                         <div className="catagoryHolder">
@@ -303,15 +386,14 @@ class MapContainer extends React.Component {
                             <button onClick={this.selectBycategory}>Submit</button>
                         </div>
                     )}*/}
-
                 </div>
-                {this.state.addNewPinIsVisible&&<AddNewPin
-                    lat={this.state.lat}
-                    lng={this.state.lng}
-                    toggleAddNewPinComponent={
-                        this.toggleAddNewPinComponent
-                    }
-                />}
+                {this.state.addNewPinIsVisible && (
+                    <AddNewPin
+                        lat={this.state.lat}
+                        lng={this.state.lng}
+                        toggleAddNewPinComponent={this.toggleAddNewPinComponent}
+                    />
+                )}
             </React.Fragment>
         );
     }

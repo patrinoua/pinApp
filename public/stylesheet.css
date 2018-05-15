@@ -1,7 +1,10 @@
 main {
     background-color: #fffafa;
-    {/*background-color: green;*/}
+        {
+        /*background-color: green;*/
+    }
 }
+
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
@@ -23,6 +26,7 @@ body {
     text-align: center;
     justify-content: center;
 }
+
 /* .container {
     height: 100vh;
     width: 100vw;
@@ -30,6 +34,7 @@ body {
     display: flex;
     flex-direction: column;
 } */
+
 .routeContainer {
     height: 100vh;
     width: 100vw;
@@ -44,7 +49,8 @@ body {
 }
 
 /* ********* App Container ************* */
-.appContainer{
+
+.appContainer {
     width: 100vw;
     height: 100vh;
     /* background-color: orange; */
@@ -52,6 +58,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 /************NAVIGATION*****************/
 
 .navigationContainer {
@@ -67,6 +74,7 @@ body {
     font-weight: 100;
     position: relative;
 }
+
 .navigationIconBar {
     /* padding: 20px; */
     margin: 0 10px;
@@ -78,6 +86,7 @@ body {
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
 }
+
 .navigationIconBar a {
     color: white;
     font-weight: 900;
@@ -104,6 +113,7 @@ body {
 .navigationIcon:hover {
     cursor: pointer;
 }
+
 .logoBig {
     max-width: 25%;
     padding: 20px;
@@ -123,16 +133,17 @@ body {
     position: relative;
     /* background-color: grey; */
 }
-.mapContainerLeft{
-    width:30%;
+
+.mapContainerLeft {
+    width: 30%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     justify-content: center;
 }
 
-.categoryList{
+.categoryList {
     width: 25vw;
     height: 50vh;
     /* background-color: green; */
@@ -143,7 +154,8 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.categoryItem{
+
+.categoryItem {
     /* background-color: black; */
     width: 90%;
     /* height: 30px; */
@@ -153,21 +165,25 @@ body {
     align-items: center;
     position: relative;
 }
-.categoryItemPinIcon{
+
+.categoryItemPinIcon {
     max-width: 20px;
     height: auto;
     padding: 0 10px;
 }
-.categoryItemPinIcon:hover{
+
+.categoryItemPinIcon:hover {
     cursor: pointer;
 }
-.categoryItemText{
+
+.categoryItemText {
     display: flex;
     align-items: center;
     padding: 0px 15px;
 }
-.mapContainerRight{
-    width:70%;
+
+.mapContainerRight {
+    width: 70%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -179,7 +195,7 @@ body {
     background-size: contain;
     background-color: pink;
     border-radius: 20px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 60%;
     width: 70%;
     position: relative;
@@ -227,7 +243,6 @@ body {
     width: 90%;
     position: relative;
     padding: 20px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -256,7 +271,8 @@ body {
     position: relative;
     padding: 9px;
 }
-.profilePicCircle{
+
+.profilePicCircle {
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -267,7 +283,6 @@ body {
     overflow: hidden;
     border: 3px solid rgba(255, 255, 255, 1);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-
 }
 
 .profilePageContainerRight {
@@ -277,6 +292,7 @@ body {
     position: relative;
     padding-left: 20px;
 }
+
 .profileInfoContainer {
     padding-top: 10vh;
     padding-left: 10vh;
@@ -285,7 +301,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
 .existingValues, .editingValues {
@@ -329,11 +345,17 @@ body {
 }
 
 /********************************/
+
 /********************************/
+
 /********************************/
+
 /*  NOT SURE IF I AM USING THOSE*/
+
 /********************************/
+
 /********************************/
+
 /********************************/
 
 /* .profileContainerUser {
@@ -362,7 +384,6 @@ body {
     justify-content: center;
 } */
 
-
 /* .editProfile {
     width: 100%;
     display: flex;
@@ -380,7 +401,6 @@ body {
     width: 300px;
 } */
 
-
 /* .bioContainer {
     position: relative;
     display: flex;
@@ -394,13 +414,18 @@ body {
     font-size: 0.9em;
 } */
 
+/********************************/
 
 /********************************/
+
 /********************************/
-/********************************/
+
 /*  NOT SURE IF I AM USING THOSE*/
+
 /********************************/
+
 /********************************/
+
 /********************************/
 
 .profilePic img {
@@ -802,7 +827,6 @@ button:hover {
     color: red;
 }
 
-
 .inputfile:focus+label {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
@@ -818,4 +842,74 @@ button:hover {
     background-color: red;
     width: 20vw;
     height: 50vh;
+}
+
+.pinClickHolder {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(189, 135, 180, 0.87);
+}
+
+/* ////////////// namseToShow component //////////////////////// */
+
+.searchUsers {
+    background-color: rgba(153, 168, 150, 0.38);
+    height: 14vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid black;
+    margin-left: -3.2vw;
+    width: 8.5vw;
+    position: absolute;
+    top: 26vh;
+    left: 5vw;
+    z-index: 12345;
+}
+
+.theNamesToShowInSearch {
+    width: 100%;
+    text-decoration: none;
+}
+
+#searchUsersBox>textarea {
+    color: #666;
+    font-size: 1vw;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    padding: 2px;
+    height: 2vh;
+    width: 7.4vw;
+    border: #999 2px solid;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 0);
+    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 0);
+    -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 0);
+    overflow: auto;
+    resize: none;
+    margin-left: -3vw;
+    position: absolute;
+    top: 22vh;
+    left: 5vw;
+    z-index: 12345;
+}
+
+#searchUsersBox>textarea:focus {
+    color: #000;
+    outline: none;
+    border: #35a5e5 5px solid;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+#searchUsers {
+    position: absolute;
+    top: 20vh;
+    left: 5vw;
+    z-index: 12345;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "./axios";
 
 export function Welcome() {
     return (
@@ -49,7 +49,7 @@ export class Register extends React.Component {
                 email: this.email,
                 password: this.password
             })
-            .then(response => {
+            .then((response) => {
                 if (response.data.success) {
                     // console.log('registered (in welcome.js)');
                     location.replace("/user");
@@ -121,7 +121,7 @@ export class Login extends React.Component {
                 email: this.email,
                 password: this.password
             })
-            .then(response => {
+            .then((response) => {
                 if (response.data.success) {
                     // console.log("response.data from login jfghdsgajf",response.data.user);
                     location.replace("/user");

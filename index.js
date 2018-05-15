@@ -41,13 +41,6 @@ app.use(compression());
 
 app.use(express.static("./public"));
 
-// app.use(csurf());
-
-// app.use(function(req, res, next){
-//     res.cookie('mytoken', req.csrfToken());
-//     next();
-// });
-
 app.use(bodyParser.json());
 
 // I CHANGED STUFF HERE !
@@ -76,7 +69,12 @@ app.use(function(req, res, next) {
     // console.log('req.session.user :',req.session.user);
     next();
 });
+app.use(csurf());
 
+app.use(function(req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 function requireLogin(req, res, next) {
     if (!req.session.user) {
         res.sendStatus(403);
@@ -421,7 +419,23 @@ app.post("/insertNewPin", (req, res) => {
             console.log(`error in insertMarkerPic: ${err}`);
         });
 });
-
+app.post("/PinClick", (req, res) => {
+    console.log(req.body.pinId);
+    db
+        .getPinClickInfo(req.body.pinId)
+        .then((result) => {
+            console.log(result.rows[0]);
+            result.rows[0].created_at = db.formatDate(
+                result.rows[0].created_at
+            );
+            res.json({
+                pinInfo: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in post/PinClick: ${err}`);
+        });
+});
 app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
     req,
     res
@@ -467,7 +481,25 @@ app.post("/updateFriendshipStatus", function(req, res) {
             }
         });
 });
-
+///////////////////////// search users stuff im adding //////////////////
+app.post("/userName", (req, res) => {
+    // console.log(req.body.name);
+    let str = req.body.name;
+    // str = str.slice(0, 1);
+    // console.log(str);
+    db
+        .nameOfUser(str)
+        .then((result) => {
+            console.log(result.rows);
+            res.json({
+                data: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in POST/userName: ${err}`);
+        });
+});
+///////////////////////// search users stuff im adding //////////////////
 app.get("/getFriendsAndWannabes", function(req, res) {
     db
         .getFriendsAndWannabes(req.session.user.id)
