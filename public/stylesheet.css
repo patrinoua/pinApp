@@ -132,7 +132,12 @@ body {
     height: 35px;
     margin: 10px;
 }
+.navigationIconProfilepic{
 
+        height: 35px;
+        margin: 10px;
+    border-radius: 50%;
+}
 .logoIconMenu {
     margin: 10px;
     max-height: 70px;
@@ -228,6 +233,114 @@ body {
     width: 70%;
     position: relative;
 }
+/********** USER PROFILE (OtherProfile) ***************/
+
+.profileContainerUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    width: 90%;
+    height: 90%;
+    justify-content: center;
+}
+
+.mapContainerUser {
+    width: 95%;
+    height: 58%;
+    margin: 10px 10px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    /* background-color: grey; */
+}
+
+.mapContainerUserLeft {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.categoryListUSer {
+    width: 25vw;
+    height: 50vh;
+    /* background-color: green; */
+    margin: 10px;
+    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mapContainerUserRight {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mapAreaUser {
+    background-image: url('/map.png');
+    background-size: contain;
+    background-color: pink;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    height: 90%;
+    width: 90%;
+    position: relative;
+}
+.infoContainerUser {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    height: 20%;
+}
+
+.profilePicUser {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profilePicUser img{
+    max-width: 150px;
+    height: auto;
+}
+.nameAndBioContainerUser {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.nameUser{
+    padding: 10px;
+}
+.bioUser{
+    padding: 10px;
+    font-style: italic;
+    font-family: cursive;
+    color: #2a2a2a;
+}
+/*
+.mapBlockUser{
+    height: 60%;
+    width: 70%;
+    position: relative;
+    display: flex;
+}
+ */
 
 /* ******** CHAT ******** */
 
@@ -373,50 +486,14 @@ body {
 }
 
 /********************************/
-
 /********************************/
-
 /********************************/
-
 /*  NOT SURE IF I AM USING THOSE*/
-
+/********************************/
 /********************************/
 
 /********************************/
 
-/********************************/
-/**********OtherProfile***************/
-
-.profileContainerUser {
-    display: flex;
-    /* flex-direction: column; */
-    align-items: center;
-    padding: 20px;
-    position: relative;
-    width: 90%;
-    justify-content: center;
-}
-
-.pictureContainerUser {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.profilePicUser {
-    max-width: 150px;
-    max-height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.profilePicUser img{
-    max-width: 150px;
-    height: auto;
-}
 /* .editProfile {
     width: 100%;
     display: flex;
@@ -746,8 +823,8 @@ button {
     border-radius: 20px;
     /* font-size:14px; */
     /* width: 100px; */
-    /* margin: 10px; */
-    margin: 15px;
+    margin: 10px;
+    /* margin: 15px; */
     font-family: "Cutive Mono", monospace;
     /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
 }
@@ -757,6 +834,11 @@ button:hover {
     background-color: #f6f6f6;
 }
 
+.centerStuff{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 .subtleButton {
     border: none;
     width: 60px;

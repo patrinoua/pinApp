@@ -94,8 +94,23 @@ export function insertPinInfo(info) {
 }
 export function getPinInfo() {
     return axios
-        .get("/getMarker")
+        .get("/getUMarker")
         .then((response) => {
+            return {
+                type: "GET_PIN_INFO",
+                pinsArray: response.data.marker
+            };
+        })
+        .catch((err) => {
+            console.log(`error in pic getPinInfo: ${err}`);
+        });
+}
+export function getUserPinInfo(id) {
+    console.log('getUserPinInfo action',id);
+    return axios
+        .get("/getUserMarkers")
+        .then((response) => {
+            console.log('response in getUserPinInfo action',response.data.marker);
             return {
                 type: "GET_PIN_INFO",
                 pinsArray: response.data.marker

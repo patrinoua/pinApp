@@ -10,6 +10,7 @@ import MapContainer from "./mapcontainer";
 import Chat from "./chat";
 
 export default function Navigation(props) {
+    let pic = props.profilepic || "/icons/redUserIcon.png";
     return (
         <div className="navigationContainer">
             {/*<Logo />*/}
@@ -33,19 +34,12 @@ export default function Navigation(props) {
                             className="navigationIcon"
                         />{" "}
                     </Link>
-                    <Link to="/editProfile">
-                        {" "}
-                        <img
-                            src="/icons/burgerMenuIcon.png"
-                            className="navigationIcon"
-                        />{" "}
-                    </Link>
                     <Link to="/editProfile"> </Link>
                     <Link to="/user">
                         {" "}
                         <img
-                            src="/icons/redUserIcon.png"
-                            className="navigationIcon"
+                            src={pic}
+                            className="navigationIconProfilepic"
                         />{" "}
                     </Link>
                     {/*<ProfilePic {...props} />*/}

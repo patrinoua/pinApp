@@ -396,6 +396,19 @@ app.get("/getMarker", (req, res) => {
             console.log(`error in getMarkerInfo: ${err}`);
         });
 });
+app.get("/getUserMarkers", (req, res) => {
+    console.log("getUserMarkers req",req);
+    db
+        .getMarkerInfo(req.session.user.id)
+        .then((result) => {
+            res.json({
+                marker: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in getMarkerInfo: ${err}`);
+        });
+});
 
 app.post("/insertNewPin", (req, res) => {
     db
