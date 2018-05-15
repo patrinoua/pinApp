@@ -263,7 +263,6 @@ class MapContainer extends React.Component {
                                 }}
                                 zoom={14}
                                 google={this.props.google}
-                                zoom={15}
                                 onClick={this.mapClicked}
                                 onReady={this.fetchPlaces}
                                 visible={true}
@@ -306,24 +305,24 @@ class MapContainer extends React.Component {
                                         );
                                     })}
 
-                                {/*{this.state.addNewPinIsVisible && (
-                                <AddNewPin
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
-                                    toggleAddNewPinComponent={
-                                        this.toggleAddNewPinComponent
-                                    }
-                                />
-                            )}
-                            {this.state.addMyPinLocationVisible && (
-                                <AddNewPin
-                                    lat={this.props.lat}
-                                    lng={this.props.lng}
-                                    toggleAddMyPinLocationVisible={
-                                        this.toggleAddMyPinLocationVisible
-                                    }
-                                />
-                            )}*/}
+                                {this.state.addNewPinIsVisible && (
+                                    <AddNewPin
+                                        lat={this.state.lat}
+                                        lng={this.state.lng}
+                                        toggleAddNewPinComponent={
+                                            this.toggleAddNewPinComponent
+                                        }
+                                    />
+                                )}
+                                {this.state.addMyPinLocationVisible && (
+                                    <AddNewPin
+                                        lat={this.props.lat}
+                                        lng={this.props.lng}
+                                        toggleAddMyPinLocationVisible={
+                                            this.toggleAddMyPinLocationVisible
+                                        }
+                                    />
+                                )}
                             </Map>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ import { getPinInfo, getUserPinInfo, selectActionBycategory } from "./actions";
 
 import PinClick from "./PinClick.js";
 
-export class OtherProfilePage extends React.Component {
+class OtherProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -64,11 +64,6 @@ export class OtherProfilePage extends React.Component {
             this.setState({
                 arrayOfCategory: arr
             });
-            console.log("e.target.checked", e.target.checked);
-            console.log(
-                "this.state.arrayOfCategory",
-                this.state.arrayOfCategory
-            );
         }
     }
     selectBycategory(e) {
@@ -84,6 +79,7 @@ export class OtherProfilePage extends React.Component {
         });
     }
     componentDidMount() {
+<<<<<<< HEAD
         console.log(
             "this.props.match.params.id!!!!",
             this.props.match.params.id
@@ -103,10 +99,29 @@ export class OtherProfilePage extends React.Component {
                         response.data
                     );
                 }
+=======
+        axios
+            .get(`/getUserMarkers`, {
+                params: { id: this.props.match.params.id }
+            })
+            .then((response) => {
+                this.setState({
+                    copyOfPinsArray: response.data.marker
+                });
+            })
+            .catch((err) => {
+                console.log(`error in pic getPinInfo: ${err}`);
+            });
+        axios
+            .get(`/getUser/${this.props.match.params.id}`)
+            .then((response) => {
+                this.setState({ user: response.data.user });
+>>>>>>> f3f920e172bbef980809906cb0e833944a020606
             })
             .catch((err) => {
                 console.log("oh no!!!", err);
             });
+        this.props.dispatch(getUserPinInfo(this.props.match.params.id));
         // axios
         //     .get("/getMarker")
         //     //pass the id
@@ -131,23 +146,24 @@ export class OtherProfilePage extends React.Component {
     }
 
     render() {
-        console.log("otherProfilePage - props : ", this.props);
-        // console.log("otherProfilePage - STATE (the user's page we're visiting) : ", this.state);
-        let pic = this.state.profilepic;
-        if (!pic) {
-            pic = "/neo.png";
+        if (!this.state.user) {
+            return <h1>no such user found</h1>;
         }
+        // if (!this.props.lat) {
+        //     return <img src="/monky.gif" />;
+        // }
         const style = {
             backgroundSize: "contain",
             backgroundColor: "pink",
-            borderRadius: "20px"
+            borderRadius: "20px",
+            width: "50vw",
+            height: "40vh"
         };
         const categoryItems = function(color, text, variable, myFunction) {
             let str = "/pins/" + color + "Pin.png";
             return (
                 <div className="categoryItem">
                     <input
-                        style={style}
                         type="checkbox"
                         id={variable}
                         name={variable}
@@ -160,17 +176,23 @@ export class OtherProfilePage extends React.Component {
                 </div>
             );
         };
+
         return (
             <div className="profileContainerUser">
                 <div className="infoContainerUser">
                     <div className="profilePicUser">
-                        <img src={pic} />{" "}
+                        {this.state.user.profilepic && (
+                            <img src={this.state.user.profilepic} />
+                        )}
+                        {!this.state.user.profilepic && (
+                            <img src={"/neo.png"} />
+                        )}
                     </div>
                     <div className="nameAndBioContainerUser">
                         <div className="nameUser">
-                            {this.state.first} {this.state.last}
+                            {this.state.user.first} {this.state.user.last}
                         </div>
-                        <div className="bioUser">{this.state.bio}</div>
+                        <div className="bioUser">{this.state.user.bio}</div>
                     </div>
                     <div className="centerStuff">
                         <FriendButton otherId={this.props.match.params.id} />
@@ -276,94 +298,10 @@ export class OtherProfilePage extends React.Component {
                                             />
                                         );
                                     })}
-
-                                {/*{this.state.addNewPinIsVisible && (
-                                <AddNewPin
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
-                                    toggleAddNewPinComponent={
-                                        this.toggleAddNewPinComponent
-                                    }
-                                />
-                            )}
-                            {this.state.addMyPinLocationVisible && (
-                                <AddNewPin
-                                    lat={this.props.lat}
-                                    lng={this.props.lng}
-                                    toggleAddMyPinLocationVisible={
-                                        this.toggleAddMyPinLocationVisible
-                                    }
-                                />
-                            )}*/}
                             </Map>
                         </div>
                     </div>
-
-                    {/*{this.state.showCategorySelect && (
-                        <div className="catagoryHolder">
-                            <form id="myForm">
-                                <input
-                                    type="checkbox"
-                                    id="museums"
-                                    name="museums"
-                                    value="museums"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="museums">Museums</label>
-                                <input
-                                    type="checkbox"
-                                    id="bars"
-                                    name="bars"
-                                    value="bars"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="bars">Bars</label>
-                                <input
-                                    type="checkbox"
-                                    id="restaurants"
-                                    name="restaurants"
-                                    value="restaurants"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="restaurants">Restaurants</label>
-                                <input
-                                    type="checkbox"
-                                    id="parks"
-                                    name="parks"
-                                    value="parks"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="parks">Parks</label>
-                                <input
-                                    type="checkbox"
-                                    id="sightseeing"
-                                    name="sightseeing"
-                                    value="sightseeing"
-                                    className="check"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="sightseeing">Sightseeing</label>
-                            </form>
-                            <button onClick={this.selectBycategory}>Submit</button>
-                        </div>
-                    )}*/}
                 </div>
-                {/*<div className="mapBlockUser">
-                    <div className="menuuuu">
-                        <div className="menuuuuObj">1</div>
-                        <div className="menuuuuObj">2</div>
-                        <div className="menuuuuObj">3</div>
-
-                    </div>
-
-                    <div className="mapAreaUser">
-
-                    </div>
-                </div>*/}
             </div>
         );
     }
