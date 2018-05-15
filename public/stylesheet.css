@@ -911,5 +911,19 @@ button:hover {
     position: absolute;
     top: 20vh;
     left: 5vw;
-    z-index: 12345;
+    z-index: 1;
+}
+
+/* /////////////// droping pin component ///////////// */
+
+#dropPinHeader {
+    position: absolute;
+    top: 23vh;
+    left: 52vw;
+    z-index: 1;
+}
+
+#HERE {
+    color: rgb(178, 74, 187);
+    cursor: pointer;
 }

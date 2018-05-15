@@ -25,7 +25,8 @@
     justify-content: center;
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
+    z-index: 2;
 }
 
 .newPinContainer {
@@ -53,14 +54,14 @@
     height: 70vh;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
-
     border-radius: 30px;
     border: 2px solid rgba(255, 255, 255, 0.6);
     top: 0;
-
     position: relative;
+    z-index: 3;
 }
-.box{
+
+.box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,24 +69,29 @@
     height: 100%;
     position: relative;
 }
-.pinTitle{
+
+.pinTitle {
     font-family: 'Pacifico', cursive;
     /* font-size: 25px; */
     width: 100%;
     z-index: 1;
 }
-.addPinTitle{
+
+.addPinTitle {
     margin-left: 40px;
+    font-size: 5vw;
 }
-.pinTitle img{
+
+.pinTitle img {
     width: 30%;
     max-width: 130px;
     position: absolute;
-    top:-45%;
-    left:15%;
+    top: -45%;
+    left: 15%;
     padding-right: 20px;
 }
-.pinMenu{
+
+.pinMenu {
     width: 50%;
     height: 100%;
     position: relative;
@@ -95,24 +101,27 @@
     /* align-items: center; */
     justify-content: center;
 }
-.pinCategory{
+
+.pinCategory {
     display: flex;
     color: whitesmoke;
     height: 50px;
 }
-.pinCheckBox{
+
+.pinCheckBox {
     display: flex;
     align-items: center;
     position: relative;
 }
-.pinText{
+
+.pinText {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-left: 5px;
 }
 
-.addPinPicture{
+.addPinPicture {
     width: 50%;
     height: 100%;
     display: flex;
@@ -121,55 +130,65 @@
     align-items: center;
     position: relative;
 }
-.cameraIconContainer{
+
+.cameraIconContainer {
     width: 50%;
     height: 50%;
-    background-color: rgba(254,228,241,1);
+    background-color: rgba(254, 228, 241, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-.titleTextarea{
+
+.titleTextarea {
     border-radius: 6px;
-    width:47%;
+    width: 47%;
     background-color: whitesmoke;
     margin: 10px;
 }
-.descriptionTextarea{
+
+.descriptionTextarea {
     border-radius: 6px;
-    width:47%;
+    width: 47%;
     background-color: whitesmoke;
 }
-.pinDescription{
+
+.pinDescription {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.saveButton{
+
+.saveButton {
     margin: 20px;
 }
-.saveButton:hover{
+
+.saveButton:hover {
     cursor: pointer;
     margin: 20px;
 }
-.cameraIconContainer:hover{
+
+.cameraIconContainer:hover {
     cursor: pointer;
 }
+
 .pinIcon {
     max-width: 25px;
     height: auto;
     padding-right: 10px;
 }
+
 .cameraIcon {
     max-width: 50px;
     height: auto;
 }
+
 .tickIcon {
     max-width: 15px;
     height: auto;
     position: absolute;
     padding-left: 15px;
-    top:30%;
+    top: 30%;
 }

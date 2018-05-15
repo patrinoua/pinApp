@@ -24,7 +24,8 @@ class MapContainer extends React.Component {
             showingInfoWindow: false,
             addNewPinIsVisible: false,
             clickedPinId: null,
-            pinClickVisible: false
+            pinClickVisible: false,
+            mapHasBinClicked: false
         };
 
         this.state.addNewPinIsVisible = false;
@@ -41,6 +42,7 @@ class MapContainer extends React.Component {
         );
         this.pinClick = this.pinClick.bind(this);
         this.togglePinClick = this.togglePinClick.bind(this);
+        this.mapHasBinClicked = this.mapHasBinClicked.bind(this);
     }
 
     componentDidMount() {
@@ -106,10 +108,6 @@ class MapContainer extends React.Component {
         });
     }
     toggleAddNewPinComponent() {
-        console.log(
-            "toggleAddNewPinComponent,addNewPinIsVisible:",
-            this.addNewPinIsVisible
-        );
         this.setState({
             addNewPinIsVisible: !this.state.addNewPinIsVisible
         });
@@ -119,8 +117,13 @@ class MapContainer extends React.Component {
             showCategorySelect: !this.state.showCategorySelect
         });
     }
+    mapHasBinClicked() {
+        this.setState({
+            mapHasBinClicked: !this.state.mapHasBinClicked
+        });
+    }
     mapClicked(mapProps, map, clickEvent) {
-        this.toggleAddNewPinComponent();
+        this.mapHasBinClicked();
         //   if (this.state.showingInfoWindow)
         // this.setState({
         //   activeMarker: null,
@@ -198,6 +201,13 @@ class MapContainer extends React.Component {
         };
         return (
             <React.Fragment>
+                <p id="dropPinHeader">
+                    just drop pin{" "}
+                    <span id="HERE" onClick={this.toggleAddNewPinComponent}>
+                        HERE
+                    </span>{" "}
+                    or click the map to drop
+                </p>
                 <NamesToShow />
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
@@ -210,12 +220,6 @@ class MapContainer extends React.Component {
                     <div className="mapContainerLeft">
                         <div className="categoryList">
                             <form id="myForm">
-                                {categoryItems(
-                                    "plus",
-                                    "Add pin",
-                                    "",
-                                    this.toggleAddNewPinComponent
-                                )}
                                 {categoryItems(
                                     "blue",
                                     "museums",
@@ -389,9 +393,16 @@ class MapContainer extends React.Component {
                 </div>
                 {this.state.addNewPinIsVisible && (
                     <AddNewPin
+                        lat={this.props.lat}
+                        lng={this.props.lng}
+                        toggleAddNewPinComponent={this.toggleAddNewPinComponent}
+                    />
+                )}
+                {this.state.mapHasBinClicked && (
+                    <AddNewPin
                         lat={this.state.lat}
                         lng={this.state.lng}
-                        toggleAddNewPinComponent={this.toggleAddNewPinComponent}
+                        mapHasBinClicked={this.mapHasBinClicked}
                     />
                 )}
             </React.Fragment>
