@@ -76,7 +76,17 @@ class AddNewPin extends React.Component {
             this.props.mapHasBinClicked();
         }
     }
+
     render() {
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 27) {
+                if (this.props.toggleAddNewPinComponent) {
+                    this.props.toggleAddNewPinComponent();
+                } else {
+                    this.props.mapHasBinClicked();
+                }
+            }
+        });
         const category = (color, text, variable) => {
             let str = "/pins/" + color + "Pin.png";
             return (
@@ -113,6 +123,9 @@ class AddNewPin extends React.Component {
             <React.Fragment>
                 <div className="blackVail" onClick={this.toggle} />
                 <div className="newPinContainer">
+                    <p id="exit" onClick={this.toggle}>
+                        X
+                    </p>
                     <div className="fieldsContainer">
                         <div className="pinTitle box">
                             <h1>

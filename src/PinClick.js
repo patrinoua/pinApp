@@ -34,6 +34,7 @@ export default class PinClick extends React.Component {
         }
         return (
             <React.Fragment>
+                <div className="black" />
                 <div className="pinClickHolder">
                     <h1>{this.state.title}</h1>
                     <h3>{this.state.category}</h3>

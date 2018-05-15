@@ -14,7 +14,6 @@ body {
     justify-content: center;
 }
 
-
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
@@ -37,6 +36,7 @@ body {
 } */
 
 /* ********* Welcome Container ************* */
+
 /* .welcomeContainer {
     height: 100vh;
     width: 100vw;
@@ -46,6 +46,7 @@ body {
     justify-content: center;
     align-items: center;
 } */
+
 .welcomeContainer {
     height: 100vh;
     width: 100vw;
@@ -56,11 +57,13 @@ body {
     align-items: center; */
     /* padding: 30px; */
 }
+
 .welcomePageLogoImg {
     height: 20vh;
-    padding-top:10vh;
+    padding-top: 10vh;
     padding-bottom: 5vh;
 }
+
 /* ********* Route Container ************* */
 
 .routeContainer {
@@ -385,6 +388,7 @@ body {
 /********************************/
 
 /********************************/
+
 /**********OtherProfile***************/
 
 .profileContainerUser {
@@ -413,10 +417,12 @@ body {
     align-items: center;
     justify-content: center;
 }
-.profilePicUser img{
+
+.profilePicUser img {
     max-width: 150px;
     height: auto;
 }
+
 /* .editProfile {
     width: 100%;
     display: flex;
@@ -708,6 +714,7 @@ body {
     justify-content: center;
     margin: 5px;
 }
+
 .welcomeForm {
     display: flex;
     flex-direction: column;
@@ -798,7 +805,6 @@ button:hover {
     top: 10px;
     left: 10px;
 }
-
 
 .userImage {
     overflow: hidden;
@@ -894,9 +900,29 @@ button:hover {
 }
 
 .pinClickHolder {
+    position: absolute;
+    top: 15vh;
+    left: 15vw;
+    width: 70vw;
+    height: 70vh;
+    background-color: rgba(189, 135, 180, 0.87);
+    z-index: 3;
+}
+
+.black {
+    margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(189, 135, 180, 0.87);
+    background-color: black;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
 /* ////////////// namseToShow component //////////////////////// */
@@ -915,7 +941,7 @@ button:hover {
     position: absolute;
     top: 26vh;
     left: 5vw;
-    z-index: 12345;
+    z-index: 1;
 }
 
 .theNamesToShowInSearch {
@@ -944,7 +970,7 @@ button:hover {
     position: absolute;
     top: 22vh;
     left: 5vw;
-    z-index: 12345;
+    z-index: 1;
 }
 
 #searchUsersBox>textarea:focus {

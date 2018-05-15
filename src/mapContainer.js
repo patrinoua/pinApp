@@ -254,11 +254,10 @@ class MapContainer extends React.Component {
                             <button onClick={this.selectBycategory}>
                                 Submit
                             </button>
-                            {/*<button onClick={this.toggleSelectCategory}>categories</button>
-                            <button onClick={this.watchMyLocation}>show my location</button>
-                            <button onClick={this.toggleAddMyPinLocationVisible}>
-                                drop pin
-                            </button>*/}
+
+                            <button onClick={this.watchMyLocation}>
+                                show my location
+                            </button>
                         </div>
                     </div>
                     <div className="mapContainerRight">
