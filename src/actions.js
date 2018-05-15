@@ -107,16 +107,23 @@ export function getPinInfo() {
 }
 
 export function selectActionBycategory(categories, pinsArray) {
-    pinsArray = pinsArray.filter((item) => {
-        for (let i = 0; i < categories.length; i++) {
-            if (categories[i] == item.category) {
-                return item;
+    if (categories.length == 0) {
+        return {
+            type: "SELECT_CATEGORY",
+            pinsArray: pinsArray
+        };
+    } else {
+        pinsArray = pinsArray.filter((item) => {
+            for (let i = 0; i < categories.length; i++) {
+                if (categories[i] == item.category) {
+                    return item;
+                }
             }
-        }
-    });
-    console.log(pinsArray);
-    return {
-        type: "SELECT_CATEGORY",
-        pinsArray: pinsArray
-    };
+        });
+        console.log(pinsArray);
+        return {
+            type: "SELECT_CATEGORY",
+            pinsArray: pinsArray
+        };
+    }
 }

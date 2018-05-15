@@ -52,13 +52,19 @@ class AddNewPin extends React.Component {
             bars: "/pins/pinkPin.png",
             restaurants: "/pins/yellowPin.png",
             parks: "/pins/greenPin.png",
-            sightseeing: "/pins/purplePin.png"
+            sightseeing: "/pins/purplePin.png",
+            general: "/pins/greyPin.png"
         };
-        let cat = this.category;
+        let cat;
+        if (!this.category) {
+            cat = "general";
+        } else {
+            cat = this.category;
+        }
         let pinInfo = {
             description: this.description,
             title: this.title,
-            category: this.category,
+            category: cat,
             lat: this.props.lat,
             lng: this.props.lng,
             color: pinColor[cat]

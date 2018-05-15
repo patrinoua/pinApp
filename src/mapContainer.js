@@ -137,10 +137,6 @@ class MapContainer extends React.Component {
     checkValue(e) {
         if (e.target.checked) {
             this.state.arrayOfCategory.push(e.target.value);
-            console.log(
-                "this.state.arrayOfCategory",
-                this.state.arrayOfCategory
-            );
         } else {
             let arr = this.state.arrayOfCategory.filter((item) => {
                 return item != e.target.value;
@@ -149,11 +145,6 @@ class MapContainer extends React.Component {
             this.setState({
                 arrayOfCategory: arr
             });
-            console.log("e.target.checked", e.target.checked);
-            console.log(
-                "this.state.arrayOfCategory",
-                this.state.arrayOfCategory
-            );
         }
     }
     selectBycategory(e) {
