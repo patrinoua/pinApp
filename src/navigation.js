@@ -30,17 +30,19 @@ export default function Navigation(props) {
                     <Link to="/map">
                         {" "}
                         <img
-                            src="/icons/redPin.png"
+                            src="/icons/mapWithPin.png"
                             className="navigationIcon"
                         />{" "}
                     </Link>
                     <Link to="/editProfile"> </Link>
                     <Link to="/user">
                         {" "}
+                        <div className="navigationIconProfilepicCircle">
                         <img
                             src={pic}
                             className="navigationIconProfilepic"
                         />{" "}
+                        </div>
                     </Link>
                     {/*<ProfilePic {...props} />*/}
                     {/*<ProfilePage {...props} />*/}

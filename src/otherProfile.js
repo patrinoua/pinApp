@@ -88,11 +88,13 @@ export class OtherProfilePage extends React.Component {
             "this.props.match.params.id!!!!",
             this.props.match.params.id
         );
+        console.log("this.props.match",this.props.match);
         // console.log('loggint routerProps',this.props.routerProps.match.params.id);
         axios
             .get(`/getUser/${this.props.match.params.id}`)
             .then((response) => {
                 if (response.data) {
+                    console.log('response.data.user',response.data.user);
                     this.setState(response.data.user);
                     this.props.dispatch(getUserPinInfo(response.data.user.id));
                 } else {

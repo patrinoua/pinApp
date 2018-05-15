@@ -132,14 +132,20 @@ body {
 }
 
 .navigationIcon {
-    height: 35px;
+    height: 40px;
     margin: 10px;
 }
-.navigationIconProfilepic{
-
-        height: 35px;
-        margin: 10px;
+.navigationIconProfilepicCircle{
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    margin: 10px;
     border-radius: 50%;
+}
+.navigationIconProfilepic{
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    height: 35px;
 }
 .logoIconMenu {
     margin: 10px;
@@ -344,6 +350,18 @@ body {
     display: flex;
 }
  */
+/* ******** PINCLICK  *********/
+.pinClickContainer{
+    width: 100vw;
+    height: 100vh;
+    /* color: white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+}
 
 /* ******** CHAT ******** */
 

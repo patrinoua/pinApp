@@ -23,8 +23,8 @@ class MapContainer extends React.Component {
             selectedPlace: {},
             showingInfoWindow: false,
             addNewPinIsVisible: false,
-            clickedPinId: null,
-            pinClickVisible: false,
+            clickedPinId: 4,
+            pinClickVisible: true,
             mapHasBinClicked: false
         };
 
