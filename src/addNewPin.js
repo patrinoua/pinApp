@@ -71,6 +71,9 @@ class AddNewPin extends React.Component {
         this.props.closeAddNewPinComponent();
     }
     compileData(e) {
+        this.setState({
+            file: e.target.files[0]
+        });
         let selectedImg = new FileReader();
         selectedImg.readAsDataURL(e.target.files[0]);
         selectedImg.addEventListener("load", () => {
@@ -151,7 +154,7 @@ class AddNewPin extends React.Component {
                                         className="inputfile"
                                         type="file"
                                         name="file"
-                                        onChange={this.setFile}
+                                        // onChange={this.setFile}
                                         onChange={this.compileData}
                                         data-multiple-caption="{count} files selected"
                                         multiple
