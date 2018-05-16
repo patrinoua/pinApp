@@ -1,7 +1,7 @@
 * {
     margin: 0;
 }
-
+.a{margin: 0;}
 .existingWebPage {
     width: 90vw;
     height: 90vh;
@@ -28,17 +28,158 @@
     left: 0;
     z-index: 2;
 }
+/* ******** PINCLICK  *********/
 
-#exit {
+.pinClickContainer {
+    width: 100vw;
+    height: 100vh;
+    /* color: white; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 18%;
-    right: 18%;
-    font-size: 2vw;
+    top: 0;
+    z-index: 3;
+}
+.fieldsContainerPinClick {
+
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr;
+    /* display: flex;
+    flex-direction: column;
+     */
+    align-items: center;
+    justify-items: center;
+    width: 70vw;
+    height: 70vh;
     color: white;
-    cursor: pointer;
-    z-index: 5;
+    background-color: rgba(28, 28, 28, 0.9);
+    border-radius: 30px;
+    /* border: 2px solid rgba(243, 168, 60, 0.6); */
+    border: 2px solid rgba(243, 168, 60, 0.6);
+    top: 0;
+    position: relative;
+    z-index: 3;
+}
+.secondRowPinClick , .thirdRowPinClick{
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.boxPinClick{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:  10px;
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+}
+.mapContainerPinClick img{
+    width: 90%;
+    height: 90%;
+    background-color: rgba(254, 228, 241, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+}
+.galleryItemsContainer{
+    width: 90%;
+    height: 90%;
+    /* background-color: rgba(254, 228, 241, 1); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    background-size:cover;
+    overflow: hidden;
+}
+.galleryItemsContainer label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.cameraIconContainerPinClick{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(254, 228, 241, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    background-size:cover;
+    overflow: hidden;
+}
+.existingPhoto{
+    width: 200px;
+}
+.uploadedImagePinclick{
+
+    background-position:
+center center;
+    width:100%;
+    position: absolute;
+}
+.pinImageContainer{
+    width: 20vw;
+    height: 20vh;
+    overflow: hidden;
+}
+.addPinPicturePinClick {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
+.titleTextareaPinClick {
+    border-radius: 6px;
+    width: 85%;
+    background-color: whitesmoke;
+}
+
+.descriptionTextareaPinClick {
+    border-radius: 6px;
+    width: 85%;
+    background-color: whitesmoke;
+}
+
+.shareButtons{
+    width: 50px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    border-radius: 6px;
+}
+.shareButtons:hover{
+    cursor: pointer;
+}
+.removePin{
+    content:'lalala';
+}
+.removePin:hover{
+    color: red;
+    content: 'NEWttgg';
+}
+/* ******** newPinContainer  *********/
 .newPinContainer {
     width: 100vw;
     height: 100vh;
@@ -165,7 +306,7 @@
     background-color: whitesmoke;
 }
 
-.pinDescription {
+.pinEditSaveButtonArea {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,4 +342,13 @@
     position: absolute;
     padding-left: 15px;
     top: 30%;
+}
+#exit {
+    position: absolute;
+    top: 18%;
+    right: 18%;
+    font-size: 2vw;
+    color: white;
+    cursor: pointer;
+    z-index: 5;
 }
