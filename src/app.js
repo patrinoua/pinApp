@@ -5,7 +5,7 @@ import { BrowserRouter, Link, HashRouter, Route } from "react-router-dom";
 import { Welcome, Logo, Login } from "./welcome";
 import axios from "./axios";
 import { ProfilePage, ProfilePic, UploadProfilePic, EditBio } from "./profile";
-import Navigation from "./navigation";
+import {Navigation} from "./navigation";
 import OtherProfilePage from "./otherProfile";
 import Friends from "./friends";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -13,16 +13,18 @@ import OnlineUsers from "./onlineUsers";
 import Chat from "./chat";
 import MapContainer from "./mapcontainer";
 
+
 // import { EditBio , ExistingBio } from './bio';
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.showUploader = this.showUploader.bind(this);
+        // this.showUploader = this.showUploader.bind(this);
         this.changeImage = this.changeImage.bind(this);
         this.hideUploader = this.hideUploader.bind(this);
         this.toggleUploader = this.toggleUploader.bind(this);
+        // this.toggleUserMenu = this.toggleUserMenu.bind(this);
         this.fileToUpload = {};
         this.state.toggleUploader = false;
         this.changeInputValues = this.changeInputValues.bind(this);
@@ -34,11 +36,12 @@ export default class App extends React.Component {
             toggleUploader: !this.state.toggleUploader
         });
     }
-    showUploader() {
-        this.setState({
-            uploaderIsVisible: true
-        });
-    }
+
+    // showUploader() {
+    //     this.setState({
+    //         uploaderIsVisible: true
+    //     });
+    // }
     changeImage(img) {
         this.setState({
             profilepic: img,
@@ -74,7 +77,6 @@ export default class App extends React.Component {
         // });
         axios.get("/getUser").then((response) => {
             if (response.data.success) {
-                // console.log("response.data.user?????",response.data.user);
                 this.setState(response.data.user);
             } else {
                 console.log(
@@ -88,13 +90,7 @@ export default class App extends React.Component {
         console.log("inside componentWillReceiveProps state:", this.state);
     }
     render() {
-        // if (!this.state) {
-        //     return (
-        //         <div>
-        //             <p> LOADING... </p>
-        //         </div>
-        //     );
-        // }
+
         return (
             <div className="routeContainer">
                 <BrowserRouter>
@@ -104,6 +100,7 @@ export default class App extends React.Component {
                             toggleUploader={this.toggleUploader}
                             makeUploaderVisible={this.showUploader}
                             hideUploader={this.hideUploader}
+                            userMenuPopUpStatus={this.state.toggleUserMenu}
                         />
 
                         <Route
@@ -133,15 +130,8 @@ export default class App extends React.Component {
                             )}
                         />
                         <Route path="/friends" component={Friends} />
-                        {/* <Route
-                            exact
-                            path="/user/:id"
-                            component={OtherProfilePage}
-                        /> */}
-                        <Route
-                            exact
-                            path="/user/:id"
-                            render={(x) => (
+
+                        <Route exact path="/user/:id" render={(x) => (
                                 <OtherProfilePage
                                     lat={this.state.lat}
                                     lng={this.state.lng}
@@ -150,52 +140,32 @@ export default class App extends React.Component {
                                 />
                             )}
                         />
-                        {/*<div className="mapContainer">
 
-                        <div className="mapContainerLeft">
-
-                            <div className="insertNewPin">
-                            </div>
-                            <div className="categoriesList">
-                            </div>
-                        </div>
-                        <div className="mapContainerRight">
-
-                            <div className="mapArea">
-                            </div>
-                        </div>
-                    </div>*/}
-
-                        {/*
-
-
-
-                        <Route exact path="/friends" component={Friends} />
-
-                        <Route exact path="/onlineUsers" component={OnlineUsers}
-                        />*/}
+                        <Route exact path="/onlineUsers" component={OnlineUsers}/>
 
                         {/*<Route exact path="/chat" component={Chat} />*/}
-                        {/*<Route exact path="/map" component={MapApp} />*/}
 
                         <Route
-                            path="/map"
-                            render={() => (
-                                <MapContainer
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
-                                />
+                            path="/map" render={() => (
+                                <MapContainer lat={this.state.lat} lng={this.state.lng} />
                             )}
                         />
                     </div>
                 </BrowserRouter>
-                {this.state.toggleUploader && (
+                {/*<UserMenu />*/}
+                {/*{this.state.toggleUploader && (
                     <UploadProfilePic
-                        changeImage={this.changeImage}
-                        hideUploader={this.hideUploader}
-                        toggleUploader={this.toggleUploader}
+                    changeImage={this.changeImage}
+                    hideUploader={this.hideUploader}
+                    toggleUploader={this.toggleUploader}
                     />
-                )}
+                )}*/}
+                {/*{this.state.toggleUserMenu &&
+                    (<UserMenuPopUp
+                    toggleUserMenu={this.toggleUserMenu}
+                    userMenuPopUpStatus={this.state.toggleUserMenu}
+                    />)
+                }*/}
             </div>
         );
     }

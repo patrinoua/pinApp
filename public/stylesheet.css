@@ -1,10 +1,16 @@
 main {
-    background-color: #fffafa;
-        {
-        /*background-color: green;*/
-    }
+    background-color: ##FFFFFF;
+    color:#5DA6AE;
 }
-
+.akyra{
+    z-index: 1;
+    position: absolute;
+    top: 18vh;
+    display: flex;
+    width: 100%;
+    height: 7vh;
+    justify-content: center;
+}
 body {
     font: 14px "Helvetica";
     font-weight: 400;
@@ -94,13 +100,13 @@ body {
 
 .navigationContainer {
     width: 100%;
-    height: 10%;
+    height: 10vh;
     /* padding: 20px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
-    background-color: purple;
+    background-color: #132188;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
     position: relative;
@@ -119,7 +125,7 @@ body {
 }
 
 .navigationIconBar a {
-    color: white;
+    cursor: pointer;
     font-weight: 900;
     text-decoration: none;
     display: flex;
@@ -128,12 +134,13 @@ body {
 
 .navigationBarRight {
     display: flex;
-    margin-right: 15px;
+    align-items: center;
 }
 
 .navigationIcon {
     height: 40px;
-    margin: 10px;
+    margin-top: 2px;
+    margin-right: 5px;
 }
 .navigationIconProfilepicCircle{
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
@@ -149,7 +156,12 @@ body {
 }
 .logoIconMenu {
     margin: 10px;
-    max-height: 70px;
+    max-height: 9vh;
+    position: fixed;
+    top: -1.2vh;
+}
+.logoIconMenu:hover{
+    cursor: pointer;
 }
 
 .navigationIcon:hover {
@@ -178,11 +190,13 @@ body {
 
 .mapContainerLeft {
     width: 30%;
-    height: 100%;
+    height: 70%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 23px;
 }
 
 .categoryList {
@@ -225,22 +239,26 @@ body {
 }
 
 .mapContainerRight {
-    width: 70%;
-    height: 100%;
+    width: 60%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 5vw;
+    position: relative;
 }
 
 .mapArea {
     /* background-image: url('/map.png'); */
     background-size: contain;
-    background-color: pink;
-    border-radius: 20px;
+    /* background-color: pink; */
+    border-radius: 10px;
+    border:2px solid #eaeced;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 60%;
-    width: 70%;
-    position: relative;
+    width: 98%;
+    overflow: hidden;
+    position: absolute;
 }
 /********** USER PROFILE (OtherProfile) ***************/
 
@@ -572,11 +590,23 @@ body {
     justify-content: center;
     width: 100%;
 }
-
-.uploader {
+/******* DROPDOWN MENU CONTAINER ****************/
+.dropDownContainer{
+    z-index: 1;
+    width: 100vw;
+    height: 88vh;
     position: absolute;
-    justify-content: center;
+    top: 0;
+    left:0;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.dropDownMenu{
+    /* position: absolute; */
+    padding: 20px;
     height: 200px;
+    width: 90px;
     top: 70px;
     left: 10%;
     right: 10%;
@@ -584,7 +614,7 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid grey;
     margin: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
     flex-direction: column;
     align-items: center;
 }
@@ -836,24 +866,24 @@ body {
 
 button {
     display: block;
-    /* background-color: #f1f1f1; */
-    color: red;
-    /* color: #696969; */
+    color: #929A9F;
     font-size: 1.1em;
-    /* padding: 8px; */
     border: 2px solid #f6f6f6;
-    border-radius: 20px;
-    /* font-size:14px; */
-    /* width: 100px; */
+    border-radius: 2px;
     margin: 10px;
-    /* margin: 15px; */
     font-family: "Cutive Mono", monospace;
-    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
 }
+/* background-color: #f1f1f1; */
+/* color: #696969; */
+/* font-size:14px; */
+/* width: 100px; */
+/* margin: 15px; */
+/* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
 
 button:hover {
     cursor: pointer;
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
+    background-color: #eaeced;
 }
 
 .centerStuff{
@@ -864,7 +894,7 @@ button:hover {
 .subtleButton {
     border: none;
     width: 60px;
-    margin: 10px;
+    /* height: 10px; */
     font-size: 0.8em;
     display: inline;
 }
@@ -987,11 +1017,14 @@ button:hover {
 .inputfile+label * {
     pointer-events: none;
 }
-
+.dropDownMenuItem{
+    color:#2a2a2a;
+    padding: 5px;
+}
 /* ////////////// namseToShow component //////////////////////// */
 
 .searchUsers {
-    background-color: rgba(153, 168, 150, 0.38);
+    background-color: rgba(253, 168, 150, 0.98);
     height: 14vh;
     overflow: scroll;
     display: flex;
@@ -999,11 +1032,11 @@ button:hover {
     justify-content: flex-start;
     align-items: flex-start;
     border: 1px solid black;
-    margin-left: -3.2vw;
-    width: 8.5vw;
-    position: absolute;
-    top: 26vh;
-    left: 5vw;
+    /* margin-left: -3.2vw; */
+    width: 88px;
+     position: absolute;
+    /*top: 26vh;
+    left: 5vw; */
     z-index: 1;
 }
 
@@ -1014,52 +1047,35 @@ button:hover {
 
 #searchUsersBox>textarea {
     color: #666;
-    font-size: 1vw;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    padding: 2px;
-    height: 2vh;
-    width: 7.4vw;
-    border: #999 2px solid;
-    transition: all 0.25s ease-in-out;
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    box-shadow: 0 0 5px rgba(81, 203, 238, 0);
-    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 0);
-    -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 0);
+    border-radius: 8px;
+    margin: 2px;
+    width: 80%;
+    border: #999 1px solid;
+
     overflow: auto;
     resize: none;
-    margin-left: -3vw;
-    position: absolute;
-    top: 22vh;
-    left: 5vw;
+    /* position: absolute; */
+
     z-index: 1;
 }
 
 #searchUsersBox>textarea:focus {
-    color: #000;
+    /* color: #000;
+    border: #35a5e5 5px solid; */
     outline: none;
-    border: #35a5e5 5px solid;
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
 
-#searchUsers {
+/* #searchUsers {
     position: absolute;
     top: 20vh;
     left: 5vw;
     z-index: 1;
-}
+} */
 
 /* /////////////// droping pin component ///////////// */
-
-#dropPinHeader {
-    position: absolute;
-    top: 23vh;
-    left: 52vw;
-    z-index: 1;
-}
 
 #HERE {
     color: rgb(178, 74, 187);

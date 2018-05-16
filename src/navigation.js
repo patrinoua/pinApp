@@ -4,50 +4,122 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import axios from "./axios";
 import { Logo, Login } from "./welcome";
 import { ProfilePic } from "./profile";
+// import { UserMenu, UserMenuPopUp } from "./menus";
+import { NamesToShow } from "./NamesToShow";
 
 // import { OnlineUsers } from "./onlineUsers";
 import MapContainer from "./mapcontainer";
 import Chat from "./chat";
 
-export default function Navigation(props) {
-    let pic = props.profilepic || "/icons/redUserIcon.png";
-    return (
-        <div className="navigationContainer">
-            {/*<Logo />*/}
-            <div className="navigationIconBar">
-                <Link to="/mapREDUX">
-                    {" "}
-                    <img className="logoIconMenu" src="/pinAppLogo.png" />{" "}
-                </Link>
-                {/*<Link to="/user"> Hello {props.first}</Link>*/}
-                <a href="/logout"> Logout </a>
-                {/*<Link to="/onlineUsers"> Online </Link>*/}
+export class Navigation extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.toggleUserMenu = this.toggleUserMenu.bind(this);
+        this.state.userMenuIsVisible = false;
+    }
+    toggleUserMenu() {
+        this.setState({
+            userMenuIsVisible: !this.state.userMenuIsVisible
+        });
+    }
 
-                <Link to="/friends"> Friends </Link>
-                {/*<Link to="/chat"> Chat </Link>*/}
-                {/*<Link to="/mapREDUX"> MapAppREDUX </Link>*/}
-                <div className="navigationBarRight">
+    render() {
+        let pic = this.props.profilepic || "/neo.png";
+        return (
+            <div className="navigationContainer">
+                <div className="navigationIconBar">
                     <Link to="/map">
                         {" "}
                         <img
-                            src="/icons/mapWithPin.png"
-                            className="navigationIcon"
+                            className="logoIconMenu"
+                            src="/pinAppLogo.png"
                         />{" "}
                     </Link>
-                    <Link to="/editProfile"> </Link>
-                    <Link to="/user">
-                        {" "}
+
+                    <div className="navigationBarRight">
+                        <Link to="/map">
+                            {" "}
+                            <img
+                                src="/icons/mapWithPin.png"
+                                className="navigationIcon"
+                            />{" "}
+                        </Link>
+                        <Link to="/editProfile"> </Link>{" "}
                         <div className="navigationIconProfilepicCircle">
-                        <img
-                            src={pic}
-                            className="navigationIconProfilepic"
-                        />{" "}
+                            <img
+                                src={pic}
+                                className="navigationIconProfilepic"
+                                onClick={this.toggleUserMenu}
+                            />{" "}
                         </div>
-                    </Link>
-                    {/*<ProfilePic {...props} />*/}
-                    {/*<ProfilePage {...props} />*/}
+                        {this.state.userMenuIsVisible && <UserMenuPopUp
+                            toggleUserMenu={this.toggleUserMenu}
+                            />}
+                        {/*<ProfilePic {...props} />*/}
+                        {/*<ProfilePage {...props} />*/}
+                        {/*<Link to="/user"> Hello {props.first}</Link>*/}
+                        {/*<Link to="/onlineUsers"> Online </Link>*/}
+                        {/*<Link to="/chat"> Chat </Link>*/}
+                        {/*<Link to="/mapREDUX"> MapAppREDUX </Link>*/}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+}
+
+
+export class UserMenuPopUp extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {};
+        this.state.userMenuIsVisible=false;
+        this.closePopUp = this.closePopUp.bind(this);
+    }
+
+    closePopUp() {
+        this.props.toggleUserMenu();
+    }
+
+    render(){
+        console.log('lalalaaaa',this.state);
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 27) {
+                if (this.closePopUp) {
+                    this.closePopUp();
+                }
+            }
+        });
+        document.addEventListener("click", (e) => {
+            console.log('click!');
+            if(this.state.userMenuIsVisible){
+                this.closePopUp();
+            }
+            console.log(this.state.userMenuIsVisible);
+        });
+
+        let pic = this.props.profilepic || "/neo.png"
+        console.log('this needs to be false in order to show it!!! this.state.userMenuIsVisible',this.state.userMenuIsVisible);
+        if(!this.state.userMenuIsVisible){
+
+            return (
+                <div className="dropDownContainer">
+                    <div className="dropDownMenu">
+                    <Link to="/friends" className="dropDownMenuItem"> Friends </Link>
+                    <NamesToShow />
+                    <Link to="/" className="dropDownMenuItem"> Profile </Link>
+                    <div className="dropDownMenuItem"> Friends </div>
+                        <a href="/logout" className="dropDownMenuItem"> Logout </a>
+                                <button className="subtleButton" onClick={this.closePopUp}>
+                                    Cancel!{" "}
+                                </button>
+                    </div>
+                </div>
+            );
+        }else {
+            return (<div></div>);
+        }
+
+    }
 }

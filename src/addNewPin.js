@@ -142,36 +142,12 @@ class AddNewPin extends React.Component {
                         <div className="pinOptions box">
                             <div className="pinMenu">
                                 <form>
-                                    {/* <div className="pinCategory">
-                                        <div className="pinCheckBox">
-                                            <img
-                                                src="/pins/checkbox.png"
-                                                className="icons"
-                                            />
-                                            <img
-                                                src="/pins/bluePin.png"
-                                                className="pinIcon"
-                                            />
-                                            <img
-                                                src="/pins/pinkTick.png"
-                                                className="tickIcon"
-                                            />
-                                        </div>
-                                        <div className="pinText">Museums</div>
-                                    </div> */}
+
                                     {category("blue", "Museums", "museums")}
                                     {category("green", "Parks", "parks")}
-                                    {category(
-                                        "yellow",
-                                        "Restaurants",
-                                        "restaurants"
-                                    )}
+                                    {category("yellow","Restaurants","restaurants")}
                                     {category("pink", "Bars", "bars")}
-                                    {category(
-                                        "purple",
-                                        "Sightseeing",
-                                        "sightseeing"
-                                    )}
+                                    {category("purple","Sightseeing","sightseeing")}
                                 </form>
                             </div>
                             <div className="addPinPicture">

@@ -162,9 +162,7 @@ class MapContainer extends React.Component {
     }
     render() {
         const style = {
-            backgroundSize: "contain",
-            backgroundColor: "pink",
-            borderRadius: "20px"
+            backgroundSize: "contain"
         };
         console.log(
             "this.state.addNewPinIsVisible",
@@ -176,6 +174,7 @@ class MapContainer extends React.Component {
         const categoryItems = function(color, text, variable, myFunction) {
             let str = "/pins/" + color + "Pin.png";
             return (
+
                 <div className="categoryItem">
                     <input
                         style={style}
@@ -193,14 +192,16 @@ class MapContainer extends React.Component {
         };
         return (
             <React.Fragment>
-                <p id="dropPinHeader">
+                <div className="akyra">
+                <p>
                     just drop pin{" "}
                     <span id="HERE" onClick={this.toggleAddNewPinComponent}>
                         HERE
                     </span>{" "}
                     or click the map to drop
                 </p>
-                <NamesToShow />
+
+                </div>
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
                         <PinClick
@@ -209,6 +210,7 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
+
                     <div className="mapContainerLeft">
                         <div className="categoryList">
                             <form id="myForm">
@@ -253,6 +255,7 @@ class MapContainer extends React.Component {
                         </div>
                     </div>
                     <div className="mapContainerRight">
+
                         <div className="mapArea">
                             <Map
                                 style={style}
@@ -306,28 +309,29 @@ class MapContainer extends React.Component {
                                         );
                                     })}
 
-                                {this.state.addNewPinIsVisible && (
-                                    <AddNewPin
-                                        lat={this.state.lat}
-                                        lng={this.state.lng}
-                                        toggleAddNewPinComponent={
-                                            this.toggleAddNewPinComponent
-                                        }
-                                    />
-                                )}
-                                {this.state.addMyPinLocationVisible && (
-                                    <AddNewPin
-                                        lat={this.props.lat}
-                                        lng={this.props.lng}
-                                        toggleAddMyPinLocationVisible={
-                                            this.toggleAddMyPinLocationVisible
-                                        }
-                                    />
-                                )}
                             </Map>
                         </div>
                     </div>
+
                 </div>
+                {this.state.addNewPinIsVisible && (
+                    <AddNewPin
+                    lat={this.state.lat}
+                    lng={this.state.lng}
+                    toggleAddNewPinComponent={
+                        this.toggleAddNewPinComponent
+                    }
+                    />
+                )}
+                {this.state.addMyPinLocationVisible && (
+                    <AddNewPin
+                    lat={this.props.lat}
+                    lng={this.props.lng}
+                    toggleAddMyPinLocationVisible={
+                        this.toggleAddMyPinLocationVisible
+                    }
+                    />
+                )}
             </React.Fragment>
         );
     }

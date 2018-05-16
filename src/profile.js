@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import axios from "./axios";
+import axios from "axios";
 import { Logo, Login } from "./welcome";
 // import { EditBio, ExistingBio } from "./bio";
 
@@ -58,17 +58,18 @@ export class ProfilePage extends React.Component {
             });
     }
     render() {
+
         let pic = this.state.profilepic || this.props.profilepic || "/neo.png";
         let bio = this.props.bio || "Tell us something about urself!";
 
-        const style = {
-            backgroundImage: `url(${pic})`,
-            backgroundColor: "purple",
-            backgroundSize: "cover"
-        };
+        const style={
+            backgroundImage:`url(${pic})`,
+            backgroundColor:'purple',
+            backgroundSize:'cover'
+        }
 
-        const existingValue = (textToShow, propertyKey) => {
-            return (
+        const existingValue = (textToShow, propertyKey)=>{
+            return(
                 <div className="profileInputField">
                     <div className="inputPropertyName">{textToShow}</div>
                     <div className="inputPropertyValue">{propertyKey}</div>
@@ -95,98 +96,74 @@ export class ProfilePage extends React.Component {
         return (
             <div className="profilePageContainer">
                 <div className="profilePageContainerLeft">
-                    <p>Welcome, {this.props.first}</p>
+                <p>Welcome, {this.props.first}</p>
                     <div className="profilePicFrame">
                         <div className="profilePicOwn">
                             <div className="profilePicCircle" style={style}>
                                 {/*<img src={pic} />*/}
                             </div>
-                            <img
-                                src="/editWhite.png"
-                                className="icons editIcon"
-                                onClick={this.props.toggleUploader}
-                            />
+                            <img src="/editWhite.png" className="icons editIcon" onClick={this.props.toggleUploader}/>
                         </div>
                     </div>
                 </div>
                 <div className="profilePageContainerRight">
                     <div className="profileInfoContainer">
-                        {(this.state.editorIsVisible && (
-                            <div className="editingValues">
-                                {inputField("Firstname", this.props.first)}
-                                {inputField("Lastname", this.props.last)}
-                                {inputField("Email", this.props.email)}
-                                <div className="profileInputField">
-                                    <div className="inputPropertyName">
-                                        {" "}
-                                        Password{" "}
+                            {this.state.editorIsVisible
+                            &&(<div className="editingValues">
+                                    {inputField('Firstname',this.props.first)}
+                                    {inputField('Lastname',this.props.last)}
+                                    {inputField('Email',this.props.email)}
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Password{" "}
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <input
+                                                id="pass"
+                                                onChange={this.handleChange}
+                                                className="inputField"
+                                                name="pass"
+                                                placeholder="*******"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="inputPropertyValue">
-                                        <input
-                                            id="pass"
-                                            onChange={this.handleChange}
-                                            className="inputField"
-                                            name="pass"
-                                            placeholder="*******"
-                                        />
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Bio{" "}
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <textarea
+                                                id="bio"
+                                                onChange={this.handleChange}
+                                                className="inputField editBioTextArea"
+                                                name="bio"
+                                                defaultValue={bio}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="editButtons">
+                                        <button className="subtleButton"  onClick={this.saveNewInputValue}>Save</button>
+                                        <button className="subtleButton"  onClick={this.toggleEditor}>Cancel</button>
                                     </div>
                                 </div>
-                                <div className="profileInputField">
-                                    <div className="inputPropertyName">
-                                        {" "}
-                                        Bio{" "}
-                                    </div>
-                                    <div className="inputPropertyValue">
-                                        <textarea
-                                            id="bio"
-                                            onChange={this.handleChange}
-                                            className="inputField editBioTextArea"
-                                            name="bio"
-                                            defaultValue={bio}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="editButtons">
-                                    <button
-                                        className="editInfoButton subtleButton"
-                                        onClick={this.saveNewInputValue}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        className="editInfoButton subtleButton"
-                                        onClick={this.toggleEditor}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        )) || (
-                            <div className="existingValues">
-                                {existingValue("Firstname", this.props.first)}
-                                {existingValue("Lastname", this.props.last)}
-                                {existingValue("Email", this.props.email)}
-                                {existingValue("Password", "*******")}
+                            )
+                            ||(<div className="existingValues">
+                                {existingValue('Firstname',this.props.first)}
+                                {existingValue('Lastname',this.props.last)}
+                                {existingValue('Email',this.props.email)}
+                                {existingValue('Password','*******')}
                                 <div className="profileInputField">
                                     <div className="inputPropertyName">Bio</div>
-                                    <div
-                                        className="inputPropertyValue"
-                                        style={{
-                                            width: 130 + "px",
-                                            paddingBottom: 20 + "px"
-                                        }}
-                                    >
-                                        {bio}
-                                    </div>
+                                    <div className="inputPropertyValue" style={{width:130+"px", paddingBottom:20+"px"}}>{bio}</div>
                                 </div>
-                                <button
-                                    className="editInfoButton subtleButton"
-                                    onClick={this.toggleEditor}
-                                >
-                                    Edit
-                                </button>
-                            </div>
-                        )}
+                                <button className="subtleButton" onClick={this.toggleEditor}>Edit</button>
+
+                                </div>
+
+                            )}
+
                     </div>
                 </div>
             </div>
