@@ -1,17 +1,12 @@
 main {
-    background-color: ##FFFFFF;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAF4E4;
+    /* background-color: #FFFFFF; */
     color: #5DA6AE;
 }
 
-.akyra {
-    z-index: 1;
-    position: absolute;
-    top: 18vh;
-    display: flex;
-    width: 100%;
-    height: 7vh;
-    justify-content: center;
-}
+
 
 body {
     font: 14px "Helvetica";
@@ -95,7 +90,7 @@ body {
     /* background-color: orange; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 /************NAVIGATION*****************/
@@ -108,7 +103,7 @@ body {
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
-    background-color: #132188;
+    background-color: #51B3C4;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
     position: relative;
@@ -122,6 +117,7 @@ body {
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
+    position: fixed;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
 }
@@ -163,7 +159,7 @@ body {
     margin: 10px;
     max-height: 9vh;
     position: fixed;
-    top: -1.2vh;
+    top: -.2vh;
 }
 
 .logoIconMenu:hover {
@@ -183,18 +179,42 @@ body {
 
 .mapContainer {
     animation: 3s ease-in;
-    width: 95vw;
+    width: 98vw;
     height: 88vh;
     margin: 10px 10px;
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     justify-items: center;
     align-items: center;
     position: relative;
     /* background-color: grey; */
 }
+.mapContainerUp{
+    width: 100%;
+    height: 10%;
+    /* background-color: purple; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+}
 
+.mapContainerDown{
+    width: 100%;
+    height: 20%;
+    /* background-color: orange; */
+    width: 95vw;
+    height: 88vh;
+    margin: 10px 10px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 .mapContainerLeft {
+    /* background-color: yellow; */
+
     width: 30%;
     height: 70%;
     display: flex;
@@ -206,7 +226,7 @@ body {
 
 .categoryList {
     width: 25vw;
-    height: 50vh;
+    /* height: 50vh; */
     /* background-color: green; */
     margin: 10px;
     /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
@@ -244,13 +264,15 @@ body {
 }
 
 .mapContainerRight {
-    width: 60%;
+    width: 50%;
     height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 5vw;
     position: relative;
+    /* background-color: green; */
+
 }
 
 .mapArea {
@@ -260,8 +282,8 @@ body {
     border-radius: 10px;
     border: 2px solid #eaeced;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    height: 60%;
-    width: 98%;
+    height: 80%;
+    width: 100%;
     overflow: hidden;
     position: absolute;
 }
@@ -541,17 +563,11 @@ body {
 }
 
 /********************************/
-
 /********************************/
-
 /********************************/
-
 /*  NOT SURE IF I AM USING THOSE*/
-
 /********************************/
-
 /********************************/
-
 /********************************/
 
 /* .editProfile {

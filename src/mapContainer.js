@@ -48,12 +48,12 @@ class MapContainer extends React.Component {
     componentDidMount() {
         axios
             .get("/getMarker")
-            .then((response) => {
+            .then(response => {
                 this.setState({
                     copyOfPinsArray: response.data.marker
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(`error in pic getPinInfo: ${err}`);
             });
         this.props.dispatch(getPinInfo());
@@ -80,7 +80,7 @@ class MapContainer extends React.Component {
     }
     watchMyLocation() {
         if (!this.state.myLat) {
-            this.state.watchId = navigator.geolocation.watchPosition((pos) => {
+            this.state.watchId = navigator.geolocation.watchPosition(pos => {
                 this.setState({
                     myLat: pos.coords.latitude,
                     myLng: pos.coords.longitude
@@ -144,7 +144,7 @@ class MapContainer extends React.Component {
             this.state.arrayOfCategory.push(e.target.value);
         } else {
             this.state.arrayOfCategory = this.state.arrayOfCategory.filter(
-                (item) => {
+                item => {
                     return item != e.target.value;
                 }
             );
@@ -200,15 +200,6 @@ class MapContainer extends React.Component {
         };
         return (
             <React.Fragment>
-                <div className="akyra">
-                    <p>
-                        just drop pin{" "}
-                        <span id="HERE" onClick={this.toggleAddNewPinComponent}>
-                            HERE
-                        </span>{" "}
-                        or click the map to drop
-                    </p>
-                </div>
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
                         <PinClick
@@ -218,100 +209,118 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
-                    <div className="mapContainerLeft">
-                        <div className="categoryList">
-                            <form id="myForm">
-                                {categoryItems(
-                                    "blue",
-                                    "museums",
-                                    "museums",
-                                    this.checkValue
-                                )}
-                                {categoryItems(
-                                    "green",
-                                    "Parks",
-                                    "parks",
-                                    this.checkValue
-                                )}
-                                {categoryItems(
-                                    "yellow",
-                                    "restaurants",
-                                    "restaurants",
-                                    this.checkValue
-                                )}
-                                {categoryItems(
-                                    "pink",
-                                    "bars",
-                                    "bars",
-                                    this.checkValue
-                                )}
-                                {categoryItems(
-                                    "purple",
-                                    "sightseeing",
-                                    "sightseeing",
-                                    this.checkValue
-                                )}
-                            </form>
-
-                            <button onClick={this.watchMyLocation}>
-                                show my location
-                            </button>
-                        </div>
-                    </div>
-                    <div className="mapContainerRight">
-                        <div className="mapArea">
-                            <Map
-                                style={style}
-                                initialCenter={{
-                                    // lat: this.props.lat,
-                                    // lng: this.props.lng
-                                    lat: 52.4918854,
-                                    lng: 13.360088699999999
-                                }}
-                                zoom={14}
-                                google={this.props.google}
-                                onClick={this.mapClicked}
-                                onReady={this.fetchPlaces}
-                                visible={true}
+                    <div className="mapContainerUp">
+                        <p>
+                            Click{" "}
+                            <span
+                                id="HERE"
+                                onClick={this.toggleAddNewPinComponent}
                             >
-                                {this.state.myLat && (
-                                    <Marker
-                                        icon={{
-                                            url: "/dot.png",
-                                            anchor: new google.maps.Point(0, 0),
-                                            scaledSize: new google.maps.Size(
-                                                10,
-                                                10
-                                            )
-                                        }}
-                                    />
-                                )}
-                                {this.props.markersArray &&
-                                    this.props.markersArray.map((item) => {
-                                        return (
-                                            <Marker
-                                                key={item.id}
-                                                onClick={this.pinClick}
-                                                name={item.id}
-                                                position={{
-                                                    lat: item.lat,
-                                                    lng: item.lng
-                                                }}
-                                                icon={{
-                                                    url: item.color,
-                                                    anchor: new google.maps.Point(
-                                                        0,
-                                                        0
-                                                    ),
-                                                    scaledSize: new google.maps.Size(
-                                                        25,
-                                                        35
-                                                    )
-                                                }}
-                                            />
-                                        );
-                                    })}
-                            </Map>
+                                HERE
+                            </span>{" "}
+                            to drop the pin or your current location or click on
+                            a position on the map
+                        </p>
+                    </div>
+                    <div className="mapContainerDown">
+                        <div className="mapContainerLeft">
+                            <div className="categoryList">
+                                <form id="myForm">
+                                    {categoryItems(
+                                        "blue",
+                                        "museums",
+                                        "museums",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "green",
+                                        "Parks",
+                                        "parks",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "yellow",
+                                        "restaurants",
+                                        "restaurants",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "pink",
+                                        "bars",
+                                        "bars",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "purple",
+                                        "sightseeing",
+                                        "sightseeing",
+                                        this.checkValue
+                                    )}
+                                </form>
+
+                                <button onClick={this.watchMyLocation}>
+                                    show my location
+                                </button>
+                            </div>
+                        </div>
+                        <div className="mapContainerRight">
+                            <div className="mapArea">
+                                <Map
+                                    style={style}
+                                    initialCenter={{
+                                        // lat: this.props.lat,
+                                        // lng: this.props.lng
+                                        lat: 52.4918854,
+                                        lng: 13.360088699999999
+                                    }}
+                                    zoom={14}
+                                    google={this.props.google}
+                                    onClick={this.mapClicked}
+                                    onReady={this.fetchPlaces}
+                                    visible={true}
+                                >
+                                    {this.state.myLat && (
+                                        <Marker
+                                            icon={{
+                                                url: "/dot.png",
+                                                anchor: new google.maps.Point(
+                                                    0,
+                                                    0
+                                                ),
+                                                scaledSize: new google.maps.Size(
+                                                    10,
+                                                    10
+                                                )
+                                            }}
+                                        />
+                                    )}
+                                    {this.props.markersArray &&
+                                        this.props.markersArray.map(item => {
+                                            return (
+                                                <Marker
+                                                    key={item.id}
+                                                    onClick={this.pinClick}
+                                                    name={item.id}
+                                                    position={{
+                                                        lat: item.lat,
+                                                        lng: item.lng
+                                                    }}
+                                                    icon={{
+                                                        url: item.color,
+                                                        anchor: new google.maps.Point(
+                                                            0,
+                                                            0
+                                                        ),
+                                                        scaledSize: new google.maps.Size(
+                                                            25,
+                                                            35
+                                                        )
+                                                    }}
+                                                />
+                                            );
+                                        })}
+                                </Map>
+                            </div>
                         </div>
                     </div>
                 </div>
