@@ -69,11 +69,19 @@ export async function userLeft(user) {
 // *********** ADD NEW PIN *********** //
 
 export function insertPinInfo(info) {
+    console.log(info);
     return axios
         .post("/insertNewPin", info.pinInfo)
         .then((response) => {
             let pinInfo = response.data;
-
+            if (Object.keys(info.formData).length == 0) {
+                console.log("in the if");
+                pinInfo.marker.url = "/user.png";
+                return {
+                    type: "INSERT_PIN_INFO",
+                    pinInfo: pinInfo.marker
+                };
+            }
             return axios
                 .post("/uploadPinPic", info.formData)
                 .then((resp) => {
@@ -85,6 +93,12 @@ export function insertPinInfo(info) {
                     };
                 })
                 .catch((err) => {
+                    console.log("in the catch");
+                    pinInfo.marker.url = "/user.png";
+                    return {
+                        type: "INSERT_PIN_INFO",
+                        pinInfo: pinInfo.marker
+                    };
                     console.log(`error in pic uploadPinPic: ${err}`);
                 });
         })

@@ -392,6 +392,7 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
     res
 ) {
     let url = `${config.s3Url}${req.file.filename}`;
+
     db
         .saveMarkerImage(url, req.session.markerId)
         .then((result) => {
@@ -401,6 +402,13 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
             });
         })
         .catch((err) => {
+            let pinUrl = "/user.png";
+            db.saveMarkerImage(pinUrl, req.session.markerId).then((result) => {
+                res.json({
+                    success: true,
+                    url: result.rows[0].url
+                });
+            });
             console.log(`error in POST/upload: ${err}`);
         });
 });
