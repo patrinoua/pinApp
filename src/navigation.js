@@ -14,16 +14,22 @@ import Chat from "./chat";
 export class Navigation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            userMenuIsVisible: false
+        };
         this.toggleUserMenu = this.toggleUserMenu.bind(this);
-        this.state.userMenuIsVisible = false;
+        this.closeUserMenu = this.closeUserMenu.bind(this);
     }
     toggleUserMenu() {
         this.setState({
             userMenuIsVisible: !this.state.userMenuIsVisible
         });
     }
-
+    closeUserMenu() {
+        this.setState({
+            userMenuIsVisible: false
+        });
+    }
     render() {
         let pic = this.props.profilepic || "/neo.png";
         return (
@@ -46,16 +52,24 @@ export class Navigation extends React.Component {
                             />{" "}
                         </Link>
                         <Link to="/editProfile"> </Link>{" "}
-                        <div className="navigationIconProfilepicCircle">
+                        <div
+                            className="navigationIconProfilepicCircle"
+                            onMouseEnter={this.toggleUserMenu}
+                        >
                             <img
                                 src={pic}
                                 className="navigationIconProfilepic"
                                 onClick={this.toggleUserMenu}
                             />{" "}
                         </div>
-                        {this.state.userMenuIsVisible && <UserMenuPopUp
-                            toggleUserMenu={this.toggleUserMenu}
-                            />}
+                        {this.state.userMenuIsVisible && (
+                            <UserMenuPopUp
+                                id={this.props.id}
+                                toggleUserMenu={this.toggleUserMenu}
+                                closeUserMenu={this.closeUserMenu}
+                                userMenuIsVisible={this.state.userMenuIsVisible}
+                            />
+                        )}
                         {/*<ProfilePic {...props} />*/}
                         {/*<ProfilePage {...props} />*/}
                         {/*<Link to="/user"> Hello {props.first}</Link>*/}
@@ -69,21 +83,23 @@ export class Navigation extends React.Component {
     }
 }
 
-
-export class UserMenuPopUp extends React.Component{
-    constructor(props){
+export class UserMenuPopUp extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {};
-        this.state.userMenuIsVisible=false;
+        this.state.userMenuIsVisible = false;
         this.closePopUp = this.closePopUp.bind(this);
+        this.myMouseout = this.myMouseout.bind(this);
     }
 
     closePopUp() {
-        this.props.toggleUserMenu();
+        this.props.closeUserMenu();
     }
-
-    render(){
-        console.log('lalalaaaa',this.state);
+    myMouseout(e) {
+        this.props.closeUserMenu();
+        // e.preventDefault();
+    }
+    render() {
         document.addEventListener("keydown", (e) => {
             if (e.keyCode == 27) {
                 if (this.closePopUp) {
@@ -91,35 +107,52 @@ export class UserMenuPopUp extends React.Component{
                 }
             }
         });
-        document.addEventListener("click", (e) => {
-            console.log('click!');
-            if(this.state.userMenuIsVisible){
-                this.closePopUp();
-            }
-            console.log(this.state.userMenuIsVisible);
-        });
 
-        let pic = this.props.profilepic || "/neo.png"
-        console.log('this needs to be false in order to show it!!! this.state.userMenuIsVisible',this.state.userMenuIsVisible);
-        if(!this.state.userMenuIsVisible){
-
+        // if (this.props.userMenuIsVisible) {
+        //     document
+        //         .getElementById("justForTarget")
+        //         .addEventListener("mouseout", (e) => {
+        //             console.log("this is the click im looking for");
+        //             this.closePopUp();
+        //         });
+        // }
+        let pic = this.props.profilepic || "/neo.png";
+        console.log(
+            "this needs to be false in order to show it!!! this.state.userMenuIsVisible",
+            this.state.userMenuIsVisible
+        );
+        if (!this.state.userMenuIsVisible) {
             return (
                 <div className="dropDownContainer">
-                    <div className="dropDownMenu">
-                    <Link to="/friends" className="dropDownMenuItem"> Friends </Link>
-                    <NamesToShow />
-                    <Link to="/" className="dropDownMenuItem"> Profile </Link>
-                    <div className="dropDownMenuItem"> Friends </div>
-                        <a href="/logout" className="dropDownMenuItem"> Logout </a>
-                                <button className="subtleButton" onClick={this.closePopUp}>
-                                    Cancel!{" "}
-                                </button>
+                    <div
+                        className="dropDownMenu"
+                        onMouseLeave={this.myMouseout}
+                    >
+                        <Link to="/friends" className="dropDownMenuItem">
+                            {" "}
+                            Friends{" "}
+                        </Link>
+                        <NamesToShow id={this.props.id} />
+                        <Link to="/" className="dropDownMenuItem">
+                            {" "}
+                            Profile{" "}
+                        </Link>
+                        <div className="dropDownMenuItem"> Friends </div>
+                        <a href="/logout" className="dropDownMenuItem">
+                            {" "}
+                            Logout{" "}
+                        </a>
+                        <button
+                            className="subtleButton"
+                            onClick={this.closePopUp}
+                        >
+                            Cancel!{" "}
+                        </button>
                     </div>
                 </div>
             );
-        }else {
-            return (<div></div>);
+        } else {
+            return <div />;
         }
-
     }
 }

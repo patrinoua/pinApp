@@ -1,8 +1,9 @@
 main {
     background-color: ##FFFFFF;
-    color:#5DA6AE;
+    color: #5DA6AE;
 }
-.akyra{
+
+.akyra {
     z-index: 1;
     position: absolute;
     top: 18vh;
@@ -11,6 +12,7 @@ main {
     height: 7vh;
     justify-content: center;
 }
+
 body {
     font: 14px "Helvetica";
     font-weight: 400;
@@ -142,25 +144,29 @@ body {
     margin-top: 2px;
     margin-right: 5px;
 }
-.navigationIconProfilepicCircle{
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+
+.navigationIconProfilepicCircle {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 35px;
     width: 35px;
     overflow: hidden;
     margin: 10px;
     border-radius: 50%;
 }
-.navigationIconProfilepic{
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+
+.navigationIconProfilepic {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 35px;
 }
+
 .logoIconMenu {
     margin: 10px;
     max-height: 9vh;
     position: fixed;
     top: -1.2vh;
 }
-.logoIconMenu:hover{
+
+.logoIconMenu:hover {
     cursor: pointer;
 }
 
@@ -191,7 +197,6 @@ body {
 .mapContainerLeft {
     width: 30%;
     height: 70%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -253,13 +258,14 @@ body {
     background-size: contain;
     /* background-color: pink; */
     border-radius: 10px;
-    border:2px solid #eaeced;
+    border: 2px solid #eaeced;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 60%;
     width: 98%;
     overflow: hidden;
     position: absolute;
 }
+
 /********** USER PROFILE (OtherProfile) ***************/
 
 .profileContainerUser {
@@ -292,8 +298,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
+
 .categoryListUSer {
     width: 25vw;
     height: 50vh;
@@ -305,6 +311,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .mapContainerUserRight {
     width: 70%;
     height: 100%;
@@ -312,6 +319,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .mapAreaUser {
     background-image: url('/map.png');
     background-size: contain;
@@ -322,6 +330,7 @@ body {
     width: 90%;
     position: relative;
 }
+
 .infoContainerUser {
     display: flex;
     align-items: center;
@@ -340,10 +349,12 @@ body {
     align-items: center;
     justify-content: center;
 }
-.profilePicUser img{
+
+.profilePicUser img {
     max-width: 150px;
     height: auto;
 }
+
 .nameAndBioContainerUser {
     position: relative;
     display: flex;
@@ -351,15 +362,18 @@ body {
     align-items: center;
     padding: 20px;
 }
-.nameUser{
+
+.nameUser {
     padding: 10px;
 }
-.bioUser{
+
+.bioUser {
     padding: 10px;
     font-style: italic;
     font-family: cursive;
     color: #2a2a2a;
 }
+
 /*
 .mapBlockUser{
     height: 60%;
@@ -368,8 +382,10 @@ body {
     display: flex;
 }
  */
+
 /* ******** PINCLICK  *********/
-.pinClickContainer{
+
+.pinClickContainer {
     width: 100vw;
     height: 100vh;
     /* color: white; */
@@ -525,10 +541,15 @@ body {
 }
 
 /********************************/
+
 /********************************/
+
 /********************************/
+
 /*  NOT SURE IF I AM USING THOSE*/
+
 /********************************/
+
 /********************************/
 
 /********************************/
@@ -590,19 +611,21 @@ body {
     justify-content: center;
     width: 100%;
 }
+
 /******* DROPDOWN MENU CONTAINER ****************/
-.dropDownContainer{
-    z-index: 1;
+
+.dropDownContainer {
+    z-index: 123;
     width: 100vw;
     height: 88vh;
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
     display: flex;
     flex-direction: row-reverse;
 }
 
-.dropDownMenu{
+.dropDownMenu {
     /* position: absolute; */
     padding: 20px;
     height: 200px;
@@ -873,11 +896,17 @@ button {
     margin: 10px;
     font-family: "Cutive Mono", monospace;
 }
+
 /* background-color: #f1f1f1; */
+
 /* color: #696969; */
+
 /* font-size:14px; */
+
 /* width: 100px; */
+
 /* margin: 15px; */
+
 /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
 
 button:hover {
@@ -886,11 +915,12 @@ button:hover {
     background-color: #eaeced;
 }
 
-.centerStuff{
+.centerStuff {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
+
 .subtleButton {
     border: none;
     width: 60px;
@@ -1017,10 +1047,12 @@ button:hover {
 .inputfile+label * {
     pointer-events: none;
 }
-.dropDownMenuItem{
-    color:#2a2a2a;
+
+.dropDownMenuItem {
+    color: #2a2a2a;
     padding: 5px;
 }
+
 /* ////////////// namseToShow component //////////////////////// */
 
 .searchUsers {
@@ -1034,7 +1066,7 @@ button:hover {
     border: 1px solid black;
     /* margin-left: -3.2vw; */
     width: 88px;
-     position: absolute;
+    position: absolute;
     /*top: 26vh;
     left: 5vw; */
     z-index: 1;
@@ -1051,11 +1083,9 @@ button:hover {
     margin: 2px;
     width: 80%;
     border: #999 1px solid;
-
     overflow: auto;
     resize: none;
     /* position: absolute; */
-
     z-index: 1;
 }
 
@@ -1080,4 +1110,9 @@ button:hover {
 #HERE {
     color: rgb(178, 74, 187);
     cursor: pointer;
+}
+
+.uploadedImage {
+    max-width: 100%;
+    height: auto;
 }

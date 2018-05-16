@@ -339,7 +339,18 @@ app.get("/getUserMarkers", (req, res) => {
             console.log(`error in getMarkerInfo: ${err}`);
         });
 });
-
+app.post("/deletePin", (req, res) => {
+    db
+        .deletePinDb(req.body.pinId)
+        .then((result) => {
+            res.json({
+                data: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in pic deletePinDb: ${err}`);
+        });
+});
 app.post("/insertNewPin", (req, res) => {
     db
         .insertNewPin(

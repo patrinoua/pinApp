@@ -1,22 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, HashRouter, Route } from "react-router-dom";
-
+import { connect } from "react-redux";
 import { Welcome, Logo, Login } from "./welcome";
 import axios from "./axios";
 import { ProfilePage, ProfilePic, UploadProfilePic, EditBio } from "./profile";
-import {Navigation} from "./navigation";
+import { Navigation } from "./navigation";
 import OtherProfilePage from "./otherProfile";
 import Friends from "./friends";
 import { composeWithDevTools } from "redux-devtools-extension";
 import OnlineUsers from "./onlineUsers";
 import Chat from "./chat";
 import MapContainer from "./mapcontainer";
-
-
+import { saveUserInfo } from "./actions";
 // import { EditBio , ExistingBio } from './bio';
 
-export default class App extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -77,6 +76,7 @@ export default class App extends React.Component {
         // });
         axios.get("/getUser").then((response) => {
             if (response.data.success) {
+                this.props.dispatch(saveUserInfo(response.data.user));
                 this.setState(response.data.user);
             } else {
                 console.log(
@@ -90,7 +90,6 @@ export default class App extends React.Component {
         console.log("inside componentWillReceiveProps state:", this.state);
     }
     render() {
-
         return (
             <div className="routeContainer">
                 <BrowserRouter>
@@ -131,23 +130,36 @@ export default class App extends React.Component {
                         />
                         <Route path="/friends" component={Friends} />
 
-                        <Route exact path="/user/:id" render={(x) => (
+                        <Route
+                            exact
+                            path="/user/:id"
+                            render={(x) => (
                                 <OtherProfilePage
                                     lat={this.state.lat}
                                     lng={this.state.lng}
                                     match={x.match}
                                     history={x.history}
+                                    id={this.state.id}
                                 />
                             )}
                         />
 
-                        <Route exact path="/onlineUsers" component={OnlineUsers}/>
+                        <Route
+                            exact
+                            path="/onlineUsers"
+                            component={OnlineUsers}
+                        />
 
                         {/*<Route exact path="/chat" component={Chat} />*/}
 
                         <Route
-                            path="/map" render={() => (
-                                <MapContainer lat={this.state.lat} lng={this.state.lng} />
+                            path="/map"
+                            render={() => (
+                                <MapContainer
+                                    lat={this.state.lat}
+                                    lng={this.state.lng}
+                                    {...this.state}
+                                />
                             )}
                         />
                     </div>
@@ -170,3 +182,10 @@ export default class App extends React.Component {
         );
     }
 }
+const mapStateToProps = function(state) {
+    return {
+        markersArray: state.markersArray
+        // pins: state.onlineUsers
+    };
+};
+export default connect(mapStateToProps)(App);

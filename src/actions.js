@@ -145,3 +145,22 @@ export function selectActionBycategory(categories, pinsArray) {
         };
     }
 }
+export function deletePin(pinId) {
+    return axios
+        .post("/deletePin", { pinId })
+        .then((response) => {
+            return {
+                type: "DELETE_PIN",
+                deletedPinObj: response.data.data
+            };
+        })
+        .catch((err) => {
+            console.log(`error in pic deletePin: ${err}`);
+        });
+}
+export function saveUserInfo(userInfo) {
+    return {
+        type: "SAVE_USER_INFO",
+        user: userInfo
+    };
+}

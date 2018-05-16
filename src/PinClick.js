@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "./axios";
-
-export default class PinClick extends React.Component {
+import { deletePin } from "./actions";
+class PinClick extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             ready: null
         };
+        this.deletePin = this.deletePin.bind(this);
     }
     componentDidMount() {
         axios
@@ -21,12 +22,17 @@ export default class PinClick extends React.Component {
                     url: response.data.pinInfo.url,
                     description: response.data.pinInfo.description,
                     created_at: response.data.pinInfo.created_at,
+                    userId: response.data.pinInfo.user_id,
                     ready: true
                 });
+                console.log(this.props.id, this.state.userId);
             })
             .catch((err) => {
                 console.log(`error in PinClick componentDidMount: ${err}`);
             });
+    }
+    deletePin() {
+        this.props.dispatch(deletePin(this.props.pinId));
     }
     render() {
         if (!this.state.ready) {
@@ -42,9 +48,6 @@ export default class PinClick extends React.Component {
                     {/*<div className="fieldsContainer">
                     </div>*/}
                 </div>
-
-
-
 
                 <div id="clickPinHolder">
                     <div className="">
@@ -68,12 +71,23 @@ export default class PinClick extends React.Component {
                         )}
                         <p>{this.state.description}</p>
                         <h6>{this.state.created_at}</h6>
+
                         <button onClick={this.props.togglePinClick}>
                             Close
                         </button>
                     </div>
                 </div>
+                {this.props.id == this.state.userId && (
+                    <button onClick={this.deletePin}>Delete</button>
+                )}
             </React.Fragment>
         );
     }
 }
+const mapStateToProps = function(state) {
+    return {
+        markersArray: state.markersArray
+        // pins: state.onlineUsers
+    };
+};
+export default connect(mapStateToProps)(PinClick);

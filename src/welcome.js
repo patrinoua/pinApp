@@ -9,7 +9,7 @@ export function Welcome() {
         <div id="welcome">
             <HashRouter>
                 <div className="welcomeContainer">
-                <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
+                    <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
                     <Route exact path="/" component={Register} />
                     <Route path="/login" component={Login} />
                 </div>
@@ -23,7 +23,10 @@ export function Logo() {
         <div className="logo">
             <a href="/user">
                 {" "}
-                <img className="welcomePageLogoImg" src="/pinAppLogo.png" />{" "}
+                <img
+                    className="welcomePageLogoImg"
+                    src="/pinAppLogo.png"
+                />{" "}
             </a>
         </div>
     );

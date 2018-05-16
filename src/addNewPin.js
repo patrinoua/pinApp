@@ -23,28 +23,23 @@ class AddNewPin extends React.Component {
         this.setFile = this.setFile.bind(this);
         this.checkValue = this.checkValue.bind(this);
         this.insertPinInfo = this.insertPinInfo.bind(this);
-        this.toggle = this.toggle.bind(this);
+        this.compileData = this.compileData.bind(this);
     }
-    componentDidMount() {
-        console.log("add new pin.. is visible!, this.props", this.props);
-    }
+    componentDidMount() {}
     handleChange(e) {
         this[e.target.name] = e.target.value;
     }
     setFile(e) {
-        // this[e.target.name] =e.target.files[0];
         this.setState({
             file: e.target.files[0]
         });
     }
     checkValue(e) {
-        // this[e.target.name] = e.target.value;
         this.category = e.target.name;
-        console.log(e.target.name);
+
         this.setState({
             holder: e.target.name
         });
-        // this.state.arrayOfCategory.push(e.target.value);
     }
     insertPinInfo(e) {
         let pinColor = {
@@ -73,36 +68,25 @@ class AddNewPin extends React.Component {
         formData.append("file", this.state.file);
 
         this.props.dispatch(insertPinInfo({ formData, pinInfo }));
-        this.toggle();
+        this.props.closeAddNewPinComponent();
     }
-    toggle() {
-        if (this.props.toggleAddNewPinComponent) {
-            this.props.toggleAddNewPinComponent();
-        } else {
-            this.props.mapHasBinClicked();
-        }
+    compileData(e) {
+        let selectedImg = new FileReader();
+        selectedImg.readAsDataURL(e.target.files[0]);
+        selectedImg.addEventListener("load", () => {
+            this.setState({ dataUrl: selectedImg.result });
+        });
     }
-
     render() {
         document.addEventListener("keydown", (e) => {
             if (e.keyCode == 27) {
-                if (this.props.toggleAddNewPinComponent) {
-                    this.props.toggleAddNewPinComponent();
-                } else {
-                    this.props.mapHasBinClicked();
-                }
+                this.props.closeAddNewPinComponent();
             }
         });
         const category = (color, text, variable) => {
             let str = "/pins/" + color + "Pin.png";
             return (
                 <div className="pinCategory">
-                    {/* <input
-                        type="checkbox"
-                        id={variable}
-                        name={variable}
-                        onClick={this.checkValue}
-                    /> */}
                     <div className="pinCheckBox">
                         <img
                             src="/pins/checkbox.png"
@@ -127,9 +111,12 @@ class AddNewPin extends React.Component {
         };
         return (
             <React.Fragment>
-                <div className="blackVail" onClick={this.toggle} />
+                <div
+                    className="blackVail"
+                    onClick={this.props.closeAddNewPinComponent}
+                />
                 <div className="newPinContainer">
-                    <p id="exit" onClick={this.toggle}>
+                    <p id="exit" onClick={this.props.closeAddNewPinComponent}>
                         X
                     </p>
                     <div className="fieldsContainer">
@@ -142,12 +129,19 @@ class AddNewPin extends React.Component {
                         <div className="pinOptions box">
                             <div className="pinMenu">
                                 <form>
-
                                     {category("blue", "Museums", "museums")}
                                     {category("green", "Parks", "parks")}
-                                    {category("yellow","Restaurants","restaurants")}
+                                    {category(
+                                        "yellow",
+                                        "Restaurants",
+                                        "restaurants"
+                                    )}
                                     {category("pink", "Bars", "bars")}
-                                    {category("purple","Sightseeing","sightseeing")}
+                                    {category(
+                                        "purple",
+                                        "Sightseeing",
+                                        "sightseeing"
+                                    )}
                                 </form>
                             </div>
                             <div className="addPinPicture">
@@ -158,14 +152,22 @@ class AddNewPin extends React.Component {
                                         type="file"
                                         name="file"
                                         onChange={this.setFile}
+                                        onChange={this.compileData}
                                         data-multiple-caption="{count} files selected"
                                         multiple
                                     />
                                     <label htmlFor="inputfile">
-                                        <img
-                                            src="/pins/camera.png"
-                                            className="cameraIcon"
-                                        />
+                                        {(this.state.dataUrl && (
+                                            <img
+                                                src={this.state.dataUrl}
+                                                className="uploadedImage"
+                                            />
+                                        )) || (
+                                            <img
+                                                src="/pins/camera.png"
+                                                className="cameraIcon"
+                                            />
+                                        )}
                                     </label>
                                 </div>
                                 <textarea
@@ -196,71 +198,6 @@ class AddNewPin extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                {/* <div className="markerInput">
-                    <div className="fileUp">
-                        <input
-                            id="inputfile"
-                            className="inputfile"
-                            type="file"
-                            name="file"
-                            onChange={this.setFile}
-                            data-multiple-caption="{count} files selected"
-                            multiple
-                        />
-                        <label htmlFor="inputfile">Your Own Pic</label>
-                        <form>
-                            <div>
-                                <input
-                                    type="checkbox"
-                                    id="museums"
-                                    name="museums"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="museums">MuseumsZZ</label>
-
-                                <input
-                                    type="checkbox"
-                                    id="bars"
-                                    name="bars"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="bars">Bars</label>
-
-                                <input
-                                    type="checkbox"
-                                    id="restaurants"
-                                    name="restaurants"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="restaurants">
-                                    {" "}
-                                    Restaurants{" "}
-                                </label>
-
-                                <input
-                                    type="checkbox"
-                                    id="parks"
-                                    name="parks"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="parks">Parks</label>
-
-                                <input
-                                    type="checkbox"
-                                    id="sightseeing"
-                                    name="sightseeing"
-                                    onClick={this.checkValue}
-                                />
-                                <label htmlFor="sightseeing">
-                                    {" "}
-                                    Sightseeing{" "}
-                                </label>
-                            </div>
-                        </form>
-
-                    </div>
-                </div> */}
             </React.Fragment>
         );
     }

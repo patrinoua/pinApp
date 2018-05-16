@@ -227,3 +227,6 @@ exports.nameOfUser = (name) => {
 
     return db.query("SELECT * FROM users WHERE first LIKE $1", [name]);
 };
+exports.deletePinDb = (pinId) => {
+    return db.query(`DELETE FROM pins WHERE id=$1 RETURNING *`, [pinId]);
+};

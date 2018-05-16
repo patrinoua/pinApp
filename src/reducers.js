@@ -97,6 +97,20 @@ export default function reducer(state = { markersArray: [] }, action) {
             markersArray: [...action.pinsArray]
         };
     }
+    if (action.type == "DELETE_PIN") {
+        state = {
+            ...state,
+            markersArray: state.markersArray.filter((marker) => {
+                return marker.id != action.deletedPinObj.id;
+            })
+        };
+    }
+    if (action.type == "SAVE_USER_INFO") {
+        state = {
+            ...state,
+            user: action.user
+        };
+    }
 
     return state;
 }
