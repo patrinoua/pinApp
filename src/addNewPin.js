@@ -22,7 +22,7 @@ class AddNewPin extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.setFile = this.setFile.bind(this);
         this.checkValue = this.checkValue.bind(this);
-        this.insertPinInfo = this.insertPinInfo.bind(this);
+        this.insertPinInfos = this.insertPinInfos.bind(this);
         this.compileData = this.compileData.bind(this);
     }
     componentDidMount() {}
@@ -41,7 +41,7 @@ class AddNewPin extends React.Component {
             holder: e.target.name
         });
     }
-    insertPinInfo(e) {
+    insertPinInfos(e) {
         let pinColor = {
             museums: "/pins/bluePin.png",
             bars: "/pins/pinkPin.png",
@@ -66,7 +66,7 @@ class AddNewPin extends React.Component {
         };
         const formData = new FormData();
         formData.append("file", this.state.file);
-
+        console.log(formData);
         this.props.dispatch(insertPinInfo({ formData, pinInfo }));
         this.props.closeAddNewPinComponent();
     }
@@ -74,11 +74,15 @@ class AddNewPin extends React.Component {
         this.setState({
             file: e.target.files[0]
         });
-        let selectedImg = new FileReader();
-        selectedImg.readAsDataURL(e.target.files[0]);
-        selectedImg.addEventListener("load", () => {
-            this.setState({ dataUrl: selectedImg.result });
-        });
+        try {
+            let selectedImg = new FileReader();
+            selectedImg.readAsDataURL(e.target.files[0]);
+            selectedImg.addEventListener("load", () => {
+                this.setState({ dataUrl: selectedImg.result });
+            });
+        } catch (err) {
+            console.log(`error in compileData: ${err}`);
+        }
     }
     render() {
         document.addEventListener("keydown", (e) => {
@@ -154,7 +158,7 @@ class AddNewPin extends React.Component {
                                         className="inputfile"
                                         type="file"
                                         name="file"
-                                        // onChange={this.setFile}
+                                        onChange={this.setFile}
                                         onChange={this.compileData}
                                         data-multiple-caption="{count} files selected"
                                         multiple
@@ -194,7 +198,7 @@ class AddNewPin extends React.Component {
                         <div className="pinDescription box">
                             <h1
                                 className="saveButton"
-                                onClick={this.insertPinInfo}
+                                onClick={this.insertPinInfos}
                             >
                                 SAVE
                             </h1>

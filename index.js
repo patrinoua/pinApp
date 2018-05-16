@@ -43,11 +43,9 @@ app.use(express.static("./public"));
 
 app.use(bodyParser.json());
 
-// I CHANGED STUFF HERE !
 const cookieSessionMiddleWare = cookieSession({
     secret: secret.secret,
     maxAge: 1000 * 60 * 60 * 24 * 14
-    // maxAge: 60000 //1 minute
 });
 app.use(cookieSessionMiddleWare);
 io.use(function(socket, next) {
@@ -319,6 +317,11 @@ app.get("/getMarker", (req, res) => {
     db
         .getMarkerInfo(req.session.user.id)
         .then((result) => {
+            for (let i = 0; i < result.rows.length; i++) {
+                result.rows[i].created_at = db.formatDate(
+                    result.rows[i].created_at
+                );
+            }
             res.json({
                 marker: result.rows
             });
@@ -331,6 +334,11 @@ app.get("/getUserMarkers", (req, res) => {
     db
         .getMarkerInfo(req.query.id)
         .then((result) => {
+            for (let i = 0; i < result.rows.length; i++) {
+                result.rows[i].created_at = db.formatDate(
+                    result.rows[i].created_at
+                );
+            }
             res.json({
                 marker: result.rows
             });
@@ -402,13 +410,13 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
             });
         })
         .catch((err) => {
-            let pinUrl = "/user.png";
-            db.saveMarkerImage(pinUrl, req.session.markerId).then((result) => {
-                res.json({
-                    success: true,
-                    url: result.rows[0].url
-                });
-            });
+            // let pinUrl = "/user.png";
+            // db.saveMarkerImage(pinUrl, req.session.markerId).then((result) => {
+            //     res.json({
+            //         success: true,
+            //         url: result.rows[0].url
+            //     });
+            // });
             console.log(`error in POST/upload: ${err}`);
         });
 });

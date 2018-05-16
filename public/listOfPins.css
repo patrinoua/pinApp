@@ -1,0 +1,73 @@
+* {
+    margin: 0px;
+    font-family: "Gaegu", cursive;
+}
+
+#ListOfLocationsHolder {
+    position: absolute;
+    top: 9.3vh;
+    width: 100vw;
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+#listSmallHolder {
+    width: 70vw;
+    height: 70vh;
+    overflow: scroll;
+    border-radius: 30px;
+    background-color: rgb(249, 242, 224);
+    padding: 1vw;
+}
+
+#listClose {
+    font-size: 3vw;
+    position: absolute;
+    top: 12vh;
+    right: 2vw;
+    color: white;
+    z-index: 12;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.thePinImg {
+    width: 3vw;
+    height: 7vh;
+}
+
+.eachPin {
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+    border: 1px solid black;
+}
+
+.descHolder {
+    width: 15vw;
+    height: 5vh;
+    overflow: hidden;
+}
+
+/* .listImgHolder {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid black;
+}
+
+.listImgHolder img {
+    width: 100%;
+    height: 100%;
+} */

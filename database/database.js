@@ -216,8 +216,20 @@ exports.formatDate = (date) => {
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
+    var hour = date.getHours();
+    var minutes = date.getMinutes();
 
-    return day + " " + monthNames[monthIndex] + " " + year;
+    return (
+        day +
+        " " +
+        monthNames[monthIndex] +
+        " " +
+        year +
+        " " +
+        hour +
+        ":" +
+        minutes
+    );
 };
 exports.getPinClickInfo = (pinId) => {
     return db.query(`SELECT * FROM pins WHERE id=$1`, [pinId]);

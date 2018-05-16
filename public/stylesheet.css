@@ -6,8 +6,6 @@ main {
     color: #5DA6AE;
 }
 
-
-
 body {
     font: 14px "Helvetica";
     font-weight: 400;
@@ -189,8 +187,9 @@ body {
     position: relative;
     /* background-color: grey; */
 }
-.mapContainerUp{
-    width: 100%;
+
+.mapContainerUp {
+    /* width: 100%; */
     height: 10%;
     /* background-color: purple; */
     display: flex;
@@ -199,7 +198,7 @@ body {
     position: relative;
 }
 
-.mapContainerDown{
+.mapContainerDown {
     width: 100%;
     height: 20%;
     /* background-color: orange; */
@@ -212,9 +211,9 @@ body {
     align-items: center;
     position: relative;
 }
+
 .mapContainerLeft {
     /* background-color: yellow; */
-
     width: 30%;
     height: 70%;
     display: flex;
@@ -272,7 +271,6 @@ body {
     margin: 0 5vw;
     position: relative;
     /* background-color: green; */
-
 }
 
 .mapArea {
@@ -563,11 +561,17 @@ body {
 }
 
 /********************************/
+
 /********************************/
+
 /********************************/
+
 /*  NOT SURE IF I AM USING THOSE*/
+
 /********************************/
+
 /********************************/
+
 /********************************/
 
 /* .editProfile {
@@ -630,32 +634,30 @@ body {
 
 /******* DROPDOWN MENU CONTAINER ****************/
 
-.dropDownContainer {
-    z-index: 123;
-    width: 100vw;
-    height: 88vh;
+#overley {
     position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: row-reverse;
+    height: 30vh;
+    width: 15vw;
+    top: 0px;
+    right: 1vw;
+    z-index: 100000000;
 }
 
 .dropDownMenu {
-    /* position: absolute; */
-    padding: 20px;
-    height: 200px;
-    width: 90px;
-    top: 70px;
-    left: 10%;
-    right: 10%;
+    position: absolute;
+    padding: 1vw;
+    height: 20vh;
+    width: 10vw;
+    top: 0px;
+    right: 1vw;
     display: flex;
     background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid grey;
-    margin: 20px;
+    /* margin: 20px; */
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
+    z-index: 10;
 }
 
 /********** FRIENDS COMPONENT  **************/
@@ -1132,3 +1134,5 @@ button:hover {
     max-width: 100%;
     height: auto;
 }
+
+/* /////////////// animation //////////////// */

@@ -8,6 +8,7 @@ import AddNewPin from "./addNewPin";
 import { getPinInfo, selectActionBycategory } from "./actions";
 import PinClick from "./PinClick.js";
 import { NamesToShow } from "./NamesToShow";
+import ListOfLocations from "./ListOfLocations.js";
 class MapContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -25,10 +26,12 @@ class MapContainer extends React.Component {
             addNewPinIsVisible: false,
             clickedPinId: null,
             pinClickVisible: false,
-            mapHasBinClicked: false
+            mapHasBinClicked: false,
+            showListComponent: false
         };
 
-        this.state.addNewPinIsVisible = false;
+        this.closeListCom = this.closeListCom.bind(this);
+        this.showListComponent = this.showListComponent.bind(this);
         this.mapClicked = this.mapClicked.bind(this);
         this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(
             this
@@ -48,12 +51,12 @@ class MapContainer extends React.Component {
     componentDidMount() {
         axios
             .get("/getMarker")
-            .then(response => {
+            .then((response) => {
                 this.setState({
                     copyOfPinsArray: response.data.marker
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(`error in pic getPinInfo: ${err}`);
             });
         this.props.dispatch(getPinInfo());
@@ -64,6 +67,11 @@ class MapContainer extends React.Component {
         //         lng: position.coords.longitude
         //     });
         // });
+    }
+    closeListCom(e) {
+        this.setState({
+            showListComponent: false
+        });
     }
     pinClick(e) {
         this.clickedPinId = e.name;
@@ -80,7 +88,7 @@ class MapContainer extends React.Component {
     }
     watchMyLocation() {
         if (!this.state.myLat) {
-            this.state.watchId = navigator.geolocation.watchPosition(pos => {
+            this.state.watchId = navigator.geolocation.watchPosition((pos) => {
                 this.setState({
                     myLat: pos.coords.latitude,
                     myLng: pos.coords.longitude
@@ -129,11 +137,7 @@ class MapContainer extends React.Component {
     }
     mapClicked(mapProps, map, clickEvent) {
         this.mapHasBinClicked();
-        // if (this.state.showingInfoWindow)
-        //     this.setState({
-        //         activeMarker: null,
-        //         showingInfoWindow: false
-        //     });
+
         this.setState({
             lat: clickEvent.latLng.lat(),
             lng: clickEvent.latLng.lng()
@@ -144,7 +148,7 @@ class MapContainer extends React.Component {
             this.state.arrayOfCategory.push(e.target.value);
         } else {
             this.state.arrayOfCategory = this.state.arrayOfCategory.filter(
-                item => {
+                (item) => {
                     return item != e.target.value;
                 }
             );
@@ -157,18 +161,11 @@ class MapContainer extends React.Component {
             )
         );
     }
-    // selectBycategory(e) {
-    //     this.props.dispatch(
-    //         selectActionBycategory(
-    //             this.state.arrayOfCategory,
-    //             this.state.copyOfPinsArray
-    //         )
-    //     );
-    //     // document.getElementById("myForm").reset();
-    //     // this.setState({
-    //     //     arrayOfCategory: []
-    //     // });
-    // }
+    showListComponent() {
+        this.setState({
+            showListComponent: true
+        });
+    }
     render() {
         const style = {
             backgroundSize: "contain"
@@ -200,6 +197,9 @@ class MapContainer extends React.Component {
         };
         return (
             <React.Fragment>
+                {this.state.showListComponent && (
+                    <ListOfLocations closeListCom={this.closeListCom} />
+                )}
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
                         <PinClick
@@ -218,7 +218,7 @@ class MapContainer extends React.Component {
                             >
                                 HERE
                             </span>{" "}
-                            to drop the pin or your current location or click on
+                            to drop the pin on your current location or click on
                             a position on the map
                         </p>
                     </div>
@@ -261,6 +261,9 @@ class MapContainer extends React.Component {
                                 <button onClick={this.watchMyLocation}>
                                     show my location
                                 </button>
+                                <button onClick={this.showListComponent}>
+                                    list my locations
+                                </button>
                             </div>
                         </div>
                         <div className="mapContainerRight">
@@ -295,7 +298,7 @@ class MapContainer extends React.Component {
                                         />
                                     )}
                                     {this.props.markersArray &&
-                                        this.props.markersArray.map(item => {
+                                        this.props.markersArray.map((item) => {
                                             return (
                                                 <Marker
                                                     key={item.id}

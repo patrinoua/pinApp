@@ -75,7 +75,6 @@ export class Navigation extends React.Component {
                         {/*<Link to="/user"> Hello {props.first}</Link>*/}
                         {/*<Link to="/onlineUsers"> Online </Link>*/}
                         {/*<Link to="/chat"> Chat </Link>*/}
-                        {/*<Link to="/mapREDUX"> MapAppREDUX </Link>*/}
                     </div>
                 </div>
             </div>
@@ -87,72 +86,55 @@ export class UserMenuPopUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.state.userMenuIsVisible = false;
+
         this.closePopUp = this.closePopUp.bind(this);
-        this.myMouseout = this.myMouseout.bind(this);
     }
 
     closePopUp() {
         this.props.closeUserMenu();
     }
-    myMouseout(e) {
-        this.props.closeUserMenu();
-        // e.preventDefault();
-    }
-    render() {
-        document.addEventListener("keydown", (e) => {
-            if (e.keyCode == 27) {
-                if (this.closePopUp) {
-                    this.closePopUp();
-                }
-            }
-        });
 
-        // if (this.props.userMenuIsVisible) {
-        //     document
-        //         .getElementById("justForTarget")
-        //         .addEventListener("mouseout", (e) => {
-        //             console.log("this is the click im looking for");
+    render() {
+        // document.addEventListener("keydown", (e) => {
+        //     if (e.keyCode == 27) {
+        //         if (this.closePopUp) {
         //             this.closePopUp();
-        //         });
-        // }
+        //         }
+        //     }
+        // });
+
         let pic = this.props.profilepic || "/neo.png";
-        console.log(
-            "this needs to be false in order to show it!!! this.state.userMenuIsVisible",
-            this.state.userMenuIsVisible
-        );
-        if (!this.state.userMenuIsVisible) {
-            return (
-                <div className="dropDownContainer">
-                    <div
-                        className="dropDownMenu"
-                        onMouseLeave={this.myMouseout}
-                    >
-                        <Link to="/friends" className="dropDownMenuItem">
-                            {" "}
-                            Friends{" "}
-                        </Link>
-                        <NamesToShow id={this.props.id} />
-                        <Link to="/" className="dropDownMenuItem">
-                            {" "}
-                            Profile{" "}
-                        </Link>
-                        <div className="dropDownMenuItem"> Friends </div>
-                        <a href="/logout" className="dropDownMenuItem">
-                            {" "}
-                            Logout{" "}
-                        </a>
-                        <button
-                            className="subtleButton"
-                            onClick={this.closePopUp}
-                        >
-                            Cancel!{" "}
-                        </button>
-                    </div>
+
+        return (
+            <React.Fragment>
+                <div
+                    id="overley"
+                    onMouseLeave={(e) => {
+                        this.props.closeUserMenu();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}
+                />
+                <div className="dropDownMenu">
+                    <Link to="/friends" className="dropDownMenuItem">
+                        {" "}
+                        Friends{" "}
+                    </Link>
+                    <NamesToShow id={this.props.id} />
+                    <Link to="/" className="dropDownMenuItem">
+                        {" "}
+                        Profile{" "}
+                    </Link>
+                    <div className="dropDownMenuItem"> Friends </div>
+                    <a href="/logout" className="dropDownMenuItem">
+                        {" "}
+                        Logout{" "}
+                    </a>
+                    <button className="subtleButton" onClick={this.closePopUp}>
+                        Cancel!{" "}
+                    </button>
                 </div>
-            );
-        } else {
-            return <div />;
-        }
+            </React.Fragment>
+        );
     }
 }
