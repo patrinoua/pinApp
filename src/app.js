@@ -23,7 +23,6 @@ class App extends React.Component {
         this.changeImage = this.changeImage.bind(this);
         this.hideUploader = this.hideUploader.bind(this);
         this.toggleUploader = this.toggleUploader.bind(this);
-        // this.toggleUserMenu = this.toggleUserMenu.bind(this);
         this.fileToUpload = {};
         this.state.toggleUploader = false;
         this.changeInputValues = this.changeInputValues.bind(this);

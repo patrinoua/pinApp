@@ -69,11 +69,11 @@ export async function userLeft(user) {
 // *********** ADD NEW PIN *********** //
 
 export function insertPinInfo(info) {
-    console.log(info);
     return axios
         .post("/insertNewPin", info.pinInfo)
         .then((response) => {
             let pinInfo = response.data;
+            console.log("formData", info.formData);
             if (Object.keys(info.formData).length == 0) {
                 console.log("in the if");
                 pinInfo.marker.url = "/user.png";

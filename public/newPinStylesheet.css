@@ -190,7 +190,37 @@ center center;
     justify-content: center;
     position: absolute;
     top: 0;
+    animation: fadein 1s;
 }
+
+/* @keyframes slidein {
+    from {
+        margin-top: 100%;
+        width: 300%;
+    }
+    to {
+        margin-top: 0%;
+        width: 100%;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes infinite-spinning {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+} */
 
 .fieldsContainer {
     display: grid;
