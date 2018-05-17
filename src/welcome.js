@@ -54,7 +54,7 @@ export class Register extends React.Component {
             .then((response) => {
                 if (response.data.success) {
                     // console.log('registered (in welcome.js)');
-                    location.replace("/map");
+                    location.replace("/");
                 } else {
                     // console.log('response.data in register error ',response.data.errorMsg);
                     this.setState({
@@ -128,7 +128,7 @@ export class Login extends React.Component {
             .then((response) => {
                 if (response.data.success) {
                     // console.log("response.data from login jfghdsgajf",response.data.user);
-                    location.replace("/map");
+                    location.replace("/");
                 } else {
                     // console.log("response.data.success from else:",response.data);
                     this.setState({

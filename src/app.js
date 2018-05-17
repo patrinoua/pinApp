@@ -136,6 +136,15 @@ class App extends React.Component {
 
                         {/*<Route exact path="/chat" component={Chat} />*/}
 
+                        <Route exact path="/"
+                            render={() => (
+                                <MapContainer
+                                    lat={this.state.lat}
+                                    lng={this.state.lng}
+                                    {...this.state}
+                                />
+                            )}
+                        />
                         <Route exact path="/map"
                             render={() => (
                                 <MapContainer
