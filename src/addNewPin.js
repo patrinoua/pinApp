@@ -66,23 +66,27 @@ class AddNewPin extends React.Component {
         };
         const formData = new FormData();
         formData.append("file", this.state.file);
-        console.log(formData);
+
         this.props.dispatch(insertPinInfo({ formData, pinInfo }));
         this.props.closeAddNewPinComponent();
     }
     compileData(e) {
-        this.setState({
-            file: e.target.files[0]
-        });
-        try {
-            let selectedImg = new FileReader();
-            selectedImg.readAsDataURL(e.target.files[0]);
-            selectedImg.addEventListener("load", () => {
-                this.setState({ dataUrl: selectedImg.result });
-            });
-        } catch (err) {
-            console.log(`error in compileData: ${err}`);
-        }
+        this.setState(
+            {
+                file: e.target.files[0]
+            },
+            () => {
+                try {
+                    let selectedImg = new FileReader();
+                    selectedImg.readAsDataURL(this.state.file);
+                    selectedImg.addEventListener("load", () => {
+                        this.setState({ dataUrl: selectedImg.result });
+                    });
+                } catch (err) {
+                    console.log(`error in compileData: ${err}`);
+                }
+            }
+        );
     }
     render() {
         document.addEventListener("keydown", (e) => {
@@ -158,7 +162,7 @@ class AddNewPin extends React.Component {
                                         className="inputfile"
                                         type="file"
                                         name="file"
-                                        onChange={this.setFile}
+                                        // onChange={this.setFile}
                                         onChange={this.compileData}
                                         data-multiple-caption="{count} files selected"
                                         multiple

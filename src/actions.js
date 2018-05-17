@@ -73,15 +73,7 @@ export function insertPinInfo(info) {
         .post("/insertNewPin", info.pinInfo)
         .then((response) => {
             let pinInfo = response.data;
-            console.log("formData", info.formData);
-            if (Object.keys(info.formData).length == 0) {
-                console.log("in the if");
-                pinInfo.marker.url = "/user.png";
-                return {
-                    type: "INSERT_PIN_INFO",
-                    pinInfo: pinInfo.marker
-                };
-            }
+
             return axios
                 .post("/uploadPinPic", info.formData)
                 .then((resp) => {

@@ -89,6 +89,7 @@ class MapContainer extends React.Component {
     watchMyLocation() {
         if (!this.state.myLat) {
             this.state.watchId = navigator.geolocation.watchPosition((pos) => {
+                console.log(pos.coords.latitude);
                 this.setState({
                     myLat: pos.coords.latitude,
                     myLng: pos.coords.longitude

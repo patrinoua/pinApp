@@ -42,7 +42,7 @@ export class Navigation extends React.Component {
                             src="/pinAppLogo.png"
                         />{" "}
                     </Link>
-
+                    <NamesToShow id={this.props.id} />
                     <div className="navigationBarRight">
                         <Link to="/map">
                             {" "}
@@ -52,14 +52,12 @@ export class Navigation extends React.Component {
                             />{" "}
                         </Link>
                         <Link to="/editProfile"> </Link>{" "}
-                        <div
-                            className="navigationIconProfilepicCircle"
-                            onMouseEnter={this.toggleUserMenu}
-                        >
+                        <div className="navigationIconProfilepicCircle">
                             <img
                                 src={pic}
                                 className="navigationIconProfilepic"
                                 onClick={this.toggleUserMenu}
+                                onMouseEnter={this.toggleUserMenu}
                             />{" "}
                         </div>
                         {this.state.userMenuIsVisible && (
@@ -95,13 +93,11 @@ export class UserMenuPopUp extends React.Component {
     }
 
     render() {
-        // document.addEventListener("keydown", (e) => {
-        //     if (e.keyCode == 27) {
-        //         if (this.closePopUp) {
-        //             this.closePopUp();
-        //         }
-        //     }
-        // });
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 27) {
+                this.props.closeUserMenu();
+            }
+        });
 
         let pic = this.props.profilepic || "/neo.png";
 
@@ -109,30 +105,38 @@ export class UserMenuPopUp extends React.Component {
             <React.Fragment>
                 <div
                     id="overley"
-                    onMouseLeave={(e) => {
+                    onClick={(e) => {
                         this.props.closeUserMenu();
-                        e.stopPropagation();
-                        e.preventDefault();
+                        // e.stopPropagation();
+                        // e.preventDefault();
                     }}
                 />
-                <div className="dropDownMenu">
+                <div
+                    className="dropDownMenu"
+                    onMouseLeave={(e) => {
+                        // this.props.closeUserMenu();
+                        // e.stopPropagation();
+                        // e.preventDefault();
+                        console.log("running mouseleave");
+                    }}
+                >
                     <Link to="/friends" className="dropDownMenuItem">
                         {" "}
                         Friends{" "}
                     </Link>
-                    <NamesToShow id={this.props.id} />
                     <Link to="/" className="dropDownMenuItem">
                         {" "}
                         Profile{" "}
                     </Link>
-                    <div className="dropDownMenuItem"> Friends </div>
+                    {/* <div className="dropDownMenuItem"> Friends </div> */}
                     <a href="/logout" className="dropDownMenuItem">
                         {" "}
                         Logout{" "}
                     </a>
-                    <button className="subtleButton" onClick={this.closePopUp}>
+                    <NamesToShow id={this.props.id} />
+                    {/* <button className="subtleButton" onClick={this.closePopUp}>
                         Cancel!{" "}
-                    </button>
+                    </button> */}
                 </div>
             </React.Fragment>
         );
