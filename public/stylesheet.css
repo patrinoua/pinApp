@@ -75,11 +75,12 @@ body {
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
-    background-color: #51B3C4;
+    /* background-color: #51B3C4; */
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
     position: relative;
     z-index: 8;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }
 .navigationIconBar {
     /* padding: 20px; */
@@ -92,6 +93,7 @@ body {
     position: fixed;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
+
 }
 .navigationIconBar a {
     cursor: pointer;
@@ -107,7 +109,7 @@ body {
 }
 
 .navigationIcon {
-    height: 45px;
+    height: 57px;
     margin-top: 2px;
     margin-right: 5px;
 }
@@ -180,9 +182,7 @@ body {
 
 .mapContainerDown {
     width: 100%;
-    height: 20%;
     /* background-color: orange; */
-    width: 95vw;
     height: 88vh;
     margin: 10px 10px;
     display: flex;
@@ -194,13 +194,11 @@ body {
 
 .mapContainerLeft {
     /* background-color: yellow; */
-    width: 30%;
-    height: 70%;
+    /* height: 70%; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 23px;
 }
 
 .categoryList {
@@ -256,9 +254,9 @@ body {
 .mapArea {
     /* backgroun d-image: url('/map.png'); */
     background-size: contain;
-    border-radius: 10px;
+    border-radius: 2px;
     border: 2px solid #eaeced;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
     height: 80%;
     width: 100%;
     overflow: hidden;
@@ -318,7 +316,7 @@ body {
     background-image: url('/map.png');
     background-size: contain;
     background-color: pink;
-    border-radius: 20px;
+    border-radius: 2px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 90%;
     width: 90%;
@@ -483,7 +481,7 @@ body {
     padding: 1vw;
     min-height: 20vh;
     width: 10vw;
-    top: 0vh;
+    top: 10vh;
     right: 0vw;
     display: flex;
     background-color: rgba(255, 255, 255, 0.9);
@@ -493,7 +491,8 @@ body {
     flex-direction: column;
     align-items: center;
     z-index: 13;
-    animation: dropDownMenu 0.5s;
+    transition: opacity 2s ease-in;
+    /* animation: dropDownMenu 0.3s; */
 }
 /************ FORM ***************/
 .form {
@@ -645,23 +644,25 @@ body {
 
 /* ************ animation ************ */
 
-@keyframes dropDownMenu {
+/* @keyframes dropDownMenu {
     from {
-        top: -20vh;
+        top: 10vh;
+        z-index: 1;
     }
     to {
-        top: 0px;
+        top: 20vh;
+        z-index: 13;
     }
-}
-
+} */
+/*
 @keyframes dropDownMenuOut {
     from {
-        top: 0px;
+        top: 10px;
     }
     to {
         top: -20vh;
     }
-}
+} */
 
 /************ BUTTONS ***************/
 /************ BUTTONS ***************/
@@ -678,9 +679,9 @@ button {
     color: #929A9F;
     font-size: 1.1em;
     border: 2px solid #f6f6f6;
-    border-radius: 2px;
-    /* margin: 10px; */
-    font-family: "Cutive Mono", monospace;
+    border-radius: 20px;
+    margin: 10px;
+    /* font-family: "Cutive Mono", monospace; */
 }
 
 

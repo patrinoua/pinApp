@@ -5,11 +5,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { insertPinInfo } from "./actions";
 
-const mapStateToProps = function(state) {
-    return {
-        onlineUsers: state.onlineUsers
-    };
-};
 
 class AddNewPin extends React.Component {
     constructor(props) {
@@ -120,6 +115,18 @@ class AddNewPin extends React.Component {
                 </div>
             );
         };
+        // let currentPinInfo = this.props.markersArray.filter((item) => {
+        //     return item.id == this.props.pinId;
+        // });
+        // let imageUrl;
+        // console.log("currentPinInfo",currentPinInfo);
+        // console.log("this.props",this.props);
+        // if (currentPinInfo[0].url) {
+        //     // imageUrl = currentPinInfo[0].url;
+        // } else {
+        //     imageUrl = "/pins/greyPin.png";
+        // }
+
         return (
             <React.Fragment>
                 <div
@@ -156,31 +163,43 @@ class AddNewPin extends React.Component {
                                 </form>
                             </div>
                             <div className="addPinPicture">
-                                <div className="cameraIconContainer">
-                                    <input
-                                        id="inputfile"
-                                        className="inputfile"
-                                        type="file"
-                                        name="file"
-                                        // onChange={this.setFile}
-                                        onChange={this.compileData}
-                                        data-multiple-caption="{count} files selected"
-                                        multiple
-                                    />
-                                    <label htmlFor="inputfile">
-                                        {(this.state.dataUrl && (
-                                            <img
-                                                src={this.state.dataUrl}
-                                                className="uploadedImage"
+                                {!this.state.dataUrl
+                                    &&(
+                                        <div className="cameraIconContainer" >
+                                            <input
+                                                id="inputfile"
+                                                className="inputfile"
+                                                type="file"
+                                                name="file"
+                                                onChange={this.setFile}
+                                                onChange={this.compileData}
+                                                data-multiple-caption="{count} files selected"
+                                                multiple
                                             />
-                                        )) || (
-                                            <img
-                                                src="/pins/camera.png"
-                                                className="cameraIcon"
-                                            />
+                                            <label htmlFor="inputfile">
+                                                <img src="/pins/camera.png" className="cameraIcon" />
+                                            </label>
+                                        </div>
+                                    )
+                                    ||(
+                                        <div className="cameraIconContainer" style={{
+                                            backgroundColor:"black"}} >
+                                            <div
+                                                style={{
+                                                    width:"100%",
+                                                    height:"100%",
+                                                    backgroundImage:`url(${this.state.dataUrl})`,
+                                                    backgroundRepeat: "no-repeat",
+                                                    backgroundPosition:"center center",
+                                                    backgroundSize:"contain",
+                                                    zIndex:"50"
+                                                }}
+                                            >
+                                            </div>
+                                        </div>
                                         )}
-                                    </label>
-                                </div>
+
+
                                 <textarea
                                     placeholder="Title"
                                     className="titleTextarea"
@@ -213,5 +232,10 @@ class AddNewPin extends React.Component {
         );
     }
 }
+const mapStateToProps = function(state) {
+    return {
+        markersArray: state.markersArray
+    };
+};
 
 export default connect(mapStateToProps)(AddNewPin);

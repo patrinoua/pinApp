@@ -45,7 +45,6 @@ class PinClick extends React.Component {
             });
         // console.log("this.state.ready....",this.state);
     }
-
     toggleEditMode(e) {
         if (!this.state.editMode) {
             // this.insertPinInfo(e)
@@ -311,29 +310,10 @@ class PinClick extends React.Component {
 
                         {(this.state.editMode && (
                             <div className="pinEditSaveButtonArea box">
-                                <h1
-                                    className="saveButton"
-                                    onClick={this.insertPinInfo}
-                                >
-                                    {" "}
-                                    SAVE{" "}
-                                </h1>
-                                <h1
-                                    className="saveButton"
-                                    onClick={this.toggleEditMode}
-                                >
-                                    {" "}
-                                    Cancel{" "}
-                                </h1>
-                                <h1
-                                    className="saveButton"
-                                    onClick={this.deletePinAlert}
-                                >
-                                    {" "}
-                                    Delete pin{" "}
-                                </h1>
-                                {this.state.deleteAlertIsVisible &&
-                                    deleteAlert()}
+                                <h1 className="saveButton" onClick={this.insertPinInfo} > SAVE </h1>
+                                <h1 className="saveButton" onClick={this.toggleEditMode} >  Cancel  </h1>
+                                <h1 className="saveButton" onClick={this.deletePinAlert}>  Delete pin  </h1>
+                                {this.state.deleteAlertIsVisible && deleteAlert()}
                             </div>
                         )) || (
                             <div className="pinEditSaveButtonArea box">
