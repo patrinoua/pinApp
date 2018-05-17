@@ -85,9 +85,7 @@ class App extends React.Component {
             }
         });
     }
-    componentWillReceiveProps() {
-        console.log("inside componentWillReceiveProps state:", this.state);
-    }
+
     render() {
         return (
             <div className="routeContainer">
@@ -164,13 +162,13 @@ class App extends React.Component {
                     </div>
                 </BrowserRouter>
                 {/*<UserMenu />*/}
-                {/*{this.state.toggleUploader && (
+                {this.state.toggleUploader && (
                     <UploadProfilePic
                     changeImage={this.changeImage}
                     hideUploader={this.hideUploader}
                     toggleUploader={this.toggleUploader}
                     />
-                )}*/}
+                )}
                 {/*{this.state.toggleUserMenu &&
                     (<UserMenuPopUp
                     toggleUserMenu={this.toggleUserMenu}

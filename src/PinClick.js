@@ -15,17 +15,19 @@ class PinClick extends React.Component {
             holder: null,
             ready: null,
             removeButtonText: "X",
-            editMode:false
+            editMode:false,
+            deleteAlertIsVisible:false
         };
         this.setFile = this.setFile.bind(this);
         this.compileData = this.compileData.bind(this);
-        this.deletePin = this.deletePin.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.insertPinInfo = this.insertPinInfo.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.setFile = this.setFile.bind(this);
+        this.deletePinAlert = this.deletePinAlert.bind(this);
     }
     componentDidMount() {
+
         axios
             .post("/PinClick", { pinId: this.props.pinId })
             .then(response => {
@@ -52,10 +54,11 @@ class PinClick extends React.Component {
                 editMode:true
             })
         }else{
+            console.log('about to update pin');
             this.setState({
                 editMode:false
             })
-            this.props.togglePinClick();
+            // this.props.togglePinClick();
         }
     }
     setFile(e) {
@@ -115,45 +118,63 @@ class PinClick extends React.Component {
             this.setState({ dataUrl: selectedImg.result });
         });
     }
-    deletePin() {
-        this.props.dispatch(deletePin(this.props.pinId));
+    deletePinAlert() {
+        console.log(this.props.pinId);
+        this.setState({
+            deleteAlertIsVisible:true
+        })
+
+        if(this.state.deleteAlertIsVisible==true){
+            console.log('about to really delete pin');
+            console.log(this.props.pinId);
+            this.props.dispatch(deletePin(this.props.pinId));
+            this.setState({
+                deleteAlertIsVisible:false
+            })
+            this.props.togglePinClick();
+        }
+        // console.log("this.state.deleteAlertIsVisible",this.state.deleteAlertIsVisible);
+        // onClick={this.toggleEditMode}
     }
 
     render() {
+        const shareButtons=()=>{
+            return (
+            <div className="colPinClick">
+                <a href="https://www.facebook.com/" className="boxPinClick" target="blank" >
+                    <img src="/icons/facebook.png" className="shareButtons" />
+                </a>
+            </div>)
+        }
+        const deleteAlert=()=>{
+            return(
+                <div className="blackVailDelete">
+                    delete pin?
+                    <button  onClick={()=>{
+                        this.deletePinAlert();
+                    }}> yes </button>
 
+                    <button onClick={()=>{
+                        this.setState({
+                            deleteAlertIsVisible:false
+                        })
+                        console.log('lala');
+                    }}> no </button>
+
+                </div>
+            )
+        }
         return (
             <React.Fragment>
                 <div className="pinClickContainer">
-                    <div
-                        className="blackVail"
-                        onClick={this.props.togglePinClick}
-                    />
-                    {/*<p id="exit" onClick={this.props.togglePinClick}>X</p>*/}
-
-                    <div
-                        className="removePin"
-                        id="exit"
-                        onMouseOver={() => {
-                            this.setState({
-                                removeButtonText: "click to remove pin"
-                            });
-                        }}
-                        onMouseLeave={() => {
-                            this.setState({
-                                removeButtonText: "X"
-                            });
-                        }}
-                        onClick={this.deletePin}
-                    >
-                        {this.state.removeButtonText}
-                    </div>
+                    <div className="blackVail" onClick={this.props.togglePinClick} />
+                    <p id="exit" onClick={this.props.togglePinClick}>X</p>
 
                     <div className="fieldsContainerPinClick">
                         <div className="pinTitle box">
                             <h1>
                                 <img src="/pins/bigPin.png" />
                                 <span className="addPinTitle">
-                                    {" "}
                                     {this.state.title || "clicked pin"}
                                 </span>
                             </h1>
@@ -185,32 +206,28 @@ class PinClick extends React.Component {
                                                 />
                                             )) || (
                                                 <div className="cameraIconContainerPinClick">
-                                                    <img
+                                                    {/*<img
                                                         src="/pins/camera.png"
                                                         className="cameraIcon"
-                                                    />
+                                                    />*/}
                                                 </div>
                                             )}
                                         </label>
                                     </div>
                                 )||(
-                                    <div className="galleryItemsContainer">
-                                        <img src={this.state.url || "/user.png"} className="existingPhoto"/>
+                                    <div className="galleryItemsContainer" style={{backgroundImage:"url(/pins/greyPin.png)"}}>
                                     </div>
                                 )
                             }
                             </div>
                         </div>
-                        <div className="thirdRowPinClick ">
-                            <div className="boxPinClick">
-                                {/*<div className="ratingStars">
-                                    *****
-                                </div>*/}
-                                {this.state.editMode&&(
-                                <div className="colPinClick">
-
+                        {/* *******************THIRD ROW**********************/}
+                        {this.state.editMode&&(
+                        <div className="thirdRowPinClick">
+                            <div className="colPinClick">
+                                <div className="textFieldsPinClick">
                                     <textarea
-                                        placeholder="Title"
+                                        placeholder={this.state.title || 'Title'}
                                         className="titleTextareaPinClick"
                                         type="text"
                                         name="title"
@@ -218,85 +235,51 @@ class PinClick extends React.Component {
                                         onChange={this.handleChange}
                                     />
                                     <textarea
-                                        placeholder="Add Description"
+                                        placeholder={this.state.description || 'Description'}
                                         className="descriptionTextareaPinClick"
                                         type="text"
                                         name="description"
                                         onChange={this.handleChange}
-                                        rows="3"
+                                        rows="1"
                                     />
                                 </div>
-                            )||
-                            (
-                                    <div className="colPinClick">
-                                        <div>
-                                            {this.state.title || 'Title'}
-                                        </div>
-                                        <div>
-                                            {this.state.description || 'Description'}
-                                        </div>
+                            </div>
+                            {shareButtons()}
+                        </div>
+                        )
+                        ||(
+                            <div className="thirdRowPinClick">
+                                <div className="colPinClick ">
+                                    <div>
+                                        {this.state.title || 'Title'}
                                     </div>
-                            )
-                        }
+                                    <div>
+                                        {this.state.description || 'Description'}
+                                    </div>
+                                </div>
+                                {shareButtons()}
                             </div>
-                            <div className="colPinClick">
-                                <a
-                                    href="https://www.facebook.com/"
-                                    className="boxPinClick"
-                                    target="blank"
-                                >
-                                    <img
-                                        src="/icons/facebook.png"
-                                        className="shareButtons"
-                                    />
-                                </a>
-                            </div>
-                        </div>
+                        )
+                    }
+
+                    {/* *************************FOURTH ROW**********************/}
+
+                    {this.state.editMode&&(
                         <div className="pinEditSaveButtonArea box">
-                            {this.state.editMode&&
-                            (<h1 className="saveButton" onClick={this.toggleEditMode}> SAVE </h1>)
-                        ||
-                            (<h1 className="saveButton" onClick={this.toggleEditMode}> edit </h1>)
-                        }
-                            <button
-                                onClick={this.props.togglePinClick}
-                                className="saveButton"
-                            >
-                                Close
-                            </button>
-                            {/*{this.props.id == this.state.userId && (*/}
-                            <button
-                                onClick={this.deletePin}
-                                className="saveButton"
-                            >
-                                Delete
-                            </button>
-                            {/*)}*/}
+                            <h1 className="saveButton" onClick={this.toggleEditMode}> SAVE </h1>
+                            <h1 className="saveButton" onClick={this.toggleEditMode}> Cancel </h1>
+                            <h1 className="saveButton" onClick={this.deletePinAlert}> Delete pin </h1>
+                            {this.state.deleteAlertIsVisible&&deleteAlert()}
                         </div>
+                    )||(
+                        <div className="pinEditSaveButtonArea box">
+                            <h1 className="saveButton" onClick={this.toggleEditMode}> EDIT </h1>
+                        </div>
+                    )
+                }
                     </div>
                 </div>
-    {/*onClick={this.insertPinInfo}*/}
-                {/*<div id="clickPinHolder">
 
-                    <div className="pinClickHolder">
-                        <h1>{this.state.title}</h1>
-                        <h3>{this.state.category}</h3>
-                        {this.state.url && (
-                            <div>
-                                <img src={this.state.url} />
-                            </div>
-                        )}
-                        {!this.state.url && (
-                            <div>
-                                <img src="/monky.gif" />
-                            </div>
-                        )}
-                        <p>{this.state.description}</p>
-                        <h6>{this.state.created_at}</h6>
-
-
-                    </div>
-                </div>*/}
             </React.Fragment>
         );
     }

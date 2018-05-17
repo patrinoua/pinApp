@@ -78,7 +78,6 @@ export default function reducer(state = { markersArray: [] }, action) {
         };
     }
     if (action.type == "GET_PIN_INFO") {
-        console.log("REDUCER:action in GET_PIN_INFO");
         state = {
             ...state,
             markersArray: [...action.pinsArray]

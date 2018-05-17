@@ -114,7 +114,7 @@ export class UserMenuPopUp extends React.Component {
                 <div
                     className="dropDownMenu"
                     onMouseLeave={(e) => {
-                        // this.props.closeUserMenu();
+                        this.props.closeUserMenu();
                         // e.stopPropagation();
                         // e.preventDefault();
                         console.log("running mouseleave");

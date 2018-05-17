@@ -171,10 +171,6 @@ class MapContainer extends React.Component {
         const style = {
             backgroundSize: "contain"
         };
-        console.log(
-            "this.state.addNewPinIsVisible",
-            this.state.addNewPinIsVisible
-        );
         // if (!this.props.lat) {
         //     return <img src="/monky.gif" />;
         // }
@@ -227,36 +223,11 @@ class MapContainer extends React.Component {
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems(
-                                        "blue",
-                                        "museums",
-                                        "museums",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "green",
-                                        "Parks",
-                                        "parks",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "yellow",
-                                        "restaurants",
-                                        "restaurants",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "pink",
-                                        "bars",
-                                        "bars",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "purple",
-                                        "sightseeing",
-                                        "sightseeing",
-                                        this.checkValue
-                                    )}
+                                    {categoryItems( "blue", "museums", "museums", this.checkValue)}
+                                    {categoryItems( "green", "Parks", "parks", this.checkValue)}
+                                    {categoryItems( "yellow", "restaurants", "restaurants", this.checkValue)}
+                                    {categoryItems( "pink", "bars", "bars", this.checkValue)}
+                                    {categoryItems( "purple", "sightseeing", "sightseeing", this.checkValue)}
                                 </form>
 
                                 <button onClick={this.watchMyLocation}>
@@ -286,15 +257,8 @@ class MapContainer extends React.Component {
                                     {this.state.myLat && (
                                         <Marker
                                             icon={{
-                                                url: "/dot.png",
-                                                anchor: new google.maps.Point(
-                                                    0,
-                                                    0
-                                                ),
-                                                scaledSize: new google.maps.Size(
-                                                    10,
-                                                    10
-                                                )
+                                                url: "/dot.png", anchor: new google.maps.Point( 0, 0 ),
+                                                scaledSize: new google.maps.Size( 10, 10 )
                                             }}
                                         />
                                     )}
@@ -311,14 +275,8 @@ class MapContainer extends React.Component {
                                                     }}
                                                     icon={{
                                                         url: item.color,
-                                                        anchor: new google.maps.Point(
-                                                            0,
-                                                            0
-                                                        ),
-                                                        scaledSize: new google.maps.Size(
-                                                            25,
-                                                            35
-                                                        )
+                                                        anchor: new google.maps.Point( 0, 0 ),
+                                                        scaledSize: new google.maps.Size( 25, 35 )
                                                     }}
                                                 />
                                             );
