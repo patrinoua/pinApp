@@ -149,7 +149,6 @@ exports.getFriends = (id) => {
 // *********** PART 7 : List Friends ***********
 
 exports.getFriendsAndWannabes = (id) => {
-    console.log("inside get friends and wannabes..");
     return db.query(
         `
         SELECT users.id, status, first, last, profilepic

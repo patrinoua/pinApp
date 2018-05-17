@@ -33,7 +33,6 @@ class App extends React.Component {
             toggleUploader: !this.state.toggleUploader
         });
     }
-
     // showUploader() {
     //     this.setState({
     //         uploaderIsVisible: true
@@ -137,8 +136,7 @@ class App extends React.Component {
 
                         {/*<Route exact path="/chat" component={Chat} />*/}
 
-                        <Route
-                            path="/"
+                        <Route exact path="/map"
                             render={() => (
                                 <MapContainer
                                     lat={this.state.lat}

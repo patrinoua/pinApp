@@ -291,6 +291,8 @@ class MapContainer extends React.Component {
                         lat={this.state.lat}
                         lng={this.state.lng}
                         closeAddNewPinComponent={this.closeAddNewPinComponent}
+                        pinId={this.state.clickedPinId}
+                        
                     />
                 )}
                 {this.state.addMyPinLocationVisible && (
@@ -298,6 +300,8 @@ class MapContainer extends React.Component {
                         lat={this.props.lat}
                         lng={this.props.lng}
                         closeAddNewPinComponent={this.closeAddNewPinComponent}
+                        pinId={this.state.clickedPinId}
+
                     />
                 )}
             </React.Fragment>
