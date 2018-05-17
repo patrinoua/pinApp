@@ -359,6 +359,21 @@ app.post("/deletePin", (req, res) => {
             console.log(`error in pic deletePinDb: ${err}`);
         });
 });
+app.post("/updatePinInfo", (req, res) => {
+    console.log(req.body);
+    db
+        .updateThePin(req.body.pinId, req.body.description, req.body.title)
+        .then((result) => {
+            console.log(result.rows[0]);
+            req.session.markerId = result.rows[0].id;
+            res.json({
+                marker: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in updatePinInfo: ${err}`);
+        });
+});
 app.post("/insertNewPin", (req, res) => {
     db
         .insertNewPin(

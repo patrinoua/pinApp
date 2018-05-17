@@ -242,3 +242,9 @@ exports.nameOfUser = (name) => {
 exports.deletePinDb = (pinId) => {
     return db.query(`DELETE FROM pins WHERE id=$1 RETURNING *`, [pinId]);
 };
+exports.updateThePin = (pinId, description, title) => {
+    return db.query(
+        `UPDATE pins SET description = $2, title=$3 WHERE id = $1 RETURNING *`,
+        [pinId, description, title]
+    );
+};

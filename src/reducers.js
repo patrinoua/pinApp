@@ -104,6 +104,24 @@ export default function reducer(state = { markersArray: [] }, action) {
             })
         };
     }
+    if (action.type == "UPDATE_PIN") {
+        console.log("in the reducer", action.pinInfo);
+        state = {
+            ...state,
+            markersArray: state.markersArray.map((marker) => {
+                if (marker.id == action.pinInfo.id) {
+                    return {
+                        ...marker,
+                        title: action.pinInfo.title,
+                        description: action.pinInfo.description,
+                        url: action.pinInfo.url
+                    };
+                } else {
+                    return marker;
+                }
+            })
+        };
+    }
     if (action.type == "SAVE_USER_INFO") {
         state = {
             ...state,
