@@ -41,13 +41,13 @@ class ListOfLocations extends React.Component {
                                         <div className="flexHolder">
                                             <h2>{item.title}</h2>
                                         </div>
-                                        <div className="flexHolder">
+                                        <div className="flexHolder categoryHolder">
                                             <h3>{item.category}</h3>
                                         </div>
                                         <span className="descHolder">
                                             <p>{item.description}</p>
                                         </span>
-                                        <div className="flexHolder">
+                                        <div className="flexHolder dateHolder">
                                             <span>{item.created_at}</span>
                                         </div>
                                     </div>

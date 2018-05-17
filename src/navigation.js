@@ -35,14 +35,27 @@ export class Navigation extends React.Component {
         return (
             <div className="navigationContainer">
                 <div className="navigationIconBar">
-                    <Link to="/map"> <img className="logoIconMenu" src="/pinAppLogo.png"/> </Link>
+                    <Link to="/map">
+                        {" "}
+                        <img
+                            className="logoIconMenu"
+                            src="/pinAppLogo.png"
+                        />{" "}
+                    </Link>
                     <div className="navigationBarRight">
-                        <Link to="/map"> <img src="/icons/mapWithPin.png" className="navigationIcon" /> </Link>
+                        <Link to="/map">
+                            {" "}
+                            <img
+                                src="/icons/mapWithPin.png"
+                                className="navigationIcon"
+                            />{" "}
+                        </Link>
                         <Link to="/editProfile"> </Link>
                         <div className="navigationIconProfilepicCircle">
-                            <img src={pic} className="navigationIconProfilepic"
+                            <img
+                                src={pic}
+                                className="navigationIconProfilepic"
                                 onClick={this.toggleUserMenu}
-
                             />
                         </div>
                         {this.state.userMenuIsVisible && (
@@ -93,12 +106,12 @@ export class UserMenuPopUp extends React.Component {
                 <div
                     className="dropDownMenu"
                     id="anim"
-                    onMouseLeave={()=>{
+                    onMouseLeave={() => {
                         this.props.closeUserMenu();
                     }}
                 >
                     <Link to="/profile" className="dropDownMenuItem">
-                    Profile
+                        Profile
                     </Link>
                     <Link to="/friends" className="dropDownMenuItem">
                         Friends
