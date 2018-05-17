@@ -1081,18 +1081,21 @@ button:hover {
 .theNamesToShowInSearch {
     width: 100%;
     text-decoration: none;
-    color: rgb(249, 242, 224);
+    color: rgb(71, 170, 188);
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 #searchUsersBox>textarea {
     color: #666;
     border-radius: 8px;
     margin: 2px;
-    width: 80%;
+    max-width: 6vw;
     border: #999 1px solid;
     overflow: auto;
     resize: none;
+    height: 2vh;
     /* position: absolute; */
     z-index: 1;
 }

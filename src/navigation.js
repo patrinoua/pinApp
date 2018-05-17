@@ -42,7 +42,7 @@ export class Navigation extends React.Component {
                             src="/pinAppLogo.png"
                         />{" "}
                     </Link>
-                    <NamesToShow id={this.props.id} />
+
                     <div className="navigationBarRight">
                         <Link to="/map">
                             {" "}
@@ -114,7 +114,7 @@ export class UserMenuPopUp extends React.Component {
                 <div
                     className="dropDownMenu"
                     onMouseLeave={(e) => {
-                        // this.props.closeUserMenu();
+                        this.props.closeUserMenu();
                         // e.stopPropagation();
                         // e.preventDefault();
                         console.log("running mouseleave");
@@ -128,15 +128,12 @@ export class UserMenuPopUp extends React.Component {
                         {" "}
                         Profile{" "}
                     </Link>
-                    {/* <div className="dropDownMenuItem"> Friends </div> */}
+
                     <a href="/logout" className="dropDownMenuItem">
                         {" "}
                         Logout{" "}
                     </a>
                     <NamesToShow id={this.props.id} />
-                    {/* <button className="subtleButton" onClick={this.closePopUp}>
-                        Cancel!{" "}
-                    </button> */}
                 </div>
             </React.Fragment>
         );

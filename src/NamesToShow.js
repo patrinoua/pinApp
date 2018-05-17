@@ -43,7 +43,7 @@ export class NamesToShow extends React.Component {
         return (
             <React.Fragment>
                 <p id="searchUsers" onClick={this.search}>
-                    Search users
+                    Search
                 </p>
                 {this.state.showTextArea && (
                     <div id="searchUsersBox">
