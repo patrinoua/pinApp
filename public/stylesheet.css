@@ -98,7 +98,6 @@ body {
 }
 .navigationIconBar a {
     cursor: pointer;
-    font-weight: 900;
     text-decoration: none;
     display: flex;
     align-content: center;
@@ -134,7 +133,9 @@ body {
     height: 43px;
     width: 43px;
 }
-
+.navigationIconProfilepic:hover{
+    cursor: pointer;
+}
 .logoIconMenu {
     margin: 10px;
     max-height: 9vh;
@@ -171,21 +172,19 @@ body {
     /* background-color: grey; */
 }
 
-.mapContainerUp {
-    /* width: 100%; */
+/* .mapContainerUp {
     height: 10%;
-    /* background-color: purple; */
     display: flex;
     justify-content: center;
     align-items: flex-end;
     position: relative;
-}
+} */
 
 .mapContainerDown {
     width: 100%;
     /* background-color: orange; */
     height: 88vh;
-    margin: 10px 10px;
+    /* margin: 10px 10px; */
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
@@ -247,11 +246,34 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin: 0 5vw;
     position: relative;
     /* background-color: green; */
 }
+.mapContainerRightUP{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
+}
+.mapContainerRightDOWN{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    /* background-color: black; */
+    min-height: 50vh;
+    min-width: 50vw;
+}
+{/*.mapAreaContainer{
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    background-color: green;
+}*/}
 .mapArea {
     /* backgroun d-image: url('/map.png'); */
     background-size: contain;
@@ -270,11 +292,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* justify-content: center; */
     padding: 20px;
     position: relative;
     width: 100vw;
     height: 90vh;
-    justify-content: center;
 }
 .mapContainerUser {
     width: 100%;
@@ -426,12 +448,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: -1px 1px 20px 9px rgba(137, 150, 208,.2);
 }
 .profileInputField {
     display: grid;
-    grid-template-columns: 100px 200px;
+    grid-template-columns: 200px 200px;
     justify-items: start;
     padding: 3px;
+    /* border: 1px solid grey; */
 }
 .inputPropertyName {
     padding: 3px;
@@ -550,7 +574,8 @@ body {
 .theNamesToShowInSearch {
     /* width: 100%; */
     text-decoration: none;
-    /* color: rgb(71, 170, 188); */
+    font-weight: 400;
+    color: rgb(71, 170, 188);
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -576,6 +601,7 @@ body {
 #searchUsers {
     color: black;
     z-index: 1;
+    font-weight: 900;
 }
 
 /* ******************** droping pin component ******************** */
@@ -643,8 +669,12 @@ body {
 .dropDownMenuItem {
     color: #2a2a2a;
     padding: 5px;
+    font-weight: 900;
 }
-
+.dropDownMenuItem:hover{
+    color: #51B3C4;
+    cursor: pointer;
+}
 /* ************ animation ************ */
 
 /* @keyframes dropDownMenu {
@@ -668,9 +698,6 @@ body {
 } */
 
 /************ BUTTONS ***************/
-/************ BUTTONS ***************/
-/************ BUTTONS ***************/
-/************ BUTTONS ***************/
 
 .inputButton {
     width: 162px;
@@ -681,9 +708,10 @@ button {
     display: block;
     color: #929A9F;
     font-size: 1.1em;
-    border: 2px solid #f6f6f6;
+    /* border: 2px solid #f6f6f6; */
     border-radius: 20px;
     margin: 10px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     /* font-family: "Cutive Mono", monospace; */
 }
 

@@ -1,10 +1,15 @@
 
 /********** FRIENDS COMPONENT  **************/
 .friendsComponent {
-    width: 90vw;
+    padding: 6vh;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .pendingFriends {
+    min-height: 30vh;
     height: 60%;
     display: flex;
     flex-direction: column;
@@ -14,6 +19,7 @@
     height: 60%;
 }
 .pendingFriendsList {
+
     margin: 20px;
     display: flex;
     flex-direction: column;

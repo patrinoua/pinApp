@@ -42,9 +42,15 @@ export class NamesToShow extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <p id="searchUsers" onClick={this.search}>
+                <div  className="dropDownMenuItem" onClick={this.search}>
                     Search
-                </p>
+                    <img src="search.png"
+                    style={{
+                        width:"16px",
+                        paddingLeft:"4px",
+                        transform:"translateY(3px)"
+                    }}/>
+                </div>
                 {this.state.showTextArea && (
                     <div id="searchUsersBox">
                         <textarea
