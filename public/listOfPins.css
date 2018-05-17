@@ -1,4 +1,3 @@
-
 #ListOfLocationsHolder {
     position: absolute;
     top: 9.3vh;
@@ -18,6 +17,8 @@
     border-radius: 30px;
     background-color: rgb(249, 242, 224);
     padding: 1vw;
+    /* border: 1vw solid rgb(71, 170, 188); */
+    color: black;
 }
 
 #listClose {
@@ -48,6 +49,8 @@
 #titleOfTheLocation {
     height: 5vh;
     font-size: 2vw;
+    /* border: 0px; */
+    border-bottom: 3px solid black;
 }
 
 .eachPin {
@@ -57,14 +60,39 @@
     grid-template-columns: 1fr 2fr 2fr 4fr 3fr;
     grid-column-gap: 0.5vw;
     margin-bottom: 1vw;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .descHolder {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    overflow: hidden;
+    overflow: scroll;
+    /* border: 1px solid black; */
+    /* padding: 3px; */
+    padding-left: 60px;
+    /* text-align: justify; */
+}
+
+.descHolder>p {
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap; */
+    /* text-align: left; */
+    height: 60%;
+    width: 80%;
+}
+
+.categoryHolder {
+    /* border-radius: 50%;
+    background-color: rgb(71, 170, 188); */
+}
+
+.dateHolder {
+    /* display: flex;
+    justify-content: center;
+    align-items: flex-end; */
 }
 
 /* .listImgHolder {

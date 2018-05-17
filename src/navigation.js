@@ -125,7 +125,7 @@ export class UserMenuPopUp extends React.Component {
                         {" "}
                         Friends{" "}
                     </Link>
-                    <Link to="/" className="dropDownMenuItem">
+                    <Link to="/profile" className="dropDownMenuItem">
                         {" "}
                         Profile{" "}
                     </Link>
