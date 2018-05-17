@@ -8,12 +8,13 @@ import { Logo, Login } from "./welcome";
 export class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { editorIsVisible: false };
         this.pic = this.props.profilepic;
         this.bio = this.props.bio;
         this.toggleEditor = this.toggleEditor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.saveNewInputValue = this.saveNewInputValue.bind(this);
+        this.setFile = this.setFile.bind(this);
     }
 
     toggleEditor() {
@@ -57,8 +58,27 @@ export class ProfilePage extends React.Component {
                 console.log("PROBLEM :(", err);
             });
     }
+    setFile(e) {
+        this.file = e.target.files[0];
+        var formData = new FormData();
+
+        formData.append("file", this.file);
+        axios
+            .post("/updateProfilepic", formData)
+            .then((response) => {
+                if (response.data.success) {
+                    console.log(response.data.profilepic);
+                    this.props.changeImage(response.data.profilepic);
+                    // this.props.changeImage(response.data.profilepic);
+                }
+            })
+            .catch((err) => {
+                console.log(`error in updateProfilepic ${err}`);
+            });
+    }
+    // this.state.profilepic ||
     render() {
-        let pic = this.state.profilepic || this.props.profilepic || "/neo.png";
+        let pic = this.props.profilepic || "/neo.png";
         let bio = this.props.bio || "Tell us something about urself!";
 
         const style = {
@@ -101,11 +121,21 @@ export class ProfilePage extends React.Component {
                             <div className="profilePicCircle" style={style}>
                                 {/*<img src={pic} />*/}
                             </div>
-                            <img
-                                src="/editWhite.png"
-                                className="icons editIcon"
-                                onClick={this.props.toggleUploader}
+                            <input
+                                id="inputfile"
+                                className="profileHiddenInput"
+                                type="file"
+                                name="file"
+                                onChange={this.setFile}
+                                data-multiple-caption="{count} files selected"
+                                multiple
                             />
+                            <label htmlFor="inputfile">
+                                <img
+                                    src="/editWhite.png"
+                                    className="icons editIcon"
+                                />
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -192,66 +222,4 @@ export class ProfilePage extends React.Component {
             </div>
         );
     }
-}
-
-export function ProfilePic(props) {
-    let pic = props.profilepic;
-    function toggleUploader() {
-        props.toggleUploader();
-    }
-    if (!pic) {
-        pic = "/neo.png";
-    }
-    return <img src={pic} className="userImage" onClick={toggleUploader} />;
-}
-
-export function UploadProfilePic(props) {
-    console.log("props in upload Profile pic", props);
-    let pic = props.profilepic;
-    let file;
-
-    function getFile(e) {
-        file = e.target.files[0];
-    }
-
-    function upload() {
-        var formData = new FormData();
-        var app = this;
-        formData.append("file", file);
-        axios.post("/updateProfilepic", formData).then((response) => {
-            console.log("response: ", response);
-            if (response.data.success) {
-                props.changeImage(response.data.profilepic);
-                console.log("response.data :D", response.data);
-                props.toggleUploader();
-            }
-        });
-    }
-    function closePopUp() {
-        props.hideUploader();
-        props.toggleUploader();
-    }
-    if (!pic) {
-        pic = "/neo.png";
-    }
-    return (
-        <div className="uploader">
-            <div className="centerText"> Change profile picture </div>
-            <input type="file" className="inputButton " onChange={getFile} />
-            <div className="profileInfoButtons">
-                <button type="button" className="subtleButton" onClick={upload}>
-                    {" "}
-                    Upload{" "}
-                </button>
-                <button
-                    type="button"
-                    className="subtleButton"
-                    onClick={closePopUp}
-                >
-                    {" "}
-                    Cancel{" "}
-                </button>
-            </div>
-        </div>
-    );
 }

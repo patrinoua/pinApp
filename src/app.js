@@ -29,7 +29,6 @@ class App extends React.Component {
     }
 
     toggleUploader() {
-        console.log("toggle uploader!");
         this.setState({
             toggleUploader: !this.state.toggleUploader
         });
@@ -41,9 +40,9 @@ class App extends React.Component {
     //     });
     // }
     changeImage(img) {
+        console.log(img);
         this.setState({
-            profilepic: img,
-            uploaderIsVisible: false
+            profilepic: img
         });
     }
 
@@ -109,22 +108,11 @@ class App extends React.Component {
                                     makeUploaderVisible={this.showUploader}
                                     hideUploader={this.hideUploader}
                                     changeInputValues={this.changeInputValues}
+                                    changeImage={this.changeImage}
                                 />
                             )}
                         />
-                        <Route
-                            exact
-                            path="/user"
-                            render={() => (
-                                <ProfilePage
-                                    {...this.state}
-                                    toggleUploader={this.toggleUploader}
-                                    makeUploaderVisible={this.showUploader}
-                                    hideUploader={this.hideUploader}
-                                    changeInputValues={this.changeInputValues}
-                                />
-                            )}
-                        />
+
                         <Route path="/friends" component={Friends} />
 
                         <Route
@@ -164,9 +152,9 @@ class App extends React.Component {
                 {/*<UserMenu />*/}
                 {this.state.toggleUploader && (
                     <UploadProfilePic
-                    changeImage={this.changeImage}
-                    hideUploader={this.hideUploader}
-                    toggleUploader={this.toggleUploader}
+                        changeImage={this.changeImage}
+                        hideUploader={this.hideUploader}
+                        toggleUploader={this.toggleUploader}
                     />
                 )}
                 {/*{this.state.toggleUserMenu &&

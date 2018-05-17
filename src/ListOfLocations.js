@@ -16,6 +16,13 @@ class ListOfLocations extends React.Component {
                 </p>
                 <div id="ListOfLocationsHolder">
                     <div id="listSmallHolder">
+                        <div className="eachPin" id="titleOfTheLocation">
+                            <span />
+                            <span>Title</span>
+                            <span>Category</span>
+                            <span>Description</span>
+                            <span>Time & Date</span>
+                        </div>
                         {this.props.markersArray &&
                             this.props.markersArray.map((item) => {
                                 return (
@@ -25,16 +32,24 @@ class ListOfLocations extends React.Component {
                                                 src={item.url || "/user.png"}
                                             />
                                         </div> */}
-                                        <img
-                                            src={item.color}
-                                            className="thePinImg"
-                                        />
-                                        <h2>{item.title}</h2>
-                                        <h3>{item.category}</h3>
+                                        <div className="flexHolder">
+                                            <img
+                                                src={item.color}
+                                                className="thePinImg"
+                                            />
+                                        </div>
+                                        <div className="flexHolder">
+                                            <h2>{item.title}</h2>
+                                        </div>
+                                        <div className="flexHolder">
+                                            <h3>{item.category}</h3>
+                                        </div>
                                         <span className="descHolder">
                                             <p>{item.description}</p>
                                         </span>
-                                        <span>{item.created_at}</span>
+                                        <div className="flexHolder">
+                                            <span>{item.created_at}</span>
+                                        </div>
                                     </div>
                                 );
                             })}

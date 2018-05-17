@@ -42,7 +42,7 @@ export class Navigation extends React.Component {
                             src="/pinAppLogo.png"
                         />{" "}
                     </Link>
-                    <NamesToShow id={this.props.id} />
+
                     <div className="navigationBarRight">
                         <Link to="/map">
                             {" "}
@@ -68,7 +68,6 @@ export class Navigation extends React.Component {
                                 userMenuIsVisible={this.state.userMenuIsVisible}
                             />
                         )}
-                        {/*<ProfilePic {...props} />*/}
                         {/*<ProfilePage {...props} />*/}
                         {/*<Link to="/user"> Hello {props.first}</Link>*/}
                         {/*<Link to="/onlineUsers"> Online </Link>*/}
@@ -91,9 +90,13 @@ export class UserMenuPopUp extends React.Component {
     closePopUp() {
         this.props.closeUserMenu();
     }
-
+    // componentWillUnmount() {
+    //     document.getElementById("overley").style.animation =
+    //         "dropDownMenuOut 0.5s";
+    //     console.log(document.getElementById("overley"));
+    // }
     render() {
-        document.addEventListener("keydown", (e) => {
+        document.addEventListener("anim", (e) => {
             if (e.keyCode == 27) {
                 this.props.closeUserMenu();
             }
@@ -113,11 +116,9 @@ export class UserMenuPopUp extends React.Component {
                 />
                 <div
                     className="dropDownMenu"
+                    id="anim"
                     onMouseLeave={(e) => {
                         this.props.closeUserMenu();
-                        // e.stopPropagation();
-                        // e.preventDefault();
-                        console.log("running mouseleave");
                     }}
                 >
                     <Link to="/friends" className="dropDownMenuItem">
@@ -128,15 +129,12 @@ export class UserMenuPopUp extends React.Component {
                         {" "}
                         Profile{" "}
                     </Link>
-                    {/* <div className="dropDownMenuItem"> Friends </div> */}
+
                     <a href="/logout" className="dropDownMenuItem">
                         {" "}
                         Logout{" "}
                     </a>
                     <NamesToShow id={this.props.id} />
-                    {/* <button className="subtleButton" onClick={this.closePopUp}>
-                        Cancel!{" "}
-                    </button> */}
                 </div>
             </React.Fragment>
         );

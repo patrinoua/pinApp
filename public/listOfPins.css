@@ -43,19 +43,31 @@
     height: 7vh;
 }
 
+.flexHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#titleOfTheLocation {
+    height: 5vh;
+    font-size: 2vw;
+}
+
 .eachPin {
     width: 100%;
     height: 15vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 4fr 3fr;
+    grid-column-gap: 0.5vw;
     margin-bottom: 1vw;
     border: 1px solid black;
 }
 
 .descHolder {
-    width: 15vw;
-    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
