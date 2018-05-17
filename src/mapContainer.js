@@ -262,17 +262,29 @@ class MapContainer extends React.Component {
                                 <button onClick={this.showListComponent}>
                                     list my locations
                                 </button>
+                                <button
+                                    onClick={() => {
+                                        console.log("bbbbb");
+                                        this.forceUpdate();
+                                    }}
+                                >
+                                    center
+                                </button>
                             </div>
                         </div>
                         <div className="mapContainerRight">
                             <div className="mapArea">
                                 <Map
                                     style={style}
-                                    initialCenter={{
-                                        // lat: this.props.lat,
-                                        // lng: this.props.lng
-                                        lat: 52.4918854,
-                                        lng: 13.360088699999999
+                                    // initialCenter={{
+                                    //     lat: this.props.lat,
+                                    //     lng: this.props.lng
+                                    //     // lat: 52.4918854,
+                                    //     // lng: 13.360088699999999
+                                    // }}
+                                    center={{
+                                        lat: this.props.lat,
+                                        lng: this.props.lng
                                     }}
                                     zoom={14}
                                     google={this.props.google}
