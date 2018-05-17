@@ -30,6 +30,8 @@
 
 //ADD USERS: (exports.saveUser)
 
+psql mapappdb
+
 DROP TABLE users CASCADE;
 DROP TABLE friendships;
 DROP TABLE pins CASCADE;

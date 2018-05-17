@@ -100,7 +100,7 @@ class App extends React.Component {
 
                         <Route
                             exact
-                            path="/"
+                            path="/profile"
                             render={() => (
                                 <ProfilePage
                                     {...this.state}
@@ -138,7 +138,7 @@ class App extends React.Component {
                         {/*<Route exact path="/chat" component={Chat} />*/}
 
                         <Route
-                            path="/map"
+                            path="/"
                             render={() => (
                                 <MapContainer
                                     lat={this.state.lat}

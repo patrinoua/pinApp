@@ -54,7 +54,7 @@ export class Register extends React.Component {
             .then((response) => {
                 if (response.data.success) {
                     // console.log('registered (in welcome.js)');
-                    location.replace("/user");
+                    location.replace("/map");
                 } else {
                     // console.log('response.data in register error ',response.data.errorMsg);
                     this.setState({
@@ -96,12 +96,14 @@ export class Register extends React.Component {
                     onChange={this.handleChange}
                     placeholder="password"
                 />
-
-                <button onClick={this.submit}> Submit </button>
-                <span className="simpleSpan">
-                    {" "}
-                    <Link to="/login">LOG IN</Link>{" "}
-                </span>
+                <div className="inARow">
+                    <button onClick={this.submit}> Submit </button>
+                    <Link to="/login">
+                        <button>
+                        Log in
+                        </button>
+                    </Link>
+                </div>
             </div>
         );
     }
@@ -126,7 +128,7 @@ export class Login extends React.Component {
             .then((response) => {
                 if (response.data.success) {
                     // console.log("response.data from login jfghdsgajf",response.data.user);
-                    location.replace("/user");
+                    location.replace("/map");
                 } else {
                     // console.log("response.data.success from else:",response.data);
                     this.setState({
@@ -154,11 +156,14 @@ export class Login extends React.Component {
                     onChange={this.handleChange}
                     placeholder="password"
                 />
-                <button onClick={this.submit}> Submit </button>
-                <span>
-                    {" "}
-                    <Link to="/">REGISTER</Link>
-                </span>
+                <div className="inARow">
+                    <button onClick={this.submit}> Submit </button>
+                    <Link to="/">
+                        <button>
+                        Register
+                        </button>
+                    </Link>
+                </div>
             </div>
         );
     }

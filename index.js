@@ -171,7 +171,9 @@ app.post("/register", function(req, res) {
 
 app.post("/login", function(req, res) {
     if (req.session.user) {
-        res.redirect("/");
+        console.log('problem in login');
+        res.sendStatus(500);
+        return
     }
 
     if (req.body.email && req.body.password) {
@@ -187,6 +189,7 @@ app.post("/login", function(req, res) {
                     sex: userInfo.rows[0].sex,
                     isLoggedIn: true
                 };
+
                 db
                     .checkPassword(req.body.password, userInfo.rows[0].pass)
                     .then((doesMatch) => {
@@ -196,30 +199,29 @@ app.post("/login", function(req, res) {
                                 user: req.session.user
                             });
                         } else {
-                            res.redirect(
-                                "/wrongLogin?errMsg=passwords don't match"
-                            );
+                            res.json({
+                                success: false,
+                                errorMsg: "passwords don't match"
+                            });
                         }
                     })
                     .catch((err) => {
                         console.log("error when checking passwords", err);
                     });
             } else {
-                res.redirect("/wrongLogin?errMsg=user not found");
+                res.json({
+                    success: false,
+                    errorMsg: 'user not found"'
+                });
             }
         });
     } else {
-        res.redirect("/wrongLogin?errMsg=user must fill out everything");
+        res.json({
+            success: false,
+            errorMsg: "user must fill out everything"
+        });
     }
 });
-
-app.get("/wrongLogin", function(req, res) {
-    res.json({
-        success: false,
-        errorMsg: req.query.errMsg
-    });
-});
-app.post("/wrongLogin", function(req, res) {});
 
 app.post("/updateUserInfo/", function(req, res) {
     let first = req.body.first || req.session.user.first;
@@ -487,7 +489,7 @@ app.get("/logout", function(req, res) {
 
 app.get("*", function(req, res) {
     if (req.url == "/welcome" && req.session.user) {
-        res.redirect("/");
+        res.redirect("/map");
         return;
     }
     if (!req.session.user) {
