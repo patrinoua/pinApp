@@ -31,7 +31,7 @@ export class Navigation extends React.Component {
         });
     }
     render() {
-        let pic = this.props.profilepic || "/neo.png";
+        let pic = this.props.profilepic || "/user.png";
         return (
             <div className="navigationContainer">
                 <div className="navigationIconBar">
@@ -78,7 +78,7 @@ export class UserMenuPopUp extends React.Component {
             }
         });
 
-        let pic = this.props.profilepic || "/neo.png";
+        let pic = this.props.profilepic || "/user.png";
 
         return (
             <React.Fragment>

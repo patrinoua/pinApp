@@ -58,7 +58,7 @@ export class ProfilePage extends React.Component {
             });
     }
     render() {
-        let pic = this.state.profilepic || this.props.profilepic || "/neo.png";
+        let pic = this.state.profilepic || this.props.profilepic || "/user.png";
         let bio = this.props.bio || "Tell us something about urself!";
 
         const style = {
@@ -200,7 +200,7 @@ export function ProfilePic(props) {
         props.toggleUploader();
     }
     if (!pic) {
-        pic = "/neo.png";
+        pic = "/user.png";
     }
     return <img src={pic} className="userImage" onClick={toggleUploader} />;
 }
@@ -232,7 +232,7 @@ export function UploadProfilePic(props) {
         props.toggleUploader();
     }
     if (!pic) {
-        pic = "/neo.png";
+        pic = "/user.png";
     }
     return (
         <div className="uploader">
