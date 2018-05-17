@@ -504,7 +504,7 @@ app.get("/logout", function(req, res) {
 
 app.get("*", function(req, res) {
     if (req.url == "/welcome" && req.session.user) {
-        res.redirect("/map");
+        res.redirect("/");
         return;
     }
     if (!req.session.user) {

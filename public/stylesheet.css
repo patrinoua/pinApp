@@ -10,7 +10,8 @@ main {
     width: 100vw;
     height: 100vh;
     /* background-color: #FAF4E4; */
-    color: #5DA6AE;
+    color: #2a2a2a;
+    /* color: #5DA6AE; */
 }
 body {
     /* font: 14px "Helvetica"; */
