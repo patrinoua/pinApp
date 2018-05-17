@@ -139,7 +139,7 @@ class OtherProfilePage extends React.Component {
                                 <img src={this.state.user.profilepic} />
                             )}
                             {!this.state.user.profilepic && (
-                                <img src={"/neo.png"} />
+                                <img src={"/user.png"} />
                             )}
                         </div>
                         <div className="nameAndBioContainerUser">
