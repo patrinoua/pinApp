@@ -95,13 +95,12 @@ export class Register extends React.Component {
                     name="password"
                     onChange={this.handleChange}
                     placeholder="password"
+                    type="password"
                 />
                 <div className="inARow">
                     <button onClick={this.submit}> Submit </button>
                     <Link to="/login">
-                        <button>
-                        Log in
-                        </button>
+                        <button>Log in</button>
                     </Link>
                 </div>
             </div>
@@ -155,13 +154,12 @@ export class Login extends React.Component {
                     name="password"
                     onChange={this.handleChange}
                     placeholder="password"
+                    type="password"
                 />
                 <div className="inARow">
                     <button onClick={this.submit}> Submit </button>
                     <Link to="/">
-                        <button>
-                        Register
-                        </button>
+                        <button>Register</button>
                     </Link>
                 </div>
             </div>

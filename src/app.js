@@ -65,12 +65,12 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // navigator.geolocation.getCurrentPosition((position) => {
-        //     this.setState({
-        //         lat: position.coords.latitude,
-        //         lng: position.coords.longitude
-        //     });
-        // });
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            });
+        });
         axios.get("/getUser").then((response) => {
             if (response.data.success) {
                 this.props.dispatch(saveUserInfo(response.data.user));
@@ -136,16 +136,20 @@ class App extends React.Component {
 
                         {/*<Route exact path="/chat" component={Chat} />*/}
 
-                        <Route exact path="/"
+                        <Route
+                            exact
+                            path="/"
                             render={() => (
                                 <MapContainer
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
+                                    // lat={this.state.lat}
+                                    // lng={this.state.lng}
                                     {...this.state}
                                 />
                             )}
                         />
-                        <Route exact path="/map"
+                        <Route
+                            exact
+                            path="/map"
                             render={() => (
                                 <MapContainer
                                     lat={this.state.lat}

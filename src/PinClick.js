@@ -174,7 +174,6 @@ class PinClick extends React.Component {
                             this.setState({
                                 deleteAlertIsVisible: false
                             });
-                            console.log("lala");
                         }}
                     >
                         {" "}
@@ -194,8 +193,24 @@ class PinClick extends React.Component {
         } else {
             imageUrl = "/pins/greyPin.png";
         }
-
-        console.log(currentPinInfo);
+        const edit = () => {
+            if (this.state.userId == this.props.id) {
+                return (
+                    <div className="pinEditSaveButtonArea box">
+                        <h1
+                            className="saveButton"
+                            onClick={this.toggleEditMode}
+                        >
+                            {" "}
+                            EDIT{" "}
+                        </h1>
+                    </div>
+                );
+            } else {
+                return <div />;
+            }
+        };
+        console.log("this.props", this.props);
         return (
             <React.Fragment>
                 <div className="pinClickContainer">
@@ -305,27 +320,35 @@ class PinClick extends React.Component {
                                 {shareButtons()}
                             </div>
                         )}
-
-                        {/* *************************FOURTH ROW**********************/}
-
-                        {(this.state.editMode && (
+                        {/* *************************FOURTH ROW********************* */}
+                        {this.state.editMode && (
                             <div className="pinEditSaveButtonArea box">
-                                <h1 className="saveButton" onClick={this.insertPinInfo} > SAVE </h1>
-                                <h1 className="saveButton" onClick={this.toggleEditMode} >  Cancel  </h1>
-                                <h1 className="saveButton" onClick={this.deletePinAlert}>  Delete pin  </h1>
-                                {this.state.deleteAlertIsVisible && deleteAlert()}
-                            </div>
-                        )) || (
-                            <div className="pinEditSaveButtonArea box">
+                                <h1
+                                    className="saveButton"
+                                    onClick={this.insertPinInfo}
+                                >
+                                    {" "}
+                                    SAVE{" "}
+                                </h1>
                                 <h1
                                     className="saveButton"
                                     onClick={this.toggleEditMode}
                                 >
                                     {" "}
-                                    EDIT{" "}
+                                    Cancel{" "}
                                 </h1>
+                                <h1
+                                    className="saveButton"
+                                    onClick={this.deletePinAlert}
+                                >
+                                    {" "}
+                                    Delete pin{" "}
+                                </h1>
+                                {this.state.deleteAlertIsVisible &&
+                                    deleteAlert()}
                             </div>
-                        )}
+                        )}{" "}
+                        {!this.state.editMode && edit()}
                     </div>
                 </div>
             </React.Fragment>

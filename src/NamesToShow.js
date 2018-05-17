@@ -77,6 +77,7 @@ function ListOfNames(props) {
     return (
         <div className="searchUsers">
             {props.names.map((item) => {
+                console.log(item.id);
                 if (item.id == props.id) {
                     return (
                         <Link

@@ -250,6 +250,14 @@ class MapContainer extends React.Component {
                                 <button onClick={this.showListComponent}>
                                     list my locations
                                 </button>
+                                <button
+                                    onClick={() => {
+                                        console.log("bbbbb");
+                                        this.forceUpdate();
+                                    }}
+                                >
+                                    center
+                                </button>
                             </div>
                         </div>
                         <div className="mapContainerRight">
