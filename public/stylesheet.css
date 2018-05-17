@@ -70,18 +70,19 @@ body {
 /************NAVIGATION*****************/
 .navigationContainer {
     width: 100%;
-    height: 10vh;
+    min-height: 10vh;
     /* padding: 20px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
     /* background-color: #51B3C4; */
+    background-color: #0e0d0d;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
     position: relative;
     z-index: 8;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 .navigationIconBar {
     /* padding: 20px; */
@@ -90,7 +91,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: lightgrey;
     position: fixed;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
@@ -110,7 +110,7 @@ body {
 }
 
 .navigationIcon {
-    height: 57px;
+    height: 53px;
     margin-top: 2px;
     margin-right: 5px;
 }
@@ -272,12 +272,12 @@ body {
     align-items: center;
     padding: 20px;
     position: relative;
-    width: 90%;
-    height: 90%;
+    width: 100vw;
+    height: 90vh;
     justify-content: center;
 }
 .mapContainerUser {
-    width: 95%;
+    width: 100%;
     height: 58%;
     margin: 10px 10px;
     display: flex;
@@ -288,7 +288,8 @@ body {
     /* background-color: grey; */
 }
 .mapContainerUserLeft {
-    width: 30%;
+    /* width: 30%; */
+    padding-left: 12vh;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -314,20 +315,21 @@ body {
     justify-content: center;
 }
 .mapAreaUser {
-    background-image: url('/map.png');
+    /* background-image: url('/map.png'); */
     background-size: contain;
-    background-color: pink;
-    border-radius: 2px;
+    /* background-color: pink; */
+    border-radius: 3px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
     position: relative;
+
 }
 .infoContainerUser {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
+    /* justify-content: center; */
+    padding-left: 20vh;
     width: 100%;
     height: 20%;
 }
@@ -480,15 +482,15 @@ body {
 .dropDownMenu {
     position: absolute;
     padding: 1vw;
-    min-height: 20vh;
-    width: 10vw;
+    /* min-height: 10vh; */
+    width: 9vw;
     top: 10vh;
     right: 0vw;
     display: flex;
     background-color: rgba(255, 255, 255, 0.9);
-    border: 2px solid grey;
+    border: 1px solid grey;
     /* margin: 20px; */
-    border-radius: 10px;
+    border-radius: 2px;
     flex-direction: column;
     align-items: center;
     z-index: 13;
@@ -546,16 +548,16 @@ body {
     z-index: 1;
 }
 .theNamesToShowInSearch {
-    width: 100%;
+    /* width: 100%; */
     text-decoration: none;
-    color: rgb(71, 170, 188);
+    /* color: rgb(71, 170, 188); */
     cursor: pointer;
     display: flex;
     justify-content: center;
 }
 #searchUsersBox>textarea {
     color: #666;
-    border-radius: 8px;
+    border-radius: 2px;
     margin: 2px;
     max-width: 6vw;
     border: #999 1px solid;

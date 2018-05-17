@@ -100,9 +100,9 @@ class OtherProfilePage extends React.Component {
         const style = {
             backgroundSize: "contain",
             backgroundColor: "pink",
-            borderRadius: "20px",
-            width: "50vw",
-            height: "40vh"
+            borderRadius: "2px",
+            width: "100%",
+            height: "100%"
         };
         const categoryItems = function(color, text, variable, myFunction) {
             let str = "/pins/" + color + "Pin.png";
