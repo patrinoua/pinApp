@@ -322,6 +322,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
+    justify-items: center;
 }
 .addPinTitle {
     margin-left: 40px;
