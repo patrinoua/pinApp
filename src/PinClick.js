@@ -150,7 +150,7 @@ class PinClick extends React.Component {
             const shareButtons = () => {
                 return (
                     <div className="colPinClick">
-                        <a
+                        {/*<a
                             href="https://www.facebook.com/"
                             className="boxPinClick"
                             target="blank"
@@ -159,7 +159,17 @@ class PinClick extends React.Component {
                                 src="/icons/facebook.png"
                                 className="shareButtons"
                             />
-                        </a>
+                        </a>*/}
+                        <button
+                            id="sharePin"
+                            className="subtleButton"
+                            onClick={() => {
+                                console.log("share is clicked");
+                                emit("sharePin", this.props.pinId);
+                            }}
+                        >
+                            share
+                        </button>
                     </div>
                 );
             };
@@ -167,25 +177,27 @@ class PinClick extends React.Component {
             const deleteAlert = () => {
                 return (
                     <div className="blackVailDelete">
-                        delete pin?
-                        <button
-                            onClick={() => {
-                                this.deletePinAlert();
-                            }}
-                        >
-                            {" "}
-                            yes{" "}
-                        </button>
-                        <button
-                            onClick={() => {
-                                this.setState({
-                                    deleteAlertIsVisible: false
-                                });
-                            }}
-                        >
-                            {" "}
-                            no{" "}
-                        </button>
+                        Are you sure you want to delete this pin?
+                        <div className="inARow">
+                            <button
+                                onClick={() => {
+                                    this.deletePinAlert();
+                                }}
+                            >
+                                {" "}
+                                yes{" "}
+                            </button>
+                            <button
+                                onClick={() => {
+                                    this.setState({
+                                        deleteAlertIsVisible: false
+                                    });
+                                }}
+                            >
+                                {" "}
+                                no{" "}
+                            </button>
+                        </div>
                     </div>
                 );
             };
@@ -245,6 +257,7 @@ class PinClick extends React.Component {
                             </div>
                             <div className="secondRowPinClick">
                                 <div className="boxPinClick mapContainerPinClick">
+                                    {/*<div className="overlayPin"> lalala </div>*/}
                                     <img src="/map.png" />
                                 </div>
 
@@ -316,6 +329,13 @@ class PinClick extends React.Component {
                                                 rows="1"
                                             />
                                         </div>
+                                        <button
+                                            className="subtleButton"
+                                            onClick={this.deletePinAlert}
+                                        >
+                                            {" "}
+                                            Unpin{" "}
+                                        </button>
                                     </div>
                                     {shareButtons()}
                                 </div>
@@ -331,39 +351,26 @@ class PinClick extends React.Component {
                                     {shareButtons()}
                                 </div>
                             )}
-                            <button
-                                id="sharePin"
-                                onClick={() => {
-                                    console.log("share is clicked");
-                                    emit("sharePin", this.props.pinId);
-                                }}
-                            >
-                                share
-                            </button>
+
                             {/* *************************FOURTH ROW********************* */}
                             {this.state.editMode && (
                                 <div className="pinEditSaveButtonArea box">
-                                    <h1
+                                    <div
                                         className="saveButton"
                                         onClick={this.insertPinInfo}
                                     >
                                         {" "}
-                                        SAVE{" "}
-                                    </h1>
-                                    <h1
+                                        Save{" "}
+                                    </div>
+                                    <div
                                         className="saveButton"
+
                                         onClick={this.toggleEditMode}
                                     >
                                         {" "}
                                         Cancel{" "}
-                                    </h1>
-                                    <h1
-                                        className="saveButton"
-                                        onClick={this.deletePinAlert}
-                                    >
-                                        {" "}
-                                        Delete pin{" "}
-                                    </h1>
+                                    </div>
+
                                     {this.state.deleteAlertIsVisible &&
                                         deleteAlert()}
                                 </div>

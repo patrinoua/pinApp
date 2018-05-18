@@ -770,6 +770,16 @@ button {
     /* border: 2px solid #f6f6f6; */
     border-radius: 20px;
     margin: 10px;
+    /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); */
+    /* font-family: "Cutive Mono", monospace; */
+}
+button1 {
+    display: block;
+    color: #929A9F;
+    font-size: 1.1em;
+    /* border: 2px solid #f6f6f6; */
+    border-radius: 20px;
+    margin: 10px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     /* font-family: "Cutive Mono", monospace; */
 }
@@ -788,9 +798,9 @@ button:hover {
 
 .subtleButton {
     border: none;
-    width: 60px;
+    min-width: 60px;
     /* height: 10px; */
-    font-size: 0.8em;
+    font-size: 0.9em;
     display: inline;
 }
 

@@ -290,31 +290,36 @@ class MapContainer extends React.Component {
                                     )}
                                 </form>
 
-                                <button onClick={this.showListComponent}>
+                                <button
+                                    className="subtleButton"
+                                    onClick={this.showListComponent}>
                                     list my locations
                                 </button>
-                                <button
-                                    onClick={() => {
-                                        console.log("bbbbb");
-                                        this.forceUpdate();
-                                    }}
-                                >
-                                    center
-                                </button>
+
                             </div>
                         </div>
                         <div className="mapContainerRight">
                             <div className="mapContainerRightUP">
-                                <button onClick={this.watchMyLocation}>
-                                    {" "}
-                                    show my location{" "}
-                                </button>
+                                <div className="inARow">
+                                    <button
+                                        className="subtleButton"
+                                        onClick={this.watchMyLocation}>
+
+                                        show my location
+                                    </button>
+                                    <button
+                                        className="subtleButton"
+                                        onClick={() => {
+                                            console.log("bbbbb");
+                                            this.forceUpdate();
+                                        }}
+                                    >
+                                        center map
+                                    </button>
+                                </div>
                             </div>
                             <div className="mapContainerRightDOWN">
-                                <button onClick={this.watchMyLocation}>
-                                    {" "}
-                                    show my location{" "}
-                                </button>
+
                                 {/*<div className="mapAreaContainer">*/}
                                 <div className="mapArea">
                                     <Map

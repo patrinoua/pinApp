@@ -139,27 +139,19 @@ class AddNewPin extends React.Component {
                     </p>
                     <div className="fieldsContainer">
                         <div className="pinTitle box">
-                            <h1>
+                            <div>
                                 <img src="/pins/bigPin.png" />
-                                <span className="addPinTitle"> add pin</span>
-                            </h1>
+                                <span className="addPinTitle pinTitle"> New Pin</span>
+                            </div>
                         </div>
-                        <div className="pinOptions box">
+                        <div className="pinOptions">
                             <div className="pinMenu">
                                 <form>
-                                    {category("blue", "Museums", "museums")}
-                                    {category("green", "Parks", "parks")}
-                                    {category(
-                                        "yellow",
-                                        "Restaurants",
-                                        "restaurants"
-                                    )}
-                                    {category("pink", "Bars", "bars")}
-                                    {category(
-                                        "purple",
-                                        "Sightseeing",
-                                        "sightseeing"
-                                    )}
+                                    {category("blue", "Museum", "museums")}
+                                    {category("green", "Park", "parks")}
+                                    {category( "yellow", "Restaurant", "restaurants" )}
+                                    {category("pink", "Bar", "bars")}
+                                    {category( "purple", "Sightseeing", "sightseeing")}
                                 </form>
                             </div>
                             <div className="addPinPicture">
@@ -223,7 +215,7 @@ class AddNewPin extends React.Component {
                                 className="saveButton"
                                 onClick={this.insertPinInfos}
                             >
-                                SAVE
+                                Save
                             </h1>
                         </div>
                     </div>
