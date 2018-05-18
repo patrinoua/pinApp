@@ -143,7 +143,7 @@ class PinClick extends React.Component {
     }
 
     render() {
-        if (!this.state.ready) {
+        if (!this.props.pinId) {
             return <div>not ready</div>;
         } else {
             console.log(this.props.pinId);
@@ -189,19 +189,20 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
-            console.log("3");
+            console.log("3", this.props.markersArray);
 
-            /*// let currentPinInfo = this.props.markersArray.filter((item) => {
-            //     return item.id == this.props.pinId;
-            // });
-            // console.log(currentPinInfo);
-            // let imageUrl;
-            //
-            // if (currentPinInfo[0].url) {
-            //     imageUrl = currentPinInfo[0].url;
-            // } else {
-            //     imageUrl = "/pins/greyPin.png";
-            // }*/
+            let currentPinInfo = this.props.markersArray.filter((item) => {
+                console.log("in filter", item.id, this.props.pinId);
+                return item.id == this.props.pinId;
+            });
+            console.log(currentPinInfo);
+            let imageUrl;
+
+            if (currentPinInfo[0].url) {
+                imageUrl = currentPinInfo[0].url;
+            } else {
+                imageUrl = "/pins/greyPin.png";
+            }
 
             console.log("4");
             const edit = () => {
@@ -239,7 +240,8 @@ class PinClick extends React.Component {
                                 <h1>
                                     <img src="/pins/bigPin.png" />
                                     <span className="addPinTitle">
-                                        {this.state.title || "clicked pin"}
+                                        {currentPinInfo[0].title ||
+                                            "clicked pin"}
                                     </span>
                                 </h1>
                             </div>
@@ -281,9 +283,7 @@ class PinClick extends React.Component {
                                         <div
                                             className="galleryItemsContainer"
                                             style={{
-                                                backgroundImage: `url(${
-                                                    this.state.url
-                                                })`
+                                                backgroundImage: `url(${imageUrl})`
                                             }}
                                         />
                                     )}
@@ -296,7 +296,8 @@ class PinClick extends React.Component {
                                         <div className="textFieldsPinClick">
                                             <textarea
                                                 placeholder={
-                                                    this.state.title || "Title"
+                                                    currentPinInfo[0].title ||
+                                                    "Title"
                                                 }
                                                 className="titleTextareaPinClick"
                                                 type="text"
@@ -306,7 +307,8 @@ class PinClick extends React.Component {
                                             />
                                             <textarea
                                                 placeholder={
-                                                    this.state.description ||
+                                                    currentPinInfo[0]
+                                                        .description ||
                                                     "Description"
                                                 }
                                                 className="descriptionTextareaPinClick"
@@ -322,9 +324,11 @@ class PinClick extends React.Component {
                             )) || (
                                 <div className="thirdRowPinClick">
                                     <div className="colPinClick ">
-                                        <div>{this.state.title || "Title"}</div>
                                         <div>
-                                            {this.state.description ||
+                                            {currentPinInfo[0].title || "Title"}
+                                        </div>
+                                        <div>
+                                            {currentPinInfo[0].description ||
                                                 "Description"}
                                         </div>
                                     </div>
@@ -377,6 +381,7 @@ class PinClick extends React.Component {
     }
 }
 const mapStateToProps = function(state) {
+    console.log("in mapStateToProps", state);
     return {
         markersArray: state.markersArray,
         pinInfo: state.pinInfo,
