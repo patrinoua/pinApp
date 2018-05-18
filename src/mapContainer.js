@@ -367,8 +367,8 @@ class MapContainer extends React.Component {
                                                                     url:
                                                                         item.color,
                                                                     anchor: new google.maps.Point(
-                                                                        0,
-                                                                        0
+                                                                        15,
+                                                                        35
                                                                     ),
                                                                     scaledSize: new google.maps.Size(
                                                                         25,
