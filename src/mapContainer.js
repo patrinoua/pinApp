@@ -200,18 +200,7 @@ class MapContainer extends React.Component {
                 </div>
             );
         };
-        // const sharedPin = (pinId) => {
-        //     console.log("i am clicking");
-        //     return (
-        //         <React.Fragment>
-        //             <PinClick
-        //                 pinId={pinId}
-        //                 // togglePinClick={this.togglePinClick}
-        //                 id={this.props.id}
-        //             />
-        //         </React.Fragment>
-        //     );
-        // };
+
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
@@ -304,7 +293,6 @@ class MapContainer extends React.Component {
                                     <button
                                         className="subtleButton"
                                         onClick={this.watchMyLocation}>
-
                                         show my location
                                     </button>
                                     <button
@@ -319,68 +307,80 @@ class MapContainer extends React.Component {
                                 </div>
                             </div>
                             <div className="mapContainerRightDOWN">
-
                                 {/*<div className="mapAreaContainer">*/}
                                 <div className="mapArea">
-                                    <Map
-                                        style={style}
-                                        initialCenter={{
-                                            // lat: this.props.lat,
-                                            // lng: this.props.lng
-                                            lat: 52.4918854,
-                                            lng: 13.360088699999999
-                                        }}
-                                        zoom={14}
-                                        google={this.props.google}
-                                        onClick={this.mapClicked}
-                                        onReady={this.fetchPlaces}
-                                        visible={true}
-                                    >
-                                        {this.state.myLat && (
-                                            <Marker
-                                                icon={{
-                                                    url: "/dot.png",
-                                                    anchor: new google.maps.Point(
-                                                        -20,
-                                                        -20
-                                                    ),
-                                                    scaledSize: new google.maps.Size(
-                                                        20,
-                                                        20
-                                                    )
-                                                }}
-                                            />
-                                        )}
-                                        {this.props.markersArray &&
-                                            this.props.markersArray.map(
-                                                (item) => {
-                                                    return (
-                                                        <Marker
-                                                            key={item.id}
-                                                            onClick={
-                                                                this.pinClick
-                                                            }
-                                                            name={item.id}
-                                                            position={{
-                                                                lat: item.lat,
-                                                                lng: item.lng
-                                                            }}
-                                                            icon={{
-                                                                url: item.color,
-                                                                anchor: new google.maps.Point(
-                                                                    0,
-                                                                    0
-                                                                ),
-                                                                scaledSize: new google.maps.Size(
-                                                                    25,
-                                                                    35
-                                                                )
-                                                            }}
-                                                        />
-                                                    );
-                                                }
+                                    {!this.props.lat && (
+                                        <img src="loading.gif" />
+                                    )}
+                                    {this.props.lat && (
+                                        <Map
+                                            style={style}
+                                            initialCenter={{
+                                                lat: this.props.lat,
+                                                lng: this.props.lng
+                                                // lat: 52.4918854,
+                                                // lng: 13.360088699999999
+                                            }}
+                                            center={{
+                                                lat: this.props.lat,
+                                                lng: this.props.lng
+                                            }}
+                                            zoom={14}
+                                            google={this.props.google}
+                                            onClick={this.mapClicked}
+                                            onReady={this.fetchPlaces}
+                                            visible={true}
+                                        >
+                                            {this.state.myLat && (
+                                                <Marker
+                                                    icon={{
+                                                        url: "/dot.png",
+                                                        anchor: new google.maps.Point(
+                                                            -20,
+                                                            -20
+                                                        ),
+                                                        scaledSize: new google.maps.Size(
+                                                            20,
+                                                            20
+                                                        )
+                                                    }}
+                                                />
                                             )}
-                                    </Map>
+                                            {this.props.markersArray &&
+                                                this.props.markersArray.map(
+                                                    (item) => {
+                                                        return (
+                                                            <Marker
+                                                                key={item.id}
+                                                                onClick={
+                                                                    this
+                                                                        .pinClick
+                                                                }
+                                                                name={item.id}
+                                                                position={{
+                                                                    lat:
+                                                                        item.lat,
+                                                                    lng:
+                                                                        item.lng
+                                                                }}
+                                                                icon={{
+                                                                    url:
+                                                                        item.color,
+                                                                    anchor: new google.maps.Point(
+                                                                        0,
+                                                                        0
+                                                                    ),
+                                                                    scaledSize: new google.maps.Size(
+                                                                        25,
+                                                                        35
+                                                                    )
+                                                                }}
+                                                            />
+                                                        );
+                                                    }
+                                                )}
+                                        </Map>
+                                    )}
                                 </div>
                                 {/*</div>*/}
                             </div>

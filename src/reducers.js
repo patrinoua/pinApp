@@ -129,11 +129,12 @@ export default function reducer(state = { markersArray: [] }, action) {
         };
     }
     if (action.type == "SHARE_PIN") {
-        console.log("from the reducer", action.pinInfo);
+        console.log("from the reducer", state, action.pinInfo);
         state = {
             ...state,
             pinInfo: action.pinInfo.data,
-            userName: action.pinInfo.userName
+            userName: action.pinInfo.userName,
+            markersArray: state.markersArray.concat(action.pinInfo.data)
         };
     }
 
