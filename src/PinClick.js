@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "./axios";
 import { deletePin } from "./actions";
 import { insertPinInfo, updatePinInfo } from "./actions";
+import { emit } from "./socket";
 
 class PinClick extends React.Component {
     constructor(props) {
@@ -30,10 +31,11 @@ class PinClick extends React.Component {
         axios
             .post("/PinClick", { pinId: this.props.pinId })
             .then((response) => {
+                console.log("in the mount of pinclick", response.data.pinInfo);
                 this.setState({
                     title: response.data.pinInfo.title,
                     category: response.data.pinInfo.category,
-                    url: response.data.pinInfo.url,
+                    url: response.data.pinInfo.url || "/pins/greyPin.png",
                     description: response.data.pinInfo.description,
                     created_at: response.data.pinInfo.created_at,
                     userId: response.data.pinInfo.user_id,
@@ -141,224 +143,244 @@ class PinClick extends React.Component {
     }
 
     render() {
-        const shareButtons = () => {
-            return (
-                <div className="colPinClick">
-                    <a
-                        href="https://www.facebook.com/"
-                        className="boxPinClick"
-                        target="blank"
-                    >
-                        <img
-                            src="/icons/facebook.png"
-                            className="shareButtons"
-                        />
-                    </a>
-                </div>
-            );
-        };
-        const deleteAlert = () => {
-            return (
-                <div className="blackVailDelete">
-                    delete pin?
-                    <button
-                        onClick={() => {
-                            this.deletePinAlert();
-                        }}
-                    >
-                        {" "}
-                        yes{" "}
-                    </button>
-                    <button
-                        onClick={() => {
-                            this.setState({
-                                deleteAlertIsVisible: false
-                            });
-                        }}
-                    >
-                        {" "}
-                        no{" "}
-                    </button>
-                </div>
-            );
-        };
-
-        let currentPinInfo = this.props.markersArray.filter((item) => {
-            return item.id == this.props.pinId;
-        });
-        let imageUrl;
-
-        if (currentPinInfo[0].url) {
-            imageUrl = currentPinInfo[0].url;
+        if (!this.state.ready) {
+            return <div>not ready</div>;
         } else {
-            imageUrl = "/pins/greyPin.png";
-        }
-        const edit = () => {
-            if (this.state.userId == this.props.id) {
+            console.log(this.props.pinId);
+            const shareButtons = () => {
                 return (
-                    <div className="pinEditSaveButtonArea box">
-                        <h1
-                            className="saveButton"
-                            onClick={this.toggleEditMode}
+                    <div className="colPinClick">
+                        <a
+                            href="https://www.facebook.com/"
+                            className="boxPinClick"
+                            target="blank"
                         >
-                            {" "}
-                            EDIT{" "}
-                        </h1>
+                            <img
+                                src="/icons/facebook.png"
+                                className="shareButtons"
+                            />
+                        </a>
                     </div>
                 );
-            } else {
-                return <div />;
-            }
-        };
-        console.log("this.props", this.props);
-        return (
-            <React.Fragment>
-                <div className="pinClickContainer">
-                    <div
-                        className="blackVail"
-                        onClick={this.props.togglePinClick}
-                    />
-                    <p id="exit" onClick={this.props.togglePinClick}>
-                        X
-                    </p>
+            };
+            console.log("2");
+            const deleteAlert = () => {
+                return (
+                    <div className="blackVailDelete">
+                        delete pin?
+                        <button
+                            onClick={() => {
+                                this.deletePinAlert();
+                            }}
+                        >
+                            {" "}
+                            yes{" "}
+                        </button>
+                        <button
+                            onClick={() => {
+                                this.setState({
+                                    deleteAlertIsVisible: false
+                                });
+                            }}
+                        >
+                            {" "}
+                            no{" "}
+                        </button>
+                    </div>
+                );
+            };
+            console.log("3");
 
-                    <div className="fieldsContainerPinClick">
-                        <div className="pinTitle box">
-                            <h1>
-                                <img src="/pins/bigPin.png" />
-                                <span className="addPinTitle">
-                                    {currentPinInfo[0].title || "clicked pin"}
-                                </span>
+            /*// let currentPinInfo = this.props.markersArray.filter((item) => {
+            //     return item.id == this.props.pinId;
+            // });
+            // console.log(currentPinInfo);
+            // let imageUrl;
+            //
+            // if (currentPinInfo[0].url) {
+            //     imageUrl = currentPinInfo[0].url;
+            // } else {
+            //     imageUrl = "/pins/greyPin.png";
+            // }*/
+
+            console.log("4");
+            const edit = () => {
+                if (this.state.userId == this.props.id) {
+                    return (
+                        <div className="pinEditSaveButtonArea box">
+                            <h1
+                                className="saveButton"
+                                onClick={this.toggleEditMode}
+                            >
+                                {" "}
+                                EDIT{" "}
                             </h1>
                         </div>
-                        <div className="secondRowPinClick">
-                            <div className="boxPinClick mapContainerPinClick">
-                                <img src="/map.png" />
-                            </div>
+                    );
+                } else {
+                    return <div />;
+                }
+            };
+            console.log("this.props", this.props);
 
-                            <div className="boxPinClick">
-                                {(this.state.editMode && (
-                                    <div className="galleryItemsContainer">
-                                        <input
-                                            id="inputfile"
-                                            className="inputfile"
-                                            type="file"
-                                            name="file"
-                                            onChange={this.setFile}
-                                            onChange={this.compileData}
-                                            data-multiple-caption="{count} files selected"
-                                            multiple
-                                        />
-                                        <label htmlFor="inputfile">
-                                            {(this.state.dataUrl && (
-                                                <img
-                                                    src={this.state.dataUrl}
-                                                    className="uploadedImagePinclick"
-                                                />
-                                            )) || (
-                                                <div className="cameraIconContainerPinClick">
+            return (
+                <React.Fragment>
+                    <div className="pinClickContainer">
+                        <div
+                            className="blackVail"
+                            onClick={this.props.togglePinClick}
+                        />
+                        <p id="exit" onClick={this.props.togglePinClick}>
+                            X
+                        </p>
+
+                        <div className="fieldsContainerPinClick">
+                            <div className="pinTitle box">
+                                <h1>
+                                    <img src="/pins/bigPin.png" />
+                                    <span className="addPinTitle">
+                                        {this.state.title || "clicked pin"}
+                                    </span>
+                                </h1>
+                            </div>
+                            <div className="secondRowPinClick">
+                                <div className="boxPinClick mapContainerPinClick">
+                                    <img src="/map.png" />
+                                </div>
+
+                                <div className="boxPinClick">
+                                    {(this.state.editMode && (
+                                        <div className="galleryItemsContainer">
+                                            <input
+                                                id="inputfile"
+                                                className="inputfile"
+                                                type="file"
+                                                name="file"
+                                                onChange={this.setFile}
+                                                onChange={this.compileData}
+                                                data-multiple-caption="{count} files selected"
+                                                multiple
+                                            />
+                                            <label htmlFor="inputfile">
+                                                {(this.state.dataUrl && (
                                                     <img
-                                                        src="/pins/camera.png"
-                                                        className="cameraIcon"
+                                                        src={this.state.dataUrl}
+                                                        className="uploadedImagePinclick"
                                                     />
-                                                </div>
-                                            )}
-                                        </label>
-                                    </div>
-                                )) || (
-                                    <div
-                                        className="galleryItemsContainer"
-                                        style={{
-                                            backgroundImage: `url(${imageUrl})`
-                                        }}
-                                    />
-                                )}
+                                                )) || (
+                                                    <div className="cameraIconContainerPinClick">
+                                                        <img
+                                                            src="/pins/camera.png"
+                                                            className="cameraIcon"
+                                                        />
+                                                    </div>
+                                                )}
+                                            </label>
+                                        </div>
+                                    )) || (
+                                        <div
+                                            className="galleryItemsContainer"
+                                            style={{
+                                                backgroundImage: `url(${
+                                                    this.state.url
+                                                })`
+                                            }}
+                                        />
+                                    )}
+                                </div>
                             </div>
+                            {/* *******************THIRD ROW**********************/}
+                            {(this.state.editMode && (
+                                <div className="thirdRowPinClick">
+                                    <div className="colPinClick">
+                                        <div className="textFieldsPinClick">
+                                            <textarea
+                                                placeholder={
+                                                    this.state.title || "Title"
+                                                }
+                                                className="titleTextareaPinClick"
+                                                type="text"
+                                                name="title"
+                                                rows="1"
+                                                onChange={this.handleChange}
+                                            />
+                                            <textarea
+                                                placeholder={
+                                                    this.state.description ||
+                                                    "Description"
+                                                }
+                                                className="descriptionTextareaPinClick"
+                                                type="text"
+                                                name="description"
+                                                onChange={this.handleChange}
+                                                rows="1"
+                                            />
+                                        </div>
+                                    </div>
+                                    {shareButtons()}
+                                </div>
+                            )) || (
+                                <div className="thirdRowPinClick">
+                                    <div className="colPinClick ">
+                                        <div>{this.state.title || "Title"}</div>
+                                        <div>
+                                            {this.state.description ||
+                                                "Description"}
+                                        </div>
+                                    </div>
+                                    {shareButtons()}
+                                </div>
+                            )}
+                            <button
+                                id="sharePin"
+                                onClick={() => {
+                                    console.log("share is clicked");
+                                    emit("sharePin", this.props.pinId);
+                                }}
+                            >
+                                share
+                            </button>
+                            {/* *************************FOURTH ROW********************* */}
+                            {this.state.editMode && (
+                                <div className="pinEditSaveButtonArea box">
+                                    <h1
+                                        className="saveButton"
+                                        onClick={this.insertPinInfo}
+                                    >
+                                        {" "}
+                                        SAVE{" "}
+                                    </h1>
+                                    <h1
+                                        className="saveButton"
+                                        onClick={this.toggleEditMode}
+                                    >
+                                        {" "}
+                                        Cancel{" "}
+                                    </h1>
+                                    <h1
+                                        className="saveButton"
+                                        onClick={this.deletePinAlert}
+                                    >
+                                        {" "}
+                                        Delete pin{" "}
+                                    </h1>
+                                    {this.state.deleteAlertIsVisible &&
+                                        deleteAlert()}
+                                </div>
+                            )}{" "}
+                            {!this.state.editMode && edit()}
                         </div>
-                        {/* *******************THIRD ROW**********************/}
-                        {(this.state.editMode && (
-                            <div className="thirdRowPinClick">
-                                <div className="colPinClick">
-                                    <div className="textFieldsPinClick">
-                                        <textarea
-                                            placeholder={
-                                                currentPinInfo[0].title ||
-                                                "Title"
-                                            }
-                                            className="titleTextareaPinClick"
-                                            type="text"
-                                            name="title"
-                                            rows="1"
-                                            onChange={this.handleChange}
-                                        />
-                                        <textarea
-                                            placeholder={
-                                                currentPinInfo[0].description ||
-                                                "Description"
-                                            }
-                                            className="descriptionTextareaPinClick"
-                                            type="text"
-                                            name="description"
-                                            onChange={this.handleChange}
-                                            rows="1"
-                                        />
-                                    </div>
-                                </div>
-                                {shareButtons()}
-                            </div>
-                        )) || (
-                            <div className="thirdRowPinClick">
-                                <div className="colPinClick ">
-                                    <div>
-                                        {currentPinInfo[0].title || "Title"}
-                                    </div>
-                                    <div>
-                                        {currentPinInfo[0].description ||
-                                            "Description"}
-                                    </div>
-                                </div>
-                                {shareButtons()}
-                            </div>
-                        )}
-                        {/* *************************FOURTH ROW********************* */}
-                        {this.state.editMode && (
-                            <div className="pinEditSaveButtonArea box">
-                                <h1
-                                    className="saveButton"
-                                    onClick={this.insertPinInfo}
-                                >
-                                    {" "}
-                                    SAVE{" "}
-                                </h1>
-                                <h1
-                                    className="saveButton"
-                                    onClick={this.toggleEditMode}
-                                >
-                                    {" "}
-                                    Cancel{" "}
-                                </h1>
-                                <h1
-                                    className="saveButton"
-                                    onClick={this.deletePinAlert}
-                                >
-                                    {" "}
-                                    Delete pin{" "}
-                                </h1>
-                                {this.state.deleteAlertIsVisible &&
-                                    deleteAlert()}
-                            </div>
-                        )}{" "}
-                        {!this.state.editMode && edit()}
                     </div>
-                </div>
-            </React.Fragment>
-        );
+                </React.Fragment>
+            );
+        }
     }
 }
 const mapStateToProps = function(state) {
     return {
-        markersArray: state.markersArray
-        // pins: state.onlineUsers
+        markersArray: state.markersArray,
+        pinInfo: state.pinInfo,
+        userName: state.userName
     };
 };
 export default connect(mapStateToProps)(PinClick);

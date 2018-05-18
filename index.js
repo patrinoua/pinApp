@@ -171,9 +171,9 @@ app.post("/register", function(req, res) {
 
 app.post("/login", function(req, res) {
     if (req.session.user) {
-        console.log('problem in login');
+        console.log("problem in login");
         res.sendStatus(500);
-        return
+        return;
     }
 
     if (req.body.email && req.body.password) {
@@ -401,6 +401,7 @@ app.post("/PinClick", (req, res) => {
     db
         .getPinClickInfo(req.body.pinId)
         .then((result) => {
+            console.log(result.rows[0]);
             result.rows[0].created_at = db.formatDate(
                 result.rows[0].created_at
             );
@@ -556,7 +557,36 @@ io.on("connection", function(socket) {
         };
         socket.broadcast.emit("userJoined", userThatJoined);
     }
-
+    socket.on("sharePin", (pinId) => {
+        db
+            .getPinClickInfo(pinId)
+            .then((result) => {
+                let shareInfo = {
+                    data: result.rows[0],
+                    userName: session.user.first
+                };
+                console.log(shareInfo);
+                socket.broadcast.emit("sharePin", shareInfo);
+            })
+            .catch((err) => {
+                console.log(`error in getUserIdByPinId: ${err}`);
+            });
+        //     console.log(onlineUsers);
+        //     let recieverId = onlineUsers.filter((user) => {
+        //         if (user.userId == result.rows[0].user_id) {
+        //             return user;
+        //         }
+        //     });
+        //     console.log(
+        //         "from the socket",
+        //         recieverId.socketId,
+        //         result.rows[0]
+        //     );
+        //     io.sockets
+        //         .socket(recieverId.socketId)
+        //         .emit("getSharedPin", pinId);
+        // })
+    });
     socket.on("disconnect", function() {
         onlineUsers = onlineUsers.filter((user) => {
             return user.socketId !== socket.id;

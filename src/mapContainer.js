@@ -27,7 +27,8 @@ class MapContainer extends React.Component {
             clickedPinId: null,
             pinClickVisible: false,
             mapHasBinClicked: false,
-            showListComponent: false
+            showListComponent: false,
+            showThePop: true
         };
 
         this.closeListCom = this.closeListCom.bind(this);
@@ -46,6 +47,7 @@ class MapContainer extends React.Component {
         this.togglePinClick = this.togglePinClick.bind(this);
         this.mapHasBinClicked = this.mapHasBinClicked.bind(this);
         this.closeAddNewPinComponent = this.closeAddNewPinComponent.bind(this);
+        this.closePopPin = this.closePopPin.bind(this);
     }
 
     componentDidMount() {
@@ -168,6 +170,11 @@ class MapContainer extends React.Component {
             showListComponent: true
         });
     }
+    closePopPin() {
+        this.setState({
+            showSharedPin: false
+        });
+    }
     render() {
         const style = {
             backgroundSize: "contain"
@@ -193,10 +200,49 @@ class MapContainer extends React.Component {
                 </div>
             );
         };
+        // const sharedPin = (pinId) => {
+        //     console.log("i am clicking");
+        //     return (
+        //         <React.Fragment>
+        //             <PinClick
+        //                 pinId={pinId}
+        //                 // togglePinClick={this.togglePinClick}
+        //                 id={this.props.id}
+        //             />
+        //         </React.Fragment>
+        //     );
+        // };
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
                     <ListOfLocations closeListCom={this.closeListCom} />
+                )}
+
+                {this.props.pinInfo &&
+                    this.state.showThePop && (
+                        <div id="popupShare">
+                            <p>{this.props.userName}</p>
+                            <span>shared a cool pin with you</span>
+                            <button
+                                onClick={() => {
+                                    // sharedPin(this.props.pinInfo.id);
+
+                                    this.setState({
+                                        showSharedPin: true,
+                                        showThePop: false
+                                    });
+                                }}
+                            >
+                                view pin
+                            </button>
+                        </div>
+                    )}
+                {this.state.showSharedPin && (
+                    <PinClick
+                        pinId={this.props.pinInfo.id}
+                        togglePinClick={this.closePopPin}
+                        id={this.props.id}
+                    />
                 )}
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
@@ -370,8 +416,9 @@ class MapContainer extends React.Component {
 
 const mapStateToProps = function(state) {
     return {
-        markersArray: state.markersArray
-        // pins: state.onlineUsers
+        markersArray: state.markersArray,
+        pinInfo: state.pinInfo,
+        userName: state.userName
     };
 };
 

@@ -128,6 +128,14 @@ export default function reducer(state = { markersArray: [] }, action) {
             user: action.user
         };
     }
+    if (action.type == "SHARE_PIN") {
+        console.log("from the reducer", action.pinInfo);
+        state = {
+            ...state,
+            pinInfo: action.pinInfo.data,
+            userName: action.pinInfo.userName
+        };
+    }
 
     return state;
 }

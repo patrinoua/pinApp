@@ -201,3 +201,10 @@ export function saveUserInfo(userInfo) {
         user: userInfo
     };
 }
+export function newPinToView(pinInfo) {
+    console.log("in the action", pinInfo);
+    return {
+        type: "SHARE_PIN",
+        pinInfo: pinInfo
+    };
+}

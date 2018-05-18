@@ -1,11 +1,13 @@
-*{
+* {
     margin: 0;
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 }
-a{
+
+a {
     margin: 0;
     text-decoration: none;
 }
+
 main {
     width: 100vw;
     height: 100vh;
@@ -13,6 +15,7 @@ main {
     color: #2a2a2a;
     /* color: #5DA6AE; */
 }
+
 body {
     /* font: 14px "Helvetica"; */
     font-weight: 400;
@@ -21,12 +24,14 @@ body {
     text-align: center;
     justify-content: center;
 }
+
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
     /* color: rgb(255, 5, 5); */
     color: #f20909;
 }
+
 .simpleText {
     color: lightgrey;
     /* font-family: 'Cutive Mono', monospace; */
@@ -35,17 +40,21 @@ body {
 }
 
 /* ********* Welcome Container ************* */
+
 .welcomeContainer {
     height: 100vh;
     width: 100vw;
     position: relative;
 }
+
 .welcomePageLogoImg {
     height: 20vh;
     padding-top: 10vh;
     padding-bottom: 5vh;
 }
+
 /* ********* Route Container ************* */
+
 .routeContainer {
     height: 100vh;
     width: 100vw;
@@ -58,7 +67,9 @@ body {
     justify-items: center;
     align-items: center;
 }
+
 /* ********* App Container ************* */
+
 .appContainer {
     width: 100vw;
     height: 100vh;
@@ -67,7 +78,9 @@ body {
     flex-direction: column;
     /* align-items: center; */
 }
+
 /************NAVIGATION*****************/
+
 .navigationContainer {
     width: 100%;
     min-height: 10vh;
@@ -82,8 +95,9 @@ body {
     font-weight: 100;
     position: relative;
     z-index: 8;
-    box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
 }
+
 .navigationIconBar {
     /* padding: 20px; */
     margin: 0 10px;
@@ -94,8 +108,8 @@ body {
     position: fixed;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
-
 }
+
 .navigationIconBar a {
     cursor: pointer;
     text-decoration: none;
@@ -133,9 +147,11 @@ body {
     height: 43px;
     width: 43px;
 }
-.navigationIconProfilepic:hover{
+
+.navigationIconProfilepic:hover {
     cursor: pointer;
 }
+
 .logoIconMenu {
     margin: 10px;
     max-height: 9vh;
@@ -251,14 +267,15 @@ body {
     position: relative;
     /* background-color: green; */
 }
-.mapContainerRightUP{
+
+.mapContainerRightUP {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
 }
-.mapContainerRightDOWN{
+
+.mapContainerRightDOWN {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -268,12 +285,16 @@ body {
     min-height: 50vh;
     min-width: 50vw;
 }
-{/*.mapAreaContainer{
+
+    {
+    /*.mapAreaContainer{
     position: absolute;
     height: 80%;
     width: 100%;
     background-color: green;
-}*/}
+}*/
+}
+
 .mapArea {
     /* backgroun d-image: url('/map.png'); */
     background-size: contain;
@@ -298,6 +319,7 @@ body {
     width: 100vw;
     height: 90vh;
 }
+
 .mapContainerUser {
     width: 100%;
     height: 58%;
@@ -309,6 +331,7 @@ body {
     position: relative;
     /* background-color: grey; */
 }
+
 .mapContainerUserLeft {
     /* width: 30%; */
     padding-left: 12vh;
@@ -318,6 +341,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .categoryListUSer {
     width: 25vw;
     height: 50vh;
@@ -329,6 +353,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .mapContainerUserRight {
     width: 70%;
     height: 100%;
@@ -336,6 +361,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .mapAreaUser {
     /* background-image: url('/map.png'); */
     background-size: contain;
@@ -345,8 +371,8 @@ body {
     height: 80%;
     width: 80%;
     position: relative;
-
 }
+
 .infoContainerUser {
     display: flex;
     align-items: center;
@@ -355,6 +381,7 @@ body {
     width: 100%;
     height: 20%;
 }
+
 .profilePicUser {
     max-width: 150px;
     max-height: 150px;
@@ -364,10 +391,12 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .profilePicUser img {
     max-width: 150px;
     height: auto;
 }
+
 .nameAndBioContainerUser {
     position: relative;
     display: flex;
@@ -375,9 +404,11 @@ body {
     align-items: center;
     padding: 20px;
 }
+
 .nameUser {
     padding: 10px;
 }
+
 .bioUser {
     padding: 10px;
     font-style: italic;
@@ -395,6 +426,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .profilePageContainerLeft {
     width: 30%;
     min-width: 200px;
@@ -402,12 +434,13 @@ body {
     flex-direction: column;
     position: relative;
     align-items: center;
-
 }
+
 .profilePicFrame {
     display: flex;
     position: relative;
 }
+
 .profilePicOwn {
     display: flex;
     align-items: center;
@@ -415,6 +448,7 @@ body {
     position: relative;
     padding: 9px;
 }
+
 .profilePicCircle {
     width: 180px;
     height: 180px;
@@ -427,6 +461,7 @@ body {
     border: 3px solid rgba(255, 255, 255, 1);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
+
 .profilePageContainerRight {
     width: 50%;
     display: flex;
@@ -434,6 +469,7 @@ body {
     position: relative;
     padding-left: 20px;
 }
+
 .profileInfoContainer {
     padding-top: 10vh;
     padding-left: 10vh;
@@ -444,12 +480,14 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
 }
+
 .existingValues, .editingValues {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: -1px 1px 20px 9px rgba(137, 150, 208,.2);
+    box-shadow: -1px 1px 20px 9px rgba(137, 150, 208, .2);
 }
+
 .profileInputField {
     display: grid;
     grid-template-columns: 200px 200px;
@@ -457,14 +495,17 @@ body {
     padding: 3px;
     /* border: 1px solid grey; */
 }
+
 .inputPropertyName {
     padding: 3px;
 }
+
 .inputPropertyValue {
     font-size: 0.8em;
     display: flex;
     align-items: center;
 }
+
 .editBioTextArea {
     width: 90%;
     height: 50px;
@@ -476,15 +517,18 @@ body {
     resize: none;
     outline: none;
 }
+
 .editButtons {
     width: 100px;
     display: flex;
 }
+
 .profilePic img {
     max-width: 200px;
     max-height: 200px;
     padding: 10px;
 }
+
 .profilePicButtons {
     display: flex;
     flex-direction: column;
@@ -503,6 +547,7 @@ body {
     right: 0px;
     z-index: 8;
 }
+
 .dropDownMenu {
     position: absolute;
     padding: 1vw;
@@ -521,7 +566,9 @@ body {
     transition: opacity 2s ease-in;
     /* animation: dropDownMenu 0.3s; */
 }
+
 /************ FORM ***************/
+
 .form {
     width: 300px;
     display: flex;
@@ -532,6 +579,7 @@ body {
     padding: 20px;
     font-family: "Cutive Mono", monospace;
 }
+
 .form input {
     display: block;
     padding: 8px;
@@ -541,6 +589,7 @@ body {
     justify-content: center;
     margin: 5px;
 }
+
 .welcomeForm {
     display: flex;
     flex-direction: column;
@@ -550,6 +599,7 @@ body {
     padding: 20px;
     font-family: "Cutive Mono", monospace;
 }
+
 .welcomeForm input {
     display: block;
     padding: 8px;
@@ -559,6 +609,7 @@ body {
     justify-content: center;
     margin: 5px;
 }
+
 /* ******************** namseToShow component ******************** */
 
 .searchUsers {
@@ -571,6 +622,7 @@ body {
     width: 10vw;
     z-index: 1;
 }
+
 .theNamesToShowInSearch {
     /* width: 100%; */
     text-decoration: none;
@@ -580,6 +632,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 #searchUsersBox>textarea {
     color: #666;
     border-radius: 2px;
@@ -591,13 +644,16 @@ body {
     height: 2vh;
     z-index: 1;
 }
+
 #searchUsersBox>textarea:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
+
 #searchUsersBox::placeholder {}
+
 #searchUsers {
     color: black;
     z-index: 1;
@@ -671,10 +727,12 @@ body {
     padding: 5px;
     font-weight: 900;
 }
-.dropDownMenuItem:hover{
+
+.dropDownMenuItem:hover {
     color: #51B3C4;
     cursor: pointer;
 }
+
 /* ************ animation ************ */
 
 /* @keyframes dropDownMenu {
@@ -687,6 +745,7 @@ body {
         z-index: 13;
     }
 } */
+
 /*
 @keyframes dropDownMenuOut {
     from {
@@ -711,10 +770,9 @@ button {
     /* border: 2px solid #f6f6f6; */
     border-radius: 20px;
     margin: 10px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     /* font-family: "Cutive Mono", monospace; */
 }
-
 
 button:hover {
     cursor: pointer;
@@ -741,7 +799,7 @@ button:hover {
     display: flex;
 }
 
-.inARow{
+.inARow {
     display: flex;
 }
 
@@ -799,4 +857,32 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#popupShare {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 2px 1px 1px #dcd5d5;
+    height: 20vh;
+    width: 13vw;
+    top: 10vh;
+    left: 0vw;
+    background-color: white;
+    z-index: 1;
+    animation: aaron 2s;
+}
+
+#popupShare>button {
+    z-index: 12345;
+}
+
+@keyframes aaron {
+    0% {
+        top: -10vh;
+    }
+    100% {
+        top: 10vh;
+    }
 }
