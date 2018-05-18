@@ -207,9 +207,7 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
-                    <div className="mapContainerUp">
-
-                    </div>
+                    <div className="mapContainerUp" />
                     <div className="mapContainerDown">
                         <div className="mapContainerLeft">
                             <div className="categoryList">
@@ -246,7 +244,6 @@ class MapContainer extends React.Component {
                                     )}
                                 </form>
 
-
                                 <button onClick={this.showListComponent}>
                                     list my locations
                                 </button>
@@ -262,50 +259,56 @@ class MapContainer extends React.Component {
                         </div>
                         <div className="mapContainerRight">
                             <div className="mapContainerRightUP">
-                                <button onClick={this.watchMyLocation}> show my location </button>
-
+                                <button onClick={this.watchMyLocation}>
+                                    {" "}
+                                    show my location{" "}
+                                </button>
                             </div>
                             <div className="mapContainerRightDOWN">
-
-
-                                <button onClick={this.watchMyLocation}> show my location </button>
+                                <button onClick={this.watchMyLocation}>
+                                    {" "}
+                                    show my location{" "}
+                                </button>
                                 {/*<div className="mapAreaContainer">*/}
-                                    <div className="mapArea">
-                                        <Map
-                                            style={style}
-                                            initialCenter={{
-                                                // lat: this.props.lat,
-                                                // lng: this.props.lng
-                                                lat: 52.4918854,
-                                                lng: 13.360088699999999
-                                            }}
-                                            zoom={14}
-                                            google={this.props.google}
-                                            onClick={this.mapClicked}
-                                            onReady={this.fetchPlaces}
-                                            visible={true}
-                                        >
-                                            {this.state.myLat && (
-                                                <Marker
-                                                    icon={{
-                                                        url: "/dot.png",
-                                                        anchor: new google.maps.Point(
-                                                            0,
-                                                            0
-                                                        ),
-                                                        scaledSize: new google.maps.Size(
-                                                            20,
-                                                            20
-                                                        )
-                                                    }}
-                                                />
-                                            )}
-                                            {this.props.markersArray &&
-                                                this.props.markersArray.map((item) => {
+                                <div className="mapArea">
+                                    <Map
+                                        style={style}
+                                        initialCenter={{
+                                            // lat: this.props.lat,
+                                            // lng: this.props.lng
+                                            lat: 52.4918854,
+                                            lng: 13.360088699999999
+                                        }}
+                                        zoom={14}
+                                        google={this.props.google}
+                                        onClick={this.mapClicked}
+                                        onReady={this.fetchPlaces}
+                                        visible={true}
+                                    >
+                                        {this.state.myLat && (
+                                            <Marker
+                                                icon={{
+                                                    url: "/dot.png",
+                                                    anchor: new google.maps.Point(
+                                                        -20,
+                                                        -20
+                                                    ),
+                                                    scaledSize: new google.maps.Size(
+                                                        20,
+                                                        20
+                                                    )
+                                                }}
+                                            />
+                                        )}
+                                        {this.props.markersArray &&
+                                            this.props.markersArray.map(
+                                                (item) => {
                                                     return (
                                                         <Marker
                                                             key={item.id}
-                                                            onClick={this.pinClick}
+                                                            onClick={
+                                                                this.pinClick
+                                                            }
                                                             name={item.id}
                                                             position={{
                                                                 lat: item.lat,
@@ -324,11 +327,11 @@ class MapContainer extends React.Component {
                                                             }}
                                                         />
                                                     );
-                                                })}
-                                        </Map>
-                                    </div>
+                                                }
+                                            )}
+                                    </Map>
+                                </div>
                                 {/*</div>*/}
-
                             </div>
                             <div>
                                 drop pin on your
@@ -336,11 +339,10 @@ class MapContainer extends React.Component {
                                     id="HERE"
                                     onClick={this.toggleAddNewPinComponent}
                                 >
-                                 {" "}    current location
+                                    {" "}
+                                    current location
                                 </span>
-                                <div>
-                                 or drop somewhere on the map
-                                 </div>
+                                <div>or drop somewhere on the map</div>
                             </div>
                         </div>
                     </div>

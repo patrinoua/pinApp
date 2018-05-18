@@ -152,8 +152,8 @@ class App extends React.Component {
                             path="/map"
                             render={() => (
                                 <MapContainer
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
+                                    // lat={this.state.lat}
+                                    // lng={this.state.lng}
                                     {...this.state}
                                 />
                             )}
