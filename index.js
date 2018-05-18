@@ -10,7 +10,7 @@ const csurf = require("csurf");
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-    origins: "localhost:8080, 192.168.50.106:* awesomeapp.herokuapp.com:*"
+    origins: "localhost:8080, 192.168.50.106:* mapapp-spiced.herokuapp.com:*"
 });
 
 const multer = require("multer"); //it's like bodyParser but for many(multi)
@@ -521,7 +521,7 @@ app.get("/", function(req, res) {
     res.sendStatus(200);
 });
 
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
 
 let onlineUsers = [];
 

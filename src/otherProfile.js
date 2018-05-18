@@ -152,7 +152,7 @@ class OtherProfilePage extends React.Component {
                             <FriendButton
                                 otherId={this.props.match.params.id}
                             />
-                            <button> Send Msg</button>
+                            {/* <button> Send Msg</button> */}
                         </div>
                     </div>
 
