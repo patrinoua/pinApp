@@ -10,13 +10,14 @@ export function Welcome() {
             <HashRouter>
                 <div className="welcomeContainer">
                     <div className="blackVail"
-                        style={{zIndex:"-1",
+                        style={{
+                            zIndex:"-1",
                             opacity:"0.65"
                         }}
                     />
-
                     <div
-                        style={{zIndex:"-3",
+                        style={{
+                            zIndex:"-3",
                             width:"100%",
                             height:"100%",
                             backgroundImage:"url('/assets/backgroundImage.jpg')",
@@ -24,7 +25,6 @@ export function Welcome() {
                             position:"absolute"
                         }}
                     />
-
                     <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
                     <Route exact path="/" component={Register} />
                     <Route path="/login" component={Login} />
