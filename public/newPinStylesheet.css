@@ -68,12 +68,13 @@
     width: 70vw;
     height: 70vh;
     color: white;
-
+    top: 0;
     background-color: rgba(28, 28, 28, 0.9);
     border-radius: 30px;
     /* border: 2px solid rgba(243, 168, 60, 0.6); */
-    border: 2px solid rgba(243, 168, 60, 0.6);
-    top: 0;
+    /* border: 2px solid rgba(243, 168, 60, 0.6); */
+    box-shadow: 2px 2px 35px -5px black;
+
     /* position: relative; */
     z-index: 3;
 }
@@ -169,7 +170,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     position: relative;
     background-size:cover;
@@ -282,10 +283,10 @@
     height: 70vh;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 30px;
-    border: 2px solid rgba(243, 168, 60, 0.6);
-
+    border-radius: 3px;
+    /* border: 2px solid rgba(243, 168, 60, 0.6); */
     /* border: 2px solid rgba(255, 255, 255, 0.6); */
+    box-shadow: 2px 2px 35px -5px black;
     top: 0;
     position: relative;
     z-index: 3;
@@ -313,10 +314,8 @@
     padding-right: 20px;
     max-width: 25%;
     /* max-width: 130px; */
-
     /* top: -45%;
     left: 15%; */
-
 }
 .pinOptions{
     display: grid;
@@ -329,7 +328,6 @@
     font-size: 5vw;
     font-family: 'Pacifico', cursive;
 }
-
 
 .pinMenu {
     /* width: 50%; */
@@ -360,6 +358,7 @@
     justify-content: center;
     align-items: center;
     padding-left: 5px;
+    font-size: 0.8em;
 }
 
 .addPinPicture {
@@ -381,7 +380,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }
 
@@ -448,4 +447,8 @@
     color: white;
     cursor: pointer;
     z-index: 5;
+    opacity: 0.6;
+}
+#exit:hover{
+    opacity: 1;
 }

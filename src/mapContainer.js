@@ -196,7 +196,7 @@ class MapContainer extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums"> {text} </label>
+                    <label htmlFor="museums" className="pinText"> {text} </label>
                 </div>
             );
         };
@@ -249,7 +249,7 @@ class MapContainer extends React.Component {
                                 <form id="myForm">
                                     {categoryItems(
                                         "blue",
-                                        "museums",
+                                        "Museums",
                                         "museums",
                                         this.checkValue
                                     )}
@@ -261,42 +261,43 @@ class MapContainer extends React.Component {
                                     )}
                                     {categoryItems(
                                         "yellow",
-                                        "restaurants",
+                                        "Restaurants",
                                         "restaurants",
                                         this.checkValue
                                     )}
                                     {categoryItems(
                                         "pink",
-                                        "bars",
+                                        "Bars",
                                         "bars",
                                         this.checkValue
                                     )}
                                     {categoryItems(
                                         "purple",
-                                        "sightseeing",
+                                        "Sightseeings",
                                         "sightseeing",
                                         this.checkValue
                                     )}
                                 </form>
 
+                                {/*className="subtleButton"*/}
                                 <button
-                                    className="subtleButton"
+                                    className="pinAppButton"
                                     onClick={this.showListComponent}>
-                                    list my locations
+                                    My Pins
                                 </button>
 
                             </div>
                         </div>
                         <div className="mapContainerRight">
-                            <div className="mapContainerRightUP">
+                            {/*<div className="mapContainerRightUP">
                                 <div className="inARow">
                                     <button
-                                        className="subtleButton"
+                                        className="pinAppButton"
                                         onClick={this.watchMyLocation}>
-                                        show my location
+                                        my location
                                     </button>
                                     <button
-                                        className="subtleButton"
+                                        className="pinAppButton"
                                         onClick={() => {
                                             console.log("bbbbb");
                                             this.forceUpdate();
@@ -305,9 +306,17 @@ class MapContainer extends React.Component {
                                         center map
                                     </button>
                                 </div>
-                            </div>
+                            </div>*/}
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}
+
+                                <button
+                                    className="pinAppButton roundButton dropPinButton"
+                                    onClick={this.toggleAddNewPinComponent}
+                                >
+                                    Drop pin
+                                </button>
+
                                 <div className="mapArea">
                                     {!this.props.lat && (
                                         <img src="loading.gif" />
@@ -384,17 +393,8 @@ class MapContainer extends React.Component {
                                 </div>
                                 {/*</div>*/}
                             </div>
-                            <div>
-                                drop pin on your
-                                <span
-                                    id="HERE"
-                                    onClick={this.toggleAddNewPinComponent}
-                                >
-                                    {" "}
-                                    current location
-                                </span>
-                                <div>or drop somewhere on the map</div>
-                            </div>
+                            <div><p className="infoText">or click anywhere on the map to add a new pin </p></div>
+
                         </div>
                     </div>
                 </div>

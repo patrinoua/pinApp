@@ -198,14 +198,14 @@ body {
 
 .mapContainerDown {
     width: 100%;
-    /* background-color: orange; */
     height: 88vh;
+    /* background-color: orange; */
     /* margin: 10px 10px; */
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
-    align-items: center;
     position: relative;
+    /* flex-direction: column; */
+    /* align-items: center; */
 }
 
 .mapContainerLeft {
@@ -258,14 +258,13 @@ body {
 
 .mapContainerRight {
     width: 50%;
-    height: 80%;
+    /* height: 80%; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin: 0 5vw;
     position: relative;
-    /* background-color: green; */
 }
 
 .mapContainerRightUP {
@@ -284,26 +283,23 @@ body {
     /* background-color: black; */
     min-height: 50vh;
     min-width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-    {
-    /*.mapAreaContainer{
-    position: absolute;
-    height: 80%;
-    width: 100%;
-    background-color: green;
-}*/
-}
 
 .mapArea {
     /* backgroun d-image: url('/map.png'); */
     background-size: contain;
     border-radius: 2px;
     border: 2px solid #eaeced;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.4);
     height: 80%;
     width: 100%;
     overflow: hidden;
+    /* position: relative; */
     position: absolute;
 }
 
@@ -367,7 +363,7 @@ body {
     background-size: contain;
     /* background-color: pink; */
     border-radius: 3px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.4);
     height: 80%;
     width: 80%;
     position: relative;
@@ -662,10 +658,6 @@ body {
 
 /* ******************** droping pin component ******************** */
 
-#HERE {
-    color: rgb(178, 74, 187);
-    cursor: pointer;
-}
 
 .uploadedImage {
     max-width: 100%;
@@ -762,32 +754,55 @@ body {
     width: 162px;
     justify-content: center;
 }
+.pinAppButton{
+    background-color: #b52519;
+    color: white;
+    font-family: 'Pacifico', cursive;
+    border-radius: 30px;
+    font-size: 1.1em;
+    box-shadow: inset -20px 0px 8px 0px rgba(0, 0, 0, 0.2);
 
+}
+.pinAppButton:hover{
+    background-color: black;
+    background-color: #b52519;
+}
+.roundButton{
+    border-radius: 50%;
+    height: 10vh;
+    width: 10vh;
+
+}
+.dropPinButton{
+    position: absolute;
+    z-index: 1;
+    opacity: 0.7;
+    /* transform: translate(-50%,-50%); */
+}
+.dropPinButton:hover{
+    opacity: 0.9;
+}
+.infoText{
+    font-size: 0.9em;
+    font-style: italic;
+    color: grey;
+    /* font-family:inherit; */
+}
 button {
     display: block;
     color: #929A9F;
     font-size: 1.1em;
     /* border: 2px solid #f6f6f6; */
-    border-radius: 20px;
+    border-radius: 2px;
     margin: 10px;
     /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); */
-    /* font-family: "Cutive Mono", monospace; */
-}
-button1 {
-    display: block;
-    color: #929A9F;
-    font-size: 1.1em;
-    /* border: 2px solid #f6f6f6; */
-    border-radius: 20px;
-    margin: 10px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     /* font-family: "Cutive Mono", monospace; */
 }
 
 button:hover {
     cursor: pointer;
-    /* background-color: #f6f6f6; */
     background-color: #eaeced;
+    /* background-color: #f6f6f6; */
 }
 
 .centerStuff {
