@@ -114,7 +114,7 @@ export class ProfilePage extends React.Component {
         return (
             <div className="profilePageContainer">
                 <div className="profilePageContainerLeft">
-                    <p>Welcome, {this.props.first}</p>
+                    {/*<p>Welcome, {this.props.first}</p>*/}
                     <div className="profilePicFrame">
                         <div className="profilePicOwn">
                             <div className="profilePicCircle" style={style}>

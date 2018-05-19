@@ -11,48 +11,47 @@ class ListOfLocations extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <p id="listClose" onClick={this.props.closeListCom}>
-                    X
-                </p>
-                <div id="ListOfLocationsHolder">
-                    <div id="listSmallHolder">
-                        <div className="eachPin" id="titleOfTheLocation">
-                            <span />
-                            <span>Title</span>
-                            <span>Category</span>
-                            <span>Description</span>
-                            <span>Time & Date</span>
+                <div className="listOfPinsContainer">
+                    <div className="blackVail"/>
+                    <p id="listClose" onClick={this.props.closeListCom}>
+                        X
+                    </p>
+                    <div className="listOfLocationsHolder">
+                        <div id="listSmallHolder">
+                            <div className="pinAppStyle listTitle">
+                                My Pins
+                            </div>
+                            {this.props.markersArray &&
+                                this.props.markersArray.map((item) => {
+                                    return (
+                                        <div className="eachPin" key={item.id}>
+                                            {/* <div className="listImgHolder">
+                                                <img
+                                                    src={item.url || "/user.png"}
+                                                />
+                                            </div> */}
+
+                                                <img
+                                                    src={item.color}
+                                                    className="thePinImg"
+                                                />
+
+
+                                                {item.title}
+
+                                            {/*<div className="flexHolder categoryHolder">
+                                                {item.category}
+                                            </div>*/}
+                                            <span className="descHolder">
+                                                {item.description}
+                                            </span>
+                                            <div className="dateHolder">
+                                                <span>{item.created_at}</span>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                         </div>
-                        {this.props.markersArray &&
-                            this.props.markersArray.map((item) => {
-                                return (
-                                    <div className="eachPin" key={item.id}>
-                                        {/* <div className="listImgHolder">
-                                            <img
-                                                src={item.url || "/user.png"}
-                                            />
-                                        </div> */}
-                                        <div className="flexHolder">
-                                            <img
-                                                src={item.color}
-                                                className="thePinImg"
-                                            />
-                                        </div>
-                                        <div className="flexHolder">
-                                            <h2>{item.title}</h2>
-                                        </div>
-                                        <div className="flexHolder categoryHolder">
-                                            <h3>{item.category}</h3>
-                                        </div>
-                                        <span className="descHolder">
-                                            <p>{item.description}</p>
-                                        </span>
-                                        <div className="flexHolder dateHolder">
-                                            <span>{item.created_at}</span>
-                                        </div>
-                                    </div>
-                                );
-                            })}
                     </div>
                 </div>
             </React.Fragment>

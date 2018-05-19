@@ -106,10 +106,10 @@ export class UserMenuPopUp extends React.Component {
                 <div
                     className="dropDownMenu"
                     id="anim"
-                    onMouseLeave={() => {
-                        this.props.closeUserMenu();
-                    }}
                 >
+                {/*onMouseLeave={() => {
+                    this.props.closeUserMenu();
+                }}*/}
                     <Link to="/profile" className="dropDownMenuItem">
                         My Profile
                     </Link>

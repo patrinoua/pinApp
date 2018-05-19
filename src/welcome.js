@@ -9,6 +9,22 @@ export function Welcome() {
         <div id="welcome">
             <HashRouter>
                 <div className="welcomeContainer">
+                    <div className="blackVail"
+                        style={{zIndex:"-1",
+                            opacity:"0.65"
+                        }}
+                    />
+
+                    <div
+                        style={{zIndex:"-3",
+                            width:"100%",
+                            height:"100%",
+                            backgroundImage:"url('/assets/backgroundImage.jpg')",
+                            backgroundSize:"cover",
+                            position:"absolute"
+                        }}
+                    />
+
                     <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
                     <Route exact path="/" component={Register} />
                     <Route path="/login" component={Login} />
@@ -97,12 +113,16 @@ export class Register extends React.Component {
                     placeholder="password"
                     type="password"
                 />
-                <div className="inARow">
-                    <button onClick={this.submit}> Submit </button>
-                    <Link to="/login">
-                        <button>Log in</button>
+                {/*<div className="inARow">*/}
+                    <button onClick={this.submit} className="pinAppButton"> Submit </button>
+                    {/*<Link to="/login">
+                        <button className="pinAppButton">Log in</button>
+                    </Link>*/}
+                    <Link to="/login" style={{color:"white"}}>
+                        Login
+                        {/*<button className="pinAppButton">Register</button>*/}
                     </Link>
-                </div>
+                {/*</div>*/}
             </div>
         );
     }
@@ -156,12 +176,13 @@ export class Login extends React.Component {
                     placeholder="password"
                     type="password"
                 />
-                <div className="inARow">
-                    <button onClick={this.submit}> Submit </button>
-                    <Link to="/">
-                        <button>Register</button>
+                {/*<div className="inARow">*/}
+                    <button onClick={this.submit} className="pinAppButton"> Submit </button>
+                    <Link to="/" style={{color:"white"}}>
+                        Register
+                        {/*<button className="pinAppButton">Register</button>*/}
                     </Link>
-                </div>
+                {/*</div>*/}
             </div>
         );
     }

@@ -7,7 +7,11 @@ a {
     margin: 0;
     text-decoration: none;
 }
-
+.pinAppStyle{
+    color: #b52519;
+    /* color: white; */
+    font-family: 'Pacifico', cursive;
+}
 main {
     width: 100vw;
     height: 100vh;
@@ -45,12 +49,18 @@ body {
     height: 100vh;
     width: 100vw;
     position: relative;
-}
+    color: white;
 
+}
+.welcomeContainer h1{
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 12px black;
+    padding: 2vh;
+}
 .welcomePageLogoImg {
-    height: 20vh;
-    padding-top: 10vh;
-    padding-bottom: 5vh;
+    height: 33vh;
+    padding-top: 5vh;
+    /* padding-bottom: 5vh; */
 }
 
 /* ********* Route Container ************* */
@@ -82,7 +92,7 @@ body {
 /************NAVIGATION*****************/
 
 .navigationContainer {
-    width: 100%;
+    width: 100vw;
     min-height: 10vh;
     /* padding: 20px; */
     display: flex;
@@ -123,24 +133,28 @@ body {
 }
 
 .navigationIcon {
-    height: 53px;
+    height: 9vh;
+    max-height: 53px;
     margin-top: 2px;
     margin-right: 5px;
 }
 
 .navigationIconProfilepicCircle {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    height: 40px;
-    width: 40px;
+    height: 9vh;
+    width: 9vh;
+    max-width: 40px;
+    max-height: 40px;
     overflow: hidden;
-    margin: 10px;
+    margin: 0 2vh;
     border-radius: 50%;
     background-size: contain;
 }
 
 .navigationIconProfilepic {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    height: 40px;
+    height: 9vh;
+    max-height: 40px;
 }
 
 .navigationIconProfilepic img {
@@ -153,7 +167,7 @@ body {
 }
 
 .logoIconMenu {
-    margin: 10px;
+    margin: 1vh;
     max-height: 9vh;
     position: fixed;
     top: -.2vh;
@@ -330,7 +344,7 @@ body {
 
 .mapContainerUserLeft {
     /* width: 30%; */
-    padding-left: 12vh;
+    padding-left: 1vh;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -375,10 +389,12 @@ body {
     /* justify-content: center; */
     padding-left: 20vh;
     width: 100%;
-    height: 20%;
+    /* height: 20%; */
 }
 
 .profilePicUser {
+    width:20vh;
+    height: 20vh;
     max-width: 150px;
     max-height: 150px;
     border-radius: 50%;
@@ -396,7 +412,7 @@ body {
 .nameAndBioContainerUser {
     position: relative;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     padding: 20px;
 }
@@ -415,7 +431,7 @@ body {
 /********** EDIT PROFILE  ***********/
 
 .profilePageContainer {
-    width: 90%;
+    width: 100vw;
     position: relative;
     padding: 20px;
     display: flex;
@@ -446,8 +462,10 @@ body {
 }
 
 .profilePicCircle {
-    width: 180px;
-    height: 180px;
+    width: 20vw;
+    height: 20vw;
+    max-width: 180px;
+    max-height: 180px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -459,7 +477,7 @@ body {
 }
 
 .profilePageContainerRight {
-    width: 50%;
+    /* width: 50%; */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -467,8 +485,7 @@ body {
 }
 
 .profileInfoContainer {
-    padding-top: 10vh;
-    padding-left: 10vh;
+    font-size: 0.9em;
     height: 30vh;
     width: 40vw;
     display: flex;
@@ -481,12 +498,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: -1px 1px 20px 9px rgba(137, 150, 208, .2);
+    border: 1px solid grey;
+    /* box-shadow: -1px 1px 20px 9px rgba(137, 150, 208, .2); */
 }
 
 .profileInputField {
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 20vh 20vh;
     justify-items: start;
     padding: 3px;
     /* border: 1px solid grey; */
@@ -549,6 +567,7 @@ body {
     padding: 1vw;
     /* min-height: 10vh; */
     width: 9vw;
+    min-width: 120px;
     top: 10vh;
     right: 0vw;
     display: flex;
@@ -587,12 +606,13 @@ body {
 }
 
 .welcomeForm {
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-self: center;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    /* padding: 20px; */
     font-family: "Cutive Mono", monospace;
 }
 
@@ -620,7 +640,7 @@ body {
 }
 
 .theNamesToShowInSearch {
-    /* width: 100%; */
+    font-size: 0.9em;
     text-decoration: none;
     font-weight: 400;
     color: rgb(71, 170, 188);
@@ -761,8 +781,8 @@ body {
     border-radius: 30px;
     font-size: 1.1em;
     box-shadow: inset -20px 0px 8px 0px rgba(0, 0, 0, 0.2);
-
 }
+
 .pinAppButton:hover{
     background-color: black;
     background-color: #b52519;

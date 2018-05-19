@@ -129,11 +129,10 @@ class AddNewPin extends React.Component {
 
         return (
             <React.Fragment>
-                <div
-                    className="blackVail"
-                    onClick={this.props.closeAddNewPinComponent}
-                />
                 <div className="newPinContainer">
+                    <div className="blackVail"
+                    onClick={this.props.closeAddNewPinComponent}
+                    />
                     <p id="exit" onClick={this.props.closeAddNewPinComponent}>
                         X
                     </p>

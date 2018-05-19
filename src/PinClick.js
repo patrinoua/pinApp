@@ -226,7 +226,7 @@ class PinClick extends React.Component {
                                 onClick={this.toggleEditMode}
                             >
                                 {" "}
-                                EDIT{" "}
+                                edit{" "}
                             </h1>
                         </div>
                     );

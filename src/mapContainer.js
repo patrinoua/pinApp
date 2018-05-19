@@ -242,50 +242,24 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
-                    <div className="mapContainerUp" />
+                    {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems(
-                                        "blue",
-                                        "Museums",
-                                        "museums",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "green",
-                                        "Parks",
-                                        "parks",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "yellow",
-                                        "Restaurants",
-                                        "restaurants",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "pink",
-                                        "Bars",
-                                        "bars",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "purple",
-                                        "Sightseeings",
-                                        "sightseeing",
-                                        this.checkValue
-                                    )}
+                                    {categoryItems( "blue", "Museums", "museums", this.checkValue )}
+                                    {categoryItems( "green", "Parks", "parks", this.checkValue )}
+                                    {categoryItems( "yellow", "Restaurants", "restaurants", this.checkValue )}
+                                    {categoryItems( "pink", "Bars", "bars", this.checkValue )}
+                                    {categoryItems( "purple", "Sightseeings", "sightseeing", this.checkValue )}
                                 </form>
 
                                 {/*className="subtleButton"*/}
                                 <button
                                     className="pinAppButton"
                                     onClick={this.showListComponent}>
-                                    My Pins
+                                    My pins
                                 </button>
-
                             </div>
                         </div>
                         <div className="mapContainerRight">
@@ -307,28 +281,33 @@ class MapContainer extends React.Component {
                                     </button>
                                 </div>
                             </div>*/}
+                            <div className="newPinContainerRightUp">
+                                <div className="infoText">
+                                    Click anywhere on the map to add a pin
+                                </div>
+                            </div>
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}
 
-                                <button
+                                {/*<button
                                     className="pinAppButton roundButton dropPinButton"
                                     onClick={this.toggleAddNewPinComponent}
                                 >
                                     Drop pin
-                                </button>
+                                </button>*/}
 
                                 <div className="mapArea">
                                     {!this.props.lat && (
-                                        <img src="loading.gif" />
+                                        <img src="assets/loading.gif" />
                                     )}
                                     {this.props.lat && (
                                         <Map
                                             style={style}
                                             initialCenter={{
-                                                lat: this.props.lat,
-                                                lng: this.props.lng
-                                                // lat: 52.4918854,
-                                                // lng: 13.360088699999999
+                                                // lat: this.props.lat,
+                                                // lng: this.props.lng
+                                                lat: 52.4918854,
+                                                lng: 13.360088699999999
                                             }}
                                             center={{
                                                 lat: this.props.lat,
@@ -343,7 +322,7 @@ class MapContainer extends React.Component {
                                             {this.state.myLat && (
                                                 <Marker
                                                     icon={{
-                                                        url: "/dot.png",
+                                                        url: "/assets/dot.png",
                                                         anchor: new google.maps.Point(
                                                             -20,
                                                             -20
@@ -393,8 +372,6 @@ class MapContainer extends React.Component {
                                 </div>
                                 {/*</div>*/}
                             </div>
-                            <div><p className="infoText">or click anywhere on the map to add a new pin </p></div>
-
                         </div>
                     </div>
                 </div>
