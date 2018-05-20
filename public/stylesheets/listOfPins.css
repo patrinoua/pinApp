@@ -18,37 +18,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 11;
 }
 
 #listSmallHolder {
-    /* width: 70vw; */
+    min-width: 70vw;
     height: 70vh;
     overflow: scroll;
     border-radius: 3px;
     background-color: rgb(255, 255, 255);
-    padding: 7vw;
+    padding: 4vw;
     /* border: 1vw solid rgb(71, 170, 188); */
     color: black;
     box-shadow: 2px 2px 35px -5px black;
+    z-index: 10;
+    position: relative;
 }
 
 #listClose {
-    font-size: 3vw;
+    /* font-size: 3vw; */
     position: absolute;
-    top: 5vh;
-    right:5vw;
-    color: white;
+    top: 3vh;
+    right: 3vw;
+    /* color: white; */
     z-index: 12;
     cursor: pointer;
+    opacity: 0.4;
 }
-
+#listClose:hover{
+    opacity: .9;
+}
 ::-webkit-scrollbar {
     display: none;
 }
 
 .thePinImg {
     width: 4vw;
+    max-width: 30px;
     /* height: 7vh; */
 }
 

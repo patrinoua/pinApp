@@ -12,12 +12,12 @@ class ListOfLocations extends React.Component {
         return (
             <React.Fragment>
                 <div className="listOfPinsContainer">
-                    <div className="blackVail"/>
-                    <p id="listClose" onClick={this.props.closeListCom}>
-                        X
-                    </p>
+                    <div className="blackVail" onClick={this.props.closeListCom}/>
                     <div className="listOfLocationsHolder">
                         <div id="listSmallHolder">
+                            <p id="listClose" onClick={this.props.closeListCom}>
+                            X
+                            </p>
                             <div className="pinAppStyle listTitle">
                                 My Pins
                             </div>

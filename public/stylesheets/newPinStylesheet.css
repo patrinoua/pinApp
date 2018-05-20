@@ -24,8 +24,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 8
-    sub;
+    z-index: 8;
 }
 .blackVailDelete {
     margin: 0;
@@ -69,14 +68,14 @@
     height: 70vh;
     color: white;
     top: 0;
-    background-color: rgba(28, 28, 28, 0.9);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 3px;
     /* border: 2px solid rgba(243, 168, 60, 0.6); */
     /* border: 2px solid rgba(243, 168, 60, 0.6); */
     box-shadow: 2px 2px 35px -5px black;
 
     /* position: relative; */
-    z-index: 3;
+    z-index: 10;
 }
 .secondRowPinClick {
     width: 90%;
@@ -290,7 +289,7 @@
     box-shadow: 2px 2px 35px -5px black;
     top: 0;
     position: relative;
-    z-index: 3;
+    z-index: 10;
 }
 
 .box {

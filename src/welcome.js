@@ -15,6 +15,7 @@ export function Welcome() {
                             opacity:"0.65"
                         }}
                     />
+
                     <div
                         style={{
                             zIndex:"-3",
