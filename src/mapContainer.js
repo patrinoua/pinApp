@@ -281,11 +281,11 @@ class MapContainer extends React.Component {
                                     </button>
                                 </div>
                             </div>*/}
-                            <div className="newPinContainerRightUp">
+                            {/*<div className="newPinContainerRightUp">*/}
                                 <div className="infoText">
                                     Click anywhere on the map to add a pin
                                 </div>
-                            </div>
+                            {/*</div>*/}
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}
 

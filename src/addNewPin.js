@@ -136,7 +136,7 @@ class AddNewPin extends React.Component {
                     <p id="exit" onClick={this.props.closeAddNewPinComponent}>
                         X
                     </p>
-                    <div className="fieldsContainer">
+                    <div className="fieldsContainer fieldsContainerNewPin">
                         <div className="pinTitle box">
                             <div>
                                 <img src="/pins/bigPin.png" />

@@ -247,7 +247,7 @@ class PinClick extends React.Component {
                             X
                         </p>
 
-                        <div className="fieldsContainerPinClick">
+                        <div className="fieldsContainer fieldsContainerPinClick">
                             <div className="pinTitle box">
                                 <h1>
                                     <img src="/pins/bigPin.png" />
