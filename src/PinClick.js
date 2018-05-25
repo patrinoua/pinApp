@@ -31,7 +31,6 @@ class PinClick extends React.Component {
         axios
             .post("/PinClick", { pinId: this.props.pinId })
             .then((response) => {
-                console.log("in the mount of pinclick", response.data.pinInfo);
                 this.setState({
                     title: response.data.pinInfo.title,
                     category: response.data.pinInfo.category,
@@ -45,7 +44,6 @@ class PinClick extends React.Component {
             .catch((err) => {
                 console.log(`error in PinClick componentDidMount: ${err}`);
             });
-        // console.log("this.state.ready....",this.state);
     }
     toggleEditMode(e) {
         if (!this.state.editMode) {
@@ -129,21 +127,17 @@ class PinClick extends React.Component {
         );
     }
     deletePinAlert() {
-        console.log(this.props.pinId);
         this.setState({
             deleteAlertIsVisible: true
         });
 
         if (this.state.deleteAlertIsVisible == true) {
-            console.log("about to really delete pin");
-            console.log(this.props.pinId);
             this.props.dispatch(deletePin(this.props.pinId));
             this.setState({
                 deleteAlertIsVisible: false
             });
             this.props.togglePinClick();
         }
-        // console.log("this.state.deleteAlertIsVisible",this.state.deleteAlertIsVisible);
         // onClick={this.toggleEditMode}
     }
 
@@ -151,7 +145,6 @@ class PinClick extends React.Component {
         if (!this.props.pinId) {
             return <div>not ready</div>;
         } else {
-            console.log(this.props.pinId);
             const shareButtons = () => {
                 return (
                     <div className="colPinClick">
@@ -169,7 +162,6 @@ class PinClick extends React.Component {
                             id="sharePin"
                             className="subtleButton"
                             onClick={() => {
-                                console.log("share is clicked");
                                 emit("sharePin", this.props.pinId);
                             }}
                         >
@@ -178,7 +170,7 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
-            console.log("2");
+
             const deleteAlert = () => {
                 return (
                     <div className="blackVailDelete">
@@ -206,23 +198,18 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
-            console.log("3", this.props.markersArray);
 
             let currentPinInfo = this.props.markersArray.filter((item) => {
-                console.log("in filter", item.id, this.props.pinId);
                 return item.id == this.props.pinId;
             });
-            console.log(currentPinInfo);
             let imageUrl;
 
             if (currentPinInfo[0].url) {
-                console.log("currentPinInfo",currentPinInfo);
                 imageUrl = currentPinInfo[0].url;
             } else {
                 imageUrl = "/pins/greyPin.png";
             }
 
-            console.log("4");
             const edit = () => {
                 if (this.state.userId == this.props.id) {
                     return (
@@ -241,7 +228,6 @@ class PinClick extends React.Component {
                 }
             };
             let bigPin = currentPinInfo[0].color || "/pins/bigPin.png";
-            console.log("currentPinInfo[0]",currentPinInfo[0].color);
             return (
                 <React.Fragment>
                     <div className="pinClickContainer">
@@ -257,9 +243,10 @@ class PinClick extends React.Component {
                             <div className="pinTitle box">
                                 <h1>
                                     {/*<img src="/pins/bigPin.png" />*/}
-                                    <img src = {bigPin} />
+                                    <img src={bigPin} />
                                     <span className="addPinTitle">
-                                        {currentPinInfo[0].title || "clicked pin!"}
+                                        {currentPinInfo[0].title ||
+                                            "clicked pin!"}
                                     </span>
                                 </h1>
                             </div>
@@ -392,7 +379,6 @@ class PinClick extends React.Component {
     }
 }
 const mapStateToProps = function(state) {
-    console.log("in mapStateToProps", state);
     return {
         markersArray: state.markersArray,
         pinInfo: state.pinInfo,

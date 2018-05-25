@@ -23,7 +23,6 @@ export class ProfilePage extends React.Component {
         });
     }
     inputField(inputValue, state) {
-        console.log("lalala", name);
         return <div>I wonder...</div>;
     }
     changeInputValues(inputValues) {
@@ -44,7 +43,6 @@ export class ProfilePage extends React.Component {
             })
             .then((response) => {
                 if (response.data.user) {
-                    console.log("response.data.user", response.data.user);
                     this.props.changeInputValues(response.data.user);
                     setTimeout(this.toggleEditor, 300);
                 } else {
@@ -67,7 +65,6 @@ export class ProfilePage extends React.Component {
             .post("/updateProfilepic", formData)
             .then((response) => {
                 if (response.data.success) {
-                    console.log(response.data.profilepic);
                     this.props.changeImage(response.data.profilepic);
                     // this.props.changeImage(response.data.profilepic);
                 }
