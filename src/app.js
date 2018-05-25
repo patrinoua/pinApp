@@ -39,14 +39,12 @@ class App extends React.Component {
     //     });
     // }
     changeImage(img) {
-        console.log(img);
         this.setState({
             profilepic: img
         });
     }
 
     changeInputValues(inputValues) {
-        console.log("changeinputvalues...", inputValues);
         let { id, first, last, email, bio } = inputValues;
         this.setState({
             id,
@@ -58,7 +56,6 @@ class App extends React.Component {
     }
 
     hideUploader() {
-        console.log("hiding uploader...");
         this.setState({
             uploaderIsVisible: false
         });

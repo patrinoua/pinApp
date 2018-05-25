@@ -98,7 +98,6 @@ class Friends extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-    // console.log('state!!!',state.friends);
     return {
         friends: state.friends && state.friends.filter((friends) => friends),
         existingFriends:

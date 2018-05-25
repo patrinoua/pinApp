@@ -2,7 +2,7 @@ import axios from "./axios";
 
 export async function receiveFriends() {
     const { data } = await axios.get("/getFriendsAndWannabes");
-    // console.log('in Actions. logging friends and wannabes!', data);
+
     return {
         type: "RECEIVE_FRIENDS_AND_WANNABES",
         friends: data.friends
@@ -31,12 +31,11 @@ export async function acceptFriend(id) {
     };
 }
 export async function denyFriend(id) {
-    // console.log('the id of the person...');
     const { data } = await axios.post("updateFriendshipStatus", {
         id: id,
         status: 5
     });
-    // console.log('(inside denyFriend actions)data after accepting a friend', data);
+
     return {
         type: "DENY_FRIEND",
         id: id
@@ -51,7 +50,6 @@ export async function onlineUsers(array) {
     //only send back ones that are not the current user
 }
 export async function userJoined(user) {
-    console.log("ACTION: user Joined", user);
     return {
         type: "USER_JOINED",
         newUser: user
@@ -59,7 +57,6 @@ export async function userJoined(user) {
 }
 
 export async function userLeft(user) {
-    console.log("ACTION: userLeft", user.id);
     return {
         type: "USER_LEFT",
         userId: user.id
@@ -69,12 +66,10 @@ export async function userLeft(user) {
 // *********** ADD NEW PIN *********** //
 
 export function updatePinInfo(info) {
-    console.log(info.pinInfo);
     return axios
         .post("/updatePinInfo", info.pinInfo)
         .then((response) => {
             let pinInfo = response.data;
-            console.log("in the action", response.data);
             if (!info.formData) {
                 return {
                     type: "UPDATE_PIN",
@@ -85,14 +80,12 @@ export function updatePinInfo(info) {
                 .post("/uploadPinPic", info.formData)
                 .then((resp) => {
                     pinInfo.marker.url = resp.data.url;
-                    console.log(pinInfo.marker);
                     return {
                         type: "UPDATE_PIN",
                         pinInfo: pinInfo.marker
                     };
                 })
                 .catch((err) => {
-                    console.log("in the catch");
                     pinInfo.marker.url = "/user.png";
                     return {
                         type: "UPDATE_PIN",
@@ -115,14 +108,12 @@ export function insertPinInfo(info) {
                 .post("/uploadPinPic", info.formData)
                 .then((resp) => {
                     pinInfo.marker.url = resp.data.url;
-                    console.log(pinInfo.marker);
                     return {
                         type: "INSERT_PIN_INFO",
                         pinInfo: pinInfo.marker
                     };
                 })
                 .catch((err) => {
-                    console.log("in the catch");
                     pinInfo.marker.url = "/user.png";
                     return {
                         type: "INSERT_PIN_INFO",
@@ -149,14 +140,9 @@ export function getPinInfo() {
         });
 }
 export function getUserPinInfo(id) {
-    console.log("getUserPinInfo action", id);
     return axios
         .get(`/getUserMarkers`, { params: { id } })
         .then((response) => {
-            console.log(
-                "response in getUserPinInfo action",
-                response.data.marker
-            );
             return {
                 type: "GET_USER_PIN_INFO",
                 pinsArray: response.data.marker
@@ -181,7 +167,7 @@ export function selectActionBycategory(categories, pinsArray) {
                 }
             }
         });
-        console.log(pinsArray);
+
         return {
             type: "SELECT_CATEGORY",
             pinsArray: pinsArray
@@ -208,7 +194,6 @@ export function saveUserInfo(userInfo) {
     };
 }
 export function newPinToView(pinInfo) {
-    console.log("in the action", pinInfo);
     return {
         type: "SHARE_PIN",
         pinInfo: pinInfo
