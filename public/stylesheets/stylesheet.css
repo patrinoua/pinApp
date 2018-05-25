@@ -934,26 +934,46 @@ button:hover {
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 2px 2px 1px 1px #dcd5d5;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 1vh;
+    border: 1px solid grey;
+    box-shadow: 1px 1px 11px #dcd5d5;
     height: 20vh;
-    width: 13vw;
-    top: 10vh;
-    left: 0vw;
+    width: 16vw;
+    top: -10vh;
+    left: 13vw;
     background-color: white;
     z-index: 1;
-    animation: aaron 2s;
+    animation: aaron 6s;
+    background-color: #ebeced;
 }
 
-#popupShare>button {
-    z-index: 12345;
+/* #popupShare>button {
+    z-index: 20;
+} */
+#exitPopupShare {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    font-size: 1.5vw;
+    color: black;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.6;
 }
 
 @keyframes aaron {
     0% {
         top: -10vh;
     }
-    100% {
-        top: 10vh;
+    10% {
+        top: 14vh;
+    }
+    90% {
+        top: 14vh;
+    }
+    100%{
+        top:-10vh;
     }
 }

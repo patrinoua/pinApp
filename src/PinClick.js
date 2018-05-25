@@ -129,7 +129,6 @@ class PinClick extends React.Component {
         );
     }
     deletePinAlert() {
-        console.log(this.props.pinId);
         this.setState({
             deleteAlertIsVisible: true
         });
@@ -167,7 +166,7 @@ class PinClick extends React.Component {
                         </a>*/}
                         <button
                             id="sharePin"
-                            className="subtleButton"
+                            className="pinAppButton"
                             onClick={() => {
                                 console.log("share is clicked");
                                 emit("sharePin", this.props.pinId);
@@ -178,7 +177,6 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
-            console.log("2");
             const deleteAlert = () => {
                 return (
                     <div className="blackVailDelete">
@@ -206,13 +204,11 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
-            console.log("3", this.props.markersArray);
 
             let currentPinInfo = this.props.markersArray.filter((item) => {
                 console.log("in filter", item.id, this.props.pinId);
                 return item.id == this.props.pinId;
             });
-            console.log(currentPinInfo);
             let imageUrl;
 
             if (currentPinInfo[0].url) {
@@ -252,15 +248,12 @@ class PinClick extends React.Component {
                         <p id="exit" onClick={this.props.togglePinClick}>
                             X
                         </p>
-                        lalala
+
                         <div className="fieldsContainer fieldsContainerPinClick">
-                            <div className="pinTitle box">
-                                <h1>
-                                    {/*<img src="/pins/bigPin.png" />*/}
-                                    <img src = {bigPin} />
-                                    <span className="addPinTitle">
-                                        {currentPinInfo[0].title || "clicked pin!"}
-                                    </span>
+                            <div className="pinTitlePinClick">
+                                <img src = {bigPin} />
+                                <h1 className="addPinTitle">
+                                {currentPinInfo[0].title || "clicked pin!"}
                                 </h1>
                             </div>
                             <div className="secondRowPinClick">

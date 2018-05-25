@@ -293,15 +293,25 @@
     /* font-size: 25px; */
     width: 100%;
     z-index: 1;
+    display: flex;
+    /* justify-content: center; */
+}
+.pinTitlePinClick {
+    font-family: 'Pacifico', cursive;
+    /* font-size: 25px; */
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .pinTitle img {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    padding-right: 20px;
+    transform: translate(30%,-25%);
     max-width: 25%;
-    /* max-width: 130px; */
-    /* top: -45%;
-    left: 15%; */
+}
+.pinTitlePinClick img {
+    transform: translate(30%,-25%);
+    max-width: 25%;
 }
 .pinOptions{
     display: grid;
@@ -311,7 +321,7 @@
 }
 .addPinTitle {
     margin-left: 40px;
-    font-size: 5vw;
+    font-size: 3em;
     font-family: 'Pacifico', cursive;
 }
 
@@ -364,6 +374,8 @@
 .cameraIconContainer {
     /* width: 50%;
     height: 50%; */
+    max-width: 150px;
+    max-height: 150px;
     width: 25vh;
     height: 25vh;
     background-color: rgba(254, 228, 241, 1);
@@ -377,6 +389,7 @@
 .titleTextarea {
     border-radius: 6px;
     width: 24vh;
+    max-width: 143px;
     background-color: whitesmoke;
     margin: 10px;
     resize: none;
@@ -386,6 +399,7 @@
     border-radius: 6px;
     /* width: 47%; */
     width: 24vh;
+    max-width: 143px;
     background-color: whitesmoke;
 }
 
@@ -438,6 +452,7 @@
     z-index: 5;
     opacity: 0.6;
 }
+
 #exit:hover{
     opacity: 1;
 }

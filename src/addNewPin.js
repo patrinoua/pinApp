@@ -138,10 +138,8 @@ class AddNewPin extends React.Component {
                     </p>
                     <div className="fieldsContainer fieldsContainerNewPin">
                         <div className="pinTitle box">
-                            <div>
-                                <img src="/pins/bigPin.png" />
-                                <span className="addPinTitle pinTitle"> New Pin</span>
-                            </div>
+                            <img src="/pins/bigPin.png" />
+                            <span className="addPinTitle pinTitle"> New Pin</span>
                         </div>
                         <div className="pinOptions">
                             <div className="pinMenu">

@@ -217,9 +217,12 @@ class MapContainer extends React.Component {
                 {this.props.pinInfo &&
                     this.state.showThePop && (
                         <div id="popupShare">
+                            <p id="exitPopupShare" onClick={this.props.togglePinClick}>
+                                X
+                            </p>
                             <p>{this.props.userName}</p>
                             <span>shared a cool pin with you</span>
-                            <button
+                            <button className="pinAppButton"
                                 onClick={() => {
                                     // sharedPin(this.props.pinInfo.id);
 
