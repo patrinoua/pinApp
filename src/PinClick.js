@@ -245,7 +245,6 @@ class PinClick extends React.Component {
                         <div className="fieldsContainer fieldsContainerPinClick">
 
                         <p className="exitPinClick" onClick={this.props.togglePinClick}>
-                        {/*<p className="exitPinClick" onClick={this.togglePinClick}>*/}
                         X
                         </p>
                             <div className="pinTitlePinClick">
