@@ -27,7 +27,8 @@ class MapContainer extends React.Component {
             clickedPinId: null,
             pinClickVisible: false,
             mapHasBinClicked: false,
-            showListComponent: false
+            showListComponent: false,
+            showThePop: true
         };
 
         this.closeListCom = this.closeListCom.bind(this);
@@ -46,6 +47,7 @@ class MapContainer extends React.Component {
         this.togglePinClick = this.togglePinClick.bind(this);
         this.mapHasBinClicked = this.mapHasBinClicked.bind(this);
         this.closeAddNewPinComponent = this.closeAddNewPinComponent.bind(this);
+        this.closePopPin = this.closePopPin.bind(this);
     }
 
     componentDidMount() {
@@ -88,10 +90,12 @@ class MapContainer extends React.Component {
     }
     watchMyLocation() {
         if (!this.state.myLat) {
-            this.state.watchId = navigator.geolocation.watchPosition((pos) => {
+            let watchId = navigator.geolocation.watchPosition((pos) => {
+                console.log(pos.coords.latitude);
                 this.setState({
                     myLat: pos.coords.latitude,
-                    myLng: pos.coords.longitude
+                    myLng: pos.coords.longitude,
+                    watchId: watchId
                 });
             }, error);
 
@@ -166,14 +170,15 @@ class MapContainer extends React.Component {
             showListComponent: true
         });
     }
+    closePopPin() {
+        this.setState({
+            showSharedPin: false
+        });
+    }
     render() {
         const style = {
             backgroundSize: "contain"
         };
-        console.log(
-            "this.state.addNewPinIsVisible",
-            this.state.addNewPinIsVisible
-        );
         // if (!this.props.lat) {
         //     return <img src="/monky.gif" />;
         // }
@@ -191,14 +196,42 @@ class MapContainer extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums"> {text} </label>
+                    <label htmlFor="museums" className="pinText"> {text} </label>
                 </div>
             );
         };
+
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
                     <ListOfLocations closeListCom={this.closeListCom} />
+                )}
+
+                {this.props.pinInfo &&
+                    this.state.showThePop && (
+                        <div id="popupShare">
+                            <p>{this.props.userName}</p>
+                            <span>shared a cool pin with you</span>
+                            <button
+                                onClick={() => {
+                                    // sharedPin(this.props.pinInfo.id);
+
+                                    this.setState({
+                                        showSharedPin: true,
+                                        showThePop: false
+                                    });
+                                }}
+                            >
+                                view pin
+                            </button>
+                        </div>
+                    )}
+                {this.state.showSharedPin && (
+                    <PinClick
+                        pinId={this.props.pinInfo.id}
+                        togglePinClick={this.closePopPin}
+                        id={this.props.id}
+                    />
                 )}
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
@@ -209,120 +242,135 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
-                    <div className="mapContainerUp">
-                        <p>
-                            Click{" "}
-                            <span
-                                id="HERE"
-                                onClick={this.toggleAddNewPinComponent}
-                            >
-                                HERE
-                            </span>{" "}
-                            to drop the pin on your current location or click on
-                            a position on the map
-                        </p>
-                    </div>
+                    {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems(
-                                        "blue",
-                                        "museums",
-                                        "museums",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "green",
-                                        "Parks",
-                                        "parks",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "yellow",
-                                        "restaurants",
-                                        "restaurants",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "pink",
-                                        "bars",
-                                        "bars",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "purple",
-                                        "sightseeing",
-                                        "sightseeing",
-                                        this.checkValue
-                                    )}
+                                    {categoryItems( "blue", "Museums", "museums", this.checkValue )}
+                                    {categoryItems( "green", "Parks", "parks", this.checkValue )}
+                                    {categoryItems( "yellow", "Restaurants", "restaurants", this.checkValue )}
+                                    {categoryItems( "pink", "Bars", "bars", this.checkValue )}
+                                    {categoryItems( "purple", "Sightseeings", "sightseeing", this.checkValue )}
                                 </form>
 
-                                <button onClick={this.watchMyLocation}>
-                                    show my location
-                                </button>
-                                <button onClick={this.showListComponent}>
-                                    list my locations
+                                {/*className="subtleButton"*/}
+                                <button
+                                    className="pinAppButton"
+                                    onClick={this.showListComponent}>
+                                    My pins
                                 </button>
                             </div>
                         </div>
                         <div className="mapContainerRight">
-                            <div className="mapArea">
-                                <Map
-                                    style={style}
-                                    initialCenter={{
-                                        // lat: this.props.lat,
-                                        // lng: this.props.lng
-                                        lat: 52.4918854,
-                                        lng: 13.360088699999999
-                                    }}
-                                    zoom={14}
-                                    google={this.props.google}
-                                    onClick={this.mapClicked}
-                                    onReady={this.fetchPlaces}
-                                    visible={true}
+                            {/*<div className="mapContainerRightUP">
+                                <div className="inARow">
+                                    <button
+                                        className="pinAppButton"
+                                        onClick={this.watchMyLocation}>
+                                        my location
+                                    </button>
+                                    <button
+                                        className="pinAppButton"
+                                        onClick={() => {
+                                            console.log("bbbbb");
+                                            this.forceUpdate();
+                                        }}
+                                    >
+                                        center map
+                                    </button>
+                                </div>
+                            </div>*/}
+                            <div className="newPinContainerRightUp">
+                                <div className="infoText">
+                                    Click anywhere on the map to add a pin
+                                </div>
+                            </div>
+                            <div className="mapContainerRightDOWN">
+                                {/*<div className="mapAreaContainer">*/}
+
+                                {/*<button
+                                    className="pinAppButton roundButton dropPinButton"
+                                    onClick={this.toggleAddNewPinComponent}
                                 >
-                                    {this.state.myLat && (
-                                        <Marker
-                                            icon={{
-                                                url: "/dot.png",
-                                                anchor: new google.maps.Point(
-                                                    0,
-                                                    0
-                                                ),
-                                                scaledSize: new google.maps.Size(
-                                                    10,
-                                                    10
-                                                )
-                                            }}
-                                        />
+                                    Drop pin
+                                </button>*/}
+
+                                <div className="mapArea">
+                                    {!this.props.lat && (
+                                        <img src="assets/loading.gif" />
                                     )}
-                                    {this.props.markersArray &&
-                                        this.props.markersArray.map((item) => {
-                                            return (
+                                    {this.props.lat && (
+                                        <Map
+                                            style={style}
+                                            initialCenter={{
+                                                // lat: this.props.lat,
+                                                // lng: this.props.lng
+                                                lat: 52.4918854,
+                                                lng: 13.360088699999999
+                                            }}
+                                            center={{
+                                                lat: this.props.lat,
+                                                lng: this.props.lng
+                                            }}
+                                            zoom={14}
+                                            google={this.props.google}
+                                            onClick={this.mapClicked}
+                                            onReady={this.fetchPlaces}
+                                            visible={true}
+                                        >
+                                            {this.state.myLat && (
                                                 <Marker
-                                                    key={item.id}
-                                                    onClick={this.pinClick}
-                                                    name={item.id}
-                                                    position={{
-                                                        lat: item.lat,
-                                                        lng: item.lng
-                                                    }}
                                                     icon={{
-                                                        url: item.color,
+                                                        url: "/assets/dot.png",
                                                         anchor: new google.maps.Point(
-                                                            0,
-                                                            0
+                                                            -20,
+                                                            -20
                                                         ),
                                                         scaledSize: new google.maps.Size(
-                                                            25,
-                                                            35
+                                                            20,
+                                                            20
                                                         )
                                                     }}
                                                 />
-                                            );
-                                        })}
-                                </Map>
+                                            )}
+                                            {this.props.markersArray &&
+                                                this.props.markersArray.map(
+                                                    (item) => {
+                                                        return (
+                                                            <Marker
+                                                                key={item.id}
+                                                                onClick={
+                                                                    this
+                                                                        .pinClick
+                                                                }
+                                                                name={item.id}
+                                                                position={{
+                                                                    lat:
+                                                                        item.lat,
+                                                                    lng:
+                                                                        item.lng
+                                                                }}
+                                                                icon={{
+                                                                    url:
+                                                                        item.color,
+                                                                    anchor: new google.maps.Point(
+                                                                        15,
+                                                                        35
+                                                                    ),
+                                                                    scaledSize: new google.maps.Size(
+                                                                        25,
+                                                                        35
+                                                                    )
+                                                                }}
+                                                            />
+                                                        );
+                                                    }
+                                                )}
+                                        </Map>
+                                    )}
+                                </div>
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>
@@ -332,6 +380,7 @@ class MapContainer extends React.Component {
                         lat={this.state.lat}
                         lng={this.state.lng}
                         closeAddNewPinComponent={this.closeAddNewPinComponent}
+                        pinId={this.state.clickedPinId}
                     />
                 )}
                 {this.state.addMyPinLocationVisible && (
@@ -339,6 +388,7 @@ class MapContainer extends React.Component {
                         lat={this.props.lat}
                         lng={this.props.lng}
                         closeAddNewPinComponent={this.closeAddNewPinComponent}
+                        pinId={this.state.clickedPinId}
                     />
                 )}
             </React.Fragment>
@@ -348,8 +398,9 @@ class MapContainer extends React.Component {
 
 const mapStateToProps = function(state) {
     return {
-        markersArray: state.markersArray
-        // pins: state.onlineUsers
+        markersArray: state.markersArray,
+        pinInfo: state.pinInfo,
+        userName: state.userName
     };
 };
 

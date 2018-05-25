@@ -30,5 +30,4 @@ if (location.pathname == '/welcome'){
 }else {
     ReactDOM.render(elem, document.querySelector('main') );
     initSocket(store);
-
 }

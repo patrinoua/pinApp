@@ -78,7 +78,6 @@ export default function reducer(state = { markersArray: [] }, action) {
         };
     }
     if (action.type == "GET_PIN_INFO") {
-        console.log("REDUCER:action in GET_PIN_INFO");
         state = {
             ...state,
             markersArray: [...action.pinsArray]
@@ -105,10 +104,37 @@ export default function reducer(state = { markersArray: [] }, action) {
             })
         };
     }
+    if (action.type == "UPDATE_PIN") {
+        console.log("in the reducer", action.pinInfo);
+        state = {
+            ...state,
+            markersArray: state.markersArray.map((marker) => {
+                if (marker.id == action.pinInfo.id) {
+                    return {
+                        ...marker,
+                        title: action.pinInfo.title,
+                        description: action.pinInfo.description,
+                        url: action.pinInfo.url
+                    };
+                } else {
+                    return marker;
+                }
+            })
+        };
+    }
     if (action.type == "SAVE_USER_INFO") {
         state = {
             ...state,
             user: action.user
+        };
+    }
+    if (action.type == "SHARE_PIN") {
+        console.log("from the reducer", state, action.pinInfo);
+        state = {
+            ...state,
+            pinInfo: action.pinInfo.data,
+            userName: action.pinInfo.userName,
+            markersArray: state.markersArray.concat(action.pinInfo.data)
         };
     }
 

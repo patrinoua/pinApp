@@ -10,7 +10,7 @@ const csurf = require("csurf");
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-    origins: "localhost:8080, 192.168.50.106:* awesomeapp.herokuapp.com:*"
+    origins: "localhost:8080, 192.168.50.106:* mapapp-spiced.herokuapp.com:*"
 });
 
 const multer = require("multer"); //it's like bodyParser but for many(multi)
@@ -171,7 +171,9 @@ app.post("/register", function(req, res) {
 
 app.post("/login", function(req, res) {
     if (req.session.user) {
-        res.redirect("/");
+        console.log("problem in login");
+        res.sendStatus(500);
+        return;
     }
 
     if (req.body.email && req.body.password) {
@@ -187,6 +189,7 @@ app.post("/login", function(req, res) {
                     sex: userInfo.rows[0].sex,
                     isLoggedIn: true
                 };
+
                 db
                     .checkPassword(req.body.password, userInfo.rows[0].pass)
                     .then((doesMatch) => {
@@ -196,30 +199,29 @@ app.post("/login", function(req, res) {
                                 user: req.session.user
                             });
                         } else {
-                            res.redirect(
-                                "/wrongLogin?errMsg=passwords don't match"
-                            );
+                            res.json({
+                                success: false,
+                                errorMsg: "passwords don't match"
+                            });
                         }
                     })
                     .catch((err) => {
                         console.log("error when checking passwords", err);
                     });
             } else {
-                res.redirect("/wrongLogin?errMsg=user not found");
+                res.json({
+                    success: false,
+                    errorMsg: 'user not found"'
+                });
             }
         });
     } else {
-        res.redirect("/wrongLogin?errMsg=user must fill out everything");
+        res.json({
+            success: false,
+            errorMsg: "user must fill out everything"
+        });
     }
 });
-
-app.get("/wrongLogin", function(req, res) {
-    res.json({
-        success: false,
-        errorMsg: req.query.errMsg
-    });
-});
-app.post("/wrongLogin", function(req, res) {});
 
 app.post("/updateUserInfo/", function(req, res) {
     let first = req.body.first || req.session.user.first;
@@ -359,6 +361,21 @@ app.post("/deletePin", (req, res) => {
             console.log(`error in pic deletePinDb: ${err}`);
         });
 });
+app.post("/updatePinInfo", (req, res) => {
+    console.log(req.body);
+    db
+        .updateThePin(req.body.pinId, req.body.description, req.body.title)
+        .then((result) => {
+            console.log(result.rows[0]);
+            req.session.markerId = result.rows[0].id;
+            res.json({
+                marker: result.rows[0]
+            });
+        })
+        .catch((err) => {
+            console.log(`error in updatePinInfo: ${err}`);
+        });
+});
 app.post("/insertNewPin", (req, res) => {
     db
         .insertNewPin(
@@ -384,6 +401,7 @@ app.post("/PinClick", (req, res) => {
     db
         .getPinClickInfo(req.body.pinId)
         .then((result) => {
+            console.log(result.rows[0]);
             result.rows[0].created_at = db.formatDate(
                 result.rows[0].created_at
             );
@@ -503,7 +521,7 @@ app.get("/", function(req, res) {
     res.sendStatus(200);
 });
 
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
 
 let onlineUsers = [];
 
@@ -539,7 +557,36 @@ io.on("connection", function(socket) {
         };
         socket.broadcast.emit("userJoined", userThatJoined);
     }
-
+    socket.on("sharePin", (pinId) => {
+        db
+            .getPinClickInfo(pinId)
+            .then((result) => {
+                let shareInfo = {
+                    data: result.rows[0],
+                    userName: session.user.first
+                };
+                console.log(shareInfo);
+                socket.broadcast.emit("sharePin", shareInfo);
+            })
+            .catch((err) => {
+                console.log(`error in getUserIdByPinId: ${err}`);
+            });
+        //     console.log(onlineUsers);
+        //     let recieverId = onlineUsers.filter((user) => {
+        //         if (user.userId == result.rows[0].user_id) {
+        //             return user;
+        //         }
+        //     });
+        //     console.log(
+        //         "from the socket",
+        //         recieverId.socketId,
+        //         result.rows[0]
+        //     );
+        //     io.sockets
+        //         .socket(recieverId.socketId)
+        //         .emit("getSharedPin", pinId);
+        // })
+    });
     socket.on("disconnect", function() {
         onlineUsers = onlineUsers.filter((user) => {
             return user.socketId !== socket.id;

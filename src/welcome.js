@@ -9,6 +9,23 @@ export function Welcome() {
         <div id="welcome">
             <HashRouter>
                 <div className="welcomeContainer">
+                    <div className="blackVail"
+                        style={{
+                            zIndex:"-1",
+                            opacity:"0.65"
+                        }}
+                    />
+
+                    <div
+                        style={{
+                            zIndex:"-3",
+                            width:"100%",
+                            height:"100%",
+                            backgroundImage:"url('/assets/backgroundImage.jpg')",
+                            backgroundSize:"cover",
+                            position:"absolute"
+                        }}
+                    />
                     <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
                     <Route exact path="/" component={Register} />
                     <Route path="/login" component={Login} />
@@ -54,7 +71,7 @@ export class Register extends React.Component {
             .then((response) => {
                 if (response.data.success) {
                     // console.log('registered (in welcome.js)');
-                    location.replace("/user");
+                    location.replace("/");
                 } else {
                     // console.log('response.data in register error ',response.data.errorMsg);
                     this.setState({
@@ -95,13 +112,18 @@ export class Register extends React.Component {
                     name="password"
                     onChange={this.handleChange}
                     placeholder="password"
+                    type="password"
                 />
-
-                <button onClick={this.submit}> Submit </button>
-                <span className="simpleSpan">
-                    {" "}
-                    <Link to="/login">LOG IN</Link>{" "}
-                </span>
+                {/*<div className="inARow">*/}
+                    <button onClick={this.submit} className="pinAppButton"> Submit </button>
+                    {/*<Link to="/login">
+                        <button className="pinAppButton">Log in</button>
+                    </Link>*/}
+                    <Link to="/login" style={{color:"white"}}>
+                        Login
+                        {/*<button className="pinAppButton">Register</button>*/}
+                    </Link>
+                {/*</div>*/}
             </div>
         );
     }
@@ -126,7 +148,7 @@ export class Login extends React.Component {
             .then((response) => {
                 if (response.data.success) {
                     // console.log("response.data from login jfghdsgajf",response.data.user);
-                    location.replace("/user");
+                    location.replace("/");
                 } else {
                     // console.log("response.data.success from else:",response.data);
                     this.setState({
@@ -153,12 +175,15 @@ export class Login extends React.Component {
                     name="password"
                     onChange={this.handleChange}
                     placeholder="password"
+                    type="password"
                 />
-                <button onClick={this.submit}> Submit </button>
-                <span>
-                    {" "}
-                    <Link to="/">REGISTER</Link>
-                </span>
+                {/*<div className="inARow">*/}
+                    <button onClick={this.submit} className="pinAppButton"> Submit </button>
+                    <Link to="/" style={{color:"white"}}>
+                        Register
+                        {/*<button className="pinAppButton">Register</button>*/}
+                    </Link>
+                {/*</div>*/}
             </div>
         );
     }

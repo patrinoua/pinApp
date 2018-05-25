@@ -1,6 +1,3 @@
-* {
-    margin: 0;
-}
 
 #clickPinHolder {
     position: absolute;
@@ -31,15 +28,6 @@
     z-index: 12;
 }
 
-#exit {
-    position: absolute;
-    top: 18%;
-    right: 18%;
-    font-size: 2vw;
-    color: white;
-    cursor: pointer;
-    z-index: 5;
-}
 
 .pinTitle {
     font-family: 'Pacifico', cursive;

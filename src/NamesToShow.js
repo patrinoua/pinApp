@@ -42,9 +42,17 @@ export class NamesToShow extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <p id="searchUsers" onClick={this.search}>
-                    Search users
-                </p>
+                <div className="dropDownMenuItem" onClick={this.search}>
+                    Search
+                    <img
+                        src="/search.png"
+                        style={{
+                            width: "16px",
+                            paddingLeft: "4px",
+                            transform: "translateY(3px)"
+                        }}
+                    />
+                </div>
                 {this.state.showTextArea && (
                     <div id="searchUsersBox">
                         <textarea
@@ -71,6 +79,7 @@ function ListOfNames(props) {
     return (
         <div className="searchUsers">
             {props.names.map((item) => {
+                console.log(item.id);
                 if (item.id == props.id) {
                     return (
                         <Link

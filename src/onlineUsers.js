@@ -9,7 +9,7 @@ class OnlineUsers extends React.Component {
         if (this.props.onlineUsers && this.props.onlineUsers.length > 0) {
             console.log("this.props.onlineUsers  \n", this.props.onlineUsers);
             const onlineUsersList = this.props.onlineUsers.map((onlineUser) => {
-                var pic = onlineUser.profilepic || "/neo.png";
+                var pic = onlineUser.profilepic || "/user.png";
                 return (
                     <div key={onlineUser.id} className="onlineUser">
                         <Link to={`user/${onlineUser.id}`}>

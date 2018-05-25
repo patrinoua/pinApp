@@ -68,20 +68,43 @@ export async function userLeft(user) {
 
 // *********** ADD NEW PIN *********** //
 
+export function updatePinInfo(info) {
+    console.log(info.pinInfo);
+    return axios
+        .post("/updatePinInfo", info.pinInfo)
+        .then((response) => {
+            let pinInfo = response.data;
+            console.log("in the action", response.data);
+            return axios
+                .post("/uploadPinPic", info.formData)
+                .then((resp) => {
+                    pinInfo.marker.url = resp.data.url;
+                    console.log(pinInfo.marker);
+                    return {
+                        type: "UPDATE_PIN",
+                        pinInfo: pinInfo.marker
+                    };
+                })
+                .catch((err) => {
+                    console.log("in the catch");
+                    pinInfo.marker.url = "/user.png";
+                    return {
+                        type: "UPDATE_PIN",
+                        pinInfo: pinInfo.marker
+                    };
+                    console.log(`error in pic uploadPinPic: ${err}`);
+                });
+        })
+        .catch(function(err) {
+            console.log("there was an error in updatePinInfo", err);
+        });
+}
 export function insertPinInfo(info) {
     return axios
         .post("/insertNewPin", info.pinInfo)
         .then((response) => {
             let pinInfo = response.data;
-            console.log("formData", info.formData);
-            if (Object.keys(info.formData).length == 0) {
-                console.log("in the if");
-                pinInfo.marker.url = "/user.png";
-                return {
-                    type: "INSERT_PIN_INFO",
-                    pinInfo: pinInfo.marker
-                };
-            }
+
             return axios
                 .post("/uploadPinPic", info.formData)
                 .then((resp) => {
@@ -176,5 +199,12 @@ export function saveUserInfo(userInfo) {
     return {
         type: "SAVE_USER_INFO",
         user: userInfo
+    };
+}
+export function newPinToView(pinInfo) {
+    console.log("in the action", pinInfo);
+    return {
+        type: "SHARE_PIN",
+        pinInfo: pinInfo
     };
 }

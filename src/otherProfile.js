@@ -100,9 +100,9 @@ class OtherProfilePage extends React.Component {
         const style = {
             backgroundSize: "contain",
             backgroundColor: "pink",
-            borderRadius: "20px",
-            width: "50vw",
-            height: "40vh"
+            borderRadius: "2px",
+            width: "100%",
+            height: "100%"
         };
         const categoryItems = function(color, text, variable, myFunction) {
             let str = "/pins/" + color + "Pin.png";
@@ -117,11 +117,17 @@ class OtherProfilePage extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums"> {text} </label>
+                    <label htmlFor="museums" className="pinText"> {text} </label>
                 </div>
             );
         };
-
+        const userAvatar = this.state.user.profilepic || "/user.png"
+        // {this.state.user.profilepic && (
+        //     <img src={this.state.user.profilepic} />
+        // )}
+        // {!this.state.user.profilepic && (
+        //     <img src={"/user.png"} />
+        // )}
         return (
             <React.Fragment>
                 {this.state.pinClickVisible &&
@@ -134,13 +140,23 @@ class OtherProfilePage extends React.Component {
                     )}
                 <div className="profileContainerUser">
                     <div className="infoContainerUser">
-                        <div className="profilePicUser">
-                            {this.state.user.profilepic && (
-                                <img src={this.state.user.profilepic} />
-                            )}
-                            {!this.state.user.profilepic && (
-                                <img src={"/neo.png"} />
-                            )}
+                        <div className="centerStuff">
+                            <div className="profilePicUser"
+                            >
+                            <img src = {userAvatar}/>
+                                {/*{this.state.user.profilepic && (
+                                    <img src={this.state.user.profilepic} />
+                                )}
+                                {!this.state.user.profilepic && (
+                                    <img src={"/user.png"} />
+                                )}*/}
+                            </div>
+                            <div className="centerStuff">
+                                <FriendButton
+                                    otherId={this.props.match.params.id}
+                                />
+                                {/* <button> Send Msg</button> */}
+                            </div>
                         </div>
                         <div className="nameAndBioContainerUser">
                             <div className="nameUser">
@@ -148,12 +164,7 @@ class OtherProfilePage extends React.Component {
                             </div>
                             <div className="bioUser">{this.state.user.bio}</div>
                         </div>
-                        <div className="centerStuff">
-                            <FriendButton
-                                otherId={this.props.match.params.id}
-                            />
-                            <button> Send Msg</button>
-                        </div>
+
                     </div>
 
                     <div className="mapContainerUser">
@@ -244,8 +255,8 @@ class OtherProfilePage extends React.Component {
                                                     icon={{
                                                         url: item.color,
                                                         anchor: new google.maps.Point(
-                                                            0,
-                                                            0
+                                                            15,
+                                                            35
                                                         ),
                                                         scaledSize: new google.maps.Size(
                                                             25,

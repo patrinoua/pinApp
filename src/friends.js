@@ -16,7 +16,7 @@ class Friends extends React.Component {
     }
 
     friendFormat(friend, type) {
-        var pic = friend.profilepic || "neo.png";
+        var pic = friend.profilepic || "user.png";
         if (type == "exists") {
             return (
                 <div key={friend.id} className="friendBox">

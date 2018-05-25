@@ -149,7 +149,6 @@ exports.getFriends = (id) => {
 // *********** PART 7 : List Friends ***********
 
 exports.getFriendsAndWannabes = (id) => {
-    console.log("inside get friends and wannabes..");
     return db.query(
         `
         SELECT users.id, status, first, last, profilepic
@@ -198,21 +197,34 @@ exports.saveMarkerImage = (url, id) => {
     ]);
 };
 exports.formatDate = (date) => {
-    var monthNames = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
-
+    // var monthNames = [
+    //     "January",
+    //     "February",
+    //     "March",
+    //     "April",
+    //     "May",
+    //     "June",
+    //     "July",
+    //     "August",
+    //     "September",
+    //     "October",
+    //     "November",
+    //     "December"
+    // ];
+    var monthNames=[
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+    ]
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
@@ -221,14 +233,15 @@ exports.formatDate = (date) => {
 
     return (
         day +
-        " " +
+        "." +
         monthNames[monthIndex] +
-        " " +
-        year +
-        " " +
-        hour +
-        ":" +
-        minutes
+        "." +
+        year
+        // +
+        // " " +
+        // hour +
+        // ":" +
+        // minutes
     );
 };
 exports.getPinClickInfo = (pinId) => {
@@ -241,4 +254,10 @@ exports.nameOfUser = (name) => {
 };
 exports.deletePinDb = (pinId) => {
     return db.query(`DELETE FROM pins WHERE id=$1 RETURNING *`, [pinId]);
+};
+exports.updateThePin = (pinId, description, title) => {
+    return db.query(
+        `UPDATE pins SET description = $2, title=$3 WHERE id = $1 RETURNING *`,
+        [pinId, description, title]
+    );
 };

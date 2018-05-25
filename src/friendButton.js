@@ -133,7 +133,7 @@ export class FriendButton extends React.Component {
 
     render() {
         return (
-            <button className="FriendButton" onClick={this.changeStatus}>
+            <button className="FriendButton pinAppButton" onClick={this.changeStatus}>
                 {" "}
                 {this.state.text}
             </button>
