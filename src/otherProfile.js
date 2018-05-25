@@ -7,7 +7,7 @@ import { Logo, Login } from "./welcome";
 import { FriendButton } from "./friendButton";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import { getPinInfo, getUserPinInfo, selectActionBycategory } from "./actions";
-
+import ListOfLocations from "./ListOfLocations.js";
 import PinClick from "./PinClick.js";
 
 class OtherProfilePage extends React.Component {
@@ -33,6 +33,8 @@ class OtherProfilePage extends React.Component {
         this.checkValue = this.checkValue.bind(this);
         this.pinClick = this.pinClick.bind(this);
         this.togglePinClick = this.togglePinClick.bind(this);
+        this.showListComponent = this.showListComponent.bind(this);
+        this.closeListCom = this.closeListCom.bind(this);
     }
     pinClick(e) {
         this.clickedPinId = e.name;
@@ -64,7 +66,16 @@ class OtherProfilePage extends React.Component {
             )
         );
     }
-
+    showListComponent() {
+        this.setState({
+            showListComponent: true
+        });
+    }
+    closeListCom(e) {
+        this.setState({
+            showListComponent: false
+        });
+    }
     componentDidMount() {
         axios
             .get(`/getUser/${this.props.match.params.id}`)
@@ -117,11 +128,14 @@ class OtherProfilePage extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums" className="pinText"> {text} </label>
+                    <label htmlFor="museums" className="pinText">
+                        {" "}
+                        {text}{" "}
+                    </label>
                 </div>
             );
         };
-        const userAvatar = this.state.user.profilepic || "/user.png"
+        const userAvatar = this.state.user.profilepic || "/user.png";
         // {this.state.user.profilepic && (
         //     <img src={this.state.user.profilepic} />
         // )}
@@ -130,6 +144,12 @@ class OtherProfilePage extends React.Component {
         // )}
         return (
             <React.Fragment>
+                {this.state.showListComponent && (
+                    <ListOfLocations
+                        closeListCom={this.closeListCom}
+                        id={this.props.id}
+                    />
+                )}
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
                         <PinClick
@@ -141,9 +161,8 @@ class OtherProfilePage extends React.Component {
                 <div className="profileContainerUser">
                     <div className="infoContainerUser">
                         <div className="centerStuff">
-                            <div className="profilePicUser"
-                            >
-                            <img src = {userAvatar}/>
+                            <div className="profilePicUser">
+                                <img src={userAvatar} />
                                 {/*{this.state.user.profilepic && (
                                     <img src={this.state.user.profilepic} />
                                 )}
@@ -164,7 +183,6 @@ class OtherProfilePage extends React.Component {
                             </div>
                             <div className="bioUser">{this.state.user.bio}</div>
                         </div>
-
                     </div>
 
                     <div className="mapContainerUser">
@@ -202,7 +220,12 @@ class OtherProfilePage extends React.Component {
                                         this.checkValue
                                     )}
                                 </form>
-
+                                <button
+                                    className="pinAppButton"
+                                    onClick={this.showListComponent}
+                                >
+                                    List Of pins
+                                </button>
                                 {/*<button onClick={this.toggleSelectCategory}>categories</button>
                             <button onClick={this.watchMyLocation}>show my location</button>
                             <button onClick={this.toggleAddMyPinLocationVisible}>
