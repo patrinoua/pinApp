@@ -102,8 +102,13 @@ class PinClick extends React.Component {
         };
         const formData = new FormData();
         formData.append("file", this.state.file);
-        this.props.dispatch(updatePinInfo({ formData, pinInfo }));
-        this.toggleEditMode();
+        if (this.state.file) {
+            this.props.dispatch(updatePinInfo({ formData, pinInfo }));
+            this.toggleEditMode();
+        } else {
+            this.props.dispatch(updatePinInfo({ pinInfo }));
+            this.toggleEditMode();
+        }
     }
     compileData(e) {
         this.setState(
@@ -356,7 +361,6 @@ class PinClick extends React.Component {
                                     {shareButtons()}
                                 </div>
                             )}
-
                             {/* *************************FOURTH ROW********************* */}
                             {this.state.editMode && (
                                 <div className="pinEditSaveButtonArea box">
@@ -369,7 +373,6 @@ class PinClick extends React.Component {
                                     </div>
                                     <div
                                         className="saveButton"
-
                                         onClick={this.toggleEditMode}
                                     >
                                         {" "}

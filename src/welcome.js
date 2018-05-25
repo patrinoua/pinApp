@@ -9,21 +9,23 @@ export function Welcome() {
         <div id="welcome">
             <HashRouter>
                 <div className="welcomeContainer">
-                    <div className="blackVail"
+                    <div
+                        className="blackVail"
                         style={{
-                            zIndex:"-1",
-                            opacity:"0.65"
+                            zIndex: "-1",
+                            opacity: "0.65"
                         }}
                     />
 
                     <div
                         style={{
-                            zIndex:"-3",
-                            width:"100%",
-                            height:"100%",
-                            backgroundImage:"url('/assets/backgroundImage.jpg')",
-                            backgroundSize:"cover",
-                            position:"absolute"
+                            zIndex: "-3",
+                            width: "100%",
+                            height: "100%",
+                            backgroundImage:
+                                "url('/assets/backgroundImage.jpg')",
+                            backgroundSize: "cover",
+                            position: "absolute"
                         }}
                     />
                     <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
@@ -111,6 +113,11 @@ export class Register extends React.Component {
             });
     }
     render() {
+        document.addEventListener("keypress", (e) => {
+            if (e.keyCode == 13) {
+                this.submit();
+            }
+        });
         return (
             <div className="welcomeForm">
                 <div className="welcomeText"> Register </div>
@@ -144,14 +151,17 @@ export class Register extends React.Component {
                     type="password"
                 />
                 {/*<div className="inARow">*/}
-                    <button onClick={this.submit} className="pinAppButton"> Submit </button>
-                    {/*<Link to="/login">
+                <button onClick={this.submit} className="pinAppButton">
+                    {" "}
+                    Submit{" "}
+                </button>
+                {/*<Link to="/login">
                         <button className="pinAppButton">Log in</button>
                     </Link>*/}
-                    <Link to="/login" style={{color:"white"}}>
-                        Login
-                        {/*<button className="pinAppButton">Register</button>*/}
-                    </Link>
+                <Link to="/login" style={{ color: "white" }}>
+                    Login
+                    {/*<button className="pinAppButton">Register</button>*/}
+                </Link>
                 {/*</div>*/}
             </div>
         );
@@ -168,6 +178,7 @@ export class Login extends React.Component {
     handleChange(e) {
         this[e.target.name] = e.target.value;
     }
+
     submit() {
         axios
             .post("/login", {
@@ -188,7 +199,11 @@ export class Login extends React.Component {
             });
     }
     render() {
-        console.log(this.state);
+        document.addEventListener("keypress", (e) => {
+            if (e.keyCode == 13) {
+                this.submit();
+            }
+        });
         return (
             <div className="welcomeForm">
                 <div className="welcomeText"> Login </div>
@@ -207,11 +222,14 @@ export class Login extends React.Component {
                     type="password"
                 />
                 {/*<div className="inARow">*/}
-                    <button onClick={this.submit} className="pinAppButton"> Submit </button>
-                    <Link to="/register" style={{color:"white"}}>
-                        Register
-                        {/*<button className="pinAppButton">Register</button>*/}
-                    </Link>
+                <button onClick={this.submit} className="pinAppButton">
+                    {" "}
+                    Submit{" "}
+                </button>
+                <Link to="/" style={{ color: "white" }}>
+                    Register
+                    {/*<button className="pinAppButton">Register</button>*/}
+                </Link>
                 {/*</div>*/}
             </div>
         );
