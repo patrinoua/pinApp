@@ -151,12 +151,12 @@ class OtherProfilePage extends React.Component {
                                     <img src={"/user.png"} />
                                 )}*/}
                             </div>
-                            <div className="centerStuff">
+                            {/*<div className="centerStuff">*/}
                                 <FriendButton
                                     otherId={this.props.match.params.id}
                                 />
                                 {/* <button> Send Msg</button> */}
-                            </div>
+                            {/*</div>*/}
                         </div>
                         <div className="nameAndBioContainerUser">
                             <div className="nameUser">
