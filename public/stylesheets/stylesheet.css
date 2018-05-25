@@ -355,7 +355,7 @@ body {
     height: 58%;
     margin: 10px 10px;
     display: flex;
-    /* flex-direction: column; */
+    justify-content: center;
     justify-items: center;
     align-items: center;
     position: relative;
@@ -418,6 +418,7 @@ body {
     max-width: 150px;
     max-height: 150px;
     border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.2);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -451,21 +452,23 @@ body {
 /********** EDIT PROFILE  ***********/
 
 .profilePageContainer {
-    width: 100vw;
+    /* width: 100vw; */
     position: relative;
-    padding: 20px;
+    padding: 2vh;
+    padding-top: 5vh;
+    margin:3vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .profilePageContainerLeft {
     width: 30%;
-    min-width: 200px;
+    /*min-width: 200px;
     display: flex;
     flex-direction: column;
     position: relative;
-    align-items: center;
+    align-items: center; */
 }
 
 .profilePicFrame {
@@ -492,8 +495,9 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    border: 3px solid rgba(255, 255, 255, 1);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    /* border: 3px solid rgba(255, 255, 255, 1); */
+    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2); */
 }
 
 .profilePageContainerRight {
@@ -501,10 +505,11 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-left: 20px;
+    padding-left: 2vh;
 }
 
 .profileInfoContainer {
+    padding-top: 6vh;
     font-size: 0.9em;
     height: 30vh;
     width: 40vw;
@@ -515,10 +520,11 @@ body {
 }
 
 .existingValues, .editingValues {
+    padding-top: 3vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     /* box-shadow: -1px 1px 20px 9px rgba(137, 150, 208, .2); */
 }
 
@@ -854,6 +860,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 
 .subtleButton {
