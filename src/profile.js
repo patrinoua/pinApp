@@ -79,8 +79,7 @@ export class ProfilePage extends React.Component {
         let bio = this.props.bio || "Tell us something about urself!";
 
         const style = {
-            backgroundImage: `url(${pic})`,
-            backgroundSize: "cover"
+            backgroundImage: `url(${pic})`
         };
 
         const existingValue = (textToShow, propertyKey) => {
@@ -99,7 +98,7 @@ export class ProfilePage extends React.Component {
                         <input
                             id="first"
                             onChange={this.handleChange}
-                            className="inputField"
+                            className="inputPropertyValue"
                             name="first"
                             defaultValue={propertyKey}
                         />
@@ -112,7 +111,6 @@ export class ProfilePage extends React.Component {
             <div className="profilePageContainer">
                 <div className="profilePageContainerLeft">
                     {/*<p>Welcome, {this.props.first}</p>*/}
-                    <div className="profilePicFrame">
                         <div className="profilePicOwn">
                             <div className="profilePicCircle" style={style}>
                                 {/*<img src={pic} />*/}
@@ -133,7 +131,6 @@ export class ProfilePage extends React.Component {
                                 />
                             </label>
                         </div>
-                    </div>
                 </div>
                 <div className="profilePageContainerRight">
                     <div className="profileInfoContainer">
@@ -151,7 +148,7 @@ export class ProfilePage extends React.Component {
                                         <input
                                             id="pass"
                                             onChange={this.handleChange}
-                                            className="inputField"
+                                            className="inputPropertyValue"
                                             name="pass"
                                             placeholder="*******"
                                         />
@@ -166,7 +163,7 @@ export class ProfilePage extends React.Component {
                                         <textarea
                                             id="bio"
                                             onChange={this.handleChange}
-                                            className="inputField editBioTextArea"
+                                            className="inputPropertyValue editBioTextArea"
                                             name="bio"
                                             defaultValue={bio}
                                         />
@@ -198,7 +195,6 @@ export class ProfilePage extends React.Component {
                                     <div
                                         className="inputPropertyValue"
                                         style={{
-                                            width: 130 + "px",
                                             paddingBottom: 20 + "px"
                                         }}
                                     >
