@@ -281,11 +281,11 @@ class MapContainer extends React.Component {
                                     </button>
                                 </div>
                             </div>*/}
-                            <div className="newPinContainerRightUp">
+                            {/*<div className="newPinContainerRightUp">*/}
                                 <div className="infoText">
                                     Click anywhere on the map to add a pin
                                 </div>
-                            </div>
+                            {/*</div>*/}
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}
 
@@ -304,10 +304,10 @@ class MapContainer extends React.Component {
                                         <Map
                                             style={style}
                                             initialCenter={{
-                                                // lat: this.props.lat,
-                                                // lng: this.props.lng
-                                                lat: 52.4918854,
-                                                lng: 13.360088699999999
+                                                lat: this.props.lat,
+                                                lng: this.props.lng
+                                                // lat: 52.4918854,
+                                                // lng: 13.360088699999999
                                             }}
                                             center={{
                                                 lat: this.props.lat,

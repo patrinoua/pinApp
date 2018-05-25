@@ -27,7 +27,8 @@ export function Welcome() {
                         }}
                     />
                     <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
-                    <Route exact path="/" component={Register} />
+                    <Route exact path="/" component={WelcomeScreen} />
+                    <Route exact path="/register" component={Register} />
                     <Route path="/login" component={Login} />
                 </div>
             </HashRouter>
@@ -35,19 +36,47 @@ export function Welcome() {
     );
 }
 
-export function Logo() {
+export function WelcomeScreen() {
     return (
-        <div className="logo">
-            <a href="/user">
-                {" "}
-                <img
-                    className="welcomePageLogoImg"
-                    src="/pinAppLogo.png"
-                />{" "}
-            </a>
+        <div className="WelcomeScreen">
+            <div className="introTextArea">
+                <div className="introText">
+                You are on your way to meet your friend and you just passed by an amazing restaurant that you want to check out at some point?
+                </div>
+                <div className="introText">
+                Just drop a Pin, save it and come back later.
+                </div>
+                <div className="introText">
+                Save and share your favourite places!
+                </div>
+            </div>
+            <div className="inARow">
+                <Link to="/login" style={{color:"white"}}>
+                    <button className="pinAppButton">Login</button>
+                </Link>
+                <Link to="/register" style={{color:"white"}}>
+                    <button className="pinAppButton">Register</button>
+                </Link>
+
+            </div>
+
         </div>
     );
 }
+
+// export function Logo() {
+//     return (
+//         <div className="logo">
+//             <a href="/user">
+//                 {" "}
+//                 <img
+//                     className="welcomePageLogoImg"
+//                     src="/pinAppLogo.png"
+//                 />{" "}
+//             </a>
+//         </div>
+//     );
+// }
 
 export class Register extends React.Component {
     constructor(props) {
@@ -84,7 +113,7 @@ export class Register extends React.Component {
     render() {
         return (
             <div className="welcomeForm">
-                <h1> Register </h1>
+                <div className="welcomeText"> Register </div>
                 <div className="error">
                     {this.state.error && (
                         <div className="errMsg">
@@ -96,22 +125,22 @@ export class Register extends React.Component {
                 <input
                     name="first"
                     onChange={this.handleChange}
-                    placeholder="first"
+                    placeholder="First name"
                 />
                 <input
                     name="last"
                     onChange={this.handleChange}
-                    placeholder="last"
+                    placeholder="Last name"
                 />
                 <input
                     name="email"
                     onChange={this.handleChange}
-                    placeholder="email"
+                    placeholder="Email"
                 />
                 <input
                     name="password"
                     onChange={this.handleChange}
-                    placeholder="password"
+                    placeholder="Password"
                     type="password"
                 />
                 {/*<div className="inARow">*/}
@@ -162,24 +191,24 @@ export class Login extends React.Component {
         console.log(this.state);
         return (
             <div className="welcomeForm">
-                <h1> Login </h1>
+                <div className="welcomeText"> Login </div>
                 {this.state.error && (
                     <div className="errMsg"> {this.state.errorMsg} </div>
                 )}
                 <input
                     name="email"
                     onChange={this.handleChange}
-                    placeholder="email"
+                    placeholder="Email"
                 />
                 <input
                     name="password"
                     onChange={this.handleChange}
-                    placeholder="password"
+                    placeholder="Password"
                     type="password"
                 />
                 {/*<div className="inARow">*/}
                     <button onClick={this.submit} className="pinAppButton"> Submit </button>
-                    <Link to="/" style={{color:"white"}}>
+                    <Link to="/register" style={{color:"white"}}>
                         Register
                         {/*<button className="pinAppButton">Register</button>*/}
                     </Link>

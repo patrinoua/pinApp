@@ -211,6 +211,7 @@ class PinClick extends React.Component {
             let imageUrl;
 
             if (currentPinInfo[0].url) {
+                console.log("currentPinInfo",currentPinInfo);
                 imageUrl = currentPinInfo[0].url;
             } else {
                 imageUrl = "/pins/greyPin.png";
@@ -234,8 +235,8 @@ class PinClick extends React.Component {
                     return <div />;
                 }
             };
-            console.log("this.props", this.props);
-
+            let bigPin = currentPinInfo[0].color || "/pins/bigPin.png";
+            console.log("currentPinInfo[0]",currentPinInfo[0].color);
             return (
                 <React.Fragment>
                     <div className="pinClickContainer">
@@ -246,14 +247,14 @@ class PinClick extends React.Component {
                         <p id="exit" onClick={this.props.togglePinClick}>
                             X
                         </p>
-
-                        <div className="fieldsContainerPinClick">
+                        lalala
+                        <div className="fieldsContainer fieldsContainerPinClick">
                             <div className="pinTitle box">
                                 <h1>
-                                    <img src="/pins/bigPin.png" />
+                                    {/*<img src="/pins/bigPin.png" />*/}
+                                    <img src = {bigPin} />
                                     <span className="addPinTitle">
-                                        {currentPinInfo[0].title ||
-                                            "clicked pin"}
+                                        {currentPinInfo[0].title || "clicked pin!"}
                                     </span>
                                 </h1>
                             </div>

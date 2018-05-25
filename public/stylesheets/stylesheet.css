@@ -2,7 +2,6 @@
     margin: 0;
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 }
-
 a {
     margin: 0;
     text-decoration: none;
@@ -19,7 +18,6 @@ main {
     color: #2a2a2a;
     /* color: #5DA6AE; */
 }
-
 body {
     /* font: 14px "Helvetica"; */
     font-weight: 400;
@@ -28,7 +26,6 @@ body {
     text-align: center;
     justify-content: center;
 }
-
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
@@ -50,7 +47,6 @@ body {
     width: 100vw;
     position: relative;
     color: white;
-
 }
 .welcomeContainer h1{
     font-family: 'Pacifico', cursive;
@@ -62,7 +58,28 @@ body {
     padding-top: 5vh;
     /* padding-bottom: 5vh; */
 }
-
+.introText{
+    color:white;
+    /* font-style: italic; */
+    width: 90%;
+    max-width: 500px;
+    padding: 2vh;
+    font-family: Roboto;
+}
+.introTextArea{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh;
+}
+.welcomeText{
+    color:white;
+    font-family: Roboto;
+    font-size: 2em;
+    padding: 2vh;
+}
 /* ********* Route Container ************* */
 
 .routeContainer {
@@ -93,7 +110,7 @@ body {
 
 .navigationContainer {
     width: 100vw;
-    min-height: 10vh;
+    min-height: 11vh;
     /* padding: 20px; */
     display: flex;
     justify-content: space-between;
@@ -105,7 +122,7 @@ body {
     font-weight: 100;
     position: relative;
     z-index: 8;
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 11px rgba(0, 0, 0, 0.5);
 }
 
 .navigationIconBar {
@@ -271,11 +288,11 @@ body {
 }
 
 .mapContainerRight {
-    width: 50%;
-    /* height: 80%; */
+    min-width: 50%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     margin: 0 5vw;
     position: relative;
@@ -295,6 +312,9 @@ body {
     flex-direction: column;
     position: relative;
     /* background-color: black; */
+    height: 80%;
+    width: 100%;
+
     min-height: 50vh;
     min-width: 50vw;
     display: flex;
@@ -310,7 +330,7 @@ body {
     border-radius: 2px;
     border: 2px solid #eaeced;
     box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.4);
-    height: 80%;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     /* position: relative; */
@@ -618,8 +638,8 @@ body {
 
 .welcomeForm input {
     display: block;
-    padding: 8px;
-    border-radius: 2px;
+    padding: 4px;
+    /* border-radius: 2px; */
     font-size: 14px;
     justify-self: center;
     justify-content: center;
@@ -777,12 +797,16 @@ body {
 .pinAppButton{
     background-color: #b52519;
     color: white;
-    font-family: 'Pacifico', cursive;
     border-radius: 30px;
     font-size: 1.1em;
     box-shadow: inset -20px 0px 8px 0px rgba(0, 0, 0, 0.2);
+    width: 15vh;
+    border: 2px solid white;
+    /* font-family: 'Pacifico', cursive; */
+    font-family: Roboto;
+    font-weight: 600;
+    padding: 5px;
 }
-
 .pinAppButton:hover{
     background-color: black;
     background-color: #b52519;
@@ -791,8 +815,8 @@ body {
     border-radius: 50%;
     height: 10vh;
     width: 10vh;
-
 }
+
 .dropPinButton{
     position: absolute;
     z-index: 1;
@@ -808,6 +832,7 @@ body {
     color: grey;
     /* font-family:inherit; */
 }
+
 button {
     display: block;
     color: #929A9F;
