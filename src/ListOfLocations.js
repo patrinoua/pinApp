@@ -3,24 +3,40 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "./axios";
+import PinClick from "./PinClick.js";
 class ListOfLocations extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { clickedPinId: null };
     }
+
+    componentWillUnmount() {
+        this.setState({
+            clickedPinId: null
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
+                {this.state.clickedPinId && (
+                    <PinClick
+                        pinId={this.state.clickedPinId}
+                        togglePinClick={this.props.togglePinClick}
+                        id={this.props.id}
+                    />
+                )}
                 <div className="listOfPinsContainer">
-                    <div className="blackVail" onClick={this.props.closeListCom}/>
+                    <div
+                        className="blackVail"
+                        onClick={this.props.closeListCom}
+                    />
                     <div className="listOfLocationsHolder">
                         <div id="listSmallHolder">
                             <p id="listClose" onClick={this.props.closeListCom}>
-                            X
+                                X
                             </p>
-                            <div className="pinAppStyle listTitle">
-                                My Pins
-                            </div>
+                            <div className="pinAppStyle listTitle">My Pins</div>
                             {this.props.markersArray &&
                                 this.props.markersArray.map((item) => {
                                     return (
@@ -31,13 +47,18 @@ class ListOfLocations extends React.Component {
                                                 />
                                             </div> */}
 
-                                                <img
-                                                    src={item.color}
-                                                    className="thePinImg"
-                                                />
+                                            <img
+                                                src={item.color}
+                                                className="thePinImg"
+                                                onClick={() => {
+                                                    this.setState({
+                                                        clickedPinId: item.id
+                                                    });
+                                                    this.props.closeListCom;
+                                                }}
+                                            />
 
-
-                                                {item.title}
+                                            {item.title}
 
                                             {/*<div className="flexHolder categoryHolder">
                                                 {item.category}

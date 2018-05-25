@@ -75,6 +75,12 @@ export function updatePinInfo(info) {
         .then((response) => {
             let pinInfo = response.data;
             console.log("in the action", response.data);
+            if (!info.formData) {
+                return {
+                    type: "UPDATE_PIN",
+                    pinInfo: pinInfo.marker
+                };
+            }
             return axios
                 .post("/uploadPinPic", info.formData)
                 .then((resp) => {

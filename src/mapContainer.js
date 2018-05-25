@@ -196,7 +196,10 @@ class MapContainer extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums" className="pinText"> {text} </label>
+                    <label htmlFor="museums" className="pinText">
+                        {" "}
+                        {text}{" "}
+                    </label>
                 </div>
             );
         };
@@ -204,7 +207,11 @@ class MapContainer extends React.Component {
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
-                    <ListOfLocations closeListCom={this.closeListCom} />
+                    <ListOfLocations
+                        closeListCom={this.closeListCom}
+                        togglePinClick={this.togglePinClick}
+                        id={this.props.id}
+                    />
                 )}
 
                 {this.props.pinInfo &&
@@ -247,17 +254,43 @@ class MapContainer extends React.Component {
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems( "blue", "Museums", "museums", this.checkValue )}
-                                    {categoryItems( "green", "Parks", "parks", this.checkValue )}
-                                    {categoryItems( "yellow", "Restaurants", "restaurants", this.checkValue )}
-                                    {categoryItems( "pink", "Bars", "bars", this.checkValue )}
-                                    {categoryItems( "purple", "Sightseeings", "sightseeing", this.checkValue )}
+                                    {categoryItems(
+                                        "blue",
+                                        "Museums",
+                                        "museums",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "green",
+                                        "Parks",
+                                        "parks",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "yellow",
+                                        "Restaurants",
+                                        "restaurants",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "pink",
+                                        "Bars",
+                                        "bars",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "purple",
+                                        "Sightseeings",
+                                        "sightseeing",
+                                        this.checkValue
+                                    )}
                                 </form>
 
                                 {/*className="subtleButton"*/}
                                 <button
                                     className="pinAppButton"
-                                    onClick={this.showListComponent}>
+                                    onClick={this.showListComponent}
+                                >
                                     My pins
                                 </button>
                             </div>
@@ -282,9 +315,9 @@ class MapContainer extends React.Component {
                                 </div>
                             </div>*/}
                             {/*<div className="newPinContainerRightUp">*/}
-                                <div className="infoText">
-                                    Click anywhere on the map to add a pin
-                                </div>
+                            <div className="infoText">
+                                Click anywhere on the map to add a pin
+                            </div>
                             {/*</div>*/}
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}

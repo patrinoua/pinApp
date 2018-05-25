@@ -171,7 +171,6 @@ app.post("/register", function(req, res) {
 
 app.post("/login", function(req, res) {
     if (req.session.user) {
-        console.log("problem in login");
         res.sendStatus(500);
         return;
     }
@@ -362,11 +361,9 @@ app.post("/deletePin", (req, res) => {
         });
 });
 app.post("/updatePinInfo", (req, res) => {
-    console.log(req.body);
     db
         .updateThePin(req.body.pinId, req.body.description, req.body.title)
         .then((result) => {
-            console.log(result.rows[0]);
             req.session.markerId = result.rows[0].id;
             res.json({
                 marker: result.rows[0]
@@ -401,7 +398,6 @@ app.post("/PinClick", (req, res) => {
     db
         .getPinClickInfo(req.body.pinId)
         .then((result) => {
-            console.log(result.rows[0]);
             result.rows[0].created_at = db.formatDate(
                 result.rows[0].created_at
             );
@@ -565,7 +561,7 @@ io.on("connection", function(socket) {
                     data: result.rows[0],
                     userName: session.user.first
                 };
-                console.log(shareInfo);
+
                 socket.broadcast.emit("sharePin", shareInfo);
             })
             .catch((err) => {
