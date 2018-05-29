@@ -17,6 +17,7 @@ class ListOfLocations extends React.Component {
     }
 
     render() {
+        console.log("this.props in list of locations", this.props);
         return (
             <React.Fragment>
                 {this.state.clickedPinId && (

@@ -84,6 +84,8 @@ class MapContainer extends React.Component {
         });
     }
     togglePinClick() {
+        console.log('toggling pinClick!');
+        console.log("this.state.pinClickVisible",this.state.pinClickVisible);
         this.setState({
             pinClickVisible: !this.state.pinClickVisible
         });
@@ -203,6 +205,7 @@ class MapContainer extends React.Component {
             );
         };
 
+        console.log("this.state.showListComponent",this.state.showListComponent);
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
@@ -245,11 +248,14 @@ class MapContainer extends React.Component {
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
                         <PinClick
+                            pinClickVisible={this.state.pinClickVisible}
                             pinId={this.state.clickedPinId}
                             togglePinClick={this.togglePinClick}
                             id={this.props.id}
                         />
-                    )}
+                    )
+                }
+
                 <div className="mapContainer">
                     {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
@@ -308,7 +314,7 @@ class MapContainer extends React.Component {
                                     <button
                                         className="pinAppButton"
                                         onClick={() => {
-                                        
+
                                             this.forceUpdate();
                                         }}
                                     >

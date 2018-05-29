@@ -43,7 +43,7 @@ export function WelcomeScreen() {
         <div className="WelcomeScreen">
             <div className="introTextArea">
                 <div className="introText">
-                You are on your way to meet your friend and you just passed by an amazing restaurant that you want to check out at some point?
+                On your way to your date you just discovered an amazing restaurant that you want to check out at some point?
                 </div>
                 <div className="introText">
                 Just drop a Pin, save it and come back later.
@@ -65,20 +65,6 @@ export function WelcomeScreen() {
         </div>
     );
 }
-
-// export function Logo() {
-//     return (
-//         <div className="logo">
-//             <a href="/user">
-//                 {" "}
-//                 <img
-//                     className="welcomePageLogoImg"
-//                     src="/pinAppLogo.png"
-//                 />{" "}
-//             </a>
-//         </div>
-//     );
-// }
 
 export class Register extends React.Component {
     constructor(props) {
@@ -235,3 +221,17 @@ export class Login extends React.Component {
         );
     }
 }
+
+// export function Logo() {
+//     return (
+//         <div className="logo">
+//             <a href="/user">
+//                 {" "}
+//                 <img
+//                     className="welcomePageLogoImg"
+//                     src="/pinAppLogo.png"
+//                 />{" "}
+//             </a>
+//         </div>
+//     );
+// }

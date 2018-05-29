@@ -52,7 +52,25 @@
     justify-content: center;
     position: absolute;
     top: 0;
-    z-index: 10;
+    z-index: 20;
+}
+#exit {
+
+}
+
+#exitPinClick:hover{
+    opacity: 1;
+}
+
+.exitPinClick{
+    position: absolute;
+    top: 5vh;
+    right: 5vh;
+    font-size: 2vw;
+    color: white;
+    cursor: pointer;
+    opacity: 0.6;
+    z-index: 20;
 }
 .fieldsContainerPinClick {
     justify-items:center;
@@ -60,7 +78,8 @@
     grid-template-rows: 15% 50% 20% 15%;
     grid-template-columns: 1fr;
     /* position: relative; */
-    z-index: 10;
+    z-index: 20;
+    position: relative;
 }
 .secondRowPinClick {
     width: 90%;
@@ -186,17 +205,7 @@
     align-items: center;
     position: relative;
 }
-.titleTextareaPinClick {
-    border-radius: 6px;
-    width: 85%;
-    background-color: whitesmoke;
-    resize: none;
-}
-.descriptionTextareaPinClick {
-    border-radius: 6px;
-    width: 85%;
-    background-color: whitesmoke;
-}
+
 .shareButtons{
     width: 50px;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
@@ -212,6 +221,51 @@
     color: red;
     content: 'NEWttgg';
 }
+
+/* ********* pinClick.css ************ */
+
+#clickPinHolder {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.pinClickHolder {
+    width: 70vw;
+    height: 70vh;
+    background-color: rgb(71, 36, 83);
+    z-index: 12;
+}
+
+
+.pinTitle {
+    font-family: 'Pacifico', cursive;
+    /* font-size: 25px; */
+    width: 100%;
+    z-index: 12;
+}
+
+.addPinTitle {
+    margin-left: 40px;
+    font-size: 5vw;
+}
+
 /* ******** newPinContainer  *********/
 .newPinContainer {
     width: 100vw;
@@ -226,35 +280,6 @@
     animation: fadein 1s;
     z-index: 10;
 }
-
-/* @keyframes slidein {
-    from {
-        margin-top: 100%;
-        width: 300%;
-    }
-    to {
-        margin-top: 0%;
-        width: 100%;
-    }
-}
-
-@keyframes fadein {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes infinite-spinning {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-} */
 
 .fieldsContainer{
     display: grid;
@@ -360,6 +385,13 @@
     .pinText{
         display: none;
     }
+    .profilePageContainer{
+        flex-direction: column;
+    }
+    .profileInfoContainer{
+        padding-top: 0;
+        font-size: 0.8em;
+    }
 }
 .addPinPicture {
     width: 100%;
@@ -386,8 +418,8 @@
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }
 
-.titleTextarea {
-    border-radius: 6px;
+.titleTextarea, .titleTextareaPinClick {
+    border-radius: 2px;
     width: 24vh;
     max-width: 143px;
     background-color: whitesmoke;
@@ -395,8 +427,8 @@
     resize: none;
 }
 
-.descriptionTextarea {
-    border-radius: 6px;
+.descriptionTextarea, .descriptionTextareaPinClick {
+    border-radius: 2px;
     /* width: 47%; */
     width: 24vh;
     max-width: 143px;
@@ -456,3 +488,125 @@
 #exit:hover{
     opacity: 1;
 }
+
+/* *********** List of Pins **********/
+
+.listOfPinsContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+.listOfLocationsHolder {
+    position: absolute;
+    /* top: 9.3vh; */
+    width: 100vw;
+    height: 100vh;
+    /* background-color: rgba(0, 0, 0, 0.75); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#listSmallHolder {
+    min-width: 70vw;
+    height: 70vh;
+    overflow: scroll;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    padding: 4vw;
+    /* border: 1vw solid rgb(71, 170, 188); */
+    color: black;
+    box-shadow: 2px 2px 35px -5px black;
+    z-index: 10;
+    position: relative;
+}
+
+#listClose {
+    /* font-size: 3vw; */
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+    /* color: white; */
+    z-index: 12;
+    cursor: pointer;
+    opacity: 0.4;
+}
+#listClose:hover{
+    opacity: .9;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.thePinImg {
+    width: 4vw;
+    max-width: 30px;
+    /* height: 7vh; */
+}
+
+.flexHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listTitle  {
+    height: 5vh;
+    font-size: 2em;
+    padding-bottom: 4vh;
+    /* border: 0px; */
+    /* border-bottom: 3px solid black; */
+}
+
+.eachPin {
+    width: 100%;
+    /* height: 10vh; */
+    display: grid;
+    font-size: 1em;
+    grid-template-columns: 10% 25% 40% 25%;
+    align-items: center;
+    grid-column-gap: 0.5vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+    /* border: 1px solid black; */
+}
+
+.descHolder {
+    overflow: scroll;
+
+    color: grey;
+    font-size: 0.8em;
+    font-style: italic;
+
+    padding: 5px;
+    margin: 10px;
+}
+
+.categoryHolder {
+    /* border-radius: 50%;
+    background-color: rgb(71, 170, 188); */
+}
+
+.dateHolder {
+    font-size: 0.8em;
+    /* font-style: italic; */
+}
+
+/* .listImgHolder {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid black;
+}
+
+.listImgHolder img {
+    width: 100%;
+    height: 100%;
+} */

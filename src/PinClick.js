@@ -26,6 +26,12 @@ class PinClick extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.setFile = this.setFile.bind(this);
         this.deletePinAlert = this.deletePinAlert.bind(this);
+
+        this.togglePinClick = this.togglePinClick.bind(this);
+    }
+    togglePinClick(){
+        this.props.togglePinClick();
+        console.log('inside pinClick...', this.props.pinClickVisible);
     }
     componentDidMount() {
         axios
@@ -46,6 +52,7 @@ class PinClick extends React.Component {
             });
     }
     toggleEditMode(e) {
+        console.log(this.props);
         if (!this.state.editMode) {
             // this.insertPinInfo(e)
             this.setState({
@@ -234,11 +241,12 @@ class PinClick extends React.Component {
                             className="blackVail"
                             onClick={this.props.togglePinClick}
                         />
-                        <p id="exit" onClick={this.props.togglePinClick}>
-                            X
-                        </p>
 
                         <div className="fieldsContainer fieldsContainerPinClick">
+
+                        <p className="exitPinClick" onClick={this.props.togglePinClick}>
+                        X
+                        </p>
                             <div className="pinTitlePinClick">
                                 <img src = {bigPin} />
                                 <h1 className="addPinTitle">
