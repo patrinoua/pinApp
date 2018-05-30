@@ -76,7 +76,7 @@ class OtherProfilePage extends React.Component {
             showListComponent: false
         });
     }
-    componentDidMount() {
+    whatToDoOnLoad() {
         axios
             .get(`/getUser/${this.props.match.params.id}`)
             .then((response) => {
@@ -99,6 +99,12 @@ class OtherProfilePage extends React.Component {
             });
 
         this.props.dispatch(getUserPinInfo(this.props.match.params.id));
+    }
+    componentWillReceiveProps(nextProps) {
+        this.whatToDoOnLoad();
+    }
+    componentDidMount() {
+        this.whatToDoOnLoad();
     }
 
     render() {
