@@ -35,13 +35,17 @@ exports.saveUser = (first, last, email, password) => {
 // ************** LOGIN *************
 //this used to be getUserInfo
 exports.getUserInfoByEmail = (email) => {
-    return db.query("SELECT * FROM users WHERE email=$1", [email]);
+    return db.query("SELECT * FROM users WHERE UPPER(email)=UPPER($1)", [
+        email
+    ]);
 };
 exports.getUserInfoById = (id) => {
     return db.query("SELECT * FROM users WHERE id=$1", [id]);
 };
 exports.checkForUser = (email) => {
-    return db.query("SELECT id FROM users WHERE email=$1", [email]);
+    return db.query("SELECT id FROM users WHERE UPPER(email)=UPPER($1)", [
+        email
+    ]);
 };
 exports.checkPassword = (
     textEnteredInLoginForm,
