@@ -224,7 +224,7 @@ class OtherProfilePage extends React.Component {
                                         )}
                                     </form>
                                 </div>
-                                <button className="pinAppButton"> List of Pins </button>
+                                <div className="pinAppButton"> List of Pins </div>
 
                             </div>
                         </div>

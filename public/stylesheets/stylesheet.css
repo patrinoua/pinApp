@@ -59,6 +59,13 @@ body {
         font-size: 0.8em;
         /* background-color: pink; */
     }
+    .pinAppButton{
+        font-size: 70%;
+        background-color: yellow;
+    }
+    .otherUserContainerLeftMiddle{
+        background-color: yellow;
+    }
 }
 /* ********* Welcome Container ************* */
 
@@ -296,7 +303,7 @@ body {
     /* background-color: black; */
     /* width: 90%; */
     /* height: 30px; */
-    margin: 10px 0;
+    margin: 0.5vh 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -387,7 +394,7 @@ body {
 }
 .otherUserContainerLeft{
     /* background-color: yellow; */
-    width:40%;
+    width:30%;
 
     height: 80%;
 
@@ -402,19 +409,23 @@ body {
 .otherUserContainerLeftUp{
     /* background-color: orange; */
     width: 100%;
-    height: 30%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .otherUserContainerLeftMiddle{
-    height: 20%;
+    height: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .otherUserContainerLeftDown{
     /* background-color: green; */
     width: 100%;
-    height: 50%;
+    height: 65%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -492,8 +503,8 @@ body {
 }
 
 .profilePicUser {
-    width:20vh;
-    height: 20vh;
+    width:15vh;
+    height: 15vh;
     max-width: 150px;
     max-height: 150px;
     border-radius: 50%;
@@ -888,7 +899,8 @@ body {
     background-color: #b52519;
     color: white;
     border-radius: 30px;
-    font-size: 1.1em;
+    /* font-size: 1.1em; */
+    font-size: 110%;
     box-shadow: inset -20px 0px 8px 0px rgba(0, 0, 0, 0.2);
     width: 15vh;
     border: 2px solid white;
