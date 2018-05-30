@@ -39,7 +39,29 @@ body {
     /* font-family: "Helvetica", monospace; */
     font-weight: 100;
 }
+.componentContainer{
+    width: 100vw;
+    height: 80vh;
+    /* top: 10vh; */
+    top:55px;
+    padding: 2vh;
+    /* margin: 10px 10px; */
 
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+}
+@media only screen and (max-width:400px){
+    .introTextArea{
+        font-size: 0.9em;
+    }
+    .infoText{
+        font-size: 0.8em;
+        /* background-color: pink; */
+    }
+}
 /* ********* Welcome Container ************* */
 
 .welcomeContainer {
@@ -81,11 +103,7 @@ body {
     font-size: 2em;
     padding: 2vh;
 }
-@media only screen and (max-width:400px){
-    .introTextArea{
-        font-size: 0.9em;
-    }
-}
+
 /* ********* Route Container ************* */
 
 .routeContainer {
@@ -116,7 +134,9 @@ body {
 
 .navigationContainer {
     width: 100vw;
-    min-height: 11vh;
+    /* min-height: 11vh; */
+    height: 11vh;
+    max-height: 55px;
     /* padding: 20px; */
     display: flex;
     justify-content: space-between;
@@ -126,7 +146,7 @@ body {
     background-color: #0e0d0d;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
-    position: relative;
+    position: fixed;
     z-index: 8;
     box-shadow: 1px 1px 11px rgba(0, 0, 0, 0.5);
 }
@@ -156,44 +176,51 @@ body {
 }
 
 .navigationIcon {
-    height: 9vh;
+    height: 6vh;
     max-height: 53px;
-    margin-top: 2px;
-    margin-right: 5px;
+    min-height: 50px;
+    padding-top: 5px;
 }
 
 .navigationIconProfilepicCircle {
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2); */
     height: 9vh;
     width: 9vh;
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 35px;
+    max-height: 35px;
     overflow: hidden;
-    margin: 0 2vh;
+    margin-right: 2vh;
+    margin-left: 1vh;
     border-radius: 50%;
-    background-size: contain;
+    border: 2px solid grey;
+    background-size: cover;
+    background-position: center center;
 }
-
-.navigationIconProfilepic {
+.navigationIconProfilepicCircle:hover {
+    cursor: pointer;
+}
+/* .navigationIconProfilepic {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     height: 9vh;
     max-height: 40px;
-}
+} */
 
-.navigationIconProfilepic img {
+/* .navigationIconProfilepic img {
     height: 43px;
     width: 43px;
-}
+} */
 
-.navigationIconProfilepic:hover {
+/* .navigationIconProfilepic:hover {
     cursor: pointer;
-}
+} */
+
 
 .logoIconMenu {
     margin: 1vh;
-    max-height: 9vh;
+    height: 9vh;
+    max-height: 50px;
     position: fixed;
-    top: -.2vh;
+    top: -.5vh;
 }
 
 .logoIconMenu:hover {
@@ -211,17 +238,19 @@ body {
 
 /* ********* MAP ************* */
 
+
 .mapContainer {
     animation: 3s ease-in;
-    width: 98vw;
-    height: 88vh;
-    margin: 10px 10px;
+    width: 100%;
+    height: 95%;
+    /* top: 11vh; */
+    /* margin: 10px 10px; */
+
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: center;
     position: absolute;
-    top: 10vh;
     /* background-color: grey; */
 }
 
@@ -234,17 +263,18 @@ body {
 } */
 
 .mapContainerDown {
-    width: 100%;
-    height: 88vh;
+    width: 100vw;
+    height: 100vh;
+    /* margin: 2vh; */
     /* background-color: orange; */
     /* margin: 10px 10px; */
     display: flex;
     justify-content: center;
-    position: relative;
+    /* position: relative; */
+
     /* flex-direction: column; */
     /* align-items: center; */
 }
-
 .mapContainerLeft {
     /* background-color: yellow; */
     /* height: 70%; */
@@ -253,7 +283,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .categoryList {
     width: 25vw;
     /* height: 50vh; */
@@ -265,7 +294,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
 .categoryItem {
     /* background-color: black; */
     /* width: 90%; */
@@ -276,23 +304,19 @@ body {
     align-items: center;
     position: relative;
 }
-
 .categoryItemPinIcon {
     max-width: 20px;
     height: auto;
     padding: 0 10px;
 }
-
 .categoryItemPinIcon:hover {
     cursor: pointer;
 }
-
 .categoryItemText {
     display: flex;
     align-items: center;
     padding: 0px 15px;
 }
-
 .mapContainerRight {
     min-width: 50%;
     height: 100%;
@@ -303,14 +327,12 @@ body {
     margin: 0 5vw;
     position: relative;
 }
-
 .mapContainerRightUP {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-
 .mapContainerRightDOWN {
     display: flex;
     align-items: center;
@@ -328,8 +350,6 @@ body {
     align-items: center;
 
 }
-
-
 .mapArea {
     /* backgroun d-image: url('/map.png'); */
     background-size: contain;
@@ -353,7 +373,7 @@ body {
     padding: 20px;
     position: relative;
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
 }
 
 .mapContainerUser {
@@ -458,11 +478,11 @@ body {
 /********** EDIT PROFILE  ***********/
 
 .profilePageContainer {
-    /* width: 100vw; */
+    width: 100vw;
     position: relative;
-    padding: 2vh;
-    padding-top: 5vh;
-    margin:3vh;
+    /* padding: 2vh; */
+    /* padding-top: 5vh; */
+    /* margin:3vh; */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -844,6 +864,7 @@ body {
     font-size: 0.9em;
     font-style: italic;
     color: grey;
+    max-height: 50px;
     /* font-family:inherit; */
 }
 
@@ -958,7 +979,7 @@ button:hover {
     box-shadow: 1px 1px 11px #dcd5d5;
     height: 20vh;
     width: 16vw;
-    top: -10vh;
+    top: -17vh;
     left: 13vw;
     background-color: white;
     z-index: 1;
@@ -982,7 +1003,7 @@ button:hover {
 
 @keyframes aaron {
     0% {
-        top: -10vh;
+        top: -17vh;
     }
     10% {
         top: 14vh;
@@ -991,6 +1012,6 @@ button:hover {
         top: 14vh;
     }
     100%{
-        top:-10vh;
+        top:-17vh;
     }
 }

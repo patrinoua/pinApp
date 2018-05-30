@@ -82,15 +82,17 @@ class Friends extends React.Component {
         });
 
         return (
-            <div className="friendsComponent">
-                <div className="pendingFriends">
-                    <h1> Pending Friends </h1>
-                    <div className="pendingFriendsList">{pendingFriends}</div>
-                </div>
+            <div className="componentContainer">
+                <div className="friendsComponent">
+                    <div className="pendingFriends">
+                        <h1> Pending Friends </h1>
+                        <div className="pendingFriendsList">{pendingFriends}</div>
+                    </div>
 
-                <div className="existingFriends">
-                    <h1> Friends </h1>
-                    <div className="existingList">{existingFriends}</div>
+                    <div className="existingFriends">
+                        <h1> Friends </h1>
+                        <div className="existingList">{existingFriends}</div>
+                    </div>
                 </div>
             </div>
         );

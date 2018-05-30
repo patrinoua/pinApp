@@ -255,7 +255,7 @@ class MapContainer extends React.Component {
                         />
                     )
                 }
-
+                <div className="componentContainer">
                 <div className="mapContainer">
                     {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
@@ -416,6 +416,8 @@ class MapContainer extends React.Component {
                         </div>
                     </div>
                 </div>
+                </div>
+
                 {this.state.addNewPinIsVisible && (
                     <AddNewPin
                         lat={this.state.lat}

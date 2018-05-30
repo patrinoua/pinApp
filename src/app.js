@@ -175,7 +175,7 @@ class App extends React.Component {
                         />
                     </div>
                 </BrowserRouter>
-                {/*<UserMenu />*/}
+
                 {this.state.toggleUploader && (
                     <UploadProfilePic
                         changeImage={this.changeImage}
