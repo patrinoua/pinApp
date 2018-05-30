@@ -123,6 +123,7 @@ class App extends React.Component {
                             exact
                             path="/user/:id"
                             render={(x) => (
+                                <React.Fragment>
                                 <OtherProfilePage
                                     lat={this.state.lat}
                                     lng={this.state.lng}
@@ -130,6 +131,7 @@ class App extends React.Component {
                                     history={x.history}
                                     id={this.state.id}
                                 />
+                                </React.Fragment>
                             )}
                         />
                         <Route

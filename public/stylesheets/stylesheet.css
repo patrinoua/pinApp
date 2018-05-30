@@ -42,15 +42,13 @@ body {
 .componentContainer{
     width: 100vw;
     height: 80vh;
-    /* top: 10vh; */
     top:55px;
     padding: 2vh;
-    /* margin: 10px 10px; */
 
     display: flex;
-    flex-direction: column;
+/*    flex-direction: column;
     justify-items: center;
-    align-items: center;
+    align-items: center; */
     position: absolute;
 }
 @media only screen and (max-width:400px){
@@ -379,17 +377,57 @@ body {
 
 /********** USER PROFILE (OtherProfile) ***************/
 
-.profileContainerUser {
+.otherUserContainer {
+    width:96%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+}
+.otherUserContainerLeft{
+    /* background-color: yellow; */
+    width:40%;
+
+    height: 80%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    padding: 20px;
+    /* justify-content: space-evenly; */
     position: relative;
-    width: 100vw;
-    height: 100vh;
+
 }
 
+.otherUserContainerLeftUp{
+    /* background-color: orange; */
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.otherUserContainerLeftMiddle{
+    height: 20%;
+}
+.otherUserContainerLeftDown{
+    /* background-color: green; */
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.otherUserContainerRight{
+    /* background-color: purple; */
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .mapContainerUser {
     width: 100%;
     height: 58%;
@@ -410,6 +448,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: blue;
 }
 
 .categoryListUSer {
@@ -463,6 +502,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-position: center center;
+    background-size: cover;
 }
 
 .profilePicUser img {
@@ -475,7 +517,7 @@ body {
     display: flex;
     /* flex-direction: column; */
     align-items: center;
-    padding: 20px;
+    padding-left: 2vh;
 }
 
 .nameUser {

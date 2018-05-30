@@ -105,9 +105,6 @@ class OtherProfilePage extends React.Component {
         if (!this.state.user) {
             return <h1>no such user found</h1>;
         }
-        // if (!this.props.lat) {
-        //     return <img src="/monky.gif" />;
-        // }
         const style = {
             backgroundSize: "contain",
             backgroundColor: "pink",
@@ -136,6 +133,9 @@ class OtherProfilePage extends React.Component {
             );
         };
         const userAvatar = this.state.user.profilepic || "/user.png";
+        const profilePicStyle = {
+            backgroundImage: `url(${userAvatar})`
+        };
         // {this.state.user.profilepic && (
         //     <img src={this.state.user.profilepic} />
         // )}
@@ -159,38 +159,31 @@ class OtherProfilePage extends React.Component {
                         />
                     )}
                 <div className="componentContainer">
-                    <div className="profileContainerUser">
-                        <div className="infoContainerUser">
-                            <div className="centerStuff">
-                                <div className="profilePicUser">
-                                    <img src={userAvatar} />
-                                    {/*{this.state.user.profilepic && (
-                                        <img src={this.state.user.profilepic} />
-                                    )}
-                                    {!this.state.user.profilepic && (
-                                        <img src={"/user.png"} />
-                                    )}*/}
+                    <div className="otherUserContainer">
+
+                        <div className="otherUserContainerLeft">
+                            <div className="otherUserContainerLeftUp">
+                                <div className="profilePicUser" style={profilePicStyle}>
                                 </div>
-                                {/*<div className="centerStuff">*/}
+                                <div className="nameAndBioContainerUser">
+                                    <div className="nameUser">
+                                        {this.state.user.first}{" "}
+                                        {this.state.user.last}
+                                    </div>
+                                    <div className="bioUser">
+                                        {this.state.user.bio}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="otherUserContainerLeftMiddle">
                                 <FriendButton
                                     otherId={this.props.match.params.id}
                                 />
-                                {/* <button> Send Msg</button> */}
-                                {/*</div>*/}
-                            </div>
-                            <div className="nameAndBioContainerUser">
-                                <div className="nameUser">
-                                    {this.state.user.first}{" "}
-                                    {this.state.user.last}
-                                </div>
-                                <div className="bioUser">
-                                    {this.state.user.bio}
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className="mapContainerUser">
-                            <div className="mapContainerUserLeft">
+                            </div>
+                            <div className="otherUserContainerLeftDown">
                                 <div className="categoryListUser">
                                     <form id="myForm">
                                         {categoryItems(
@@ -224,78 +217,76 @@ class OtherProfilePage extends React.Component {
                                             this.checkValue
                                         )}
                                     </form>
+                                </div>
+                                <button className="pinAppButton"> List of Pins </button>
 
-                                    {/*<button onClick={this.toggleSelectCategory}>categories</button>
-                                <button onClick={this.watchMyLocation}>show my location</button>
-                                <button onClick={this.toggleAddMyPinLocationVisible}>
-                                    drop pin
-                                </button>*/}
-                                </div>
-                            </div>
-                            <div className="mapContainerUserRight">
-                                <div className="mapAreaUser">
-                                    <Map
-                                        style={style}
-                                        initialCenter={{
-                                            // lat: this.props.lat,
-                                            // lng: this.props.lng
-                                            lat: 52.4918854,
-                                            lng: 13.360088699999999
-                                        }}
-                                        zoom={14}
-                                        google={this.props.google}
-                                        onClick={this.mapClicked}
-                                        onReady={this.fetchPlaces}
-                                        visible={true}
-                                    >
-                                        {this.state.myLat && (
-                                            <Marker
-                                                icon={{
-                                                    url: "/dot.png",
-                                                    anchor: new google.maps.Point(
-                                                        0,
-                                                        0
-                                                    ),
-                                                    scaledSize: new google.maps.Size(
-                                                        10,
-                                                        10
-                                                    )
-                                                }}
-                                            />
-                                        )}
-                                        {this.props.markersArray &&
-                                            this.props.markersArray.map(
-                                                (item) => {
-                                                    return (
-                                                        <Marker
-                                                            key={item.id}
-                                                            onClick={
-                                                                this.pinClick
-                                                            }
-                                                            name={item.id}
-                                                            position={{
-                                                                lat: item.lat,
-                                                                lng: item.lng
-                                                            }}
-                                                            icon={{
-                                                                url: item.color,
-                                                                anchor: new google.maps.Point(
-                                                                    15,
-                                                                    35
-                                                                ),
-                                                                scaledSize: new google.maps.Size(
-                                                                    25,
-                                                                    35
-                                                                )
-                                                            }}
-                                                        />
-                                                    );
-                                                }
-                                            )}
-                                    </Map>
-                                </div>
                             </div>
                         </div>
+
+                        <div className="otherUserContainerRight">
+                            <div className="mapAreaUser">
+                                <Map
+                                    style={style}
+                                    initialCenter={{
+                                        // lat: this.props.lat,
+                                        // lng: this.props.lng
+                                        lat: 52.4918854,
+                                        lng: 13.360088699999999
+                                    }}
+                                    zoom={14}
+                                    google={this.props.google}
+                                    onClick={this.mapClicked}
+                                    onReady={this.fetchPlaces}
+                                    visible={true}
+                                >
+                                    {this.state.myLat && (
+                                        <Marker
+                                            icon={{
+                                                url: "/dot.png",
+                                                anchor: new google.maps.Point(
+                                                    0,
+                                                    0
+                                                ),
+                                                scaledSize: new google.maps.Size(
+                                                    10,
+                                                    10
+                                                )
+                                            }}
+                                        />
+                                    )}
+                                    {this.props.markersArray &&
+                                        this.props.markersArray.map(
+                                            (item) => {
+                                                return (
+                                                    <Marker
+                                                        key={item.id}
+                                                        onClick={
+                                                            this.pinClick
+                                                        }
+                                                        name={item.id}
+                                                        position={{
+                                                            lat: item.lat,
+                                                            lng: item.lng
+                                                        }}
+                                                        icon={{
+                                                            url: item.color,
+                                                            anchor: new google.maps.Point(
+                                                                15,
+                                                                35
+                                                            ),
+                                                            scaledSize: new google.maps.Size(
+                                                                25,
+                                                                35
+                                                            )
+                                                        }}
+                                                    />
+                                                );
+                                            }
+                                        )}
+                                </Map>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </React.Fragment>
