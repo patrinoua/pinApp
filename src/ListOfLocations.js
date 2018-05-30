@@ -8,6 +8,7 @@ class ListOfLocations extends React.Component {
     constructor(props) {
         super(props);
         this.state = { clickedPinId: null };
+        this.closeClickedPinList = this.closeClickedPinList.bind(this);
     }
 
     componentWillUnmount() {
@@ -15,7 +16,11 @@ class ListOfLocations extends React.Component {
             clickedPinId: null
         });
     }
-
+    closeClickedPinList() {
+        this.setState({
+            clickedPinId: null
+        });
+    }
     render() {
         console.log("this.props in list of locations", this.props);
         return (
@@ -23,7 +28,7 @@ class ListOfLocations extends React.Component {
                 {this.state.clickedPinId && (
                     <PinClick
                         pinId={this.state.clickedPinId}
-                        togglePinClick={this.props.togglePinClick}
+                        togglePinClick={this.closeClickedPinList}
                         id={this.props.id}
                     />
                 )}

@@ -190,6 +190,9 @@ exports.insertNewPin = (id, description, title, catagory, lat, lng, color) => {
 exports.getMarkerInfo = (id) => {
     return db.query(`SELECT * FROM pins WHERE user_id=$1`, [id]);
 };
+exports.getAllPins = () => {
+    return db.query(`SELECT * FROM pins`);
+};
 exports.saveMarkerImage = (url, id) => {
     return db.query(`UPDATE pins SET url = $1  WHERE id = $2 RETURNING *`, [
         url,
@@ -211,7 +214,7 @@ exports.formatDate = (date) => {
     //     "November",
     //     "December"
     // ];
-    var monthNames=[
+    var monthNames = [
         "01",
         "02",
         "03",
@@ -223,8 +226,8 @@ exports.formatDate = (date) => {
         "09",
         "10",
         "11",
-        "12",
-    ]
+        "12"
+    ];
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
@@ -232,11 +235,7 @@ exports.formatDate = (date) => {
     var minutes = date.getMinutes();
 
     return (
-        day +
-        "." +
-        monthNames[monthIndex] +
-        "." +
-        year
+        day + "." + monthNames[monthIndex] + "." + year
         // +
         // " " +
         // hour +
@@ -250,7 +249,9 @@ exports.getPinClickInfo = (pinId) => {
 exports.nameOfUser = (name) => {
     name = name + "%";
 
-    return db.query("SELECT * FROM users WHERE first LIKE $1", [name]);
+    return db.query("SELECT * FROM users WHERE UPPER(first)  LIKE UPPER($1)", [
+        name
+    ]);
 };
 exports.deletePinDb = (pinId) => {
     return db.query(`DELETE FROM pins WHERE id=$1 RETURNING *`, [pinId]);

@@ -139,6 +139,19 @@ export function getPinInfo() {
             console.log(`error in pic getPinInfo: ${err}`);
         });
 }
+export function getAllPins() {
+    return axios
+        .get("/getAllPins")
+        .then((response) => {
+            return {
+                type: "GET_PIN_INFO",
+                pinsArray: response.data.pinInfo
+            };
+        })
+        .catch((err) => {
+            console.log(`error in pic getPinInfo: ${err}`);
+        });
+}
 export function getUserPinInfo(id) {
     return axios
         .get(`/getUserMarkers`, { params: { id } })

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "./axios";
-import { deletePin } from "./actions";
+import { deletePin, getAllPins } from "./actions";
 import { insertPinInfo, updatePinInfo } from "./actions";
 import { emit } from "./socket";
 
@@ -17,6 +17,7 @@ class PinClick extends React.Component {
             ready: null,
             removeButtonText: "X",
             editMode: false,
+            url: "",
             deleteAlertIsVisible: false
         };
         this.setFile = this.setFile.bind(this);
@@ -28,15 +29,30 @@ class PinClick extends React.Component {
         this.deletePinAlert = this.deletePinAlert.bind(this);
 
         this.togglePinClick = this.togglePinClick.bind(this);
+        this.exportPin = this.exportPin.bind(this);
     }
-    togglePinClick(){
+    exportPin() {
+        const encryptedPinId = window.btoa(this.props.pinId);
+        const pinUrl = `localhost:8080/pin/${encryptedPinId}`;
+        console.log(pinUrl);
+        this.setState({
+            pinUrl
+        });
+    }
+    togglePinClick() {
         this.props.togglePinClick();
-        console.log('inside pinClick...', this.props.pinClickVisible);
     }
     componentDidMount() {
+        // this is currently getting all pins. it needs to be readjusted to get the necessary ones!
+        this.props.dispatch(getAllPins());
         axios
-            .post("/PinClick", { pinId: this.props.pinId })
+            .post("/PinClick", {
+                pinId:
+                    this.props.pinId ||
+                    window.atob(this.props.match.params.encryptedPinId)
+            })
             .then((response) => {
+                console.log("response.data", response.data);
                 this.setState({
                     title: response.data.pinInfo.title,
                     category: response.data.pinInfo.category,
@@ -147,9 +163,10 @@ class PinClick extends React.Component {
         }
         // onClick={this.toggleEditMode}
     }
+    // localhost:8080/pin/NjQ=
 
     render() {
-        if (!this.props.pinId) {
+        if (!this.state.ready && !this.props.markersArray.length > 0) {
             return <div>not ready</div>;
         } else {
             const shareButtons = () => {
@@ -174,6 +191,8 @@ class PinClick extends React.Component {
                         >
                             share
                         </button>
+                        <button onClick={this.exportPin}>export</button>
+                        {this.state.pinUrl && <p>{this.state.pinUrl}</p>}
                     </div>
                 );
             };
@@ -204,10 +223,23 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
+            let currentPinInfo;
 
-            let currentPinInfo = this.props.markersArray.filter((item) => {
-                return item.id == this.props.pinId;
-            });
+            if (this.props.pinId) {
+                currentPinInfo = this.props.markersArray.filter((item) => {
+                    return item.id == this.props.pinId;
+                });
+            } else if (this.props.flag) {
+                currentPinInfo = this.props.markersArray.filter((item) => {
+                    return (
+                        item.id ==
+                        window.atob(this.props.match.params.encryptedPinId)
+                    );
+                });
+            } else {
+                currentPinInfo = [this.state];
+            }
+
             let imageUrl;
 
             if (currentPinInfo[0].url) {
@@ -233,7 +265,13 @@ class PinClick extends React.Component {
                     return <div />;
                 }
             };
-            let bigPin = currentPinInfo[0].color || "/pins/bigPin.png";
+            let bigPin;
+            if (currentPinInfo[0]) {
+                bigPin = currentPinInfo[0].color || "/pins/bigPin.png";
+            } else {
+                bigPin = "/pins/bigPin.png";
+            }
+
             return (
                 <React.Fragment>
                     <div className="pinClickContainer">
@@ -243,14 +281,16 @@ class PinClick extends React.Component {
                         />
 
                         <div className="fieldsContainer fieldsContainerPinClick">
-
-                        <p className="exitPinClick" onClick={this.props.togglePinClick}>
-                        X
-                        </p>
+                            <p
+                                className="exitPinClick"
+                                onClick={this.props.togglePinClick}
+                            >
+                                X
+                            </p>
                             <div className="pinTitlePinClick">
-                                <img src = {bigPin} />
+                                <img src={bigPin} />
                                 <h1 className="addPinTitle">
-                                {currentPinInfo[0].title || "clicked pin!"}
+                                    {currentPinInfo[0].title || "clicked pin!"}
                                 </h1>
                             </div>
                             <div className="secondRowPinClick">

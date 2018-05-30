@@ -62,24 +62,26 @@ if (process.env.NODE_ENV != "production") {
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
-app.use(function(req, res, next) {
-    next();
-});
+
 app.use(csurf());
 
 app.use(function(req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
+
 function requireLogin(req, res, next) {
+    console.log("lallalalaaaa  3");
     if (!req.session.user) {
-        res.sendStatus(403);
+        console.log("requireLogin is fired");
+        // res.sendStatus(403);
     } else {
         next();
     }
 }
 
 app.get("/getUser", requireLogin, function(req, res) {
+    console.log("getting user...");
     res.json({
         success: true,
         user: req.session.user
@@ -87,6 +89,8 @@ app.get("/getUser", requireLogin, function(req, res) {
 });
 
 app.get("/getUser/:userId", requireLogin, function(req, res) {
+    console.log("getting user./userid..");
+
     db
         .getUserInfoById(req.params.userId)
         .then((userInfo) => {
@@ -222,7 +226,7 @@ app.post("/login", function(req, res) {
     }
 });
 
-app.post("/updateUserInfo/", function(req, res) {
+app.post("/updateUserInfo", function(req, res) {
     let first = req.body.first || req.session.user.first;
     let last = req.body.last || req.session.user.last;
     let email = req.body.email || req.session.user.email;
@@ -493,20 +497,38 @@ app.get("/getFriendsAndWannabes", function(req, res) {
             console.log("err when getting friends", err);
         });
 });
-
+app.get("/getAllPins", (req, res) => {
+    db
+        .getAllPins()
+        .then((result) => {
+            res.json({
+                pinInfo: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log(`error in getAllPins: ${err}`);
+        });
+});
 app.get("/logout", function(req, res) {
     req.session = null;
     res.redirect("/welcome");
 });
 
 app.get("*", function(req, res) {
+    console.log("the url is", req.url);
     if (req.url == "/welcome" && req.session.user) {
         res.redirect("/");
         return;
     }
     if (!req.session.user) {
-        res.redirect("/welcome");
-        return;
+        if (req.params[0].startsWith("/pin/")) {
+            res.sendFile(__dirname + "/index.html");
+
+            // return;
+        } else {
+            res.redirect("/welcome");
+            return;
+        }
     } else {
         res.sendFile(__dirname + "/index.html");
     }
