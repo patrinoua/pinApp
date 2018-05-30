@@ -536,6 +536,7 @@
 .thePinImg {
     width: 4vw;
     max-width: 30px;
+    min-width: 24px;
     /* height: 7vh; */
 }
 
@@ -555,7 +556,6 @@
 
 .eachPin {
     width: 100%;
-    /* height: 10vh; */
     display: grid;
     font-size: 1em;
     grid-template-columns: 10% 25% 40% 25%;
@@ -596,6 +596,16 @@
     .profileInfoContainer{
         padding-top: 0;
         font-size: 0.8em;
+    }
+    .eachPin{
+        grid-template-columns: 30% 60%;
+        /* font-size: 0.8em; */
+    }
+    .descHolder, .dateHolder{
+        display: none;
+    }
+    .thePinImg {
+        justify-self:center;
     }
 }
 /* .listImgHolder {
