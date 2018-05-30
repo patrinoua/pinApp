@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "./axios";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import { deletePin, getAllPins } from "./actions";
 import { insertPinInfo, updatePinInfo } from "./actions";
 import { emit } from "./socket";
@@ -295,8 +296,49 @@ class PinClick extends React.Component {
                             </div>
                             <div className="secondRowPinClick">
                                 <div className="boxPinClick mapContainerPinClick">
-                                    {/*<div className="overlayPin"> lalala </div>*/}
-                                    <img src="/map.png" />
+                                    <Map
+                                        style={{
+                                            width: "100%",
+                                            height: "100%"
+                                        }}
+                                        center={{
+                                            lat: this.props.lat || 52.4918854,
+                                            lng:
+                                                this.props.lng ||
+                                                13.360088699999999
+                                        }}
+                                        zoom={14}
+                                        google={this.props.google}
+                                        onReady={this.fetchPlaces}
+                                        visible={true}
+                                    >
+                                        {this.props.markersArray &&
+                                            currentPinInfo.map((item) => {
+                                                return (
+                                                    <Marker
+                                                        key={item.id}
+                                                        onClick={this.pinClick}
+                                                        name={item.id}
+                                                        position={{
+                                                            lat: item.lat,
+                                                            lng: item.lng
+                                                        }}
+                                                        icon={{
+                                                            url: item.color,
+                                                            anchor: new google.maps.Point(
+                                                                15,
+                                                                35
+                                                            ),
+                                                            scaledSize: new google.maps.Size(
+                                                                25,
+                                                                35
+                                                            )
+                                                        }}
+                                                    />
+                                                );
+                                            })}
+                                    </Map>
+                                    {/* <img src="/map.png" /> */}
                                 </div>
 
                                 <div className="boxPinClick">
@@ -428,4 +470,6 @@ const mapStateToProps = function(state) {
         userName: state.userName
     };
 };
-export default connect(mapStateToProps)(PinClick);
+export default GoogleApiWrapper({
+    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+})(connect(mapStateToProps)(PinClick));
