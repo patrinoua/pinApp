@@ -43,25 +43,24 @@ export function WelcomeScreen() {
         <div className="WelcomeScreen">
             <div className="introTextArea">
                 <div className="introText">
-                On your way to your date you just discovered an amazing restaurant that you want to check out at some point?
+                    On your way to your date you just discovered an amazing
+                    restaurant that you want to check out at some point?
                 </div>
                 <div className="introText">
-                Just drop a Pin, save it and come back later.
+                    Just drop a Pin, save it and come back later.
                 </div>
                 <div className="introText">
-                Save and share your favourite places!
+                    Save and share your favourite places!
                 </div>
             </div>
             <div className="inARow">
-                <Link to="/login" style={{color:"white"}}>
+                <Link to="/login" style={{ color: "white" }}>
                     <button className="pinAppButton">Login</button>
                 </Link>
-                <Link to="/register" style={{color:"white"}}>
+                <Link to="/register" style={{ color: "white" }}>
                     <button className="pinAppButton">Register</button>
                 </Link>
-
             </div>
-
         </div>
     );
 }

@@ -32,6 +32,7 @@ class App extends React.Component {
     }
     togglePinClick() {
         console.log("go to the park");
+        location.replace("/");
     }
     toggleUploader() {
         this.setState({
