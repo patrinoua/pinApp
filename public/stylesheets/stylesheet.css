@@ -39,14 +39,27 @@ body {
     /* font-family: "Helvetica", monospace; */
     font-weight: 100;
 }
+.componentContainer{
+    width: 100vw;
+    height: 80vh;
+    /* top: 10vh; */
+    top:55px;
+    padding: 2vh;
+    /* margin: 10px 10px; */
 
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+}
 @media only screen and (max-width:400px){
     .introTextArea{
         font-size: 0.9em;
     }
     .infoText{
         font-size: 0.8em;
-        background-color: pink;
+        /* background-color: pink; */
     }
 }
 /* ********* Welcome Container ************* */
@@ -225,20 +238,7 @@ body {
 
 /* ********* MAP ************* */
 
-.componentContainer{
-    width: 100vw;
-    height: 89vh;
-    /* top: 10vh; */
-    top:50px;
-    padding: 2vh;
-    /* margin: 10px 10px; */
 
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    position: absolute;
-}
 .mapContainer {
     animation: 3s ease-in;
     width: 100%;
