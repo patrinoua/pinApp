@@ -63,9 +63,9 @@ class ListOfLocations extends React.Component {
                                                     this.props.closeListCom;
                                                 }}
                                             />
-
-                                            {item.title}
-
+                                            <span className="titleHolder">
+                                                {item.title}
+                                            </span>
                                             {/*<div className="flexHolder categoryHolder">
                                                 {item.category}
                                             </div>*/}

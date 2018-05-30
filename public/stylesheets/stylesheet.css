@@ -304,10 +304,24 @@ body {
     align-items: center;
     position: relative;
 }
+.categoryItem [type=checkbox]{
+    z-index: 1;
+    zoom:2;
+    opacity: 0;
+}
+
+.categoryItem [type=checkbox]:checked {
+  background-color: black !important;
+  color: orange !important;
+}
+
 .categoryItemPinIcon {
     max-width: 20px;
     height: auto;
     padding: 0 10px;
+    position: absolute;
+    left: -8px;
+    z-index: -1;
 }
 .categoryItemPinIcon:hover {
     cursor: pointer;
