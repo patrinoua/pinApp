@@ -74,20 +74,11 @@ function requireLogin(req, res, next) {
     console.log("lallalalaaaa  3");
     if (!req.session.user) {
         console.log("requireLogin is fired");
-        // res.sendStatus(403);
+        res.sendStatus(403);
     } else {
         next();
     }
 }
-
-app.get("/getUser", requireLogin, function(req, res) {
-    console.log("getting user...");
-    res.json({
-        success: true,
-        user: req.session.user
-    });
-});
-
 app.get("/getUser/:userId", requireLogin, function(req, res) {
     console.log("getting user./userid..");
 
@@ -101,6 +92,14 @@ app.get("/getUser/:userId", requireLogin, function(req, res) {
         .catch((err) => {
             console.log("problem with getting userInfo", err);
         });
+});
+
+app.get("/getUser", requireLogin, function(req, res) {
+    console.log("getting user...");
+    res.json({
+        success: true,
+        user: req.session.user
+    });
 });
 
 app.get("/welcome", function(req, res) {

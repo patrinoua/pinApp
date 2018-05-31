@@ -76,9 +76,9 @@ class OtherProfilePage extends React.Component {
             showListComponent: false
         });
     }
-    whatToDoOnLoad() {
+    whatToDoOnLoad(id) {
         axios
-            .get(`/getUser/${this.props.match.params.id}`)
+            .get(`/getUser/${id}`)
             .then((response) => {
                 this.setState({ user: response.data.user });
             })
@@ -100,11 +100,20 @@ class OtherProfilePage extends React.Component {
 
         this.props.dispatch(getUserPinInfo(this.props.match.params.id));
     }
-    componentWillReceiveProps(nextProps) {
-        this.whatToDoOnLoad();
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (
+    //         nextProps.history.location.pathname !== this.props.match.params.id
+    //     ) {
+    //         console.log("look its fire");
+    //         this.whatToDoOnLoad(nextProps.match.params.id);
+    //         return;
+    //     }
+    //     console.log(nextProps);
+    //     console.log(this.props.match.params.id);
+    //     return;
+    // }
     componentDidMount() {
-        this.whatToDoOnLoad();
+        this.whatToDoOnLoad(this.props.match.params.id);
     }
 
     render() {
@@ -154,6 +163,7 @@ class OtherProfilePage extends React.Component {
                     <ListOfLocations
                         closeListCom={this.closeListCom}
                         id={this.props.id}
+                        togglePinClick={this.togglePinClick}
                     />
                 )}
                 {this.state.pinClickVisible &&
@@ -166,11 +176,12 @@ class OtherProfilePage extends React.Component {
                     )}
                 <div className="componentContainer">
                     <div className="otherUserContainer">
-
                         <div className="otherUserContainerLeft">
                             <div className="otherUserContainerLeftUp">
-                                <div className="profilePicUser" style={profilePicStyle}>
-                                </div>
+                                <div
+                                    className="profilePicUser"
+                                    style={profilePicStyle}
+                                />
                                 <div className="nameAndBioContainerUser">
                                     <div className="nameUser">
                                         {this.state.user.first}{" "}
@@ -180,14 +191,12 @@ class OtherProfilePage extends React.Component {
                                         {this.state.user.bio}
                                     </div>
                                 </div>
-
                             </div>
 
                             <div className="otherUserContainerLeftMiddle">
                                 <FriendButton
                                     otherId={this.props.match.params.id}
                                 />
-
                             </div>
                             <div className="otherUserContainerLeftDown">
                                 <div className="categoryListUser">
@@ -224,8 +233,15 @@ class OtherProfilePage extends React.Component {
                                         )}
                                     </form>
                                 </div>
-                                <button className="pinAppButton"> List of Pins </button>
-
+                                <button
+                                    className="pinAppButton"
+                                    onClick={() => {
+                                        this.showListComponent;
+                                    }}
+                                >
+                                    {" "}
+                                    List of Pins{" "}
+                                </button>
                             </div>
                         </div>
 
@@ -261,38 +277,33 @@ class OtherProfilePage extends React.Component {
                                         />
                                     )}
                                     {this.props.markersArray &&
-                                        this.props.markersArray.map(
-                                            (item) => {
-                                                return (
-                                                    <Marker
-                                                        key={item.id}
-                                                        onClick={
-                                                            this.pinClick
-                                                        }
-                                                        name={item.id}
-                                                        position={{
-                                                            lat: item.lat,
-                                                            lng: item.lng
-                                                        }}
-                                                        icon={{
-                                                            url: item.color,
-                                                            anchor: new google.maps.Point(
-                                                                15,
-                                                                35
-                                                            ),
-                                                            scaledSize: new google.maps.Size(
-                                                                25,
-                                                                35
-                                                            )
-                                                        }}
-                                                    />
-                                                );
-                                            }
-                                        )}
+                                        this.props.markersArray.map((item) => {
+                                            return (
+                                                <Marker
+                                                    key={item.id}
+                                                    onClick={this.pinClick}
+                                                    name={item.id}
+                                                    position={{
+                                                        lat: item.lat,
+                                                        lng: item.lng
+                                                    }}
+                                                    icon={{
+                                                        url: item.color,
+                                                        anchor: new google.maps.Point(
+                                                            15,
+                                                            35
+                                                        ),
+                                                        scaledSize: new google.maps.Size(
+                                                            25,
+                                                            35
+                                                        )
+                                                    }}
+                                                />
+                                            );
+                                        })}
                                 </Map>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </React.Fragment>
