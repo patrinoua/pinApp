@@ -192,8 +192,19 @@ class PinClick extends React.Component {
                         >
                             share
                         </button>
-                        <button onClick={this.exportPin}>export</button>
-                        {this.state.pinUrl && <p>{this.state.pinUrl}</p>}
+                        <button
+                            className="subtleButton"
+                            onClick={this.exportPin}
+                        >
+                            export
+                        </button>
+                        {this.state.pinUrl && (
+                            <div className="copyUrl">
+                                Copy and send this URL to your friends:<p>
+                                    {this.state.pinUrl}
+                                </p>
+                            </div>
+                        )}
                     </div>
                 );
             };
@@ -295,7 +306,7 @@ class PinClick extends React.Component {
                                 </h1>
                             </div>
                             <div className="secondRowPinClick">
-                                <div className="boxPinClick mapContainerPinClick">
+                                <div className="boxPinClick">
                                     <Map
                                         style={{
                                             width: "100%",

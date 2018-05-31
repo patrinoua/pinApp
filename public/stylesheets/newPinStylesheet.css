@@ -1,5 +1,3 @@
-
-
 .existingWebPage {
     width: 90vw;
     height: 90vh;
@@ -26,6 +24,7 @@
     left: 0;
     z-index: 8;
 }
+
 .blackVailDelete {
     margin: 0;
     width: 100vw;
@@ -41,6 +40,7 @@
     left: 0;
     z-index: 6;
 }
+
 /* ******** PINCLICK  *********/
 
 .pinClickContainer {
@@ -54,15 +54,14 @@
     top: 0;
     z-index: 20;
 }
-#exit {
 
-}
+#exit {}
 
-#exitPinClick:hover{
+#exitPinClick:hover {
     opacity: 1;
 }
 
-.exitPinClick{
+.exitPinClick {
     position: absolute;
     top: 5vh;
     right: 5vh;
@@ -72,8 +71,9 @@
     opacity: 0.6;
     z-index: 20;
 }
+
 .fieldsContainerPinClick {
-    justify-items:center;
+    justify-items: center;
     display: grid;
     grid-template-rows: 15% 50% 20% 15%;
     grid-template-columns: 1fr;
@@ -81,39 +81,43 @@
     z-index: 20;
     position: relative;
 }
+
 .secondRowPinClick {
     width: 90%;
     height: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.thirdRowPinClick{
+
+.thirdRowPinClick {
     width: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
-.boxPinClick{
+
+.boxPinClick {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:  10px;
+    margin: 10px;
     max-width: 30vw;
-    /* width: 90%;
-    height: 90%; */
+    width: 90%;
+    height: 90%;
     overflow: hidden;
 }
-.textFieldsPinClick{
+
+.textFieldsPinClick {
     width: 90%;
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
-.mapContainerPinClick img{
+
+.mapContainerPinClick img {
     width: 90%;
     height: 90%;
     background-color: rgba(254, 228, 241, 1);
@@ -123,9 +127,9 @@
     border-radius: 2px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
     position: relative;
-
 }
-.overlayPin{
+
+.overlayPin {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -133,13 +137,15 @@
     z-index: 12;
     /* background-color: purple; */
 }
-.colPinClick{
+
+.colPinClick {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.galleryItemsContainer{
+
+.galleryItemsContainer {
     width: 90%;
     height: 90%;
     /* background-color: rgba(254, 228, 241, 1); */
@@ -151,23 +157,23 @@
     position: relative;
     background-color: #101010;
     background-repeat: no-repeat;
-    background-position:center center;
+    background-position: center center;
     background-size: contain;
     /* background-size: cover; */
     overflow: hidden;
 }
 
-.galleryItemsContainer label{
+.galleryItemsContainer label {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size:cover;
+    background-size: cover;
     width: 100%;
     height: 100%;
     overflow: hidden;
-
 }
-.cameraIconContainerPinClick{
+
+.cameraIconContainerPinClick {
     width: 100%;
     height: 100%;
     background-color: rgba(254, 228, 241, 1);
@@ -177,25 +183,28 @@
     border-radius: 2px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     position: relative;
-    background-size:cover;
+    background-size: cover;
     overflow: hidden;
 }
-.existingPhoto{
+
+.existingPhoto {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-.uploadedImagePinclick{
-    background-position:
-    center center;
-    width:100%;
+
+.uploadedImagePinclick {
+    background-position: center center;
+    width: 100%;
     position: absolute;
 }
-.pinImageContainer{
+
+.pinImageContainer {
     width: 20vw;
     height: 20vh;
     overflow: hidden;
 }
+
 .addPinPicturePinClick {
     width: 50%;
     height: 100%;
@@ -206,18 +215,21 @@
     position: relative;
 }
 
-.shareButtons{
+.shareButtons {
     width: 50px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
 }
-.shareButtons:hover{
+
+.shareButtons:hover {
     cursor: pointer;
 }
-.removePin{
-    content:'lalala';
+
+.removePin {
+    content: 'lalala';
 }
-.removePin:hover{
+
+.removePin:hover {
     color: red;
     content: 'NEWttgg';
 }
@@ -253,7 +265,6 @@
     z-index: 12;
 }
 
-
 .pinTitle {
     font-family: 'Pacifico', cursive;
     /* font-size: 25px; */
@@ -267,6 +278,7 @@
 }
 
 /* ******** newPinContainer  *********/
+
 .newPinContainer {
     width: 100vw;
     height: 100vh;
@@ -281,7 +293,7 @@
     z-index: 10;
 }
 
-.fieldsContainer{
+.fieldsContainer {
     display: grid;
     align-items: center;
     justify-content: center;
@@ -294,8 +306,9 @@
     box-shadow: 2px 2px 35px -5px black;
     top: 0;
     z-index: 10;
-    color:white;
+    color: white;
 }
+
 .fieldsContainerNewPin {
     display: grid;
     grid-template-rows: 20% 60% 20%;
@@ -321,6 +334,7 @@
     display: flex;
     /* justify-content: center; */
 }
+
 .pinTitlePinClick {
     font-family: 'Pacifico', cursive;
     /* font-size: 25px; */
@@ -330,20 +344,24 @@
     justify-content: center;
     align-items: center;
 }
+
 .pinTitle img {
-    transform: translate(30%,-25%);
+    transform: translate(30%, -25%);
     max-width: 25%;
 }
+
 .pinTitlePinClick img {
-    transform: translate(30%,-25%);
+    transform: translate(30%, -25%);
     max-width: 25%;
 }
-.pinOptions{
+
+.pinOptions {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
     justify-items: center;
 }
+
 .addPinTitle {
     margin-left: 40px;
     font-size: 3em;
@@ -463,6 +481,7 @@
     padding-left: 15px;
     top: 30%;
 }
+
 #exit {
     position: absolute;
     top: 18%;
@@ -474,13 +493,13 @@
     opacity: 0.6;
 }
 
-#exit:hover{
+#exit:hover {
     opacity: 1;
 }
 
 /* *********** List of Pins **********/
 
-.listOfPinsContainer{
+.listOfPinsContainer {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -491,6 +510,7 @@
     top: 0;
     z-index: 10;
 }
+
 .listOfLocationsHolder {
     position: absolute;
     /* top: 9.3vh; */
@@ -526,9 +546,11 @@
     cursor: pointer;
     opacity: 0.4;
 }
-#listClose:hover{
+
+#listClose:hover {
     opacity: .9;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -546,7 +568,7 @@
     align-items: center;
 }
 
-.listTitle  {
+.listTitle {
     height: 5vh;
     font-size: 2em;
     padding-bottom: 4vh;
@@ -568,11 +590,9 @@
 
 .descHolder {
     overflow: scroll;
-
     color: grey;
     font-size: 0.8em;
     font-style: italic;
-
     padding: 5px;
     margin: 10px;
 }
@@ -586,28 +606,30 @@
     font-size: 0.8em;
     /* font-style: italic; */
 }
+
 @media only screen and (max-width: 400px) {
-    .pinText{
+    .pinText {
         display: none;
     }
-    .profilePageContainer{
+    .profilePageContainer {
         flex-direction: column;
     }
-    .profileInfoContainer{
+    .profileInfoContainer {
         padding-top: 0;
         font-size: 0.8em;
     }
-    .eachPin{
+    .eachPin {
         grid-template-columns: 30% 60%;
         /* font-size: 0.8em; */
     }
-    .descHolder, .dateHolder{
+    .descHolder, .dateHolder {
         display: none;
     }
     .thePinImg {
-        justify-self:center;
+        justify-self: center;
     }
 }
+
 /* .listImgHolder {
     width: 10vh;
     height: 10vh;
