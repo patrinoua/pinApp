@@ -19,6 +19,7 @@ main {
     height: 100vh;
     /* background-color: #FAF4E4; */
     color: #2a2a2a;
+    position: relative;
     /* color: #5DA6AE; */
 }
 
@@ -1161,6 +1162,10 @@ button:hover {
     h1{
         font-size: 1.5em;
     }
+    .appContainer {
+        height: 90vh;
+        /* background-color: orange; */
+    }
     .introTextArea {
         font-size: 0.9em;
     }
@@ -1172,9 +1177,23 @@ button:hover {
     .pinAppButton {
         font-size: 0.9em;
         width: auto;
+        padding: auto;
+        border: auto;
+        /* font-family: auto; */
+        font-weight: 500;
         /* background-color: yellow; */
     }
-
+    /* mapContainer */
+    .mapContainer{
+        position: absolute;
+        top:11vh;
+    }
+    .mapContainerRight {
+        width: 100%;
+    }
+    .mapContainerRightDOWN{
+        height: 84%;
+    }
     /* otherUser */
     .otherUserContainerUpLeft{
         width:30%;

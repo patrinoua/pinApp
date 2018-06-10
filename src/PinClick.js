@@ -184,20 +184,22 @@ class PinClick extends React.Component {
                             />
                         </a>*/}
                         <button
+                            className="pinAppButton"
+                            onClick={this.exportPin}
+                        >
+                            get link
+                        </button>
+                        
+                        <button
                             id="sharePin"
                             className="pinAppButton"
                             onClick={() => {
                                 emit("sharePin", this.props.pinId);
                             }}
                         >
-                            share
+                            publish
                         </button>
-                        <button
-                            className="subtleButton"
-                            onClick={this.exportPin}
-                        >
-                            export
-                        </button>
+
                         {this.state.pinUrl && (
                             <div className="copyUrl">
                                 Copy and send this URL to your friends:<p>
