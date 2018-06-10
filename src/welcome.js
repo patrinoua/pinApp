@@ -28,11 +28,13 @@ export function Welcome() {
                             position: "absolute"
                         }}
                     />
-                    <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
-                    <Route exact path="/" component={WelcomeScreen} />
-                    <Route exact path="/register" component={Register} />
-                    <Route path="/login" component={Login} />
-                </div>
+                        <div className="welcomePageLogoImgContainer">
+                            <img src="/pinAppLogo.png" className="welcomePageLogoImg" />
+                        </div>
+                        <Route exact path="/" component={WelcomeScreen} />
+                        <Route exact path="/register" component={Register} />
+                        <Route path="/login" component={Login} />
+                    </div>
             </HashRouter>
         </div>
     );
@@ -43,24 +45,29 @@ export function WelcomeScreen() {
         <div className="WelcomeScreen">
             <div className="introTextArea">
                 <div className="introText">
-                    On your way to your date you just discovered an amazing
-                    restaurant that you want to check out at some point?
+                    On your way you just discovered an amazing
+                    restaurant and you want to check it out at some point?
+                </div>
+                Just drop a Pin, save it and come back later.
+                <div className="introText">
+                </div>
+
+                <div className="inARow">
+                    <Link to="/login" style={{ color: "white" }}>
+                        <button className="pinAppButton">Login</button>
+                    </Link>
+                    <Link to="/register" style={{ color: "white" }}>
+                        <button className="pinAppButton">Register</button>
+                    </Link>
                 </div>
                 <div className="introText">
-                    Just drop a Pin, save it and come back later.
-                </div>
-                <div className="introText">
+
+                    <div/>
+
                     Save and share your favourite places!
                 </div>
             </div>
-            <div className="inARow">
-                <Link to="/login" style={{ color: "white" }}>
-                    <button className="pinAppButton">Login</button>
-                </Link>
-                <Link to="/register" style={{ color: "white" }}>
-                    <button className="pinAppButton">Register</button>
-                </Link>
-            </div>
+
         </div>
     );
 }

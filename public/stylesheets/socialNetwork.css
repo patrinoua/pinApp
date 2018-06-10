@@ -203,7 +203,18 @@
     border: 0.5px solid lightgrey;
 }
 
-
+@media only screen and (max-width:400px) {
+    .friendsComponent{
+        padding: 2vh 0;
+        width:100%;
+    }
+    .pendingName, .pendingAccept{
+        font-size: 0.8em;
+    }
+    .pendingFriendsList{
+        margin: 0;
+    }
+}
 /********************************/
 
 /*  NOT SURE IF I AM USING THOSE*/

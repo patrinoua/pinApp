@@ -112,53 +112,55 @@ export class ProfilePage extends React.Component {
                 <div className="profilePageContainerRight">
                     <div className="profileInfoContainer">
                         {(this.state.editorIsVisible && (
-                            <div className="editingValues">
-                                {inputField("Firstname", this.props.first)}
-                                {inputField("Lastname", this.props.last)}
-                                {inputField("Email", this.props.email)}
-                                <div className="profileInputField">
-                                    <div className="inputPropertyName">
-                                        {" "}
-                                        Password{" "}
+                            <div className="test">
+                                <div className="editingValues">
+                                    {inputField("Firstname", this.props.first)}
+                                    {inputField("Lastname", this.props.last)}
+                                    {inputField("Email", this.props.email)}
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Password{" "}
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <input
+                                                id="pass"
+                                                onChange={this.handleChange}
+                                                className="inputField"
+                                                name="pass"
+                                                placeholder="*******"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="inputPropertyValue">
-                                        <input
-                                            id="pass"
-                                            onChange={this.handleChange}
-                                            className="inputField"
-                                            name="pass"
-                                            placeholder="*******"
-                                        />
+                                    <div className="profileInputField">
+                                        <div className="inputPropertyName">
+                                            {" "}
+                                            Bio{" "}
+                                        </div>
+                                        <div className="inputPropertyValue">
+                                            <textarea
+                                                id="bio"
+                                                onChange={this.handleChange}
+                                                className="inputField editBioTextArea"
+                                                name="bio"
+                                                defaultValue={bio}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="profileInputField">
-                                    <div className="inputPropertyName">
-                                        {" "}
-                                        Bio{" "}
+                                    <div className="editButtons">
+                                        <button
+                                            className="subtleButton"
+                                            onClick={this.saveNewInputValue}
+                                        >
+                                            Save
+                                        </button>
+                                        <button
+                                            className="subtleButton"
+                                            onClick={this.toggleEditor}
+                                        >
+                                            Cancel
+                                        </button>
                                     </div>
-                                    <div className="inputPropertyValue">
-                                        <textarea
-                                            id="bio"
-                                            onChange={this.handleChange}
-                                            className="inputField editBioTextArea"
-                                            name="bio"
-                                            defaultValue={bio}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="editButtons">
-                                    <button
-                                        className="subtleButton"
-                                        onClick={this.saveNewInputValue}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        className="subtleButton"
-                                        onClick={this.toggleEditor}
-                                    >
-                                        Cancel
-                                    </button>
                                 </div>
                             </div>
                         )) || (

@@ -84,8 +84,6 @@ class MapContainer extends React.Component {
         });
     }
     togglePinClick() {
-        console.log('toggling pinClick!');
-        console.log("this.state.pinClickVisible",this.state.pinClickVisible);
         this.setState({
             pinClickVisible: !this.state.pinClickVisible
         });
@@ -93,6 +91,7 @@ class MapContainer extends React.Component {
     watchMyLocation() {
         if (!this.state.myLat) {
             let watchId = navigator.geolocation.watchPosition((pos) => {
+                console.log(pos.coords.latitude);
                 this.setState({
                     myLat: pos.coords.latitude,
                     myLng: pos.coords.longitude,
@@ -197,34 +196,23 @@ class MapContainer extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums" className="pinText">
-                        {" "}
-                        {text}{" "}
-                    </label>
+                    <label htmlFor="museums" className="pinText"> {text} </label>
                 </div>
             );
         };
 
-        console.log("this.state.showListComponent",this.state.showListComponent);
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
-                    <ListOfLocations
-                        closeListCom={this.closeListCom}
-                        togglePinClick={this.togglePinClick}
-                        id={this.props.id}
-                    />
+                    <ListOfLocations closeListCom={this.closeListCom} />
                 )}
 
                 {this.props.pinInfo &&
                     this.state.showThePop && (
                         <div id="popupShare">
-                            <p id="exitPopupShare" onClick={this.props.togglePinClick}>
-                                X
-                            </p>
                             <p>{this.props.userName}</p>
                             <span>shared a cool pin with you</span>
-                            <button className="pinAppButton"
+                            <button
                                 onClick={() => {
                                     // sharedPin(this.props.pinInfo.id);
 
@@ -248,57 +236,28 @@ class MapContainer extends React.Component {
                 {this.state.pinClickVisible &&
                     this.state.clickedPinId && (
                         <PinClick
-                            pinClickVisible={this.state.pinClickVisible}
                             pinId={this.state.clickedPinId}
                             togglePinClick={this.togglePinClick}
                             id={this.props.id}
                         />
-                    )
-                }
-                <div className="componentContainer">
+                    )}
                 <div className="mapContainer">
                     {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems(
-                                        "blue",
-                                        "Museums",
-                                        "museums",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "green",
-                                        "Parks",
-                                        "parks",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "yellow",
-                                        "Restaurants",
-                                        "restaurants",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "pink",
-                                        "Bars",
-                                        "bars",
-                                        this.checkValue
-                                    )}
-                                    {categoryItems(
-                                        "purple",
-                                        "Sightseeings",
-                                        "sightseeing",
-                                        this.checkValue
-                                    )}
+                                    {categoryItems( "blue", "Museums", "museums", this.checkValue )}
+                                    {categoryItems( "green", "Parks", "parks", this.checkValue )}
+                                    {categoryItems( "yellow", "Restaurants", "restaurants", this.checkValue )}
+                                    {categoryItems( "pink", "Bars", "bars", this.checkValue )}
+                                    {categoryItems( "purple", "Sightseeings", "sightseeing", this.checkValue )}
                                 </form>
 
                                 {/*className="subtleButton"*/}
                                 <button
                                     className="pinAppButton"
-                                    onClick={this.showListComponent}
-                                >
+                                    onClick={this.showListComponent}>
                                     My pins
                                 </button>
                             </div>
@@ -314,7 +273,7 @@ class MapContainer extends React.Component {
                                     <button
                                         className="pinAppButton"
                                         onClick={() => {
-
+                                            console.log("bbbbb");
                                             this.forceUpdate();
                                         }}
                                     >
@@ -322,11 +281,11 @@ class MapContainer extends React.Component {
                                     </button>
                                 </div>
                             </div>*/}
-                            {/*<div className="newPinContainerRightUp">*/}
-                            <div className="infoText">
-                                Click anywhere on the map to add a pin
+                            <div className="newPinContainerRightUp">
+                                <div className="infoText">
+                                Click anywhere on the map to add a pin </div>
+
                             </div>
-                            {/*</div>*/}
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}
 
@@ -345,10 +304,10 @@ class MapContainer extends React.Component {
                                         <Map
                                             style={style}
                                             initialCenter={{
-                                                lat: this.props.lat,
-                                                lng: this.props.lng
-                                                // lat: 52.4918854,
-                                                // lng: 13.360088699999999
+                                                // lat: this.props.lat,
+                                                // lng: this.props.lng
+                                                lat: 52.4918854,
+                                                lng: 13.360088699999999
                                             }}
                                             center={{
                                                 lat: this.props.lat,
@@ -416,8 +375,6 @@ class MapContainer extends React.Component {
                         </div>
                     </div>
                 </div>
-                </div>
-
                 {this.state.addNewPinIsVisible && (
                     <AddNewPin
                         lat={this.state.lat}
