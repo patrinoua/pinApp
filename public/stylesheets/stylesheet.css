@@ -400,13 +400,48 @@ body {
 /********** USER PROFILE (OtherProfile) ***************/
 
 .otherUserContainer {
-    width: 96%;
+    width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     position: relative;
 }
 
+.otherUserContainerUp {
+    /* background-color: orange; */
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+}
+.otherUserContainerUpLeft{
+    width: 30%;
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+}
+.otherUserContainerUpRight{
+        /* background-color: green; */
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+}
+.otherUserContainerDown {
+    /* background-color: purple; */
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    display: flex;
+}
+.otherUserContainerDownLeft{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: purple; */
+}
 .otherUserContainerLeft {
     /* background-color: yellow; */
     width: 30%;
@@ -428,25 +463,18 @@ body {
     align-items: center;
 }
 
-.otherUserContainerLeftMiddle {
-    height: 18%;
+.otherUserContainerFriendshipButton {
+    /* height: 18%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    right: 6vh;
 }
 
-.otherUserContainerLeftDown {
-    /* background-color: green; */
-    width: 100%;
-    height: 65%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-.otherUserContainerRight {
+.otherUserContainerDownRight {
     /* background-color: purple; */
     width: 70%;
     height: 100%;
@@ -519,8 +547,8 @@ body {
 }
 
 .profilePicUser {
-    min-width: 92px;
-    min-height: 92px;
+    min-width: 85px;
+    min-height: 85px;
     width: 15vh;
     height: 15vh;
     max-width: 150px;
@@ -543,17 +571,18 @@ body {
 .nameAndBioContainerUser {
     position: relative;
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding-left: 2vh;
 }
 
 .nameUser {
-    padding: 10px;
+    padding: 1vh;
 }
 
 .bioUser {
-    padding: 10px;
+    padding: 1vh;
     font-style: italic;
     font-family: cursive;
     color: #2a2a2a;
@@ -1141,15 +1170,59 @@ button:hover {
         /* background-color: pink; */
     }
     .pinAppButton {
-        /* font-size: 0.9em; */
+        font-size: 0.9em;
+        width: auto;
         /* background-color: yellow; */
     }
+
     /* otherUser */
-
-    .otherUserContainerLeftMiddle {
-        background-color: yellow;
+    .otherUserContainerUpLeft{
+        width:30%;
     }
-
+    .otherUserContainerUpRight{
+        /* background-color: green; */
+        width: 70%;
+        /*display: flex;
+        align-items: center;*/
+        justify-content: center;
+        padding-right: 0vh;
+        flex-direction: column;
+    }
+    .otherUserContainerFriendshipButton{
+        position: relative;
+        right: 0;
+    }
+    .otherUserContainerDown{
+        flex-direction: column-reverse;
+        height: 60%;
+    }
+    .otherUserContainerDownLeft{
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+    .otherUserContainerDownRight{
+        width: 100%;
+    }
+    .categoryListUser{
+        width: 60%;
+    }
+    .categoryListUser #myForm{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    .nameAndBioContainerUser {
+        padding-left: 0vh;
+    }
+    .nameUser, .bioUser{
+        font-size: 0.9em;
+    }
+    .mapAreaUser {
+        height: 94%;
+        width: 94%;
+    }
 
     .welcomePageLogoImg{
         height: 23vh;

@@ -146,8 +146,8 @@
 }
 
 .galleryItemsContainer {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     /* background-color: rgba(254, 228, 241, 1); */
     display: flex;
     justify-content: center;
@@ -644,6 +644,34 @@
     #listSmallHolder{
         width: 90%;
         /* height: 100%; */
+    }
+    /* pinclick! */
+    .boxPinClick {
+        max-width: 100%;
+    }
+    .exitPinClick {
+        position: absolute;
+        top: 1vh;
+        right: 1vh;
+        font-size: 5vw;
+    }
+    .pinTitlePinClick img{
+        max-height: 22vw;
+        width: auto;
+        transform: translate(30%, -3%);
+    }
+    .blackVail{
+        opacity: 1;
+    }
+    .fieldsContainer{
+        position: absolute;
+        top:10vh;
+        background-color: rgba(0, 0, 0, 0.9);
+
+    }
+    .secondRowPinClick {
+        width: 100%;
+        height: 80%;
     }
 }
 

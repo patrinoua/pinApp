@@ -202,7 +202,11 @@
     border-radius: 5px;
     border: 0.5px solid lightgrey;
 }
-
+.FriendButton{
+    background-color: lightgrey;
+    font-size: 0.9;
+    font-weight: 400;
+}
 @media only screen and (max-width:400px) {
     .friendsComponent{
         padding: 2vh 0;

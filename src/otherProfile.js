@@ -176,12 +176,14 @@ class OtherProfilePage extends React.Component {
                     )}
                 <div className="componentContainer">
                     <div className="otherUserContainer">
-                        <div className="otherUserContainerLeft">
-                            <div className="otherUserContainerLeftUp">
+                        <div className="otherUserContainerUp">
+                            <div className="otherUserContainerUpLeft">
                                 <div
                                     className="profilePicUser"
                                     style={profilePicStyle}
                                 />
+                            </div>
+                            <div className="otherUserContainerUpRight">
                                 <div className="nameAndBioContainerUser">
                                     <div className="nameUser">
                                         {this.state.user.first}{" "}
@@ -191,14 +193,17 @@ class OtherProfilePage extends React.Component {
                                         {this.state.user.bio}
                                     </div>
                                 </div>
+
+                                <div className="otherUserContainerFriendshipButton">
+                                    <FriendButton
+                                        otherId={this.props.match.params.id}
+                                    />
+                                </div>
                             </div>
 
-                            <div className="otherUserContainerLeftMiddle">
-                                <FriendButton
-                                    otherId={this.props.match.params.id}
-                                />
-                            </div>
-                            <div className="otherUserContainerLeftDown">
+                        </div>
+                        <div className="otherUserContainerDown">
+                            <div className="otherUserContainerDownLeft">
                                 <div className="categoryListUser">
                                     <form id="myForm">
                                         {categoryItems(
@@ -239,71 +244,70 @@ class OtherProfilePage extends React.Component {
                                         this.showListComponent;
                                     }}
                                 >
-                                    {" "}
-                                    List of Pins{" "}
+                                    {this.state.user.first}'s Pins
                                 </button>
+                            </div>
+                            <div className="otherUserContainerDownRight">
+                                <div className="mapAreaUser">
+                                    <Map
+                                        style={style}
+                                        initialCenter={{
+                                            // lat: this.props.lat,
+                                            // lng: this.props.lng
+                                            lat: 52.4918854,
+                                            lng: 13.360088699999999
+                                        }}
+                                        zoom={14}
+                                        google={this.props.google}
+                                        onClick={this.mapClicked}
+                                        onReady={this.fetchPlaces}
+                                        visible={true}
+                                    >
+                                        {this.state.myLat && (
+                                            <Marker
+                                                icon={{
+                                                    url: "/dot.png",
+                                                    anchor: new google.maps.Point(
+                                                        0,
+                                                        0
+                                                    ),
+                                                    scaledSize: new google.maps.Size(
+                                                        10,
+                                                        10
+                                                    )
+                                                }}
+                                            />
+                                        )}
+                                        {this.props.markersArray &&
+                                            this.props.markersArray.map((item) => {
+                                                return (
+                                                    <Marker
+                                                        key={item.id}
+                                                        onClick={this.pinClick}
+                                                        name={item.id}
+                                                        position={{
+                                                            lat: item.lat,
+                                                            lng: item.lng
+                                                        }}
+                                                        icon={{
+                                                            url: item.color,
+                                                            anchor: new google.maps.Point(
+                                                                15,
+                                                                35
+                                                            ),
+                                                            scaledSize: new google.maps.Size(
+                                                                25,
+                                                                35
+                                                            )
+                                                        }}
+                                                    />
+                                                );
+                                            })}
+                                    </Map>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="otherUserContainerRight">
-                            <div className="mapAreaUser">
-                                <Map
-                                    style={style}
-                                    initialCenter={{
-                                        // lat: this.props.lat,
-                                        // lng: this.props.lng
-                                        lat: 52.4918854,
-                                        lng: 13.360088699999999
-                                    }}
-                                    zoom={14}
-                                    google={this.props.google}
-                                    onClick={this.mapClicked}
-                                    onReady={this.fetchPlaces}
-                                    visible={true}
-                                >
-                                    {this.state.myLat && (
-                                        <Marker
-                                            icon={{
-                                                url: "/dot.png",
-                                                anchor: new google.maps.Point(
-                                                    0,
-                                                    0
-                                                ),
-                                                scaledSize: new google.maps.Size(
-                                                    10,
-                                                    10
-                                                )
-                                            }}
-                                        />
-                                    )}
-                                    {this.props.markersArray &&
-                                        this.props.markersArray.map((item) => {
-                                            return (
-                                                <Marker
-                                                    key={item.id}
-                                                    onClick={this.pinClick}
-                                                    name={item.id}
-                                                    position={{
-                                                        lat: item.lat,
-                                                        lng: item.lng
-                                                    }}
-                                                    icon={{
-                                                        url: item.color,
-                                                        anchor: new google.maps.Point(
-                                                            15,
-                                                            35
-                                                        ),
-                                                        scaledSize: new google.maps.Size(
-                                                            25,
-                                                            35
-                                                        )
-                                                    }}
-                                                />
-                                            );
-                                        })}
-                                </Map>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </React.Fragment>
