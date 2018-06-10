@@ -188,9 +188,10 @@ body {
 
 .navigationIcon {
     height: 6vh;
-    max-height: 53px;
-    min-height: 50px;
-    padding-top: 5px;
+    max-height: 45px;
+    min-height: 40px;
+    padding: 0.5vw;
+
 }
 
 .navigationIconProfilepicCircle {
@@ -518,6 +519,8 @@ body {
 }
 
 .profilePicUser {
+    min-width: 92px;
+    min-height: 92px;
     width: 15vh;
     height: 15vh;
     max-width: 150px;
@@ -801,7 +804,7 @@ body {
     color: #666;
     border-radius: 2px;
     margin: 2px;
-    max-width: 6vw;
+    max-width: 10vw;
     border: #999 1px solid;
     overflow: auto;
     resize: none;
@@ -1126,12 +1129,14 @@ button:hover {
     color: black;
 }
 @media only screen and (max-width:400px) {
+    h1{
+        font-size: 1.5em;
+    }
     .introTextArea {
         font-size: 0.9em;
     }
     .infoText {
         font-size: 0.75em;
-        color: red;
         font-weight: 100;
         /* background-color: pink; */
     }
@@ -1139,9 +1144,13 @@ button:hover {
         /* font-size: 0.9em; */
         /* background-color: yellow; */
     }
+    /* otherUser */
+
     .otherUserContainerLeftMiddle {
         background-color: yellow;
     }
+
+
     .welcomePageLogoImg{
         height: 23vh;
     }
@@ -1159,7 +1168,16 @@ button:hover {
     .existingValues, .editingValues{
         padding-top: 0;
     }
-    h1{
-        font-size: 1.5em;
+    /* editProfile */
+    .editIcon {
+    right: 3vh;
+    top: 2vh;
+    }
+    /* search */
+    #searchUsersBox>textarea {
+    max-width: 100%;
+    }
+    .searchUsers{
+        width: 100%;
     }
 }

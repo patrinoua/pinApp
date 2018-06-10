@@ -31,7 +31,7 @@ class MapContainer extends React.Component {
             showThePop: true
         };
 
-        this.closeListCom = this.closeListCom.bind(this);
+        this.closeListComponent = this.closeListComponent.bind(this);
         this.showListComponent = this.showListComponent.bind(this);
         this.mapClicked = this.mapClicked.bind(this);
         this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(
@@ -70,7 +70,7 @@ class MapContainer extends React.Component {
         //     });
         // });
     }
-    closeListCom(e) {
+    closeListComponent(e) {
         this.setState({
             showListComponent: false
         });
@@ -204,7 +204,7 @@ class MapContainer extends React.Component {
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
-                    <ListOfLocations closeListCom={this.closeListCom} />
+                    <ListOfLocations closeListComponent={this.closeListComponent} />
                 )}
 
                 {this.props.pinInfo &&

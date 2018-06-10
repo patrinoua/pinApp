@@ -35,11 +35,11 @@ class ListOfLocations extends React.Component {
                 <div className="listOfPinsContainer">
                     <div
                         className="blackVail"
-                        onClick={this.props.closeListCom}
+                        onClick={this.props.closeListComponent}
                     />
                     <div className="listOfLocationsHolder">
                         <div id="listSmallHolder">
-                            <p id="listClose" onClick={this.props.closeListCom}>
+                            <p id="listClose" onClick={this.props.closeListComponent}>
                                 X
                             </p>
                             <div className="pinAppStyle listTitle">My Pins</div>
@@ -60,7 +60,7 @@ class ListOfLocations extends React.Component {
                                                     this.setState({
                                                         clickedPinId: item.id
                                                     });
-                                                    this.props.closeListCom;
+                                                    this.props.closeListComponent;
                                                 }}
                                             />
                                             <span className="titleHolder">

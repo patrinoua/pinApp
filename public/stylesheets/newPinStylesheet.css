@@ -508,6 +508,7 @@
     justify-content: center;
     position: absolute;
     top: 0;
+    left:0;
     z-index: 10;
 }
 
@@ -628,6 +629,7 @@
     .thePinImg {
         justify-self: center;
     }
+    /* mapContainer */
    .mapContainerLeft{
         display: none;
     }
@@ -637,6 +639,11 @@
     }
     .addPinTitle{
         font-size: 2em;
+    }
+    /* listoflocations */
+    #listSmallHolder{
+        width: 90%;
+        /* height: 100%; */
     }
 }
 

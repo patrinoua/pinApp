@@ -6,6 +6,7 @@ import { Logo, Login } from "./welcome";
 import { ProfilePic } from "./profile";
 // import { UserMenu, UserMenuPopUp } from "./menus";
 import { NamesToShow } from "./NamesToShow";
+import ListOfLocations from "./ListOfLocations.js";
 
 // import { OnlineUsers } from "./onlineUsers";
 import MapContainer from "./mapcontainer";
@@ -19,7 +20,21 @@ export class Navigation extends React.Component {
         };
         this.toggleUserMenu = this.toggleUserMenu.bind(this);
         this.closeUserMenu = this.closeUserMenu.bind(this);
+        this.showListComponent = this.showListComponent.bind(this);
+        this.closeListComponent = this.closeListComponent.bind(this);
+
     }
+    showListComponent(e) {
+        this.setState({
+            showListComponent: true
+        });
+    }
+    closeListComponent(e) {
+        this.setState({
+            showListComponent: false
+        });
+    }
+
     toggleUserMenu() {
         this.setState({
             userMenuIsVisible: !this.state.userMenuIsVisible
@@ -47,13 +62,23 @@ export class Navigation extends React.Component {
                         />{" "}
                     </Link>
                     <div className="navigationBarRight">
+
+
+                        <img
+                            src="/icons/pinsIcon.png"
+                            className="navigationIcon"
+                            onClick={this.showListComponent}
+                        />{" "}
+
+
                         <Link to="/map">
                             {" "}
                             <img
-                                src="/icons/mapWithPin.png"
+                                src="/icons/mapIcon.png"
                                 className="navigationIcon"
                             />{" "}
                         </Link>
+
                         <Link to="/editProfile"> </Link>
                         <div className="navigationIconProfilepicCircle" style={style} onClick={this.toggleUserMenu}>
 
@@ -65,6 +90,9 @@ export class Navigation extends React.Component {
                                 closeUserMenu={this.closeUserMenu}
                                 userMenuIsVisible={this.state.userMenuIsVisible}
                             />
+                        )}
+                        {this.state.showListComponent && (
+                            <ListOfLocations closeListComponent={this.closeListComponent} />
                         )}
                     {/*</div>*/}
                 </div>
