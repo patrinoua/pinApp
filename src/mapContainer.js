@@ -77,10 +77,12 @@ class MapContainer extends React.Component {
     }
     pinClick(e) {
         this.clickedPinId = e.name;
-
+        console.log(e);
         this.setState({
             clickedPinId: e.name,
-            pinClickVisible: !this.state.pinClickVisible
+            pinClickVisible: !this.state.pinClickVisible,
+            pinLat: e.position.lat,
+            pinLng: e.position.lng
         });
     }
     togglePinClick() {
@@ -196,7 +198,10 @@ class MapContainer extends React.Component {
                         onClick={myFunction}
                     />
                     <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums" className="pinText"> {text} </label>
+                    <label htmlFor="museums" className="pinText">
+                        {" "}
+                        {text}{" "}
+                    </label>
                 </div>
             );
         };
@@ -204,7 +209,9 @@ class MapContainer extends React.Component {
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
-                    <ListOfLocations closeListComponent={this.closeListComponent} />
+                    <ListOfLocations
+                        closeListComponent={this.closeListComponent}
+                    />
                 )}
 
                 {this.props.pinInfo &&
@@ -239,6 +246,8 @@ class MapContainer extends React.Component {
                             pinId={this.state.clickedPinId}
                             togglePinClick={this.togglePinClick}
                             id={this.props.id}
+                            lat={this.state.pinLat}
+                            lng={this.state.pinLng}
                         />
                     )}
                 <div className="mapContainer">
@@ -247,17 +256,43 @@ class MapContainer extends React.Component {
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems( "blue", "Museums", "museums", this.checkValue )}
-                                    {categoryItems( "green", "Parks", "parks", this.checkValue )}
-                                    {categoryItems( "yellow", "Restaurants", "restaurants", this.checkValue )}
-                                    {categoryItems( "pink", "Bars", "bars", this.checkValue )}
-                                    {categoryItems( "purple", "Sightseeings", "sightseeing", this.checkValue )}
+                                    {categoryItems(
+                                        "blue",
+                                        "Museums",
+                                        "museums",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "green",
+                                        "Parks",
+                                        "parks",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "yellow",
+                                        "Restaurants",
+                                        "restaurants",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "pink",
+                                        "Bars",
+                                        "bars",
+                                        this.checkValue
+                                    )}
+                                    {categoryItems(
+                                        "purple",
+                                        "Sightseeings",
+                                        "sightseeing",
+                                        this.checkValue
+                                    )}
                                 </form>
 
                                 {/*className="subtleButton"*/}
                                 <button
                                     className="pinAppButton"
-                                    onClick={this.showListComponent}>
+                                    onClick={this.showListComponent}
+                                >
                                     My pins
                                 </button>
                             </div>
@@ -283,8 +318,8 @@ class MapContainer extends React.Component {
                             </div>*/}
                             <div className="newPinContainerRightUp">
                                 <div className="infoText">
-                                Click anywhere on the map to add a pin </div>
-
+                                    Click anywhere on the map to add a pin{" "}
+                                </div>
                             </div>
                             <div className="mapContainerRightDOWN">
                                 {/*<div className="mapAreaContainer">*/}

@@ -31,7 +31,6 @@ class App extends React.Component {
         this.togglePinClick = this.togglePinClick.bind(this);
     }
     togglePinClick() {
-        console.log("go to the park");
         location.replace("/");
     }
     toggleUploader() {
@@ -124,13 +123,13 @@ class App extends React.Component {
                             path="/user/:id"
                             render={(x) => (
                                 <React.Fragment>
-                                <OtherProfilePage
-                                    lat={this.state.lat}
-                                    lng={this.state.lng}
-                                    match={x.match}
-                                    history={x.history}
-                                    id={this.state.id}
-                                />
+                                    <OtherProfilePage
+                                        lat={this.state.lat}
+                                        lng={this.state.lng}
+                                        match={x.match}
+                                        history={x.history}
+                                        id={this.state.id}
+                                    />
                                 </React.Fragment>
                             )}
                         />
