@@ -267,3 +267,8 @@ exports.updateThePin = (pinId, description, title) => {
         [pinId, description, title]
     );
 };
+exports.deleteUserFromDb = (id)=>{
+    console.log('deleting on db');
+    db.query(`DELETE FROM pins WHERE user_id=$1 RETURNING *`, [id]);
+    return db.query(`DELETE FROM users WHERE id=$1 RETURNING *`, [id]);
+}

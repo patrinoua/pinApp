@@ -172,28 +172,24 @@ class OtherProfilePage extends React.Component {
                 <div className="componentContainer">
                     <div className="otherUserContainer">
                         <div className="otherUserContainerUp">
-                            <div className="otherUserContainerUpLeft">
-                                <div
-                                    className="profilePicUser"
-                                    style={profilePicStyle}
-                                />
+                            <div
+                                className="profilePicUser"
+                                style={profilePicStyle}
+                            />
+                            <div className="nameAndBioContainerUser">
+                                <div className="nameUser">
+                                    {this.state.user.first}{" "}
+                                    {this.state.user.last}
+                                </div>
+                                <div className="bioUser">
+                                    {this.state.user.bio}
+                                </div>
                             </div>
-                            <div className="otherUserContainerUpRight">
-                                <div className="nameAndBioContainerUser">
-                                    <div className="nameUser">
-                                        {this.state.user.first}{" "}
-                                        {this.state.user.last}
-                                    </div>
-                                    <div className="bioUser">
-                                        {this.state.user.bio}
-                                    </div>
-                                </div>
 
-                                <div className="otherUserContainerFriendshipButton">
-                                    <FriendButton
-                                        otherId={this.props.match.params.id}
-                                    />
-                                </div>
+                            <div className="otherUserContainerFriendshipButton">
+                                <FriendButton
+                                    otherId={this.props.match.params.id}
+                                />
                             </div>
                         </div>
                         <div className="otherUserContainerDown">

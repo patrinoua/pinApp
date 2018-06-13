@@ -2,21 +2,32 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import axios from "./axios";
-import { Logo, Login } from "./welcome";
+import { Welcome, Logo, Login } from "./welcome";
+
 // import { EditBio, ExistingBio } from "./bio";
 
 export class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { editorIsVisible: false };
+        this.state = {
+            editorIsVisible: false ,
+            deleteAccountNotificationWindowIsVisible:true
+        };
         this.pic = this.props.profilepic;
         this.bio = this.props.bio;
         this.toggleEditor = this.toggleEditor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.saveNewInputValue = this.saveNewInputValue.bind(this);
         this.setFile = this.setFile.bind(this);
+        this.showDeleteAccountNotification = this.showDeleteAccountNotification.bind(this);
     }
-
+    showDeleteAccountNotification(){
+        console.log('about to show notification');
+        this.setState({
+            deleteAccountNotificationWindowIsVisible:true
+        })
+        console.log("deleteAccountNotificationWindowIsVisible",this.state.deleteAccountNotificationWindowIsVisible);
+    }
     toggleEditor() {
         this.setState({
             editorIsVisible: !this.state.editorIsVisible
@@ -214,6 +225,34 @@ export class ProfilePage extends React.Component {
                             )}
                         </div>
                     </div>
+                    <button className="deleteAccountButton" onClick={()=>{
+                        this.showDeleteAccountNotification();
+                    }}>
+                    Delete Account
+                    </button>
+                    {this.state.deleteAccountNotificationWindowIsVisible&&(
+                        <div className="deleteAccountWindow">
+                            <div className="deleteAccountWindowPopUp">
+                            Are you sure you want to delete your account?
+
+                            <button className="removingAccountButtonYES" onClick={()=>{
+                                axios.get('deleteUserAccount')
+                                .then(response=>{
+                                    console.log('account deleted...',response);
+                                })
+                                setTimeout(location)
+                            }}> yes, I want to delete my account and all my pins </button>
+                            <button className="removingAccountButtonNO" onClick={()=>{
+                                console.log('lalal');
+                                this.setState({
+                                    deleteAccountNotificationWindowIsVisible:false
+                                })
+                                // setTimeout(window.location.reload.bind(window.location), 250);
+                            }}> Cancel </button>
+                            <Link to="/"> lalala </Link>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         );

@@ -71,7 +71,7 @@ app.use(function(req, res, next) {
 });
 
 function requireLogin(req, res, next) {
-    console.log("lallalalaaaa  3");
+    // console.log("lallalalaaaa  3");
     if (!req.session.user) {
         console.log("requireLogin is fired");
         res.sendStatus(403);
@@ -508,11 +508,19 @@ app.get("/getAllPins", (req, res) => {
             console.log(`error in getAllPins: ${err}`);
         });
 });
+app.get("/deleteUserAccount", function(req,res){
+    db.deleteUserFromDb(req.session.user.id).then(resp=>{
+        req.session = null;
+        console.log('redirecting to welcome?');
+        res.redirect("/welcome");
+    }).catch(err=>{console.log("err while deleting user",err);})
+
+})
+
 app.get("/logout", function(req, res) {
     req.session = null;
     res.redirect("/welcome");
 });
-
 app.get("*", function(req, res) {
     console.log("the url is", req.url);
     if (req.url == "/welcome" && req.session.user) {
