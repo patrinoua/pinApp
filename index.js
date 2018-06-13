@@ -231,7 +231,7 @@ app.post("/updateUserInfo", function(req, res) {
     let email = req.body.email || req.session.user.email;
     let bio = req.body.bio || req.session.user.bio;
     let password = req.body.pass;
-
+    console.log('req.body in update',req.body);
     db
         .updateUserInfo(req.session.user.id, first, last, email, bio, password)
         .then((result) => {

@@ -1165,11 +1165,12 @@ button:hover {
 
 #searchboxInputField {
     width: 100px;
-    height: 50px;
-    padding: 10px;
-    /* background-color: black; */
-    align-self: center;
-    justify-self: center;
+    height: 19px;
+    z-index: 1;
+    position: absolute;
+    top: 1.2%;
+    margin: 1vh;
+    right: 12%;
 }
 
 @media only screen and (max-width:400px) {
@@ -1283,5 +1284,8 @@ button:hover {
     }
     .searchUsers {
         width: 100%;
+    }
+    #searchboxInputField{
+        margin: 1vh 1.5vh;
     }
 }

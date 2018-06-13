@@ -30,13 +30,15 @@ export class ProfilePage extends React.Component {
     }
     handleChange(e) {
         this[e.target.name] = e.target.value;
+        console.log(e.target.name);
     }
     saveNewInputValue() {
         let inputName = this.first || this.lastname;
+        console.log('this... in profile', this);
         axios
             .post(`/updateUserInfo/`, {
                 first: this.first,
-                last: this.lastname,
+                last: this.last,
                 email: this.email,
                 bio: this.bio,
                 pass: this.pass
@@ -90,7 +92,7 @@ export class ProfilePage extends React.Component {
                 </div>
             );
         };
-        const inputField = (textToShow, propertyKey) => {
+        const inputField = (textToShow, fieldname, propertyKey) => {
             return (
                 <div className="profileInputField">
                     <div className="inputPropertyName">{textToShow}</div>
@@ -99,7 +101,7 @@ export class ProfilePage extends React.Component {
                             id="first"
                             onChange={this.handleChange}
                             className="inputPropertyValue"
-                            name="first"
+                            name={fieldname}
                             defaultValue={propertyKey}
                         />
                     </div>
@@ -137,9 +139,9 @@ export class ProfilePage extends React.Component {
                         <div className="profileInfoContainer">
                             {(this.state.editorIsVisible && (
                                 <div className="editingValues">
-                                    {inputField("Firstname", this.props.first)}
-                                    {inputField("Lastname", this.props.last)}
-                                    {inputField("Email", this.props.email)}
+                                    {inputField("Firstname", "first", this.props.first)}
+                                    {inputField("Lastname", "last",this.props.last)}
+                                    {inputField("Email", "email", this.props.email)}
                                     <div className="profileInputField">
                                         <div className="inputPropertyName">
                                             {" "}
