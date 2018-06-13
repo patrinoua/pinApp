@@ -48,8 +48,11 @@ class MapContainer extends React.Component {
         this.mapHasBinClicked = this.mapHasBinClicked.bind(this);
         this.closeAddNewPinComponent = this.closeAddNewPinComponent.bind(this);
         this.closePopPin = this.closePopPin.bind(this);
+        this.handleSearchboxChange = this.handleSearchboxChange.bind(this);
     }
-
+    handleSearchboxChange(e) {
+        this[e.target.name] = e.target.value;
+    }
     componentDidMount() {
         axios
             .get("/getMarker")
@@ -251,6 +254,30 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
+                    <input
+                        id="searchboxInputField"
+                        name="searchbox"
+                        onChange={this.handleSearchboxChange}
+                        onKeyDown={(e) => {
+                            if (e.keyCode == 13) {
+                                var geocoder = new google.maps.Geocoder();
+                                geocoder.geocode(
+                                    { address: this.searchbox },
+                                    (results, status) => {
+                                        if (
+                                            status ==
+                                            google.maps.GeocoderStatus.OK
+                                        ) {
+                                            this.setState({
+                                                lat: results[0].geometry.location.lat(),
+                                                lng: results[0].geometry.location.lng()
+                                            });
+                                        }
+                                    }
+                                );
+                            }
+                        }}
+                    />
                     {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
                         <div className="mapContainerLeft">
@@ -339,14 +366,18 @@ class MapContainer extends React.Component {
                                         <Map
                                             style={style}
                                             initialCenter={{
-                                                // lat: this.props.lat,
-                                                // lng: this.props.lng
-                                                lat: 52.4918854,
-                                                lng: 13.360088699999999
-                                            }}
-                                            center={{
                                                 lat: this.props.lat,
                                                 lng: this.props.lng
+                                                // lat: 52.4918854,
+                                                // lng: 13.360088699999999
+                                            }}
+                                            center={{
+                                                lat:
+                                                    this.state.lat ||
+                                                    this.props.lat,
+                                                lng:
+                                                    this.state.lng ||
+                                                    this.props.lng
                                             }}
                                             zoom={14}
                                             google={this.props.google}
