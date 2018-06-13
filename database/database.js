@@ -80,6 +80,7 @@ exports.updateProfilepic = (profilepic, email) => {
 // ******* INSERT BIO *******
 
 exports.updateUserInfo = (id, first, last, email, bio, pass) => {
+    console.log("db:",id, first, last, email, bio, pass);
     if (pass) {
         return hashPassword(pass)
             .then((hashedPassword) => {
