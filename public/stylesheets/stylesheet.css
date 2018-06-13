@@ -410,7 +410,7 @@ body {
 .otherUserContainerUp {
     /* background-color: orange; */
     width: 100%;
-    height: 30%;
+    /* height: 30%; */
     display: flex;
     align-items: center;
 }
@@ -433,7 +433,7 @@ body {
 .otherUserContainerDown {
     /* background-color: purple; */
     width: 100%;
-    height: 50%;
+    height: 85%;
     align-items: center;
     display: flex;
 }
@@ -1210,6 +1210,9 @@ button:hover {
         height: 84%;
     }
     /* otherUser */
+    .otherUserContainerUp{
+        height: 30%;
+    }
     .otherUserContainerUpLeft {
         width: 30%;
     }
