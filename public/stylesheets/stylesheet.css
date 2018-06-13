@@ -192,7 +192,6 @@ body {
     max-height: 45px;
     min-height: 40px;
     padding: 0.5vw;
-
 }
 
 .navigationIconProfilepicCircle {
@@ -278,7 +277,6 @@ body {
     width: 100%;
     /* height: 96vh; */
     height: 100%;
-
     /* margin: 2vh; */
     /* background-color: orange; */
     /* margin: 10px 10px; */
@@ -416,19 +414,22 @@ body {
     display: flex;
     align-items: center;
 }
-.otherUserContainerUpLeft{
+
+.otherUserContainerUpLeft {
     width: 30%;
     /* background-color: yellow; */
     display: flex;
     justify-content: center;
 }
-.otherUserContainerUpRight{
-        /* background-color: green; */
-        width: 70%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
+.otherUserContainerUpRight {
+    /* background-color: green; */
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 .otherUserContainerDown {
     /* background-color: purple; */
     width: 100%;
@@ -436,13 +437,15 @@ body {
     align-items: center;
     display: flex;
 }
-.otherUserContainerDownLeft{
+
+.otherUserContainerDownLeft {
     width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     /* background-color: purple; */
 }
+
 .otherUserContainerLeft {
     /* background-color: yellow; */
     width: 30%;
@@ -473,7 +476,6 @@ body {
     position: absolute;
     right: 6vh;
 }
-
 
 .otherUserContainerDownRight {
     /* background-color: purple; */
@@ -665,11 +667,13 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
 }
-.test{
+
+.test {
     background-color: purple;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
+
 .existingValues, .editingValues {
     padding-top: 3vh;
     display: flex;
@@ -1158,8 +1162,18 @@ button:hover {
     background-color: rgb(255, 255, 255);
     color: black;
 }
+
+#searchboxInputField {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    /* background-color: black; */
+    align-self: center;
+    justify-self: center;
+}
+
 @media only screen and (max-width:400px) {
-    h1{
+    h1 {
         font-size: 1.5em;
     }
     .appContainer {
@@ -1184,21 +1198,21 @@ button:hover {
         /* background-color: yellow; */
     }
     /* mapContainer */
-    .mapContainer{
+    .mapContainer {
         position: absolute;
-        top:11vh;
+        top: 11vh;
     }
     .mapContainerRight {
         width: 100%;
     }
-    .mapContainerRightDOWN{
+    .mapContainerRightDOWN {
         height: 84%;
     }
     /* otherUser */
-    .otherUserContainerUpLeft{
-        width:30%;
+    .otherUserContainerUpLeft {
+        width: 30%;
     }
-    .otherUserContainerUpRight{
+    .otherUserContainerUpRight {
         /* background-color: green; */
         width: 70%;
         /*display: flex;
@@ -1207,27 +1221,27 @@ button:hover {
         padding-right: 0vh;
         flex-direction: column;
     }
-    .otherUserContainerFriendshipButton{
+    .otherUserContainerFriendshipButton {
         position: relative;
         right: 0;
     }
-    .otherUserContainerDown{
+    .otherUserContainerDown {
         flex-direction: column-reverse;
         height: 60%;
     }
-    .otherUserContainerDownLeft{
+    .otherUserContainerDownLeft {
         width: 100%;
         display: flex;
         flex-direction: row-reverse;
         justify-content: center;
     }
-    .otherUserContainerDownRight{
+    .otherUserContainerDownRight {
         width: 100%;
     }
-    .categoryListUser{
+    .categoryListUser {
         width: 60%;
     }
-    .categoryListUser #myForm{
+    .categoryListUser #myForm {
         display: flex;
         justify-content: space-around;
         width: 100%;
@@ -1235,41 +1249,39 @@ button:hover {
     .nameAndBioContainerUser {
         padding-left: 0vh;
     }
-    .nameUser, .bioUser{
+    .nameUser, .bioUser {
         font-size: 0.9em;
     }
     .mapAreaUser {
         height: 94%;
         width: 94%;
     }
-
-    .welcomePageLogoImg{
+    .welcomePageLogoImg {
         height: 23vh;
     }
-    .profilePageContainer{
+    .profilePageContainer {
         align-items: center;
         justify-content: flex-start;
         /* align-items: center;
         display: block; */
     }
-    .profilePageContainerLeft{
+    .profilePageContainerLeft {
         height: 30%;
     }
-    .profilePageContainerRight{
-    }
-    .existingValues, .editingValues{
+    .profilePageContainerRight {}
+    .existingValues, .editingValues {
         padding-top: 0;
     }
     /* editProfile */
     .editIcon {
-    right: 3vh;
-    top: 2vh;
+        right: 3vh;
+        top: 2vh;
     }
     /* search */
     #searchUsersBox>textarea {
-    max-width: 100%;
+        max-width: 100%;
     }
-    .searchUsers{
+    .searchUsers {
         width: 100%;
     }
 }
