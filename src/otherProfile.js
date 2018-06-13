@@ -100,18 +100,13 @@ class OtherProfilePage extends React.Component {
 
         this.props.dispatch(getUserPinInfo(this.props.match.params.id));
     }
-    // componentWillReceiveProps(nextProps) {
-    //     if (
-    //         nextProps.history.location.pathname !== this.props.match.params.id
-    //     ) {
-    //         console.log("look its fire");
-    //         this.whatToDoOnLoad(nextProps.match.params.id);
-    //         return;
-    //     }
-    //     console.log(nextProps);
-    //     console.log(this.props.match.params.id);
-    //     return;
-    // }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.id != this.props.match.params.id) {
+            this.whatToDoOnLoad(nextProps.match.params.id);
+            return;
+        }
+        return;
+    }
     componentDidMount() {
         this.whatToDoOnLoad(this.props.match.params.id);
     }
@@ -200,7 +195,6 @@ class OtherProfilePage extends React.Component {
                                     />
                                 </div>
                             </div>
-
                         </div>
                         <div className="otherUserContainerDown">
                             <div className="otherUserContainerDownLeft">
@@ -279,35 +273,38 @@ class OtherProfilePage extends React.Component {
                                             />
                                         )}
                                         {this.props.markersArray &&
-                                            this.props.markersArray.map((item) => {
-                                                return (
-                                                    <Marker
-                                                        key={item.id}
-                                                        onClick={this.pinClick}
-                                                        name={item.id}
-                                                        position={{
-                                                            lat: item.lat,
-                                                            lng: item.lng
-                                                        }}
-                                                        icon={{
-                                                            url: item.color,
-                                                            anchor: new google.maps.Point(
-                                                                15,
-                                                                35
-                                                            ),
-                                                            scaledSize: new google.maps.Size(
-                                                                25,
-                                                                35
-                                                            )
-                                                        }}
-                                                    />
-                                                );
-                                            })}
+                                            this.props.markersArray.map(
+                                                (item) => {
+                                                    return (
+                                                        <Marker
+                                                            key={item.id}
+                                                            onClick={
+                                                                this.pinClick
+                                                            }
+                                                            name={item.id}
+                                                            position={{
+                                                                lat: item.lat,
+                                                                lng: item.lng
+                                                            }}
+                                                            icon={{
+                                                                url: item.color,
+                                                                anchor: new google.maps.Point(
+                                                                    15,
+                                                                    35
+                                                                ),
+                                                                scaledSize: new google.maps.Size(
+                                                                    25,
+                                                                    35
+                                                                )
+                                                            }}
+                                                        />
+                                                    );
+                                                }
+                                            )}
                                     </Map>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </React.Fragment>
