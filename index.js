@@ -95,7 +95,6 @@ app.get("/getUser/:userId", requireLogin, function(req, res) {
 });
 
 app.get("/getUser", requireLogin, function(req, res) {
-    console.log("getting user...");
     res.json({
         success: true,
         user: req.session.user
@@ -511,8 +510,7 @@ app.get("/getAllPins", (req, res) => {
 app.get("/deleteUserAccount", function(req,res){
     db.deleteUserFromDb(req.session.user.id).then(resp=>{
         req.session = null;
-        console.log('redirecting to welcome?');
-        res.redirect("/welcome");
+        res.redirect("/");
     }).catch(err=>{console.log("err while deleting user",err);})
 
 })
@@ -530,8 +528,6 @@ app.get("*", function(req, res) {
     if (!req.session.user) {
         if (req.params[0].startsWith("/pin/")) {
             res.sendFile(__dirname + "/index.html");
-
-            // return;
         } else {
             res.redirect("/welcome");
             return;
@@ -542,7 +538,6 @@ app.get("*", function(req, res) {
 });
 
 app.get("/", function(req, res) {
-    // just a normal route
     res.sendStatus(200);
 });
 

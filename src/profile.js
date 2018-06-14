@@ -238,18 +238,16 @@ export class ProfilePage extends React.Component {
                             <button className="removingAccountButtonYES" onClick={()=>{
                                 axios.get('deleteUserAccount')
                                 .then(response=>{
-                                    console.log('account deleted...',response);
+                                    location.replace('/welcome');
                                 })
-                                setTimeout(location)
                             }}> yes, I want to delete my account and all my pins </button>
                             <button className="removingAccountButtonNO" onClick={()=>{
                                 console.log('lalal');
                                 this.setState({
                                     deleteAccountNotificationWindowIsVisible:false
                                 })
-                                // setTimeout(window.location.reload.bind(window.location), 250);
                             }}> Cancel </button>
-                            <Link to="/"> lalala </Link>
+
                             </div>
                         </div>
                     )}
