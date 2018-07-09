@@ -89,7 +89,7 @@ export class ProfilePage extends React.Component {
     // this.state.profilepic ||
     render() {
         let pic = this.props.profilepic || "/user.png";
-        let bio = this.props.bio || "Tell us something about urself!";
+        let bio = this.props.bio || "Tell us something about yourself!";
 
         const style = {
             backgroundImage: `url(${pic})`
