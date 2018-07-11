@@ -11,7 +11,7 @@ export class ProfilePage extends React.Component {
         super(props);
         this.state = {
             editorIsVisible: false ,
-            deleteAccountNotificationWindowIsVisible:true
+            deleteAccountNotificationWindowIsVisible:false
         };
         this.pic = this.props.profilepic;
         this.bio = this.props.bio;
