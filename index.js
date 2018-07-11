@@ -82,8 +82,7 @@ function requireLogin(req, res, next) {
 app.get("/getUser/:userId", requireLogin, function(req, res) {
     console.log("getting user./userid..");
 
-    db
-        .getUserInfoById(req.params.userId)
+    db.getUserInfoById(req.params.userId)
         .then((userInfo) => {
             res.json({
                 user: userInfo.rows[0]
@@ -126,13 +125,12 @@ app.post("/register", function(req, res) {
             ) {
                 hashPassword(req.body.password)
                     .then((hashedPassword) => {
-                        db
-                            .saveUser(
-                                req.body.first,
-                                req.body.last,
-                                req.body.email,
-                                hashedPassword
-                            )
+                        db.saveUser(
+                            req.body.first,
+                            req.body.last,
+                            req.body.email,
+                            hashedPassword
+                        )
                             .then((result) => {
                                 req.session.user = {
                                     first: req.body.first,
@@ -191,8 +189,7 @@ app.post("/login", function(req, res) {
                     isLoggedIn: true
                 };
 
-                db
-                    .checkPassword(req.body.password, userInfo.rows[0].pass)
+                db.checkPassword(req.body.password, userInfo.rows[0].pass)
                     .then((doesMatch) => {
                         if (doesMatch) {
                             res.json({
@@ -230,9 +227,8 @@ app.post("/updateUserInfo", function(req, res) {
     let email = req.body.email || req.session.user.email;
     let bio = req.body.bio || req.session.user.bio;
     let password = req.body.pass;
-    console.log('req.body in update',req.body);
-    db
-        .updateUserInfo(req.session.user.id, first, last, email, bio, password)
+    console.log("req.body in update", req.body);
+    db.updateUserInfo(req.session.user.id, first, last, email, bio, password)
         .then((result) => {
             req.session.user = {
                 id: result.rows[0].id,
@@ -254,8 +250,7 @@ app.post("/updateUserInfo", function(req, res) {
 app.post("/editBio", function(req, res) {
     let id = req.session.user.id || req.session.user.id;
     if (req.body.bio) {
-        db
-            .updateBio(req.body.bio, id)
+        db.updateBio(req.body.bio, id)
             .then((updatedBio) => {
                 req.session.user.bio = updatedBio.rows[0].bio;
                 res.json({
@@ -275,8 +270,7 @@ app.post("/updateProfilepic", uploader.single("file"), s3.upload, function(
 ) {
     if (req.file) {
         const imageUrl = config.s3Url + req.file.filename;
-        db
-            .updateProfilepic(imageUrl, req.session.user.email)
+        db.updateProfilepic(imageUrl, req.session.user.email)
             .then((result) => {
                 req.session.user.profilepic = imageUrl;
                 res.json({
@@ -292,9 +286,8 @@ app.post("/updateProfilepic", uploader.single("file"), s3.upload, function(
 });
 
 app.get("/checkFriendshipStatus", function(req, res) {
-    db
-        .checkFriendshipStatus(req.session.user.id, req.query.otherId)
-        .then((status) => {
+    db.checkFriendshipStatus(req.session.user.id, req.query.otherId).then(
+        (status) => {
             if (!status.rows[0]) {
                 res.json({});
             } else {
@@ -302,11 +295,11 @@ app.get("/checkFriendshipStatus", function(req, res) {
                     friendshipStatus: status.rows[0]
                 });
             }
-        });
+        }
+    );
 });
 app.post("/categorySelect", (req, res) => {
-    db
-        .selectCategory(req.body.marker, req.session.user.id)
+    db.selectCategory(req.body.marker, req.session.user.id)
         .then((result) => {
             res.json({
                 marker: result.rows
@@ -317,8 +310,7 @@ app.post("/categorySelect", (req, res) => {
         });
 });
 app.get("/getMarker", (req, res) => {
-    db
-        .getMarkerInfo(req.session.user.id)
+    db.getMarkerInfo(req.session.user.id)
         .then((result) => {
             for (let i = 0; i < result.rows.length; i++) {
                 result.rows[i].created_at = db.formatDate(
@@ -334,8 +326,7 @@ app.get("/getMarker", (req, res) => {
         });
 });
 app.get("/getUserMarkers", (req, res) => {
-    db
-        .getMarkerInfo(req.query.id)
+    db.getMarkerInfo(req.query.id)
         .then((result) => {
             for (let i = 0; i < result.rows.length; i++) {
                 result.rows[i].created_at = db.formatDate(
@@ -351,8 +342,7 @@ app.get("/getUserMarkers", (req, res) => {
         });
 });
 app.post("/deletePin", (req, res) => {
-    db
-        .deletePinDb(req.body.pinId)
+    db.deletePinDb(req.body.pinId)
         .then((result) => {
             res.json({
                 data: result.rows[0]
@@ -363,8 +353,7 @@ app.post("/deletePin", (req, res) => {
         });
 });
 app.post("/updatePinInfo", (req, res) => {
-    db
-        .updateThePin(req.body.pinId, req.body.description, req.body.title)
+    db.updateThePin(req.body.pinId, req.body.description, req.body.title)
         .then((result) => {
             req.session.markerId = result.rows[0].id;
             res.json({
@@ -376,16 +365,15 @@ app.post("/updatePinInfo", (req, res) => {
         });
 });
 app.post("/insertNewPin", (req, res) => {
-    db
-        .insertNewPin(
-            req.session.user.id,
-            req.body.description,
-            req.body.title,
-            req.body.category,
-            req.body.lat,
-            req.body.lng,
-            req.body.color
-        )
+    db.insertNewPin(
+        req.session.user.id,
+        req.body.description,
+        req.body.title,
+        req.body.category,
+        req.body.lat,
+        req.body.lng,
+        req.body.color
+    )
         .then((result) => {
             req.session.markerId = result.rows[0].id;
             res.json({
@@ -397,8 +385,7 @@ app.post("/insertNewPin", (req, res) => {
         });
 });
 app.post("/PinClick", (req, res) => {
-    db
-        .getPinClickInfo(req.body.pinId)
+    db.getPinClickInfo(req.body.pinId)
         .then((result) => {
             result.rows[0].created_at = db.formatDate(
                 result.rows[0].created_at
@@ -417,8 +404,7 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
 ) {
     let url = `${config.s3Url}${req.file.filename}`;
 
-    db
-        .saveMarkerImage(url, req.session.markerId)
+    db.saveMarkerImage(url, req.session.markerId)
         .then((result) => {
             res.json({
                 success: true,
@@ -438,37 +424,32 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
 });
 
 app.post("/updateFriendshipStatus", function(req, res) {
-    db
-        .updateFriendshipStatus(
-            req.session.user.id,
-            req.body.id,
-            req.body.status
-        )
-        .then((status) => {
-            if (!status.rows[0] && req.body.status == 1) {
-                db
-                    .sendFriendRequest(
-                        req.session.user.id,
-                        req.body.id,
-                        req.body.status
-                    )
-                    .then((status) => {
-                        res.json({
-                            friendshipStatus: status.rows[0]
-                        });
-                    });
-            } else {
+    db.updateFriendshipStatus(
+        req.session.user.id,
+        req.body.id,
+        req.body.status
+    ).then((status) => {
+        if (!status.rows[0] && req.body.status == 1) {
+            db.sendFriendRequest(
+                req.session.user.id,
+                req.body.id,
+                req.body.status
+            ).then((status) => {
                 res.json({
                     friendshipStatus: status.rows[0]
                 });
-            }
-        });
+            });
+        } else {
+            res.json({
+                friendshipStatus: status.rows[0]
+            });
+        }
+    });
 });
 ///////////////////////// search users stuff im adding //////////////////
 app.post("/userName", (req, res) => {
     let str = req.body.name;
-    db
-        .nameOfUser(str)
+    db.nameOfUser(str)
         .then((result) => {
             res.json({
                 data: result.rows
@@ -480,8 +461,7 @@ app.post("/userName", (req, res) => {
 });
 ///////////////////////// search users stuff im adding //////////////////
 app.get("/getFriendsAndWannabes", function(req, res) {
-    db
-        .getFriendsAndWannabes(req.session.user.id)
+    db.getFriendsAndWannabes(req.session.user.id)
         .then((status) => {
             if (!status.rows) {
                 res.json({});
@@ -496,8 +476,7 @@ app.get("/getFriendsAndWannabes", function(req, res) {
         });
 });
 app.get("/getAllPins", (req, res) => {
-    db
-        .getAllPins()
+    db.getAllPins()
         .then((result) => {
             res.json({
                 pinInfo: result.rows
@@ -507,13 +486,16 @@ app.get("/getAllPins", (req, res) => {
             console.log(`error in getAllPins: ${err}`);
         });
 });
-app.get("/deleteUserAccount", function(req,res){
-    db.deleteUserFromDb(req.session.user.id).then(resp=>{
-        req.session = null;
-        res.redirect("/");
-    }).catch(err=>{console.log("err while deleting user",err);})
-
-})
+app.get("/deleteUserAccount", function(req, res) {
+    db.deleteUserFromDb(req.session.user.id)
+        .then((resp) => {
+            req.session = null;
+            res.redirect("/");
+        })
+        .catch((err) => {
+            console.log("err while deleting user", err);
+        });
+});
 
 app.get("/logout", function(req, res) {
     req.session = null;
@@ -578,8 +560,7 @@ io.on("connection", function(socket) {
         socket.broadcast.emit("userJoined", userThatJoined);
     }
     socket.on("sharePin", (pinId) => {
-        db
-            .getPinClickInfo(pinId)
+        db.getPinClickInfo(pinId)
             .then((result) => {
                 let shareInfo = {
                     data: result.rows[0],

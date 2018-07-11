@@ -254,7 +254,6 @@ class MapContainer extends React.Component {
                         />
                     )}
                 <div className="mapContainer">
-
                     {/*<div className="mapContainerUp" />*/}
                     <div className="mapContainerDown">
                         <div className="mapContainerLeft">
@@ -362,31 +361,43 @@ class MapContainer extends React.Component {
                                             onReady={this.fetchPlaces}
                                             visible={true}
                                         >
-                                        <input
-                                            id="searchboxInputField"
-                                            name="searchbox"
-                                            placeholder="search"
-                                            onChange={this.handleSearchboxChange}
-                                            onKeyDown={(e) => {
-                                                if (e.keyCode == 13) {
-                                                    var geocoder = new google.maps.Geocoder();
-                                                    geocoder.geocode(
-                                                        { address: this.searchbox },
-                                                        (results, status) => {
-                                                            if (
-                                                                status ==
-                                                                google.maps.GeocoderStatus.OK
-                                                            ) {
-                                                                this.setState({
-                                                                    lat: results[0].geometry.location.lat(),
-                                                                    lng: results[0].geometry.location.lng()
-                                                                });
-                                                            }
-                                                        }
-                                                    );
+                                            <input
+                                                id="searchboxInputField"
+                                                name="searchbox"
+                                                placeholder="search"
+                                                onChange={
+                                                    this.handleSearchboxChange
                                                 }
-                                            }}
-                                        />
+                                                onKeyDown={(e) => {
+                                                    if (e.keyCode == 13) {
+                                                        var geocoder = new google.maps.Geocoder();
+                                                        geocoder.geocode(
+                                                            {
+                                                                address: this
+                                                                    .searchbox
+                                                            },
+                                                            (
+                                                                results,
+                                                                status
+                                                            ) => {
+                                                                if (
+                                                                    status ==
+                                                                    google.maps
+                                                                        .GeocoderStatus
+                                                                        .OK
+                                                                ) {
+                                                                    this.setState(
+                                                                        {
+                                                                            lat: results[0].geometry.location.lat(),
+                                                                            lng: results[0].geometry.location.lng()
+                                                                        }
+                                                                    );
+                                                                }
+                                                            }
+                                                        );
+                                                    }
+                                                }}
+                                            />
                                             {this.state.myLat && (
                                                 <Marker
                                                     icon={{
