@@ -37,7 +37,6 @@ export class NamesToShow extends React.Component {
     removeSearchBar() {
         this.setState({ showTextArea: null });
     }
-
     render() {
         return (
             <React.Fragment>
