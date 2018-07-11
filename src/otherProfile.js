@@ -34,11 +34,45 @@ class OtherProfilePage extends React.Component {
         this.pinClick = this.pinClick.bind(this);
         this.togglePinClick = this.togglePinClick.bind(this);
         this.showListComponent = this.showListComponent.bind(this);
-        this.closeListCom = this.closeListCom.bind(this);
+        this.closeListComponent = this.closeListComponent.bind(this);
+    }
+    componentDidMount() {
+        console.log('other Profile is loaded.');
+        this.whatToDoOnLoad(this.props.match.params.id);
+    }
+    whatToDoOnLoad(id) {
+        axios
+            .get(`/getUser/${id}`)
+            .then((response) => {
+                this.setState({ user: response.data.user });
+            })
+            .catch((err) => {
+                console.log(`error in getUser: ${err}`);
+            });
+        axios
+            .get(`/getUserPins`, {
+                params: { id: id }
+            })
+            .then((response) => {
+                this.setState({
+                    copyOfPinsArray: response.data.marker
+                });
+            })
+            .catch((err) => {
+                console.log(`error in getPinInfo (otherProfile): ${err}`);
+            });
+        this.props.dispatch(getUserPinInfo(id));
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.id != this.props.match.params.id) {
+            console.log('reloaddddiiiing');
+            this.whatToDoOnLoad(nextProps.match.params.id);
+            return;
+        }
+        return;
     }
     pinClick(e) {
         this.clickedPinId = e.name;
-
         this.setState({
             clickedPinId: e.name,
             pinClickVisible: !this.state.pinClickVisible
@@ -67,50 +101,16 @@ class OtherProfilePage extends React.Component {
         );
     }
     showListComponent() {
+        console.log('setting to true');
         this.setState({
             showListComponent: true
         });
     }
-    closeListCom(e) {
+    closeListComponent(e) {
         this.setState({
             showListComponent: false
         });
     }
-    whatToDoOnLoad(id) {
-        axios
-            .get(`/getUser/${id}`)
-            .then((response) => {
-                this.setState({ user: response.data.user });
-            })
-            .catch((err) => {
-                console.log(`error in pic getUser: ${err}`);
-            });
-        axios
-            .get(`/getUserMarkers`, {
-                params: { id: this.props.match.params.id }
-            })
-            .then((response) => {
-                this.setState({
-                    copyOfPinsArray: response.data.marker
-                });
-            })
-            .catch((err) => {
-                console.log(`error in pic getPinInfo: ${err}`);
-            });
-
-        this.props.dispatch(getUserPinInfo(this.props.match.params.id));
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.match.params.id != this.props.match.params.id) {
-            this.whatToDoOnLoad(nextProps.match.params.id);
-            return;
-        }
-        return;
-    }
-    componentDidMount() {
-        this.whatToDoOnLoad(this.props.match.params.id);
-    }
-
     render() {
         if (!this.state.user) {
             return <h1>no such user found</h1>;
@@ -156,7 +156,7 @@ class OtherProfilePage extends React.Component {
             <React.Fragment>
                 {this.state.showListComponent && (
                     <ListOfLocations
-                        closeListCom={this.closeListCom}
+                        closeListComponent={this.closeListComponent}
                         id={this.props.id}
                         togglePinClick={this.togglePinClick}
                     />
@@ -230,9 +230,9 @@ class OtherProfilePage extends React.Component {
                                 </div>
                                 <button
                                     className="pinAppButton"
-                                    onClick={() => {
-                                        this.showListComponent;
-                                    }}
+                                    onClick={
+                                        this.showListComponent
+                                    }
                                 >
                                     {this.state.user.first}'s Pins
                                 </button>

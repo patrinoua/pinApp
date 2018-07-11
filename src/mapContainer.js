@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "./axios";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import AddNewPin from "./addNewPin";
-import { getPinInfo, selectActionBycategory } from "./actions";
+import { getUserPins, selectActionBycategory } from "./actions";
 import PinClick from "./PinClick.js";
 import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
@@ -37,7 +37,7 @@ class MapContainer extends React.Component {
         this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(
             this
         );
-        this.checkValue = this.checkValue.bind(this);
+        this.checkedCategory = this.checkedCategory.bind(this);
         this.toggleSelectCategory = this.toggleSelectCategory.bind(this);
         this.watchMyLocation = this.watchMyLocation.bind(this);
         this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
@@ -54,17 +54,18 @@ class MapContainer extends React.Component {
         this[e.target.name] = e.target.value;
     }
     componentDidMount() {
-        axios
-            .get("/getMarker")
-            .then((response) => {
-                this.setState({
-                    copyOfPinsArray: response.data.marker
-                });
-            })
-            .catch((err) => {
-                console.log(`error in pic getPinInfo: ${err}`);
-            });
-        this.props.dispatch(getPinInfo());
+        // axios
+        //     .get("/getUserPins")
+        //     .then((response) => {
+        //         this.setState({
+        //             copyOfPinsArray: response.data.marker
+        //         });
+        //     })
+        //     .catch((err) => {
+        //         console.log(`error in pic getPinInfo: ${err}`);
+        //     });
+        this.props.dispatch(getUserPins());
+        // this.props.dispatch(getPinInfo());
 
         // navigator.geolocation.getCurrentPosition((position) => {
         //     this.setState({
@@ -152,8 +153,9 @@ class MapContainer extends React.Component {
             lng: clickEvent.latLng.lng()
         });
     }
-    checkValue(e) {
+    checkedCategory(e) {
         if (e.target.checked) {
+            console.log(e.target+" was clicked");
             this.state.arrayOfCategory.push(e.target.value);
         } else {
             this.state.arrayOfCategory = this.state.arrayOfCategory.filter(
@@ -162,11 +164,12 @@ class MapContainer extends React.Component {
                 }
             );
         }
-
+        console.log( "this.state.arrayOfCategory", this.state.arrayOfCategory );
+        console.log(    " this.state.copyOfPinsArray",  this.state.copyOfPinsArray);
         this.props.dispatch(
             selectActionBycategory(
                 this.state.arrayOfCategory,
-                this.state.copyOfPinsArray
+                this.props.copyOfMarkersArray
             )
         );
     }
@@ -264,31 +267,31 @@ class MapContainer extends React.Component {
                                         "blue",
                                         "Museums",
                                         "museums",
-                                        this.checkValue
+                                        this.checkedCategory
                                     )}
                                     {categoryItems(
                                         "green",
                                         "Parks",
                                         "parks",
-                                        this.checkValue
+                                        this.checkedCategory
                                     )}
                                     {categoryItems(
                                         "yellow",
                                         "Restaurants",
                                         "restaurants",
-                                        this.checkValue
+                                        this.checkedCategory
                                     )}
                                     {categoryItems(
                                         "pink",
                                         "Bars",
                                         "bars",
-                                        this.checkValue
+                                        this.checkedCategory
                                     )}
                                     {categoryItems(
                                         "purple",
                                         "Sightseeings",
                                         "sightseeing",
-                                        this.checkValue
+                                        this.checkedCategory
                                     )}
                                 </form>
 
@@ -321,8 +324,8 @@ class MapContainer extends React.Component {
                                 </div>
                             </div>*/}
                             <div className="newPinContainerRightUp">
-                                <div className="infoText">
-                                    Click anywhere on the map to add a pin{" "}
+                                <div className="mapInfoText">
+                                    Click anywhere on the map to add a pin
                                 </div>
                             </div>
                             <div className="mapContainerRightDOWN">
@@ -467,6 +470,7 @@ class MapContainer extends React.Component {
 const mapStateToProps = function(state) {
     return {
         markersArray: state.markersArray,
+        copyOfMarkersArray: state.copyOfMarkersArray,
         pinInfo: state.pinInfo,
         userName: state.userName
     };

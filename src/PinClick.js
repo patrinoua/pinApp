@@ -45,7 +45,7 @@ class PinClick extends React.Component {
     }
     componentDidMount() {
         // this is currently getting all pins. it needs to be readjusted to get the necessary ones!
-        this.props.dispatch(getAllPins());
+        // this.props.dispatch(getAllPins());
         axios
             .post("/PinClick", {
                 pinId:
@@ -154,7 +154,6 @@ class PinClick extends React.Component {
         this.setState({
             deleteAlertIsVisible: true
         });
-
         if (this.state.deleteAlertIsVisible == true) {
             this.props.dispatch(deletePin(this.props.pinId));
             this.setState({
@@ -189,7 +188,7 @@ class PinClick extends React.Component {
                         >
                             get link
                         </button>
-                        
+
                         <button
                             id="sharePin"
                             className="pinAppButton"

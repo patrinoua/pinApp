@@ -62,15 +62,11 @@ export class Navigation extends React.Component {
                         />{" "}
                     </Link>
                     <div className="navigationBarRight">
-
-
                         <img
                             src="/icons/pinsIcon.png"
                             className="navigationIcon"
                             onClick={this.showListComponent}
                         />{" "}
-
-
                         <Link to="/map">
                             {" "}
                             <img

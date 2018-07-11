@@ -10,7 +10,6 @@ class ListOfLocations extends React.Component {
         this.state = { clickedPinId: null };
         this.closeClickedPinList = this.closeClickedPinList.bind(this);
     }
-
     componentWillUnmount() {
         this.setState({
             clickedPinId: null
@@ -23,6 +22,7 @@ class ListOfLocations extends React.Component {
     }
     render() {
         console.log("this.props in list of locations", this.props);
+        console.log('this.state',this.state);
         return (
             <React.Fragment>
                 {this.state.clickedPinId && (
@@ -45,14 +45,9 @@ class ListOfLocations extends React.Component {
                             <div className="pinAppStyle listTitle">My Pins</div>
                             {this.props.markersArray &&
                                 this.props.markersArray.map((item) => {
+                                    console.log('item',item);
                                     return (
                                         <div className="eachPin" key={item.id}>
-                                            {/* <div className="listImgHolder">
-                                                <img
-                                                    src={item.url || "/user.png"}
-                                                />
-                                            </div> */}
-
                                             <img
                                                 src={item.color}
                                                 className="thePinImg"
@@ -63,18 +58,9 @@ class ListOfLocations extends React.Component {
                                                     this.props.closeListComponent;
                                                 }}
                                             />
-                                            <span className="titleHolder">
-                                                {item.title}
-                                            </span>
-                                            {/*<div className="flexHolder categoryHolder">
-                                                {item.category}
-                                            </div>*/}
-                                            <span className="descHolder">
-                                                {item.description}
-                                            </span>
-                                            <div className="dateHolder">
-                                                <span>{item.created_at}</span>
-                                            </div>
+                                            <span className="titleHolder"> {item.title} </span>
+                                            <span className="descHolder"> {item.description} </span>
+                                            <div className="dateHolder"> <span>{item.created_at}</span> </div>
                                         </div>
                                     );
                                 })}

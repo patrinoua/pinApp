@@ -316,40 +316,42 @@ app.post("/categorySelect", (req, res) => {
             console.log(`error in selectCategory: ${err}`);
         });
 });
-app.get("/getMarker", (req, res) => {
+app.get("/getUserPins", (req, res) => {
+    console.log("req.query.id||req.session.user.id",req.query.id);
     db
-        .getMarkerInfo(req.session.user.id)
+        .getUserPins(req.query.id||req.session.user.id)
         .then((result) => {
             for (let i = 0; i < result.rows.length; i++) {
                 result.rows[i].created_at = db.formatDate(
                     result.rows[i].created_at
                 );
             }
+            console.log("result.rows...",result.rows);
             res.json({
                 marker: result.rows
             });
         })
         .catch((err) => {
-            console.log(`error in getMarkerInfo: ${err}`);
+            console.log(`error in getUserPins: ${err}`);
         });
 });
-app.get("/getUserMarkers", (req, res) => {
-    db
-        .getMarkerInfo(req.query.id)
-        .then((result) => {
-            for (let i = 0; i < result.rows.length; i++) {
-                result.rows[i].created_at = db.formatDate(
-                    result.rows[i].created_at
-                );
-            }
-            res.json({
-                marker: result.rows
-            });
-        })
-        .catch((err) => {
-            console.log(`error in getMarkerInfo: ${err}`);
-        });
-});
+// app.get("/getUserMarkers", (req, res) => {
+//     db
+//         .getUserPins(req.query.id)
+//         .then((result) => {
+//             for (let i = 0; i < result.rows.length; i++) {
+//                 result.rows[i].created_at = db.formatDate(
+//                     result.rows[i].created_at
+//                 );
+//             }
+//             res.json({
+//                 marker: result.rows
+//             });
+//         })
+//         .catch((err) => {
+//             console.log(`error in getUserPins: ${err}`);
+//         });
+// });
 app.post("/deletePin", (req, res) => {
     db
         .deletePinDb(req.body.pinId)
@@ -495,18 +497,18 @@ app.get("/getFriendsAndWannabes", function(req, res) {
             console.log("err when getting friends", err);
         });
 });
-app.get("/getAllPins", (req, res) => {
-    db
-        .getAllPins()
-        .then((result) => {
-            res.json({
-                pinInfo: result.rows
-            });
-        })
-        .catch((err) => {
-            console.log(`error in getAllPins: ${err}`);
-        });
-});
+// app.get("/getAllPins", (req, res) => {
+//     db
+//         .getAllPins()
+//         .then((result) => {
+//             res.json({
+//                 pinInfo: result.rows
+//             });
+//         })
+//         .catch((err) => {
+//             console.log(`error in getAllPins: ${err}`);
+//         });
+// });
 app.get("/deleteUserAccount", function(req,res){
     db.deleteUserFromDb(req.session.user.id).then(resp=>{
         req.session = null;
