@@ -192,7 +192,7 @@ exports.insertNewPin = (id, description, title, catagory, lat, lng, color) => {
         [id, description, title, catagory, lat, lng, color]
     );
 };
-exports.getMarkerInfo = (id) => {
+exports.getUserPins = (id) => {
     return db.query(`SELECT * FROM pins WHERE user_id=$1`, [id]);
 };
 exports.getAllPins = () => {

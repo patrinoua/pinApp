@@ -62,15 +62,11 @@ export class Navigation extends React.Component {
                         />{" "}
                     </Link>
                     <div className="navigationBarRight">
-
-
                         <img
                             src="/icons/pinsIcon.png"
                             className="navigationIcon"
                             onClick={this.showListComponent}
                         />{" "}
-
-
                         <Link to="/map">
                             {" "}
                             <img
@@ -107,20 +103,16 @@ export class UserMenuPopUp extends React.Component {
         this.state = {};
         this.closePopUp = this.closePopUp.bind(this);
     }
-
     closePopUp() {
         this.props.closeUserMenu();
     }
-
     render() {
         document.addEventListener("anim", (e) => {
             if (e.keyCode == 27) {
                 this.props.closeUserMenu();
             }
         });
-
         let pic = this.props.profilepic || "/user.png";
-
         return (
             <React.Fragment>
                 <div

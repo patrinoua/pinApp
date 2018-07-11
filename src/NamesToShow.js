@@ -7,9 +7,8 @@ export class NamesToShow extends React.Component {
         super(props);
         this.state = { arrayOfNames: [] };
         this.handleChange = this.handleChange.bind(this);
-
         this.search = this.search.bind(this);
-        this.stop = this.stop.bind(this);
+        this.removeSearchBar = this.removeSearchBar.bind(this);
     }
     handleChange(e) {
         this[e.target.name] = e.target.value;
@@ -35,10 +34,9 @@ export class NamesToShow extends React.Component {
             this.setState({ showTextArea: null });
         }
     }
-    stop() {
+    removeSearchBar() {
         this.setState({ showTextArea: null });
     }
-
     render() {
         return (
             <React.Fragment>
@@ -66,7 +64,7 @@ export class NamesToShow extends React.Component {
                             <ListOfNames
                                 id={this.props.id}
                                 names={this.state.arrayOfNames}
-                                stop={this.stop}
+                                removeSearchBar={this.removeSearchBar}
                             />
                         )}
                     </div>
@@ -85,7 +83,7 @@ function ListOfNames(props) {
                             className="theNamesToShowInSearch"
                             to={`/`}
                             key={item.id}
-                            onClick={props.stop}
+                            onClick={props.removeSearchBar}
                         >{`${item.first} ${item.last}`}</Link>
                     );
                 } else {
@@ -94,7 +92,7 @@ function ListOfNames(props) {
                             className="theNamesToShowInSearch"
                             to={`/user/${item.id}`}
                             key={item.id}
-                            onClick={props.stop}
+                            onClick={props.removeSearchBar}
                         >{`${item.first} ${item.last}`}</Link>
                     );
                 }

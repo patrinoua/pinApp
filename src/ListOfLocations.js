@@ -9,8 +9,8 @@ class ListOfLocations extends React.Component {
         super(props);
         this.state = { clickedPinId: null };
         this.closeClickedPinList = this.closeClickedPinList.bind(this);
+        this.getLatAndLang = this.getLatAndLang.bind(this);
     }
-
     componentWillUnmount() {
         this.setState({
             clickedPinId: null
@@ -21,8 +21,28 @@ class ListOfLocations extends React.Component {
             clickedPinId: null
         });
     }
+    getLatAndLang() {
+        console.log('getting themmmm');
+        // lat = {this.props.markersArray.filter(
+        //     (pin)=>{
+        //         if(pin.id==this.state.clickedPinId){
+        //             console.log("pin.lat", pin.lat);
+        //             return pin.lat
+        //         }
+        //     }
+        // )}
+        // lng = {this.props.markersArray.filter(
+        //     (pin)=>{
+        //         if(pin.id==this.state.clickedPinId){
+        //             console.log("pin.lng", pin.lng);
+        //             return pin.lng
+        //         }
+        //     }
+        // )}
+    }
     render() {
         console.log("this.props in list of locations", this.props);
+        console.log('this.state',this.state);
         return (
             <React.Fragment>
                 {this.state.clickedPinId && (
@@ -30,6 +50,8 @@ class ListOfLocations extends React.Component {
                         pinId={this.state.clickedPinId}
                         togglePinClick={this.closeClickedPinList}
                         id={this.props.id}
+                        lat = {this.state.lat}
+                        lng = {this.state.lng}
                     />
                 )}
                 <div className="listOfPinsContainer">
@@ -47,34 +69,21 @@ class ListOfLocations extends React.Component {
                                 this.props.markersArray.map((item) => {
                                     return (
                                         <div className="eachPin" key={item.id}>
-                                            {/* <div className="listImgHolder">
-                                                <img
-                                                    src={item.url || "/user.png"}
-                                                />
-                                            </div> */}
-
                                             <img
                                                 src={item.color}
                                                 className="thePinImg"
                                                 onClick={() => {
                                                     this.setState({
-                                                        clickedPinId: item.id
+                                                        clickedPinId: item.id,
+                                                        lat: item.lat,
+                                                        lng: item.lng
                                                     });
                                                     this.props.closeListComponent;
                                                 }}
                                             />
-                                            <span className="titleHolder">
-                                                {item.title}
-                                            </span>
-                                            {/*<div className="flexHolder categoryHolder">
-                                                {item.category}
-                                            </div>*/}
-                                            <span className="descHolder">
-                                                {item.description}
-                                            </span>
-                                            <div className="dateHolder">
-                                                <span>{item.created_at}</span>
-                                            </div>
+                                            <span className="titleHolder"> {item.title} </span>
+                                            <span className="descHolder"> {item.description} </span>
+                                            <div className="dateHolder"> <span>{item.created_at}</span> </div>
                                         </div>
                                     );
                                 })}

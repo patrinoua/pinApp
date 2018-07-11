@@ -126,9 +126,9 @@ export function insertPinInfo(info) {
             console.log("there was an error in insertNewPin", err);
         });
 }
-export function getPinInfo() {
+export function getUserPins() {
     return axios
-        .get("/getMarker")
+        .get("/getUserPins")
         .then((response) => {
             return {
                 type: "GET_PIN_INFO",
@@ -136,25 +136,13 @@ export function getPinInfo() {
             };
         })
         .catch((err) => {
-            console.log(`error in pic getPinInfo: ${err}`);
+            console.log(`error in action getPinInfo: ${err}`);
         });
 }
-export function getAllPins() {
-    return axios
-        .get("/getAllPins")
-        .then((response) => {
-            return {
-                type: "GET_PIN_INFO",
-                pinsArray: response.data.pinInfo
-            };
-        })
-        .catch((err) => {
-            console.log(`error in pic getPinInfo: ${err}`);
-        });
-}
+
 export function getUserPinInfo(id) {
     return axios
-        .get(`/getUserMarkers`, { params: { id } })
+        .get(`/getUserPins`, { params: { id } })
         .then((response) => {
             return {
                 type: "GET_USER_PIN_INFO",
@@ -162,9 +150,37 @@ export function getUserPinInfo(id) {
             };
         })
         .catch((err) => {
-            console.log(`error in pic getPinInfo: ${err}`);
+            console.log(`error in action getUserPinInfo: ${err}`);
         });
 }
+
+// export function getPinInfo() {
+//     return axios
+//         .get("/getMarker")
+//         .then((response) => {
+//             return {
+//                 type: "GET_PIN_INFO",
+//                 pinsArray: response.data.marker
+//             };
+//         })
+//         .catch((err) => {
+//             console.log(`error in pic getPinInfo: ${err}`);
+//         });
+// }
+// export function getAllPins() {
+//     return axios
+//         .get("/getAllPins")
+//         .then((response) => {
+//             return {
+//                 type: "GET_PIN_INFO",
+//                 pinsArray: response.data.pinInfo
+//             };
+//         })
+//         .catch((err) => {
+//             console.log(`error in pic getPinInfo: ${err}`);
+//         });
+// }
+
 
 export function selectActionBycategory(categories, pinsArray) {
     if (categories.length == 0) {
@@ -180,7 +196,6 @@ export function selectActionBycategory(categories, pinsArray) {
                 }
             }
         });
-
         return {
             type: "SELECT_CATEGORY",
             pinsArray: pinsArray
