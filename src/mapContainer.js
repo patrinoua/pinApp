@@ -228,7 +228,6 @@ class MapContainer extends React.Component {
                             <button
                                 onClick={() => {
                                     // sharedPin(this.props.pinInfo.id);
-
                                     this.setState({
                                         showSharedPin: true,
                                         showThePop: false
