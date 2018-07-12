@@ -44,9 +44,6 @@ class PinClick extends React.Component {
         this.props.togglePinClick();
     }
     componentDidMount() {
-        console.log("this.props in pinclick", this.props);
-        // this is currently getting all pins. it needs to be readjusted to get the necessary ones!
-        // this.props.dispatch(getAllPins());
         axios
             .post("/PinClick", {
                 pinId:

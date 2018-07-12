@@ -37,7 +37,29 @@ export class NamesToShow extends React.Component {
     removeSearchBar() {
         this.setState({ showTextArea: null });
     }
+    componentDidMount(){
+        console.log('opened search box');
+    }
     render() {
+        document.addEventListener("keyup", (e) => {
+            console.log(e.change);
+            if (e.keyCode == 13) {
+                console.log('enter!');
+            }
+            if (e.keyCode == 37 ) {
+                console.log('arrow left');
+            }
+            if (e.keyCode == 38 ) {
+                console.log('arrow up');
+            }
+            if (e.keyCode == 39) {
+                console.log('arrow right');
+            }
+            if (e.keyCode == 40 ) {
+                console.log('arrow down');
+            }
+        });
+
         return (
             <React.Fragment>
                 <div className="dropDownMenuItem" onClick={this.search}>
