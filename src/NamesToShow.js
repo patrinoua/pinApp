@@ -10,6 +10,16 @@ export class NamesToShow extends React.Component {
         this.search = this.search.bind(this);
         this.removeSearchBar = this.removeSearchBar.bind(this);
     }
+    componentDidMount() {
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 38) {
+                console.log("up");
+            }
+            if (e.keyCode == 40) {
+                console.log("down");
+            }
+        });
+    }
     handleChange(e) {
         this[e.target.name] = e.target.value;
         if (this.name) {

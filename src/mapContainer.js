@@ -155,7 +155,7 @@ class MapContainer extends React.Component {
     }
     checkedCategory(e) {
         if (e.target.checked) {
-            console.log(e.target+" was clicked");
+            console.log(e.target + " was clicked");
             this.state.arrayOfCategory.push(e.target.value);
         } else {
             this.state.arrayOfCategory = this.state.arrayOfCategory.filter(
@@ -164,8 +164,8 @@ class MapContainer extends React.Component {
                 }
             );
         }
-        console.log( "this.state.arrayOfCategory", this.state.arrayOfCategory );
-        console.log(    " this.state.copyOfPinsArray",  this.state.copyOfPinsArray);
+        console.log("this.state.arrayOfCategory", this.state.arrayOfCategory);
+        console.log(" this.state.copyOfPinsArray", this.state.copyOfPinsArray);
         this.props.dispatch(
             selectActionBycategory(
                 this.state.arrayOfCategory,
