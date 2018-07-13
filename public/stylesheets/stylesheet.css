@@ -1191,13 +1191,26 @@ button:hover {
 }
 
 .copyUrl {
-    position: absolute;
+    /* position: absolute;
     left: 23%;
     top: 110%;
     width: 20vw;
     height: 10vh;
     background-color: rgb(255, 255, 255);
-    color: black;
+    color: black; */
+    color: white;
+    z-index: 22;
+    padding: 32px;
+    border-radius: 15px;
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #b52519;
+
 }
 
 #searchboxInputField {

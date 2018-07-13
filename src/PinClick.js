@@ -44,9 +44,6 @@ class PinClick extends React.Component {
         this.props.togglePinClick();
     }
     componentDidMount() {
-        console.log("this.props in pinclick", this.props);
-        // this is currently getting all pins. it needs to be readjusted to get the necessary ones!
-        // this.props.dispatch(getAllPins());
         axios
             .post("/PinClick", {
                 pinId:
@@ -173,24 +170,14 @@ class PinClick extends React.Component {
             const shareButtons = () => {
                 return (
                     <div className="colPinClick">
-                        {/*<a
-                            href="https://www.facebook.com/"
-                            className="boxPinClick"
-                            target="blank"
-                        >
-                            <img
-                                src="/icons/facebook.png"
-                                className="shareButtons"
-                            />
-                        </a>*/}
                         <button
-                            className="pinAppButton"
+                            className="subtleButton"
                             onClick={this.exportPin}
                         >
-                            get link
+                            Pin Link
                         </button>
 
-                        <button
+                        {/*<button
                             id="sharePin"
                             className="pinAppButton"
                             onClick={() => {
@@ -198,9 +185,10 @@ class PinClick extends React.Component {
                             }}
                         >
                             publish
-                        </button>
+                        </button>*/}
 
                         {this.state.pinUrl && (
+
                             <div className="copyUrl">
                                 Copy and send this URL to your friends:<p>
                                     {this.state.pinUrl}
@@ -253,15 +241,12 @@ class PinClick extends React.Component {
             } else {
                 currentPinInfo = [this.state];
             }
-
             let imageUrl;
-
             if (currentPinInfo[0].url) {
                 imageUrl = currentPinInfo[0].url;
             } else {
                 imageUrl = "/pins/greyPin.png";
             }
-
             const edit = () => {
                 if (this.state.userId == this.props.id) {
                     return (
@@ -353,7 +338,6 @@ class PinClick extends React.Component {
                                     </Map>
                                     {/* <img src="/map.png" /> */}
                                 </div>
-
                                 <div className="boxPinClick">
                                     {(this.state.editMode && (
                                         <div className="galleryItemsContainer">
@@ -426,8 +410,7 @@ class PinClick extends React.Component {
                                             className="subtleButton"
                                             onClick={this.deletePinAlert}
                                         >
-                                            {" "}
-                                            Unpin{" "}
+                                            Unpin
                                         </button>
                                     </div>
                                     {shareButtons()}
@@ -439,8 +422,7 @@ class PinClick extends React.Component {
                                             {currentPinInfo[0].title || "Title"}
                                         </div>
                                         <div>
-                                            {currentPinInfo[0].description ||
-                                                "Description"}
+                                            {currentPinInfo[0].description || "Description"}
                                         </div>
                                     </div>
                                     {shareButtons()}
@@ -453,17 +435,13 @@ class PinClick extends React.Component {
                                         className="saveButton"
                                         onClick={this.insertPinInfo}
                                     >
-                                        {" "}
-                                        Save{" "}
+                                        Save
                                     </div>
-                                    <div
-                                        className="saveButton"
-                                        onClick={this.toggleEditMode}
+                                    <div className="saveButton"
+                                         onClick={this.toggleEditMode}
                                     >
-                                        {" "}
-                                        Cancel{" "}
+                                        Cancel
                                     </div>
-
                                     {this.state.deleteAlertIsVisible &&
                                         deleteAlert()}
                                 </div>
