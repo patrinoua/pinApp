@@ -93,8 +93,7 @@ class ListOfNames extends React.Component {
         this.nameToFocus = React.createRef();
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.state = {
-            nameCounter: 0,
-            highlightedName: 0
+            nameCounter: 0
         };
     }
     handleKeyPress(e) {
