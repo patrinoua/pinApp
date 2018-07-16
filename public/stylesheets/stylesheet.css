@@ -322,7 +322,7 @@ body {
 .categoryItem [type=checkbox] {
     z-index: 1;
     zoom: 2;
-    opacity: 0.5;
+    opacity: 0;
 }
 
 .categoryItem [type=checkbox]:checked {
