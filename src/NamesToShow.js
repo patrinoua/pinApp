@@ -114,21 +114,12 @@ class ListOfNames extends React.Component {
                             document.getElementsByClassName(
                                 "theNamesToShowInSearch"
                             ).length - 1
-                    },
-                    () => {
-                        console.log(
-                            "go to the last element",
-                            this.state.nameCounter
-                        );
                     }
                 );
             } else {
                 this.setState(
                     {
                         nameCounter: this.state.nameCounter - 1
-                    },
-                    () => {
-                        console.log("decrease by 1", this.state.nameCounter);
                     }
                 );
             }
@@ -144,22 +135,12 @@ class ListOfNames extends React.Component {
                 this.setState(
                     {
                         nameCounter: 0
-                    },
-                    () => {
-                        console.log(
-                            "we were on the last element so we set this.state.nameCounter to 0",
-                            this.state.nameCounter
-                        );
                     }
-                );
+                )
             } else {
                 this.setState({
                     nameCounter: this.state.nameCounter + 1
                 });
-                console.log(
-                    "new i when on random element, so we set this.state.nameCounter to",
-                    this.state.nameCounter
-                );
             }
         }
         document

@@ -30,25 +30,20 @@ class MapContainer extends React.Component {
             showListComponent: false,
             showThePop: true
         };
-
         this.closeListComponent = this.closeListComponent.bind(this);
         this.showListComponent = this.showListComponent.bind(this);
         this.mapClicked = this.mapClicked.bind(this);
-        this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(
-            this
-        );
+        this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(this);
         this.checkedCategory = this.checkedCategory.bind(this);
-        this.toggleSelectCategory = this.toggleSelectCategory.bind(this);
         this.watchMyLocation = this.watchMyLocation.bind(this);
-        this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
-            this
-        );
+        this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(this);
         this.pinClick = this.pinClick.bind(this);
         this.togglePinClick = this.togglePinClick.bind(this);
         this.mapHasBinClicked = this.mapHasBinClicked.bind(this);
         this.closeAddNewPinComponent = this.closeAddNewPinComponent.bind(this);
         this.closePopPin = this.closePopPin.bind(this);
         this.handleSearchboxChange = this.handleSearchboxChange.bind(this);
+        this.categoryItems = this.categoryItems.bind(this);
     }
     handleSearchboxChange(e) {
         this[e.target.name] = e.target.value;
@@ -134,11 +129,6 @@ class MapContainer extends React.Component {
             addNewPinIsVisible: !this.state.addNewPinIsVisible
         });
     }
-    toggleSelectCategory() {
-        this.setState({
-            showCategorySelect: !this.state.showCategorySelect
-        });
-    }
     mapHasBinClicked() {
         this.toggleAddNewPinComponent();
         this.setState({
@@ -153,19 +143,23 @@ class MapContainer extends React.Component {
             lng: clickEvent.latLng.lng()
         });
     }
+
     checkedCategory(e) {
         if (e.target.checked) {
-            console.log(e.target + " was clicked");
             this.state.arrayOfCategory.push(e.target.value);
+            document.querySelector(`label[for=${e.target.name}]`).style.color='#b52519'
+            document.querySelector(`label[for=${e.target.name}]`).style.fontWeight='900'
         } else {
             this.state.arrayOfCategory = this.state.arrayOfCategory.filter(
                 (item) => {
                     return item != e.target.value;
                 }
             );
+            document.querySelector(`label[for=${e.target.name}]`).style.color='black'
+            document.querySelector(`label[for=${e.target.name}]`).style.fontWeight='400'
         }
-        console.log("this.state.arrayOfCategory", this.state.arrayOfCategory);
-        console.log(" this.state.copyOfPinsArray", this.state.copyOfPinsArray);
+        // console.log("this.state.arrayOfCategory", this.state.arrayOfCategory);
+        // console.log(" this.state.copyOfPinsArray", this.state.copyOfPinsArray);
         this.props.dispatch(
             selectActionBycategory(
                 this.state.arrayOfCategory,
@@ -183,35 +177,34 @@ class MapContainer extends React.Component {
             showSharedPin: false
         });
     }
+    categoryItems(color, text, variable, myFunction){
+        const style = {
+            backgroundSize: "contain"
+        };
+        let str = "/pins/" + color + "Pin.png";
+        return (
+            <div className="categoryItem">
+                <input
+                    style={style}
+                    type="checkbox"
+                    id={variable}
+                    name={variable}
+                    value={variable}
+                    className="check"
+                    onClick={myFunction}
+                />
+                <img src={str} className="categoryItemPinIcon" />
+                <label htmlFor={variable} className="pinText">
+                    {text}
+                </label>
+            </div>
+        );
+    }
+
     render() {
         const style = {
             backgroundSize: "contain"
         };
-        // if (!this.props.lat) {
-        //     return <img src="/monky.gif" />;
-        // }
-        const categoryItems = function(color, text, variable, myFunction) {
-            let str = "/pins/" + color + "Pin.png";
-            return (
-                <div className="categoryItem">
-                    <input
-                        style={style}
-                        type="checkbox"
-                        id={variable}
-                        name={variable}
-                        value={variable}
-                        className="check"
-                        onClick={myFunction}
-                    />
-                    <img src={str} className="categoryItemPinIcon" />
-                    <label htmlFor="museums" className="pinText">
-                        {" "}
-                        {text}{" "}
-                    </label>
-                </div>
-            );
-        };
-
         return (
             <React.Fragment>
                 {this.state.showListComponent && (
@@ -219,7 +212,6 @@ class MapContainer extends React.Component {
                         closeListComponent={this.closeListComponent}
                     />
                 )}
-
                 {this.props.pinInfo &&
                     this.state.showThePop && (
                         <div id="popupShare">
@@ -261,39 +253,37 @@ class MapContainer extends React.Component {
                         <div className="mapContainerLeft">
                             <div className="categoryList">
                                 <form id="myForm">
-                                    {categoryItems(
+                                    {this.categoryItems(
                                         "blue",
                                         "Museums",
                                         "museums",
                                         this.checkedCategory
                                     )}
-                                    {categoryItems(
+                                    {this.categoryItems(
                                         "green",
                                         "Parks",
                                         "parks",
                                         this.checkedCategory
                                     )}
-                                    {categoryItems(
+                                    {this.categoryItems(
                                         "yellow",
                                         "Restaurants",
                                         "restaurants",
                                         this.checkedCategory
                                     )}
-                                    {categoryItems(
+                                    {this.categoryItems(
                                         "pink",
                                         "Bars",
                                         "bars",
                                         this.checkedCategory
                                     )}
-                                    {categoryItems(
+                                    {this.categoryItems(
                                         "purple",
                                         "Sightseeings",
                                         "sightseeing",
                                         this.checkedCategory
                                     )}
                                 </form>
-
-                                {/*className="subtleButton"*/}
                                 <button
                                     className="pinAppButton"
                                     onClick={this.showListComponent}

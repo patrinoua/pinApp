@@ -37,7 +37,7 @@ class OtherProfilePage extends React.Component {
         this.closeListComponent = this.closeListComponent.bind(this);
     }
     componentDidMount() {
-        console.log('other Profile is loaded.');
+        // console.log('other Profile is loaded.');
         this.whatToDoOnLoad(this.props.match.params.id);
     }
     whatToDoOnLoad(id) {

@@ -19,9 +19,9 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
-store.subscribe(()=>{
-    console.log("store changed", store.getState());
-})
+// store.subscribe(()=>{
+//     console.log("store changed", store.getState());
+// })
 const elem = (
     <Provider store={store}>
         <App />
