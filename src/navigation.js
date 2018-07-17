@@ -50,7 +50,7 @@ export class Navigation extends React.Component {
         };
 
         return (
-            <div className="navigationContainer90">
+            <div className="navigationContainerBig">
                 <div className="navigationContainer">
                     <Link to="/map">
                         {" "}
