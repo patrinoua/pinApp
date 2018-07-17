@@ -143,11 +143,20 @@ body {
 }
 
 /************NAVIGATION*****************/
-
-.navigationContainer {
-    width: 100vw;
-    /* min-height: 11vh; */
+.navigationContainer90{
+    width:100%;
+    background-color: #0e0d0d;
     height: 11vh;
+    max-height: 55px;
+    box-shadow: 1px 1px 11px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navigationContainer {
+    width: 95%;
+    height: 11vh;
+    /* min-height: 11vh; */
     max-height: 55px;
     /* padding: 20px; */
     display: flex;
@@ -155,12 +164,10 @@ body {
     align-items: center;
     color: lightgrey;
     /* background-color: #51B3C4; */
-    background-color: #0e0d0d;
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
     position: fixed;
     z-index: 8;
-    box-shadow: 1px 1px 11px rgba(0, 0, 0, 0.5);
 }
 
 .navigationIconBar {
@@ -185,6 +192,9 @@ body {
 .navigationBarRight {
     display: flex;
     align-items: center;
+    font-family: "roboto";
+    font-size: 0.9em;
+
 }
 
 .navigationIcon {

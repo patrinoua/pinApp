@@ -158,6 +158,7 @@ class OtherProfilePage extends React.Component {
                     <ListOfLocations
                         closeListComponent={this.closeListComponent}
                         id={this.props.id}
+                        first={this.state.user.first}
                         togglePinClick={this.togglePinClick}
                     />
                 )}

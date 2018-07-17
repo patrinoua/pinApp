@@ -71,7 +71,6 @@ app.use(function(req, res, next) {
 });
 
 function requireLogin(req, res, next) {
-    // console.log("lallalalaaaa  3");
     if (!req.session.user) {
         console.log("requireLogin is fired");
         res.sendStatus(403);
@@ -81,7 +80,6 @@ function requireLogin(req, res, next) {
 }
 app.get("/getUser/:userId", requireLogin, function(req, res) {
     console.log("getting user./userid..");
-
     db.getUserInfoById(req.params.userId)
         .then((userInfo) => {
             res.json({
@@ -141,7 +139,6 @@ app.post("/register", function(req, res) {
                                     profilepic: result.rows[0].profilepic,
                                     isLoggedIn: true
                                 };
-
                                 res.json({
                                     success: true
                                 });
@@ -174,24 +171,22 @@ app.post("/login", function(req, res) {
         res.sendStatus(500);
         return;
     }
-
     if (req.body.email && req.body.password) {
         db.getUserInfoByEmail(req.body.email).then((userInfo) => {
             if (userInfo.rows[0]) {
-                req.session.user = {
-                    id: userInfo.rows[0].id,
-                    first: userInfo.rows[0].first,
-                    last: userInfo.rows[0].last,
-                    email: userInfo.rows[0].email,
-                    profilepic: userInfo.rows[0].profilepic,
-                    bio: userInfo.rows[0].bio,
-                    sex: userInfo.rows[0].sex,
-                    isLoggedIn: true
-                };
-
                 db.checkPassword(req.body.password, userInfo.rows[0].pass)
                     .then((doesMatch) => {
                         if (doesMatch) {
+                            req.session.user = {
+                                id: userInfo.rows[0].id,
+                                first: userInfo.rows[0].first,
+                                last: userInfo.rows[0].last,
+                                email: userInfo.rows[0].email,
+                                profilepic: userInfo.rows[0].profilepic,
+                                bio: userInfo.rows[0].bio,
+                                sex: userInfo.rows[0].sex,
+                                isLoggedIn: true
+                            };
                             res.json({
                                 success: true,
                                 user: req.session.user
@@ -310,7 +305,7 @@ app.post("/categorySelect", (req, res) => {
         });
 });
 app.get("/getUserPins", (req, res) => {
-    console.log("req.query.id||req.session.user.id", req.query.id);
+    console.log("/getUserPins req.query.id||req.session.user.id", req.query.id,req.session.user.id);
     db.getUserPins(req.query.id || req.session.user.id)
         .then((result) => {
             for (let i = 0; i < result.rows.length; i++) {
@@ -318,7 +313,7 @@ app.get("/getUserPins", (req, res) => {
                     result.rows[i].created_at
                 );
             }
-            console.log("result.rows...", result.rows);
+            // console.log("result.rows...", result.rows);
             res.json({
                 marker: result.rows
             });
@@ -327,6 +322,12 @@ app.get("/getUserPins", (req, res) => {
             console.log(`error in getUserPins: ${err}`);
         });
 });
+app.get("/sharepin/:sharedpin",(req,res)=>{
+    console.log('got it...',req.params.sharedpin);
+    // db.getPinInfo()
+    // atob stuff and send the info back to render it on the map.
+    res.sendFile(__dirname + "/index.html");
+})
 // app.get("/getUserMarkers", (req, res) => {
 //     db
 //         .getUserPins(req.query.id)

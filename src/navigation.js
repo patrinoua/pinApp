@@ -22,7 +22,6 @@ export class Navigation extends React.Component {
         this.closeUserMenu = this.closeUserMenu.bind(this);
         this.showListComponent = this.showListComponent.bind(this);
         this.closeListComponent = this.closeListComponent.bind(this);
-
     }
     showListComponent(e) {
         this.setState({
@@ -34,7 +33,6 @@ export class Navigation extends React.Component {
             showListComponent: false
         });
     }
-
     toggleUserMenu() {
         this.setState({
             userMenuIsVisible: !this.state.userMenuIsVisible
@@ -52,8 +50,8 @@ export class Navigation extends React.Component {
         };
 
         return (
-            <div className="navigationContainer">
-                {/*<div className="navigationIconBar">*/}
+            <div className="navigationContainer90">
+                <div className="navigationContainer">
                     <Link to="/map">
                         {" "}
                         <img
@@ -62,6 +60,9 @@ export class Navigation extends React.Component {
                         />{" "}
                     </Link>
                     <div className="navigationBarRight">
+                        <div className="navigationIconProfilepicCircle" style={style} onClick={this.toggleUserMenu}>
+                        </div>
+                        {this.props.first}
                         <img
                             src="/icons/pinsIcon.png"
                             className="navigationIcon"
@@ -76,9 +77,7 @@ export class Navigation extends React.Component {
                         </Link>
 
                         <Link to="/editProfile"> </Link>
-                        <div className="navigationIconProfilepicCircle" style={style} onClick={this.toggleUserMenu}>
 
-                        </div>
                         {this.state.userMenuIsVisible && (
                             <UserMenuPopUp
                                 id={this.props.id}
@@ -90,7 +89,7 @@ export class Navigation extends React.Component {
                         {this.state.showListComponent && (
                             <ListOfLocations closeListComponent={this.closeListComponent} />
                         )}
-                    {/*</div>*/}
+                    </div>
                 </div>
             </div>
         );

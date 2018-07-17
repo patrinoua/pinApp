@@ -41,8 +41,9 @@ class ListOfLocations extends React.Component {
         // )}
     }
     render() {
-        console.log("this.props in list of locations", this.props);
+        console.log("this.props.first in list of locations", this.props.first);
         console.log('this.state',this.state);
+
         return (
             <React.Fragment>
                 {this.state.clickedPinId && (
@@ -64,7 +65,11 @@ class ListOfLocations extends React.Component {
                             <p id="listClose" onClick={this.props.closeListComponent}>
                                 X
                             </p>
-                            <div className="pinAppStyle listTitle">My Pins</div>
+                            <div className="pinAppStyle listTitle">
+                            {this.props.first && this.props.first+'\'s Pins'}
+                            {!this.props.first && 'my Pins'}
+
+                            </div>
                             {this.props.markersArray &&
                                 this.props.markersArray.map((item) => {
                                     return (

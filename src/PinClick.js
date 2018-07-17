@@ -34,7 +34,7 @@ class PinClick extends React.Component {
     }
     exportPin() {
         const encryptedPinId = window.btoa(this.props.pinId);
-        const pinUrl = `https://pinapp-spiced.herokuapp.com/pin/${encryptedPinId}`;
+        const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
         console.log(pinUrl);
         this.setState({
             pinUrl
