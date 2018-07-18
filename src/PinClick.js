@@ -34,8 +34,8 @@ class PinClick extends React.Component {
     }
     exportPin() {
         const encryptedPinId = window.btoa(this.props.pinId);
-        // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
-        const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
+        const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
+        // const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
         // console.log(pinUrl);
         this.setState({
             pinUrl
@@ -156,6 +156,9 @@ class PinClick extends React.Component {
         if (!this.state.ready && !this.props.markersArray.length > 0) {
             return <div>not ready</div>;
         } else {
+
+            console.log("props:\n",this.props);
+            console.log("state:\n",this.state);
             const shareButtons = () => {
                 return (
                     <div className="colPinClick">
