@@ -305,7 +305,7 @@ app.post("/categorySelect", (req, res) => {
         });
 });
 app.get("/getUserPins", (req, res) => {
-    console.log("/getUserPins req.query.id||req.session.user.id", req.query.id,req.session.user.id);
+    // console.log("/getUserPins req.query.id||req.session.user.id", req.query.id,req.session.user.id);
     db.getUserPins(req.query.id || req.session.user.id)
         .then((result) => {
             for (let i = 0; i < result.rows.length; i++) {
@@ -389,6 +389,7 @@ app.post("/PinClick", (req, res) => {
             result.rows[0].created_at = db.formatDate(
                 result.rows[0].created_at
             );
+            // console.log('pinClick result.rows[0]',result.rows[0]);
             res.json({
                 pinInfo: result.rows[0]
             });
@@ -508,7 +509,8 @@ app.get("*", function(req, res) {
         return;
     }
     if (!req.session.user) {
-        if (req.params[0].startsWith("/pin/")) {
+        // if (req.params[0].startsWith("/pin/")) {
+        if (req.params[0].startsWith("/sharedpin/")) {
             res.sendFile(__dirname + "/index.html");
         } else {
             res.redirect("/welcome");
@@ -518,12 +520,12 @@ app.get("*", function(req, res) {
         res.sendFile(__dirname + "/index.html");
     }
 });
-app.get("/sharepin/:sharedpin",(req,res)=>{
+app.get("/sharedpin/:sharedpin",(req,res)=>{
     console.log('got it...',req.params.sharedpin);
     let decrypted = window.atob(req.params.sharedpin);
     console.log("decrypted..", decrypted);
     res.json({
-        sharedPin:decrypted
+        sharedpin:decrypted
     })
     // db.getPinInfo()
     // atob stuff and send the info back to render it on the map.

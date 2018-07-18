@@ -67,7 +67,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        console.log("app mounted");
+        // console.log("app mounted");
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
                 lat: position.coords.latitude,
@@ -77,7 +77,6 @@ class App extends React.Component {
         axios.get("/getUser").then((response) => {
             if (response.data.success) {
                 this.props.dispatch(saveUserInfo(response.data.user));
-
                 this.setState(response.data.user);
             } else {
                 console.log(

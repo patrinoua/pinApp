@@ -18,6 +18,7 @@ class PinClick extends React.Component {
             ready: null,
             removeButtonText: "X",
             editMode: false,
+            title:"",
             url: "",
             deleteAlertIsVisible: false
         };
@@ -33,8 +34,9 @@ class PinClick extends React.Component {
     }
     exportPin() {
         const encryptedPinId = window.btoa(this.props.pinId);
-        const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
-        console.log(pinUrl);
+        const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
+        // const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
+        // console.log(pinUrl);
         this.setState({
             pinUrl
         });
@@ -50,14 +52,17 @@ class PinClick extends React.Component {
                     window.atob(this.props.match.params.encryptedPinId)
             })
             .then((response) => {
-                console.log("response.data", response.data);
+                // console.log("response.data.pinInfo in pinClick", response.data.pinInfo);
                 this.setState({
                     title: response.data.pinInfo.title,
                     category: response.data.pinInfo.category,
+                    color: response.data.pinInfo.color,
                     url: response.data.pinInfo.url || "/pins/greyPin.png",
                     description: response.data.pinInfo.description,
                     created_at: response.data.pinInfo.created_at,
                     userId: response.data.pinInfo.user_id,
+                    lat: response.data.pinInfo.lat,
+                    lng: response.data.pinInfo.lng,
                     ready: true
                 });
             })
@@ -66,7 +71,7 @@ class PinClick extends React.Component {
             });
     }
     toggleEditMode(e) {
-        console.log(this.props);
+        // console.log(this.props);
         if (!this.state.editMode) {
             // this.insertPinInfo(e)
             this.setState({
@@ -100,20 +105,6 @@ class PinClick extends React.Component {
         });
     }
     insertPinInfo(e) {
-        // let pinColor = {
-        //     museums: "/pins/bluePin.png",
-        //     bars: "/pins/pinkPin.png",
-        //     restaurants: "/pins/yellowPin.png",
-        //     parks: "/pins/greenPin.png",
-        //     sightseeing: "/pins/purplePin.png",
-        //     general: "/pins/greyPin.png"
-        // };
-        // let cat;
-        // if (!this.category) {
-        //     cat = "general";
-        // } else {
-        //     cat = this.category;
-        // }
         let pinInfo = {
             description: this.description,
             title: this.title,
@@ -160,7 +151,6 @@ class PinClick extends React.Component {
         }
         // onClick={this.toggleEditMode}
     }
-    // localhost:8080/pin/NjQ=
 
     render() {
         if (!this.state.ready && !this.props.markersArray.length > 0) {
@@ -170,10 +160,10 @@ class PinClick extends React.Component {
                 return (
                     <div className="colPinClick">
                         <button
-                            className="subtleButton"
+                            className="pinAppButton"
                             onClick={this.exportPin}
                         >
-                            Pin Link
+                            Copy Link
                         </button>
 
                         {/*<button
@@ -224,19 +214,21 @@ class PinClick extends React.Component {
                     </div>
                 );
             };
-            let currentPinInfo;
+            let currentPinInfo=[];
 
             if (this.props.pinId) {
                 currentPinInfo = this.props.markersArray.filter((item) => {
                     return item.id == this.props.pinId;
                 });
             } else if (this.props.flag) {
-                currentPinInfo = this.props.markersArray.filter((item) => {
-                    return (
-                        item.id ==
-                        window.atob(this.props.match.params.encryptedPinId)
-                    );
-                });
+                currentPinInfo.push({
+                    title:this.state.title,
+                    url:this.state.url,
+                    lat:this.state.lat,
+                    lng:this.state.lng,
+                    category:this.state.category,
+                    color:this.state.color
+                })
             } else {
                 currentPinInfo = [this.state];
             }
@@ -263,13 +255,13 @@ class PinClick extends React.Component {
                     return <div />;
                 }
             };
+
             let bigPin;
             if (currentPinInfo[0]) {
                 bigPin = currentPinInfo[0].color || "/pins/bigPin.png";
             } else {
                 bigPin = "/pins/bigPin.png";
             }
-
             return (
                 <React.Fragment>
                     <div className="pinClickContainer">
@@ -277,7 +269,6 @@ class PinClick extends React.Component {
                             className="blackVail"
                             onClick={this.props.togglePinClick}
                         />
-
                         <div className="fieldsContainer fieldsContainerPinClick">
                             <p
                                 className="exitPinClick"
@@ -299,9 +290,9 @@ class PinClick extends React.Component {
                                             height: "100%"
                                         }}
                                         center={{
-                                            lat: this.props.lat || 52.4918854,
+                                            lat: this.props.lat || this.state.lat || 52.4918854,
                                             lng:
-                                                this.props.lng ||
+                                                this.props.lng || this.state.lng ||
                                                 13.360088699999999
                                         }}
                                         zoom={14}

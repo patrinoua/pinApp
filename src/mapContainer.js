@@ -99,7 +99,6 @@ class MapContainer extends React.Component {
                     watchId: watchId
                 });
             }, error);
-
             function error(err) {
                 console.log(
                     `error in watchMyLocation: ${err.code} ${err.message}`
@@ -137,13 +136,11 @@ class MapContainer extends React.Component {
     }
     mapClicked(mapProps, map, clickEvent) {
         this.mapHasBinClicked();
-
         this.setState({
             lat: clickEvent.latLng.lat(),
             lng: clickEvent.latLng.lng()
         });
     }
-
     checkedCategory(e) {
         if (e.target.checked) {
             this.state.arrayOfCategory.push(e.target.value);
