@@ -322,12 +322,7 @@ app.get("/getUserPins", (req, res) => {
             console.log(`error in getUserPins: ${err}`);
         });
 });
-app.get("/sharepin/:sharedpin",(req,res)=>{
-    console.log('got it...',req.params.sharedpin);
-    // db.getPinInfo()
-    // atob stuff and send the info back to render it on the map.
-    res.sendFile(__dirname + "/index.html");
-})
+
 // app.get("/getUserMarkers", (req, res) => {
 //     db
 //         .getUserPins(req.query.id)
@@ -523,7 +518,17 @@ app.get("*", function(req, res) {
         res.sendFile(__dirname + "/index.html");
     }
 });
-
+app.get("/sharepin/:sharedpin",(req,res)=>{
+    console.log('got it...',req.params.sharedpin);
+    let decrypted = window.atob(req.params.sharedpin);
+    console.log("decrypted..", decrypted);
+    res.json({
+        sharedPin:decrypted
+    })
+    // db.getPinInfo()
+    // atob stuff and send the info back to render it on the map.
+    res.sendFile(__dirname + "/index.html");
+})
 app.get("/", function(req, res) {
     res.sendStatus(200);
 });

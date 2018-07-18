@@ -147,6 +147,18 @@ class App extends React.Component {
                         />
                         <Route
                             exact
+                            path="/sharedpin/:encryptedPinId"
+                            render={(x) => (
+                                <PinClick
+                                    match={x.match}
+                                    history={x.history}
+                                    togglePinClick={this.togglePinClick}
+                                    flag={true}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
                             path="/onlineUsers"
                             component={OnlineUsers}
                         />
