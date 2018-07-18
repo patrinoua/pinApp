@@ -48,7 +48,6 @@ export class Navigation extends React.Component {
         const style = {
             backgroundImage: `url(${pic})`
         };
-
         return (
             <div className="navigationContainerBig">
                 <div className="navigationContainer">
@@ -63,6 +62,7 @@ export class Navigation extends React.Component {
                         <div className="navigationIconProfilepicCircle" style={style} onClick={this.toggleUserMenu}>
                         </div>
                         {this.props.first}
+                        <div className="navigationSeperatingLine"></div>
                         <img
                             src="/icons/pinsIcon.png"
                             className="navigationIcon"

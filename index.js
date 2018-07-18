@@ -305,7 +305,7 @@ app.post("/categorySelect", (req, res) => {
         });
 });
 app.get("/getUserPins", (req, res) => {
-    console.log("/getUserPins req.query.id||req.session.user.id", req.query.id,req.session.user.id);
+    // console.log("/getUserPins req.query.id||req.session.user.id", req.query.id,req.session.user.id);
     db.getUserPins(req.query.id || req.session.user.id)
         .then((result) => {
             for (let i = 0; i < result.rows.length; i++) {

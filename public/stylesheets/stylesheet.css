@@ -196,7 +196,14 @@ body {
     font-size: 0.9em;
 
 }
-
+.navigationSeperatingLine{
+    width: 10px;
+    height: 7vh;
+    min-height: 20px;
+    height: 50px;
+    margin: 5px;
+    border-right: 1px solid #4e4a4a;
+}
 .navigationIcon {
     height: 6vh;
     max-height: 45px;
