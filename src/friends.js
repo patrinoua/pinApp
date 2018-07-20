@@ -46,24 +46,27 @@ class Friends extends React.Component {
                         {friend.first} {friend.last}
                     </div>
                     {/*<div className="inARow">*/}
-                    <div className="pendingAccept"
-                        onClick={() => {
-                            this.props.dispatch(acceptFriend(friend.id));
-                        }}
-                    >
-                        Accept
+                    <div className='pendingAcceptButtons inARow'>
+                        <div className="pendingAccept"
+                            onClick={() => {
+                                this.props.dispatch(acceptFriend(friend.id));
+                        }}>
+                            Accept
                         <img
                             src="tick.png"
                             className="icons"
                         />
-                        Deny{" "}
-                        <img
+                        </div>
+                        <div className="pendingAccept"
+                            onClick={() => {
+                            this.props.dispatch(denyFriend(friend.id));
+                        }}>
+                            Deny
+                            <img
                             src="x.png"
                             className="icons"
-                            onClick={() => {
-                                this.props.dispatch(denyFriend(friend.id));
-                            }}
-                        />
+                            />
+                        </div>
                     </div>
                 </div>
             );
@@ -85,13 +88,13 @@ class Friends extends React.Component {
         return (
             <div className="componentContainer">
                 <div className="friendsComponent">
+                    <h1> Pending Friends </h1>
                     <div className="pendingFriends">
-                        <h1> Pending Friends </h1>
                         <div className="pendingFriendsList">{pendingFriends}</div>
                     </div>
 
+                    <h1> Friends </h1>
                     <div className="existingFriends">
-                        <h1> Friends </h1>
                         <div className="existingList">{existingFriends}</div>
                     </div>
                 </div>
