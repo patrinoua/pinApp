@@ -46,14 +46,15 @@ class Friends extends React.Component {
                         {friend.first} {friend.last}
                     </div>
                     {/*<div className="inARow">*/}
-                    <div className="pendingAccept">
-                        Accept{" "}
+                    <div className="pendingAccept"
+                        onClick={() => {
+                            this.props.dispatch(acceptFriend(friend.id));
+                        }}
+                    >
+                        Accept
                         <img
                             src="tick.png"
                             className="icons"
-                            onClick={() => {
-                                this.props.dispatch(acceptFriend(friend.id));
-                            }}
                         />
                         Deny{" "}
                         <img
