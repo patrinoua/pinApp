@@ -48,35 +48,29 @@ export class Navigation extends React.Component {
         const style = {
             backgroundImage: `url(${pic})`
         };
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 27) {
+                this.closeUserMenu();
+            }
+        });
         return (
             <div className="navigationContainerBig">
                 <div className="navigationContainer">
                     <Link to="/map">
-                        {" "}
-                        <img
-                            className="logoIconMenu"
-                            src="/pinAppLogo.png"
-                        />{" "}
+                        <img className="logoIconMenu" src="/pinAppLogo.png" />
                     </Link>
                     <div className="navigationBarRight">
-                        <div className="navigationIconProfilepicCircle" style={style} onClick={this.toggleUserMenu}>
-                        </div>
+                        <Link to="/map" className="dropDownMenuItem">
+                            <div className="navigationIconProfilepicCircle" style={style}>
+                            </div>
+                        </Link>
                         {this.props.first}
                         <div className="navigationSeperatingLine"></div>
-                        <img
-                            src="/icons/pinsIcon.png"
-                            className="navigationIcon"
-                            onClick={this.showListComponent}
-                        />{" "}
-                        <Link to="/map">
-                            {" "}
-                            <img
-                                src="/icons/mapIcon.png"
-                                className="navigationIcon"
-                            />{" "}
-                        </Link>
-
-                        <Link to="/editProfile"> </Link>
+                        <img src="/icons/pinsIcon.png" className="navigationIcon" onClick={this.showListComponent} />
+                        {/*<Link to="/map">
+                            <img src="/icons/mapIcon.png" className="navigationIcon mapIcon"/>
+                        </Link>*/}
+                        <img src="/assets/menu.png" className="navigationIcon menuIcon" onClick={this.toggleUserMenu} />
 
                         {this.state.userMenuIsVisible && (
                             <UserMenuPopUp
@@ -129,13 +123,12 @@ export class UserMenuPopUp extends React.Component {
                 {/*onMouseLeave={() => {
                     this.props.closeUserMenu();
                 }}*/}
-                    <Link to="/profile" className="dropDownMenuItem">
-                        My Profile
-                    </Link>
                     <Link to="/friends" className="dropDownMenuItem">
-                        Friends
+                    Friends
                     </Link>
-
+                    <Link to="/profile" className="dropDownMenuItem">
+                        Edit Profile
+                    </Link>
                     <a href="/logout" className="dropDownMenuItem">
                         Logout
                     </a>

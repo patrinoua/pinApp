@@ -32,15 +32,6 @@ class PinClick extends React.Component {
         this.togglePinClick = this.togglePinClick.bind(this);
         this.exportPin = this.exportPin.bind(this);
     }
-    exportPin() {
-        const encryptedPinId = window.btoa(this.props.pinId);
-        const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
-        // const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
-        // console.log(pinUrl);
-        this.setState({
-            pinUrl
-        });
-    }
     togglePinClick() {
         this.props.togglePinClick();
     }
@@ -152,13 +143,28 @@ class PinClick extends React.Component {
         // onClick={this.toggleEditMode}
     }
 
+    exportPin() {
+        const encryptedPinId = window.btoa(this.props.pinId);
+        const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
+        // const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
+        this.setState({
+            pinUrl
+        });
+
+        //copy to clipboard:
+        var dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = pinUrl;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+    }
     render() {
         if (!this.state.ready && !this.props.markersArray.length > 0) {
             return <div>not ready</div>;
         } else {
-
-            console.log("props:\n",this.props);
-            console.log("state:\n",this.state);
+            // console.log("props:\n",this.props);
+            // console.log("state:\n",this.state);
             const shareButtons = () => {
                 return (
                     <div className="colPinClick">
@@ -180,11 +186,18 @@ class PinClick extends React.Component {
                         </button>*/}
 
                         {this.state.pinUrl && (
-
-                            <div className="copyUrl">
-                                Copy and send this URL to your friends:<p>
-                                    {this.state.pinUrl}
-                                </p>
+                            <div className="copyUrlVail">
+                                <div className="closeCopyUrlVail"
+                                    onClick={()=>{
+                                        this.setState({
+                                            pinUrl: false
+                                        });
+                                    }}
+                                > X
+                                </div>
+                                <div className="copyUrl" id="copyUrl">
+                                    {this.state.pinUrl} link copied to clipboard
+                                </div>
                             </div>
                         )}
                     </div>

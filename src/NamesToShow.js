@@ -10,16 +10,6 @@ export class NamesToShow extends React.Component {
         this.search = this.search.bind(this);
         this.removeSearchBar = this.removeSearchBar.bind(this);
     }
-    componentDidMount() {
-        // document.addEventListener("keydown", (e) => {
-        //     if (e.keyCode == 38) {
-        //         console.log("up");
-        //     }
-        //     if (e.keyCode == 40) {
-        //         console.log("down");
-        //     }
-        // });
-    }
     handleChange(e) {
         this[e.target.name] = e.target.value;
         if (this.name) {
@@ -46,9 +36,6 @@ export class NamesToShow extends React.Component {
     }
     removeSearchBar() {
         this.setState({ showTextArea: null });
-    }
-    componentDidMount() {
-        console.log("opened search box");
     }
     render() {
         return (
@@ -97,16 +84,13 @@ class ListOfNames extends React.Component {
         };
     }
     handleKeyPress(e) {
-        console.log("this.state.nameCounter: ", this.state.nameCounter);
+        // console.log("this.state.nameCounter: ", this.state.nameCounter);
         if (e.keyCode == 13) {
-            console.log("enter!");
             e.target.trigger("click");
         }
-        if (e.keyCode == 37) {
-            console.log("arrow left");
-        }
-        if (e.keyCode == 38) {
-            console.log("arrow up", this.state.nameCounter);
+        if (e.keyCode == 38 || e.keyCode == 37) {
+            //left: 37, up:38
+            // console.log("arrow up", this.state.nameCounter);
             if (this.state.nameCounter == 0) {
                 this.setState(
                     {
@@ -117,26 +101,22 @@ class ListOfNames extends React.Component {
                     }
                 );
             } else {
-                this.setState(
-                    {
-                        nameCounter: this.state.nameCounter - 1
-                    }
-                );
+                this.setState({
+                    nameCounter: this.state.nameCounter - 1
+                });
             }
         }
-        if (e.keyCode == 40) {
-            console.log("arrow down: ", this.state.nameCounter);
+        if (e.keyCode == 40||e.keyCode == 39) {
+            //39 : right, 40: down
             if (
                 this.state.nameCounter ==
                 document.getElementsByClassName("theNamesToShowInSearch")
                     .length -
                     1
             ) {
-                this.setState(
-                    {
-                        nameCounter: 0
-                    }
-                )
+                this.setState({
+                    nameCounter: 0
+                })
             } else {
                 this.setState({
                     nameCounter: this.state.nameCounter + 1
@@ -157,13 +137,10 @@ class ListOfNames extends React.Component {
             .getElementsByClassName("theNamesToShowInSearch")
             [this.state.nameCounter].focus();
     }
-
     render() {
         return (
             <div className="searchUsers">
                 {this.props.names.map((item, i) => {
-                    console.log("item, i", item, i);
-                    console.log("item, i", item, i);
                     if (item.id == this.props.id) {
                         return (
                             <Link
@@ -197,30 +174,3 @@ class ListOfNames extends React.Component {
         );
     }
 }
-// function ListOfNames(props) {
-//     return (
-//         <div className="searchUsers" ref={this.nameToFocus}>
-//             {props.names.map((item) => {
-//                 if (item.id == props.id) {
-//                     return (
-//                         <Link
-//                             className="theNamesToShowInSearch"
-//                             to={`/`}
-//                             key={item.id}
-//                             onClick={props.removeSearchBar}
-//                         >{`${item.first} ${item.last}`}</Link>
-//                     );
-//                 } else {
-//                     return (
-//                         <Link
-//                             className="theNamesToShowInSearch"
-//                             to={`/user/${item.id}`}
-//                             key={item.id}
-//                             onClick={props.removeSearchBar}
-//                         >{`${item.first} ${item.last}`}</Link>
-//                     );
-//                 }
-//             })}
-//         </div>
-//     );
-// }

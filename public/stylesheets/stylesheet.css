@@ -200,15 +200,22 @@ body {
     width: 10px;
     height: 7vh;
     min-height: 20px;
-    height: 50px;
+    height: 40px;
     margin: 5px;
     border-right: 1px solid #4e4a4a;
 }
 .navigationIcon {
     height: 6vh;
     max-height: 45px;
-    min-height: 40px;
-    padding: 0.5vw;
+    min-height: 38px;
+    padding: 0.8vw;
+}
+.mapIcon{
+    padding-bottom: 0;
+}
+.menuIcon{
+    filter: invert(0.5);
+    padding: 0;
 }
 
 .navigationIconProfilepicCircle {
@@ -1214,26 +1221,31 @@ button:hover {
         top: -17vh;
     }
 }
-
-.copyUrl {
-    /* position: absolute;
-    left: 23%;
-    top: 110%;
-    width: 20vw;
-    height: 10vh;
-    background-color: rgb(255, 255, 255);
-    color: black; */
-    color: white;
-    z-index: 22;
-    padding: 32px;
-    border-radius: 15px;
+.copyUrlVail{
     position: absolute;
     display: flex;
-    top: 50%;
+    top: 60%;
     left: 50%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.closeCopyUrlVail{
+    position: absolute;
+    width: 30px;
+    z-index: 23;
+    top: 10px;
+    right: 4px;
+    font-size: 0.8em;
+}
+.copyUrl {
+    color: white;
+    z-index: 22;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    line-height: 20pt;
+    border: 3px solid white;
     background-color: #b52519;
 }
 

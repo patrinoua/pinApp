@@ -7,7 +7,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import AddNewPin from "./addNewPin";
 import { getUserPins, selectActionBycategory } from "./actions";
 import PinClick from "./PinClick.js";
-import { NamesToShow } from "./NamesToShow";
+// import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
 class MapContainer extends React.Component {
     constructor(props) {
@@ -284,12 +284,14 @@ class MapContainer extends React.Component {
                                 <button
                                     className="pinAppButton"
                                     onClick={this.showListComponent}
+
                                 >
                                     My pins
                                 </button>
                             </div>
                         </div>
-                        <div className="mapContainerRight">
+                        <div className="mapContainerRight"
+                        >
                             {/*<div className="mapContainerRightUP">
                                 <div className="inARow">
                                     <button

@@ -2,6 +2,7 @@
 /********** FRIENDS COMPONENT  **************/
 .friendsComponent {
     padding: 6vh;
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
