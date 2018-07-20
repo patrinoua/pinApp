@@ -123,7 +123,7 @@ class ListOfNames extends React.Component {
                 });
             }
         }
-        document
+        this.state.nameCounter && document
             .getElementsByClassName("theNamesToShowInSearch")
             [this.state.nameCounter].focus();
     }
@@ -133,6 +133,7 @@ class ListOfNames extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyPress);
+        this.state.nameCounter &&
         document
             .getElementsByClassName("theNamesToShowInSearch")
             [this.state.nameCounter].focus();
