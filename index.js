@@ -322,7 +322,7 @@ app.get("/getUserPins", (req, res) => {
             console.log(`error in getUserPins: ${err}`);
         });
 });
-app.get("/sharepin/:sharedpin",(req,res)=>{
+app.get("/sharedpin/:sharedpin",(req,res)=>{
     console.log('got it...',req.params.sharedpin);
     // db.getPinInfo()
     // atob stuff and send the info back to render it on the map.

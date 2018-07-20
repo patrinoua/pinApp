@@ -36,6 +36,7 @@ class PinClick extends React.Component {
         this.props.togglePinClick();
     }
     componentDidMount() {
+        console.log('woop woop!');
         axios
             .post("/PinClick", {
                 pinId:
@@ -146,7 +147,7 @@ class PinClick extends React.Component {
     exportPin() {
         const encryptedPinId = window.btoa(this.props.pinId);
         // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
-        const pinUrl = `https://pinapp-spiced.herokuapp.com/sharepin/${encryptedPinId}`;
+        const pinUrl = `https://pinapp-spiced.herokuapp.com/sharedpin/${encryptedPinId}`;
         this.setState({
             pinUrl
         });
@@ -213,8 +214,7 @@ class PinClick extends React.Component {
                                     this.deletePinAlert();
                                 }}
                             >
-                                {" "}
-                                yes{" "}
+                                yes
                             </button>
                             <button
                                 onClick={() => {
@@ -223,8 +223,7 @@ class PinClick extends React.Component {
                                     });
                                 }}
                             >
-                                {" "}
-                                no{" "}
+                                no
                             </button>
                         </div>
                     </div>
