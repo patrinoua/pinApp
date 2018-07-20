@@ -36,7 +36,6 @@ class PinClick extends React.Component {
         this.props.togglePinClick();
     }
     componentDidMount() {
-        console.log('woop woop!');
         axios
             .post("/PinClick", {
                 pinId:
@@ -151,7 +150,6 @@ class PinClick extends React.Component {
         this.setState({
             pinUrl
         });
-
         //copy to clipboard:
         var dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
@@ -175,16 +173,6 @@ class PinClick extends React.Component {
                         >
                             Copy Link
                         </button>
-
-                        {/*<button
-                            id="sharePin"
-                            className="pinAppButton"
-                            onClick={() => {
-                                emit("sharePin", this.props.pinId);
-                            }}
-                        >
-                            publish
-                        </button>*/}
 
                         {this.state.pinUrl && (
                             <div className="copyUrlVail">

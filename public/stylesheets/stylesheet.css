@@ -1194,7 +1194,17 @@ button:hover {
 /* #popupShare>button {
     z-index: 20;
 } */
-
+#exitNewPin{
+    position: absolute;
+    color: white;
+    right: 10px;
+    top: 10px;
+    opacity: 0.8;
+    z-index: 8;
+}
+#exitNewPin:hover{
+    cursor: pointer;
+}
 #exitPopupShare {
     position: absolute;
     top: 8%;

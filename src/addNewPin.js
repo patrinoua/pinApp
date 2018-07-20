@@ -132,10 +132,10 @@ class AddNewPin extends React.Component {
                         className="blackVail"
                         onClick={this.props.closeAddNewPinComponent}
                     />
-                    <p id="exit" onClick={this.props.closeAddNewPinComponent}>
-                        X
-                    </p>
                     <div className="fieldsContainer fieldsContainerNewPin">
+                        <p id="exitNewPin" onClick={this.props.closeAddNewPinComponent}>
+                        X
+                        </p>
                         <div className="pinTitle box">
                             <img src="/pins/bigPin.png" />
                             <span className="addPinTitle pinTitle"> New Pin</span>
@@ -220,12 +220,18 @@ class AddNewPin extends React.Component {
                                 />
                             </div>
                         </div>
-                        <div className="pinDescription box">
+                        <div className="pinDescription inARow">
                             <h1
                                 className="saveButton"
                                 onClick={this.insertPinInfos}
                             >
                                 Save
+                            </h1>
+                            <h1
+                                className="saveButton"
+                                onClick={this.props.closeAddNewPinComponent}
+                            >
+                                Cancel
                             </h1>
                         </div>
                     </div>

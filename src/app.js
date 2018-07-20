@@ -67,8 +67,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        console.log('wooooop');
-        console.log(this.props);
         // console.log("app mounted");
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
