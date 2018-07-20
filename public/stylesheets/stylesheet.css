@@ -206,8 +206,8 @@ body {
 }
 .navigationIcon {
     height: 6vh;
-    max-height: 45px;
-    min-height: 38px;
+    max-height: 35px;
+    min-height: 35px;
     padding: 0.8vw;
 }
 .mapIcon{
@@ -222,8 +222,8 @@ body {
     /* box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2); */
     height: 9vh;
     width: 9vh;
-    max-width: 35px;
-    max-height: 35px;
+    max-width: 33px;
+    max-height: 33px;
     overflow: hidden;
     margin-right: 2vh;
     margin-left: 1vh;
