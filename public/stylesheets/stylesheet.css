@@ -225,8 +225,7 @@ body {
     max-width: 33px;
     max-height: 33px;
     overflow: hidden;
-    margin-right: 2vh;
-    margin-left: 1vh;
+    margin-right: 10px;
     border-radius: 50%;
     border: 2px solid grey;
     background-size: cover;

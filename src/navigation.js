@@ -60,7 +60,7 @@ export class Navigation extends React.Component {
                         <img className="logoIconMenu" src="/pinAppLogo.png" />
                     </Link>
                     <div className="navigationBarRight">
-                        <Link to="/map" className="dropDownMenuItem">
+                        <Link to="/map">
                             <div className="navigationIconProfilepicCircle" style={style}>
                             </div>
                         </Link>
