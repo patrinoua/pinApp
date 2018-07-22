@@ -432,6 +432,13 @@ body {
     background-image: url(/icons/targetLocationIcon.png);
     background-size: contain;
 }
+#dropPinInCurrentLocationButton{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 13px;
+    width: 155px;
+}
 /********** USER PROFILE (OtherProfile) ***************/
 
 .otherUserContainer {
@@ -1403,7 +1410,11 @@ button:hover {
         width: 100%;
     }
     #searchboxInputField {
+        width: 65px;
         margin: 1vh 1.5vh;
+    }
+    #dropPinInCurrentLocationButton{
+        padding: 3px;
     }
     .copyUrlVail{
         top: 56%;

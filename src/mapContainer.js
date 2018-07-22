@@ -450,6 +450,16 @@ class MapContainer extends React.Component {
                                                 }}
                                             >
                                             </div>
+                                            <button
+                                                id="dropPinInCurrentLocationButton"
+                                                className="pinAppButton"
+                                                onClick={()=>{
+                                                    console.log('about to pin my current location...');
+                                                    this.forceUpdate();
+                                                }}
+                                            >
+                                                pin my current location
+                                            </button>
                                         </div>
                                     )}
                                 </div>
