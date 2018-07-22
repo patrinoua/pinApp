@@ -635,7 +635,6 @@
    .mapContainerLeft{
         display: none;
     }
-
     /* pinclick! */
     .boxPinClick {
         max-width: 100%;
@@ -670,7 +669,6 @@
         width: 100%;
         height: 80%;
     }
-
     /* listoflocations */
     #listSmallHolder{
         width: 90%;

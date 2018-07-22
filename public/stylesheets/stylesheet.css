@@ -422,6 +422,16 @@ body {
     align-items: center;
 }
 
+.centerMapButton{
+    position: absolute;
+    border-radius: 2px;
+    width: 27px;
+    height: 27px;
+    bottom: 19%;
+    right: 3.2%;
+    background-image: url(/icons/targetLocationIcon.png);
+    background-size: contain;
+}
 /********** USER PROFILE (OtherProfile) ***************/
 
 .otherUserContainer {
@@ -821,7 +831,7 @@ body {
     /* min-height: 10vh; */
     width: 9vw;
     min-width: 120px;
-    top: 7vh;
+    top: 9vh;
     right: 0vw;
     display: flex;
     background-color: rgba(255, 255, 255, 0.9);
@@ -1399,5 +1409,12 @@ button:hover {
         top: 56%;
         left: 0;
         width: 100%;
+    }
+    .dropDownMenu {
+        top: 10vh;
+    }
+    .centerMapButton{
+        bottom: 21.5%;
+        right: 3.6%;
     }
 }

@@ -123,10 +123,12 @@ export class UserMenuPopUp extends React.Component {
                 {/*onMouseLeave={() => {
                     this.props.closeUserMenu();
                 }}*/}
-                    <Link to="/friends" className="dropDownMenuItem">
+                    <Link to="/friends" className="dropDownMenuItem" onClick={()=>{
+                        setTimeout(this.props.closeUserMenu, 200)
+                        }}>
                     Friends
                     </Link>
-                    <Link to="/profile" className="dropDownMenuItem">
+                    <Link to="/profile" className="dropDownMenuItem" onClick={()=>{this.props.closeUserMenu();}}>
                         Edit Profile
                     </Link>
                     <a href="/logout" className="dropDownMenuItem">

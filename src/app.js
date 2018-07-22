@@ -48,7 +48,6 @@ class App extends React.Component {
             profilepic: img
         });
     }
-
     changeInputValues(inputValues) {
         let { id, first, last, email, bio } = inputValues;
         this.setState({
@@ -59,7 +58,6 @@ class App extends React.Component {
             bio
         });
     }
-
     hideUploader() {
         this.setState({
             uploaderIsVisible: false
