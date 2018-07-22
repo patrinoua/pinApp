@@ -255,8 +255,6 @@ body {
     margin: 1vh;
     height: 9vh;
     max-height: 50px;
-    position: fixed;
-    top: -.5vh;
 }
 
 .logoIconMenu:hover {

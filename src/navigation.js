@@ -56,7 +56,7 @@ export class Navigation extends React.Component {
         return (
             <div className="navigationContainerBig">
                 <div className="navigationContainer">
-                    <Link to="/map">
+                    <Link to="/map" className="navigationBarRight">
                         <img className="logoIconMenu" src="/pinAppLogo.png" />
                     </Link>
                     <div className="navigationBarRight">
