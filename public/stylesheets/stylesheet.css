@@ -166,7 +166,7 @@ body {
     /* background-color: #51B3C4; */
     /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
-    position: fixed;
+    /* position: fixed; */
     z-index: 8;
 }
 
@@ -1233,8 +1233,13 @@ button:hover {
 .copyUrlVail{
     position: absolute;
     display: flex;
-    top: 60%;
-    left: 50%;
+    top: 34%;
+    left: 20%;
+    /* top: 60%;
+    left: 50%; */
+    width: 300px;
+    box-shadow: 11px -9px 20px rgba(0,0,0,0.6);
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -1389,5 +1394,10 @@ button:hover {
     }
     #searchboxInputField {
         margin: 1vh 1.5vh;
+    }
+    .copyUrlVail{
+        top: 56%;
+        left: 0;
+        width: 100%;
     }
 }
