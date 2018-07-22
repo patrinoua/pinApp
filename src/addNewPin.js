@@ -19,7 +19,6 @@ class AddNewPin extends React.Component {
         this.insertPinInfos = this.insertPinInfos.bind(this);
         this.compileData = this.compileData.bind(this);
     }
-    componentDidMount() {}
     handleChange(e) {
         this[e.target.name] = e.target.value;
     }

@@ -68,6 +68,7 @@ class MapContainer extends React.Component {
         //         lng: position.coords.longitude
         //     });
         // });
+
     }
     closeListComponent(e) {
         this.setState({
@@ -114,6 +115,7 @@ class MapContainer extends React.Component {
         }
     }
     closeAddNewPinComponent() {
+        console.log('closing add new pin component...');
         this.setState({
             addNewPinIsVisible: false
         });
@@ -443,22 +445,20 @@ class MapContainer extends React.Component {
                                             }}
                                             />
                                         {/*******center button*******/}
-                                            <div className="centerMapButton"
-                                                onClick={()=>{
-                                                    console.log('about to center map...');
-                                                    this.forceUpdate();
-                                                }}
+                                            <div className="centerMapButton" onClick={()=>{ this.forceUpdate(); }}
                                             >
                                             </div>
                                             <button
                                                 id="dropPinInCurrentLocationButton"
                                                 className="pinAppButton"
                                                 onClick={()=>{
-                                                    console.log('about to pin my current location...');
                                                     this.forceUpdate();
+                                                    this.setState({
+                                                        addMyPinLocationVisible: !this.state.addMyPinLocationVisible
+                                                    })
                                                 }}
                                             >
-                                                pin my current location
+                                                Pin my current location
                                             </button>
                                         </div>
                                     )}
@@ -480,7 +480,7 @@ class MapContainer extends React.Component {
                     <AddNewPin
                         lat={this.props.lat}
                         lng={this.props.lng}
-                        closeAddNewPinComponent={this.closeAddNewPinComponent}
+                        closeAddNewPinComponent={this.toggleAddMyPinLocationVisible}
                         pinId={this.state.clickedPinId}
                     />
                 )}
