@@ -11,7 +11,7 @@ import { emit } from "./socket";
 let apiSecret;
 
 if (process.env.NODE_ENV == "production") {
-    apiSecret = process.env.apiSecret;
+    apiSecret = process.env.API_SECRET;
 } else {
     apiSecret = require("./apiSecret.js").default.apiKey;
 }
