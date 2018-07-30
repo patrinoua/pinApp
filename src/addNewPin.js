@@ -144,17 +144,9 @@ class AddNewPin extends React.Component {
                                 <form>
                                     {category("blue", "Museum", "museums")}
                                     {category("green", "Park", "parks")}
-                                    {category(
-                                        "yellow",
-                                        "Restaurant",
-                                        "restaurants"
-                                    )}
+                                    {category("yellow", "Restaurant", "restaurants")}
                                     {category("pink", "Bar", "bars")}
-                                    {category(
-                                        "purple",
-                                        "Sightseeing",
-                                        "sightseeing"
-                                    )}
+                                    {category("purple", "Sightseeing", "sightseeing")}
                                 </form>
                             </div>
                             <div className="addPinPicture">
@@ -171,10 +163,7 @@ class AddNewPin extends React.Component {
                                             multiple
                                         />
                                         <label htmlFor="inputfile">
-                                            <img
-                                                src="/pins/camera.png"
-                                                className="cameraIcon"
-                                            />
+                                            <img src="/pins/camera.png" className="cameraIcon" />
                                         </label>
                                     </div>
                                 )) || (
@@ -220,16 +209,10 @@ class AddNewPin extends React.Component {
                             </div>
                         </div>
                         <div className="pinDescription inARow">
-                            <h1
-                                className="saveButton"
-                                onClick={this.insertPinInfos}
-                            >
+                            <h1 className="saveButton" onClick={this.insertPinInfos}>
                                 Save
                             </h1>
-                            <h1
-                                className="saveButton"
-                                onClick={this.props.closeAddNewPinComponent}
-                            >
+                            <h1 className="saveButton" onClick={this.props.closeAddNewPinComponent} >
                                 Cancel
                             </h1>
                         </div>

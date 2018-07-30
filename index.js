@@ -410,6 +410,7 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
 
     db.saveMarkerImage(url, req.session.markerId)
         .then((result) => {
+            console.log("uploadPinPic result.rows",result.rows[0]);
             res.json({
                 success: true,
                 url: result.rows[0].url

@@ -43,18 +43,20 @@ class PinClick extends React.Component {
                     window.atob(this.props.match.params.encryptedPinId)
             })
             .then((response) => {
-                // console.log("response.data.pinInfo in pinClick", response.data.pinInfo);
+                console.log("response.data.pinInfo in pinClick", response.data.pinInfo);
                 this.setState({
                     title: response.data.pinInfo.title,
                     category: response.data.pinInfo.category,
                     color: response.data.pinInfo.color,
-                    url: response.data.pinInfo.url || "/pins/greyPin.png",
+                    url: response.data.pinInfo.url || response.data.pinInfo.color || "/pins/greyPin.png",
                     description: response.data.pinInfo.description,
                     created_at: response.data.pinInfo.created_at,
                     userId: response.data.pinInfo.user_id,
                     lat: response.data.pinInfo.lat,
                     lng: response.data.pinInfo.lng,
                     ready: true
+                }, ()=>{
+                    console.log("this.stateeeeee", this.state);
                 });
             })
             .catch((err) => {
@@ -235,9 +237,11 @@ class PinClick extends React.Component {
             } else {
                 currentPinInfo = [this.state];
             }
+
             let imageUrl;
-            if (currentPinInfo[0].url) {
-                imageUrl = currentPinInfo[0].url;
+            if (currentPinInfo[0].url||currentPinInfo[0].color) {
+                console.log('there is currentPinInfo...');
+                imageUrl = currentPinInfo[0].url || currentPinInfo[0].color;
             } else {
                 imageUrl = "/pins/greyPin.png";
             }
