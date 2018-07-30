@@ -9,6 +9,15 @@ import { getUserPins, selectActionBycategory } from "./actions";
 import PinClick from "./PinClick.js";
 // import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
+
+let apiSecret;
+
+if (process.env.NODE_ENV == "production") {
+    apiSecret = process.env;
+} else {
+    apiSecret = require("./apiSecret.js").default.apiKey;
+}
+
 class MapContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -499,5 +508,5 @@ const mapStateToProps = function(state) {
 };
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+    apiKey: apiSecret
 })(connect(mapStateToProps)(MapContainer));

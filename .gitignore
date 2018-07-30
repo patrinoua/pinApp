@@ -1,3 +1,4 @@
 secrets.json
+src/apiSecret.js
 config.json
 .DS_Store
