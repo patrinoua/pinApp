@@ -19,7 +19,7 @@ const path = require("path");
 const s3 = require("./s3"); //check
 const config = require("./config.json");
 
-let apiSecret = process.env.REACT_APP_API_SECRET;
+// let apiSecret = process.env.REACT_APP_API_SECRET;
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, __dirname + "/uploads");
