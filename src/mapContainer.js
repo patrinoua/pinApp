@@ -12,8 +12,8 @@ import ListOfLocations from "./ListOfLocations.js";
 
 let apiSecret;
 if (process.env.NODE_ENV == "production") {
-    apiSecret = process.env.API_SECRET;
-    
+    // apiSecret = process.env.API_SECRET;
+
     if(process.env.TEST){
         console.log(process.env.TEST);
     }else {
