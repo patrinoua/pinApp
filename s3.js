@@ -5,11 +5,11 @@ let secrets;
 
 if (process.env.NODE_ENV == "production") {
     secrets = process.env;
-    if(process.env.TEST){
-        console.log("yeyeye",process.env.TEST);
-    }else {
-        console.log('doesnotexist!!!!!');
-    }
+    // if(process.env.TEST){
+    //     console.log("yeyeye",process.env.TEST);
+    // }else {
+    //     console.log('doesnotexist!!!!!');
+    // }
 } else {
     secrets = require("./secrets.json");
 }
