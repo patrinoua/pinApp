@@ -11,11 +11,15 @@ import PinClick from "./PinClick.js";
 import ListOfLocations from "./ListOfLocations.js";
 
 let apiSecret;
-
 if (process.env.NODE_ENV == "production") {
     apiSecret = process.env.API_SECRET;
+    if(process.env.test){
+        console.log(process.env.test);
+    }else {
+        console.log('doesnotexist!');
+    }
 } else {
-    apiSecret = require("./apiSecret.js").default.apiKey;
+    apiSecret = require("../apiSecret.js").default.apiKey;
 }
 
 class MapContainer extends React.Component {

@@ -13,7 +13,7 @@ let apiSecret;
 if (process.env.NODE_ENV == "production") {
     apiSecret = process.env.API_SECRET;
 } else {
-    apiSecret = require("./apiSecret.js").default.apiKey;
+    apiSecret = require("../apiSecret.js").default.apiKey;
 }
 
 class PinClick extends React.Component {
@@ -63,8 +63,6 @@ class PinClick extends React.Component {
                     lat: response.data.pinInfo.lat,
                     lng: response.data.pinInfo.lng,
                     ready: true
-                }, ()=>{
-                    console.log("this.stateeeeee", this.state);
                 });
             })
             .catch((err) => {
@@ -248,7 +246,6 @@ class PinClick extends React.Component {
 
             let imageUrl;
             if (currentPinInfo[0].url||currentPinInfo[0].color) {
-                console.log('there is currentPinInfo...');
                 imageUrl = currentPinInfo[0].url || currentPinInfo[0].color;
             } else {
                 imageUrl = "/pins/greyPin.png";
