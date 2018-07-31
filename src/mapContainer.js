@@ -14,7 +14,7 @@ let apiSecret;
 if (process.env.NODE_ENV == "production") {
     apiSecret = process.env.API_SECRET;
 
-    console.log("i cant believe i am doing this\n",process.env);
+    // console.log("i cant believe i am doing this\n",process.env);
 
 } else {
     apiSecret = require("../apiSecret.js").default.apiKey;
