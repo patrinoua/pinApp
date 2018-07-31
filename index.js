@@ -532,81 +532,81 @@ app.get("/", function(req, res) {
 
 server.listen(process.env.PORT || 8080);
 
-// let onlineUsers = [];
-// io.on("connection", function(socket) {
-//     const session = socket.request.session;
-//
-//     if (!session.user) {
-//         socket.disconnect(true);
-//         return;
-//     }
-//
-//     onlineUsers.push({
-//         socketId: socket.id,
-//         userId: session.user.id
-//     });
-//
-//     let onlineUsersIdAll = onlineUsers.map((onlineUser) => onlineUser.userId);
-//
-//     db.getUsersByIds(onlineUsersIdAll).then((users) => {
-//         socket.emit("onlineUsers", users.rows);
-//     });
-//
-//     if (
-//         onlineUsers.filter((user) => {
-//             return user.userId == session.user.id;
-//         }).length == 1
-//     ) {
-//         let userThatJoined = {
-//             id: session.user.id,
-//             first: session.user.first,
-//             last: session.user.last,
-//             profilepic: session.user.profilepic
-//         };
-//         socket.broadcast.emit("userJoined", userThatJoined);
-//     }
-//     socket.on("sharePin", (pinId) => {
-//         db.getPinClickInfo(pinId)
-//             .then((result) => {
-//                 let shareInfo = {
-//                     data: result.rows[0],
-//                     userName: session.user.first
-//                 };
-//
-//                 socket.broadcast.emit("sharePin", shareInfo);
-//             })
-//             .catch((err) => {
-//                 console.log(`error in getUserIdByPinId: ${err}`);
-//             });
-//         //     console.log(onlineUsers);
-//         //     let recieverId = onlineUsers.filter((user) => {
-//         //         if (user.userId == result.rows[0].user_id) {
-//         //             return user;
-//         //         }
-//         //     });
-//         //     console.log(
-//         //         "from the socket",
-//         //         recieverId.socketId,
-//         //         result.rows[0]
-//         //     );
-//         //     io.sockets
-//         //         .socket(recieverId.socketId)
-//         //         .emit("getSharedPin", pinId);
-//         // })
-//     });
-//     socket.on("disconnect", function() {
-//         onlineUsers = onlineUsers.filter((user) => {
-//             return user.socketId !== socket.id;
-//         });
-//
-//         if (!onlineUsers.find((user) => user.userId == session.user.id)) {
-//             const { id } = session.user;
-//             io.sockets.emit("userLeft", { id });
-//         }
-//     });
-//     socket.on("thanks", function(data) {});
-//
-//     socket.emit("welcome", {
-//         message: "Welome. It is nice to see you"
-//     });
-// });
+let onlineUsers = [];
+io.on("connection", function(socket) {
+    const session = socket.request.session;
+
+    if (!session.user) {
+        socket.disconnect(true);
+        return;
+    }
+
+    onlineUsers.push({
+        socketId: socket.id,
+        userId: session.user.id
+    });
+
+    let onlineUsersIdAll = onlineUsers.map((onlineUser) => onlineUser.userId);
+
+    db.getUsersByIds(onlineUsersIdAll).then((users) => {
+        socket.emit("onlineUsers", users.rows);
+    });
+
+    if (
+        onlineUsers.filter((user) => {
+            return user.userId == session.user.id;
+        }).length == 1
+    ) {
+        let userThatJoined = {
+            id: session.user.id,
+            first: session.user.first,
+            last: session.user.last,
+            profilepic: session.user.profilepic
+        };
+        socket.broadcast.emit("userJoined", userThatJoined);
+    }
+    socket.on("sharePin", (pinId) => {
+        db.getPinClickInfo(pinId)
+            .then((result) => {
+                let shareInfo = {
+                    data: result.rows[0],
+                    userName: session.user.first
+                };
+
+                socket.broadcast.emit("sharePin", shareInfo);
+            })
+            .catch((err) => {
+                console.log(`error in getUserIdByPinId: ${err}`);
+            });
+        //     console.log(onlineUsers);
+        //     let recieverId = onlineUsers.filter((user) => {
+        //         if (user.userId == result.rows[0].user_id) {
+        //             return user;
+        //         }
+        //     });
+        //     console.log(
+        //         "from the socket",
+        //         recieverId.socketId,
+        //         result.rows[0]
+        //     );
+        //     io.sockets
+        //         .socket(recieverId.socketId)
+        //         .emit("getSharedPin", pinId);
+        // })
+    });
+    socket.on("disconnect", function() {
+        onlineUsers = onlineUsers.filter((user) => {
+            return user.socketId !== socket.id;
+        });
+
+        if (!onlineUsers.find((user) => user.userId == session.user.id)) {
+            const { id } = session.user;
+            io.sockets.emit("userLeft", { id });
+        }
+    });
+    socket.on("thanks", function(data) {});
+
+    socket.emit("welcome", {
+        message: "Welome. It is nice to see you"
+    });
+});
