@@ -7,7 +7,7 @@ if (require.main == module) {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
-                TEST: JSON.stringify('process.env.test')
+                TEST: JSON.stringify(process.env.test)
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
