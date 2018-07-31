@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const plugins = [];
 
 if (require.main == module) {
+    console.log('inside build',process.env);
+
     plugins.push(
         new webpack.DefinePlugin({
             'process.env': {
