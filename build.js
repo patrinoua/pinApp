@@ -8,6 +8,7 @@ if (require.main == module) {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
+                TEST: JSON.stringify(process.env.TEST),
                 API_SECRET: JSON.stringify(process.env.API_SECRET)
             }
         }),
