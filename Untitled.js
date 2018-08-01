@@ -1,4 +1,8 @@
-
+{/*******center button*******/}
+    <div className="centerMapButton" onClick={()=>{ this.forceUpdate(); }}
+    >
+    </div>
+    
 {this.state.dropPinInCurrentLocationButtonIsVisible &&(
     <button
         id="dropPinInCurrentLocationButton"

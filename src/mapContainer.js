@@ -437,11 +437,6 @@ class MapContainer extends React.Component {
                                                 }
                                             }}
                                             />
-                                        {/*******center button*******/}
-                                            <div className="centerMapButton" onClick={()=>{ this.forceUpdate(); }}
-                                            >
-                                            </div>
-
                                         </div>
                                     )}
                                 </div>
