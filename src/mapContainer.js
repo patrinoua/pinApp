@@ -437,7 +437,13 @@ class MapContainer extends React.Component {
                                             }}
                                             />
                                         {/*******center button*******/}
-                                            <div className="centerMapButton" onClick={()=>{ this.forceUpdate(); }}
+                                            <div className="centerMapButton"
+                                                onClick={()=>{
+                                                    this.forceUpdate(); 
+                                                    this.setState({
+                                                        dropPinInCurrentLocationButtonIsVisible: !this.state.dropPinInCurrentLocationButtonIsVisible
+                                                    })
+                                                }}
                                             >
                                             </div>
 
