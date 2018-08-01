@@ -10,7 +10,7 @@ const csurf = require("csurf");
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-    origins: "localhost:8080, 192.168.50.106:* mapapp-spiced.herokuapp.com:*"
+    origins: "localhost:8080, 192.168.50.106:* pinapp-spiced.herokuapp.com:*"
 });
 
 const multer = require("multer"); //it's like bodyParser but for many(multi)
@@ -323,12 +323,12 @@ app.get("/getUserPins", (req, res) => {
             console.log(`error in getUserPins: ${err}`);
         });
 });
-app.get("/sharedpin/:sharedpin",(req,res)=>{
-    console.log('got it...',req.params.sharedpin);
+app.get("/sharedpin/:sharedpin", (req, res) => {
+    console.log("got it...", req.params.sharedpin);
     // db.getPinInfo()
     // atob stuff and send the info back to render it on the map.
     res.sendFile(__dirname + "/index.html");
-})
+});
 // app.get("/getUserMarkers", (req, res) => {
 //     db
 //         .getUserPins(req.query.id)
@@ -411,7 +411,7 @@ app.post("/uploadPinPic", uploader.single("file"), s3.upload, function(
 
     db.saveMarkerImage(url, req.session.markerId)
         .then((result) => {
-            console.log("uploadPinPic result.rows",result.rows[0]);
+            console.log("uploadPinPic result.rows", result.rows[0]);
             res.json({
                 success: true,
                 url: result.rows[0].url
