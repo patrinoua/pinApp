@@ -425,22 +425,28 @@ body {
     border-radius: 2px;
     width: 27px;
     height: 27px;
-    bottom: 35%;
+    bottom: 31%;
     right: 2.5%;
     background-image: url(/icons/targetLocationIcon.png);
     background-size: contain;
 }
 #dropPinInCurrentLocationButton{
     position: absolute;
-    bottom: 5px;
+    /* bottom: 5px; */
     /* left: 0; */
-    right: 35px;
+    /* right: 35px; */
     font-size: 13px;
-    width: 155px;
+    width: 150px;
     background: none;
     border: none;
     box-shadow: none;
     text-shadow: 2px 2px 2px grey;
+    transform: translate(-22%,-105%);
+    /* z-index: -1; */
+}
+
+.pinMyCurrentLocationPin{
+    height: 38px;
 }
 /********** USER PROFILE (OtherProfile) ***************/
 
