@@ -432,17 +432,13 @@ body {
 }
 #dropPinInCurrentLocationButton{
     position: absolute;
-    /* bottom: 5px; */
-    /* left: 0; */
-    /* right: 35px; */
     font-size: 13px;
-    width: 150px;
+    width: 128px;
     background: none;
     border: none;
     box-shadow: none;
     text-shadow: 2px 2px 2px grey;
-    transform: translate(-22%,-105%);
-    /* z-index: -1; */
+    transform: translate(-27%,-105%);
 }
 
 .pinMyCurrentLocationPin{
