@@ -423,12 +423,13 @@ body {
 .centerMapButton{
     position: absolute;
     border-radius: 2px;
-    width: 27px;
-    height: 27px;
-    bottom: 31%;
-    right: 2.5%;
+    width: 28px;
+    height: 28px;
+    bottom: 127px;
+    right: 10px;
     background-image: url(/icons/targetLocationIcon.png);
     background-size: contain;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 }
 #dropPinInCurrentLocationButton{
     position: absolute;
