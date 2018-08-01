@@ -30,12 +30,10 @@ class MapContainer extends React.Component {
             pinClickVisible: false,
             mapHasBinClicked: false,
             showListComponent: false,
-            dropPinInCurrentLocationButtonIsVisible:true,
             showThePop: true
         };
         this.closeListComponent = this.closeListComponent.bind(this);
         this.showListComponent = this.showListComponent.bind(this);
-        this.dropPinInCurrentLocationButtonIsVisible = this.dropPinInCurrentLocationButtonIsVisible.bind(this);
         this.mapClicked = this.mapClicked.bind(this);
         this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(this);
         this.checkedCategory = this.checkedCategory.bind(this);
@@ -437,6 +435,22 @@ class MapContainer extends React.Component {
                                                 }
                                             }}
                                             />
+                                        {/*******center button*******/}
+                                            <div className="centerMapButton" onClick={()=>{ this.forceUpdate(); }}
+                                            >
+                                            </div>
+                                            <button
+                                                id="dropPinInCurrentLocationButton"
+                                                className="pinAppButton"
+                                                onClick={()=>{
+                                                    this.forceUpdate();
+                                                    this.setState({
+                                                        addMyPinLocationVisible: !this.state.addMyPinLocationVisible
+                                                    })
+                                                }}
+                                            >
+                                                Pin my current location
+                                            </button>
                                         </div>
                                     )}
                                 </div>
