@@ -10,17 +10,7 @@ import PinClick from "./PinClick.js";
 // import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
 
-let apiSecret;
-if (process.env.NODE_ENV == "production") {
-    apiSecret = process.env.API_SECRET;
-
-    console.log('inside mapcontainer',process.env.TEST);
-    // console.log("i cant believe i am doing this\n",process.env);
-
-} else {
-
-    apiSecret = require("../apiSecret.js").default.apiKey;
-}
+let apiSecret = 'lalala';
 
 class MapContainer extends React.Component {
     constructor(props) {
@@ -61,17 +51,8 @@ class MapContainer extends React.Component {
     handleSearchboxChange(e) {
         this[e.target.name] = e.target.value;
     }
+
     componentDidMount() {
-        // axios
-        //     .get("/getUserPins")
-        //     .then((response) => {
-        //         this.setState({
-        //             copyOfPinsArray: response.data.marker
-        //         });
-        //     })
-        //     .catch((err) => {
-        //         console.log(`error in pic getPinInfo: ${err}`);
-        //     });
         this.props.dispatch(getUserPins());
         // this.props.dispatch(getPinInfo());
 
@@ -81,7 +62,6 @@ class MapContainer extends React.Component {
         //         lng: position.coords.longitude
         //     });
         // });
-
     }
     closeListComponent(e) {
         this.setState({
@@ -212,7 +192,6 @@ class MapContainer extends React.Component {
             </div>
         );
     }
-
     render() {
         const style = {
             backgroundSize: "contain"

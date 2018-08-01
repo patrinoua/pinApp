@@ -481,18 +481,7 @@ app.get("/getFriendsAndWannabes", function(req, res) {
             console.log("err when getting friends", err);
         });
 });
-// app.get("/getAllPins", (req, res) => {
-//     db
-//         .getAllPins()
-//         .then((result) => {
-//             res.json({
-//                 pinInfo: result.rows
-//             });
-//         })
-//         .catch((err) => {
-//             console.log(`error in getAllPins: ${err}`);
-//         });
-// });
+
 app.get("/deleteUserAccount", function(req, res) {
     db.deleteUserFromDb(req.session.user.id)
         .then((resp) => {
@@ -502,6 +491,19 @@ app.get("/deleteUserAccount", function(req, res) {
         .catch((err) => {
             console.log("err while deleting user", err);
         });
+});
+
+app.get("/apiKey", function(req, res) {
+    console.log('getting key...');
+    let apiSecret;
+    if (process.env.NODE_ENV == "production") {
+        apiSecret = process.env.API_SECRET;
+    } else {
+        apiSecret = require("./secrets.json").apiSecret;
+    }
+    res.json({
+        apiSecret:apiSecret
+    })
 });
 
 app.get("/logout", function(req, res) {

@@ -7,10 +7,8 @@ if (require.main == module) {
     plugins.push(
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production'),
-                API_SECRET: JSON.stringify(process.env.API_SECRET)
-            },
-            TEST: JSON.stringify(process.env.TEST)
+                NODE_ENV: JSON.stringify('production')
+            }
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

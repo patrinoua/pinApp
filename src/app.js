@@ -65,7 +65,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("app mounted");
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
                 lat: position.coords.latitude,
@@ -159,9 +158,7 @@ class App extends React.Component {
                             path="/onlineUsers"
                             component={OnlineUsers}
                         />
-
                         {/*<Route exact path="/chat" component={Chat} />*/}
-
                         <Route
                             exact
                             path="/"
