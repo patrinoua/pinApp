@@ -493,19 +493,6 @@ app.get("/deleteUserAccount", function(req, res) {
         });
 });
 
-app.get("/apiKey", function(req, res) {
-    console.log('getting key...');
-    let apiSecret;
-    if (process.env.NODE_ENV == "production") {
-        apiSecret = process.env.API_SECRET;
-    } else {
-        apiSecret = require("./secrets.json").apiSecret;
-    }
-    res.json({
-        apiSecret:apiSecret
-    })
-});
-
 app.get("/logout", function(req, res) {
     req.session = null;
     res.redirect("/welcome");

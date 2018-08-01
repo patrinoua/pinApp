@@ -10,12 +10,6 @@ import PinClick from "./PinClick.js";
 // import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
 
-if (process.env.NODE_ENV == "production") {
-    console.log("process.env",process.env);
-    console.log('yeeee!');
-} else {
-    console.log('notttt');
-}
 
 class MapContainer extends React.Component {
     constructor(props) {
@@ -496,5 +490,5 @@ const mapStateToProps = function(state) {
 };
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+    apiKey: "AIzaSyB-acUlbz_LsgSW0u8hsY1otflyjnO8cLk"
 })(connect(mapStateToProps)(MapContainer));
