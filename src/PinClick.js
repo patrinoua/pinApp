@@ -8,13 +8,6 @@ import { deletePin, getAllPins } from "./actions";
 import { insertPinInfo, updatePinInfo } from "./actions";
 import { emit } from "./socket";
 
-let apiSecret;
-
-if (process.env.NODE_ENV == "production") {
-    apiSecret = process.env.API_SECRET;
-} else {
-    apiSecret = require("../apiSecret.js").default.apiKey;
-}
 
 class PinClick extends React.Component {
     constructor(props) {
@@ -464,5 +457,5 @@ const mapStateToProps = function(state) {
     };
 };
 export default GoogleApiWrapper({
-    apiKey: apiSecret
+    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
 })(connect(mapStateToProps)(PinClick));

@@ -10,7 +10,6 @@ import PinClick from "./PinClick.js";
 // import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
 
-let apiSecret = 'lalala';
 
 class MapContainer extends React.Component {
     constructor(props) {
@@ -491,5 +490,5 @@ const mapStateToProps = function(state) {
 };
 
 export default GoogleApiWrapper({
-    apiKey: apiSecret
+    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
 })(connect(mapStateToProps)(MapContainer));
