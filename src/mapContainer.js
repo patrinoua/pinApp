@@ -441,7 +441,7 @@ class MapContainer extends React.Component {
                                             >
                                             </div>
 
-                                            {this.state.dropPinInCurrentLocationButtonIsVisible &&
+                                            {this.state.dropPinInCurrentLocationButtonIsVisible &&(
                                                 <button
                                                     id="dropPinInCurrentLocationButton"
                                                     className="pinAppButton inARow"
@@ -462,7 +462,7 @@ class MapContainer extends React.Component {
                                                     />
                                                     Pin my current location
                                                 </button>
-                                            }
+                                            )}
                                         </div>
                                     )}
                                 </div>

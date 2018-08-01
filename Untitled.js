@@ -1,3 +1,29 @@
+{this.state.dropPinInCurrentLocationButtonIsVisible &&
+    <button
+        id="dropPinInCurrentLocationButton"
+        className="pinAppButton inARow"
+        onClick={()=>{
+            this.forceUpdate();
+            this.setState({
+                addMyPinLocationVisible: !this.state.addMyPinLocationVisible
+            })
+        }}
+    >
+        <img src="pins/bigPin.png"
+        className="pinMyCurrentLocationPin"
+        onClick={()=>{
+            this.setState({
+                dropPinInCurrentLocationButtonIsVisible: !this.state.dropPinInCurrentLocationButtonIsVisible
+            })
+        }}
+        />
+        Pin my current location
+    </button>
+}
+
+
+
+
 export default class Uploader extends React.Component {
     constructor(props) {
         super(props),
