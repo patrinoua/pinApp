@@ -10,6 +10,12 @@ import PinClick from "./PinClick.js";
 // import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from "./ListOfLocations.js";
 
+if (process.env.NODE_ENV == "production") {
+    console.log("process.env",process.env);
+    console.log('yeeee!');
+} else {
+    console.log('notttt');
+}
 
 class MapContainer extends React.Component {
     constructor(props) {
