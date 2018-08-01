@@ -35,6 +35,7 @@ class MapContainer extends React.Component {
         };
         this.closeListComponent = this.closeListComponent.bind(this);
         this.showListComponent = this.showListComponent.bind(this);
+        this.dropPinInCurrentLocationButtonIsVisible = this.dropPinInCurrentLocationButtonIsVisible.bind(this);
         this.mapClicked = this.mapClicked.bind(this);
         this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(this);
         this.checkedCategory = this.checkedCategory.bind(this);
