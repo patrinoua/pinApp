@@ -1,4 +1,5 @@
-{this.state.dropPinInCurrentLocationButtonIsVisible &&
+
+{this.state.dropPinInCurrentLocationButtonIsVisible &&(
     <button
         id="dropPinInCurrentLocationButton"
         className="pinAppButton inARow"
@@ -19,9 +20,7 @@
         />
         Pin my current location
     </button>
-}
-
-
+)}
 
 
 export default class Uploader extends React.Component {
