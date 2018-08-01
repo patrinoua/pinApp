@@ -425,17 +425,22 @@ body {
     border-radius: 2px;
     width: 27px;
     height: 27px;
-    bottom: 19%;
-    right: 3.2%;
+    bottom: 35%;
+    right: 2.5%;
     background-image: url(/icons/targetLocationIcon.png);
     background-size: contain;
 }
 #dropPinInCurrentLocationButton{
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 5px;
+    /* left: 0; */
+    right: 35px;
     font-size: 13px;
     width: 155px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    text-shadow: 2px 2px 2px grey;
 }
 /********** USER PROFILE (OtherProfile) ***************/
 
@@ -1423,7 +1428,7 @@ button:hover {
         top: 10vh;
     }
     .centerMapButton{
-        bottom: 21.5%;
+        bottom: 32.5%;
         right: 3.6%;
     }
 }
