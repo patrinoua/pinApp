@@ -439,7 +439,7 @@ class MapContainer extends React.Component {
                                         {/*******center button*******/}
                                             <div className="centerMapButton"
                                                 onClick={()=>{
-                                                    this.forceUpdate(); 
+                                                    this.forceUpdate();
                                                     this.setState({
                                                         dropPinInCurrentLocationButtonIsVisible: !this.state.dropPinInCurrentLocationButtonIsVisible
                                                     })
@@ -475,6 +475,12 @@ class MapContainer extends React.Component {
                                 {/*</div>*/}
                             </div>
                         </div>
+                    </div>
+                    <div id="footer">
+                        <span class="container copyright">
+                            <a id="footerLink" href="http://angeliki.herokuapp.com" target="_blank">© Copyright - Angeliki Patrinou </a>
+                            <a id="footerLink" href="https://github.com/danielarielS" target="_blank">| Daniel Ariel </a>
+                        </span>
                     </div>
                 </div>
                 {this.state.addNewPinIsVisible && (
