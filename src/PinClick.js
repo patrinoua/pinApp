@@ -457,5 +457,5 @@ const mapStateToProps = function(state) {
     };
 };
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyB-acUlbz_LsgSW0u8hsY1otflyjnO8cLk"
+    apiKey: "AIzaSyAw6_rGEdxgKIeFmMZMxuRIzNpguiWwnHY"
 })(connect(mapStateToProps)(PinClick));

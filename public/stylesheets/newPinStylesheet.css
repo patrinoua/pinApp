@@ -612,7 +612,7 @@
 
 @media only screen and (max-width: 400px) {
     .pinText {
-        display: none;
+        font-size: 0.7em;
     }
     .profilePageContainer {
         flex-direction: column;
@@ -640,12 +640,13 @@
         max-width: 100%;
     }
     .exitPinClick {
-        position: absolute;
-        top: 1vh;
-        right: 1vh;
+        position: fixed;
+        top: 20px;
+        right: 20px;
         font-size: 5vw;
     }
     .pinTitlePinClick img{
+        display: none;
         max-height: 22vw;
         width: auto;
         transform: translate(30%, -3%);
@@ -664,6 +665,13 @@
         font-size: 2em;
         margin-left: 35px;
         /* background-color: yellow; */
+    }
+    .pinMenu{
+        left: 0;
+    }
+    .pinIcon{
+        max-width: 22px;
+        padding-right: 5px;
     }
     .secondRowPinClick {
         width: 100%;

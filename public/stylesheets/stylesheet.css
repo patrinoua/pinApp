@@ -1327,6 +1327,12 @@ button:hover {
     h1 {
         font-size: 1.5em;
     }
+    .icons {
+        height: 15px;
+        width: 15px;
+        padding: 7px;
+    }
+    
     .appContainer {
         height: 90vh;
         /* background-color: orange; */
@@ -1453,7 +1459,12 @@ button:hover {
         bottom: 32.5%;
         right: 3.6%;
     }
-    #footer {
+    #exitNewPin{
+        position: fixed;
+    }
+    #footer{
         font-size: 0.8em;
+        display: none;
+        /* background: green; */
     }
 }
