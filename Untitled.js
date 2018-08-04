@@ -1,8 +1,27 @@
+{/*export pin...*/}
+
+<button
+    className="pinAppButton"
+    {/*onClick={this.exportPin}*/}
+    onClick={
+        ()=>{
+            setTimeout(()=>{
+                this.setState({
+                    pinUrl: false
+                })
+            },2000)
+        }
+    }
+>
+    Copy Link
+</button>
+
+
 {/*******center button*******/}
     <div className="centerMapButton" onClick={()=>{ this.forceUpdate(); }}
     >
     </div>
-    
+
 {this.state.dropPinInCurrentLocationButtonIsVisible &&(
     <button
         id="dropPinInCurrentLocationButton"

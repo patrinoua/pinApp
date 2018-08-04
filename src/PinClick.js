@@ -170,7 +170,16 @@ class PinClick extends React.Component {
                     <div className="colPinClick">
                         <button
                             className="pinAppButton"
-                            onClick={this.exportPin}
+                            onClick={
+                                ()=>{
+                                    this.exportPin()
+                                    setTimeout(()=>{
+                                        this.setState({
+                                            pinUrl: false
+                                        })
+                                    },2500)
+                                }
+                            }
                         >
                             Copy Link
                         </button>
@@ -178,11 +187,13 @@ class PinClick extends React.Component {
                         {this.state.pinUrl && (
                             <div className="copyUrlVail">
                                 <div className="closeCopyUrlVail"
-                                    onClick={()=>{
-                                        this.setState({
-                                            pinUrl: false
-                                        });
-                                    }}
+                                    onClick={
+                                        ()=>{
+                                            this.setState({
+                                                pinUrl: false
+                                            });
+                                        }
+                                    }
                                 > X
                                 </div>
                                 <div className="copyUrl" id="copyUrl">
