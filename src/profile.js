@@ -22,11 +22,11 @@ export class ProfilePage extends React.Component {
         this.showDeleteAccountNotification = this.showDeleteAccountNotification.bind(this);
     }
     showDeleteAccountNotification(){
-        console.log('about to show notification');
+        // console.log('about to show notification');
         this.setState({
             deleteAccountNotificationWindowIsVisible:true
         })
-        console.log("deleteAccountNotificationWindowIsVisible",this.state.deleteAccountNotificationWindowIsVisible);
+        // console.log("deleteAccountNotificationWindowIsVisible",this.state.deleteAccountNotificationWindowIsVisible);
     }
     toggleEditor() {
         this.setState({
@@ -41,11 +41,11 @@ export class ProfilePage extends React.Component {
     }
     handleChange(e) {
         this[e.target.name] = e.target.value;
-        console.log(e.target.name);
+        // console.log(e.target.name);
     }
     saveNewInputValue() {
         let inputName = this.first || this.lastname;
-        console.log('this... in profile', this);
+        // console.log('this... in profile', this);
         axios
             .post(`/updateUserInfo/`, {
                 first: this.first,
@@ -242,7 +242,7 @@ export class ProfilePage extends React.Component {
                                 })
                             }}> yes, I want to delete my account and all my pins </button>
                             <button className="removingAccountButtonNO" onClick={()=>{
-                                console.log('lalal');
+                                // console.log('lalal');
                                 this.setState({
                                     deleteAccountNotificationWindowIsVisible:false
                                 })

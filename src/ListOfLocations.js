@@ -22,7 +22,6 @@ class ListOfLocations extends React.Component {
         });
     }
     getLatAndLang() {
-        console.log('getting themmmm');
         // lat = {this.props.markersArray.filter(
         //     (pin)=>{
         //         if(pin.id==this.state.clickedPinId){
@@ -41,8 +40,8 @@ class ListOfLocations extends React.Component {
         // )}
     }
     render() {
-        console.log("this.props.first in list of locations", this.props.first);
-        console.log('this.state',this.state);
+        // console.log("this.props.first in list of locations", this.props.first);
+        // console.log('this.state',this.state);
 
         return (
             <React.Fragment>
@@ -73,19 +72,17 @@ class ListOfLocations extends React.Component {
                             {this.props.markersArray &&
                                 this.props.markersArray.map((item) => {
                                     return (
-                                        <div className="eachPin" key={item.id}>
-                                            <img
-                                                src={item.color}
-                                                className="thePinImg"
-                                                onClick={() => {
-                                                    this.setState({
-                                                        clickedPinId: item.id,
-                                                        lat: item.lat,
-                                                        lng: item.lng
-                                                    });
-                                                    this.props.closeListComponent;
-                                                }}
-                                            />
+                                        <div className="eachPin" key={item.id}
+                                            onClick={() => {
+                                                this.setState({
+                                                    clickedPinId: item.id,
+                                                    lat: item.lat,
+                                                    lng: item.lng
+                                                });
+                                                this.props.closeListComponent;
+                                            }}
+                                        >
+                                            <img src={item.color} className="thePinImg"/>
                                             <span className="titleHolder"> {item.title} </span>
                                             <span className="descHolder"> {item.description} </span>
                                             <div className="dateHolder"> <span>{item.created_at}</span> </div>

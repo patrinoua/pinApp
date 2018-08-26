@@ -466,6 +466,15 @@ class MapContainer extends React.Component {
                                                         })
                                                     }}
                                                     />
+
+                                                    <div id="exitAddCurrentLocationButton"
+                                                        onClick={(e)=>{
+                                                            e.stopPropagation()
+                                                            this.setState({
+                                                                dropPinInCurrentLocationButtonIsVisible: !this.state.dropPinInCurrentLocationButtonIsVisible
+                                                            })
+                                                        }}
+                                                    > X  </div>
                                                     Pin my current location
                                                 </button>
                                             )}
@@ -477,9 +486,9 @@ class MapContainer extends React.Component {
                         </div>
                     </div>
                     <div id="footer">
-                        <span class="container copyright">
-                            <a id="footerLink" href="http://angeliki.herokuapp.com" target="_blank"> Developed by Angeliki Patrinou </a>
-                            <a id="footerLink" href="https://github.com/danielarielS" target="_blank">| Daniel Ariel </a>
+                        <span className="container copyright">
+                            <a className="footerLink" href="http://angeliki.herokuapp.com" target="_blank"> Developed by Angeliki Patrinou &</a>
+                            <a className="footerLink" href="https://github.com/danielarielS" target="_blank"> Daniel Ariel </a>
                         </span>
                     </div>
                 </div>

@@ -44,7 +44,7 @@ class PinClick extends React.Component {
                     window.atob(this.props.match.params.encryptedPinId)
             })
             .then((response) => {
-                console.log("response.data.pinInfo in pinClick", response.data.pinInfo);
+                // console.log("response.data.pinInfo in pinClick", response.data.pinInfo);
                 this.setState({
                     title: response.data.pinInfo.title,
                     category: response.data.pinInfo.category,
@@ -63,9 +63,7 @@ class PinClick extends React.Component {
             });
     }
     toggleEditMode(e) {
-        // console.log(this.props);
         if (!this.state.editMode) {
-            // this.insertPinInfo(e)
             this.setState({
                 editMode: true
             });
@@ -73,7 +71,6 @@ class PinClick extends React.Component {
             this.setState({
                 editMode: false
             });
-            // this.props.togglePinClick();
         }
     }
     setFile(e) {
@@ -173,11 +170,11 @@ class PinClick extends React.Component {
                             onClick={
                                 ()=>{
                                     this.exportPin()
-                                    setTimeout(()=>{
+                                    {/*setTimeout(()=>{
                                         this.setState({
                                             pinUrl: false
                                         })
-                                    },2500)
+                                    },2500)*/}
                                 }
                             }
                         >

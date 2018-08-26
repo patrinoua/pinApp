@@ -12,7 +12,6 @@ export default class Searchbox extends React.Component {
         // this.searchBox.addListener('places_changed', this.onPlacesChanged);
     }
     render() {
-        console.log('lalala',this.props);
         return <input ref="input" {...this.props} type="text"/>;
     }
 
