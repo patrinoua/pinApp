@@ -82,7 +82,7 @@ class ListOfLocations extends React.Component {
                                                 this.props.closeListComponent;
                                             }}
                                         >
-                                            <img src={item.color} className="thePinImg"/>
+                                            <img className="thePinImg" src={item.color}/>
                                             <span className="titleHolder"> {item.title} </span>
                                             <span className="descHolder"> {item.description} </span>
                                             <div className="dateHolder"> <span>{item.created_at}</span> </div>

@@ -474,7 +474,7 @@ class MapContainer extends React.Component {
                                                                 dropPinInCurrentLocationButtonIsVisible: !this.state.dropPinInCurrentLocationButtonIsVisible
                                                             })
                                                         }}
-                                                    > X  </div>
+                                                    > Close X  </div>
                                                     Pin my current location
                                                 </button>
                                             )}
@@ -523,5 +523,5 @@ const mapStateToProps = function(state) {
 };
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyAoRZx4rPu1MEU9GT2pOOeZ1nDT4-vtYs4"
+    apiKey: "AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d4"
 })(connect(mapStateToProps)(MapContainer));

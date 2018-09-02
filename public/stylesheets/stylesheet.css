@@ -443,6 +443,7 @@ body {
     background: none;
     border: none;
     box-shadow: none;
+    font-weight: 400px;
     text-shadow: 2px 2px 2px grey;
     transform: translate(-27%,-105%);
 }
@@ -1248,6 +1249,7 @@ button:hover {
     z-index: 20;
     right: 0px;
     top: -10px;
+    color: lightgrey;
 }
 #exitAddCurrentLocationButton:hover{
     cursor: pointer;

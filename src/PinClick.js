@@ -8,7 +8,6 @@ import { deletePin, getAllPins } from "./actions";
 import { insertPinInfo, updatePinInfo } from "./actions";
 import { emit } from "./socket";
 
-
 class PinClick extends React.Component {
     constructor(props) {
         super(props);
@@ -157,6 +156,7 @@ class PinClick extends React.Component {
         document.body.removeChild(dummy);
     }
     render() {
+        // console.log('???thi?',googleMapsApiKey);
         if (!this.state.ready && !this.props.markersArray.length > 0) {
             return <div>not ready</div>;
         } else {
@@ -465,5 +465,5 @@ const mapStateToProps = function(state) {
     };
 };
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyAoRZx4rPu1MEU9GT2pOOeZ1nDT4-vtYs4"
+    apiKey: "AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d4"
 })(connect(mapStateToProps)(PinClick));
