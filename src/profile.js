@@ -38,7 +38,6 @@ export class ProfilePage extends React.Component {
     this[e.target.name] = e.target.value
   }
   saveNewInputValue() {
-    let inputName = this.first || this.lastname
     axios
       .post(`/updateUserInfo/`, {
         first: this.first,
