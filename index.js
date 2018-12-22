@@ -13,12 +13,13 @@ const io = require('socket.io')(server, {
   origins: 'localhost:8080, 192.168.50.106:* pinapp-spiced.herokuapp.com:*'
 })
 
-const multer = require('multer')
+const multer = require('multer') //it's like bodyParser but for many(multi)
 const uidSafe = require('uid-safe')
 const path = require('path')
 const s3 = require('./s3') //check
 const config = require('./config.json')
 
+// let apiSecret = process.env.REACT_APP_API_SECRET;
 const diskStorage = multer.diskStorage({
   destination: function(req, file, callback) {
     callback(null, __dirname + '/uploads')
@@ -312,12 +313,14 @@ app.post('/categorySelect', (req, res) => {
     })
 })
 app.get('/getUserPins', (req, res) => {
+  // console.log("/getUserPins req.query.id||req.session.user.id", req.query.id,req.session.user.id);
   db
     .getUserPins(req.query.id || req.session.user.id)
     .then(result => {
       for (let i = 0; i < result.rows.length; i++) {
         result.rows[i].created_at = db.formatDate(result.rows[i].created_at)
       }
+      // console.log("result.rows...", result.rows);
       res.json({
         marker: result.rows
       })
