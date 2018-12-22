@@ -4,3 +4,5 @@ apiSecret.js
 config.json
 .DS_Store
 .env
+.eslintrc
+node_modules

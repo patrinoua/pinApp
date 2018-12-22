@@ -14,7 +14,7 @@ import Chat from "./chat";
 import MapContainer from "./mapcontainer";
 import { saveUserInfo } from "./actions";
 import PinClick from "./PinClick.js";
-
+'use strict'
 // import { EditBio , ExistingBio } from './bio';
 
 class App extends React.Component {

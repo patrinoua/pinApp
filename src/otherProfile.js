@@ -1,12 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import axios from "./axios";
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Logo, Login } from "./welcome";
 import { FriendButton } from "./friendButton";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import { getPinInfo, getUserPinInfo, selectActionBycategory } from "./actions";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { getUserPinInfo, selectActionBycategory } from "./actions";
 import ListOfLocations from "./ListOfLocations.js";
 import PinClick from "./PinClick.js";
 
@@ -64,8 +61,7 @@ class OtherProfilePage extends React.Component {
         this.props.dispatch(getUserPinInfo(id));
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.match.params.id != this.props.match.params.id) {
-            console.log('reloaddddiiiing');
+        if (nextProps.match.params.id !== this.props.match.params.id) {
             this.whatToDoOnLoad(nextProps.match.params.id);
             return;
         }
@@ -89,7 +85,7 @@ class OtherProfilePage extends React.Component {
         } else {
             this.state.arrayOfCategory = this.state.arrayOfCategory.filter(
                 (item) => {
-                    return item != e.target.value;
+                    return item !== e.target.value;
                 }
             );
         }
@@ -134,7 +130,7 @@ class OtherProfilePage extends React.Component {
                         className="check"
                         onClick={myFunction}
                     />
-                    <img src={str} className="categoryItemPinIcon" />
+                    <img src={str} alt='categoryItemPinIcon' className="categoryItemPinIcon" />
                     <label htmlFor="museums" className="pinText">
                         {" "}
                         {text}{" "}
@@ -317,5 +313,5 @@ const mapStateToProps = function(state) {
 };
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d4"
+    apiKey: "AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d"
 })(connect(mapStateToProps)(OtherProfilePage));
