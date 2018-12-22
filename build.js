@@ -2,7 +2,7 @@ const webpack = require('webpack');
 
 const plugins = [];
 
-if (require.main == module) {
+if (require.main === module) {
     plugins.push(
         new webpack.DefinePlugin({
             'process.env': {
@@ -41,7 +41,7 @@ const conf = {
     }
 };
 
-if (require.main == module) {
+if (require.main === module) {
     webpack(conf, function(err, info) {
         if (err) {
             console.log('err.....',err);

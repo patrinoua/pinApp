@@ -101,7 +101,7 @@ export class Register extends React.Component {
     }
     render() {
         document.addEventListener("keypress", (e) => {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 this.submit();
             }
         });
@@ -187,7 +187,7 @@ export class Login extends React.Component {
     }
     render() {
         document.addEventListener("keypress", (e) => {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 this.submit();
             }
         });

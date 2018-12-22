@@ -18,7 +18,7 @@
                             this.handleSearchboxChange
                         }
                         onKeyDown={(e) => {
-                            if (e.keyCode == 13) {
+                            if (e.keyCode === 13) {
                                 var geocoder = new google.maps.Geocoder();
                                 geocoder.geocode(
                                     {
