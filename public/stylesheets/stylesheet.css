@@ -10,21 +10,17 @@ a {
 
 .pinAppStyle {
     color: #b52519;
-    /* color: white; */
     font-family: 'Pacifico', cursive;
 }
 
 main {
     width: 100vw;
     height: 100vh;
-    /* background-color: #FAF4E4; */
     color: #2a2a2a;
     position: relative;
-    /* color: #5DA6AE; */
 }
 
 body {
-    /* font: 14px "Helvetica"; */
     font-weight: 400;
     letter-spacing: 1px;
     margin: 0px;
@@ -35,14 +31,11 @@ body {
 .titleFonts {
     font-family: 'Pacifico', cursive;
     font-size: 2em;
-    /* color: rgb(255, 5, 5); */
     color: #f20909;
 }
 
 .simpleText {
     color: lightgrey;
-    /* font-family: 'Cutive Mono', monospace; */
-    /* font-family: "Helvetica", monospace; */
     font-weight: 100;
 }
 
@@ -52,9 +45,6 @@ body {
     top: 55px;
     padding: 2vw;
     display: flex;
-    /*    flex-direction: column;
-    justify-items: center;
-    align-items: center; */
     position: absolute;
 }
 
@@ -85,15 +75,12 @@ body {
 }
 
 .welcomePageLogoImg {
-    /* height: 33vh; */
     height: 90%;
     padding-top: 5vh;
-    /* padding-bottom: 5vh; */
 }
 
 .introText {
     color: white;
-    /* font-style: italic; */
     width: 90%;
     max-width: 500px;
     padding: 2vh;
@@ -136,10 +123,8 @@ body {
 .appContainer {
     width: 100vw;
     height: 100vh;
-    /* background-color: orange; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
 }
 
 /************NAVIGATION*****************/
@@ -156,29 +141,22 @@ body {
 .navigationContainer {
     width: 95%;
     height: 11vh;
-    /* min-height: 11vh; */
     max-height: 55px;
-    /* padding: 20px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
-    /* background-color: #51B3C4; */
-    /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
-    /* position: fixed; */
     z-index: 8;
 }
 
 .navigationIconBar {
-    /* padding: 20px; */
     margin: 0 10px;
     width: 98%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    /* font-family: 'Cutive Mono', monospace; */
     font-weight: 100;
 }
 
@@ -219,7 +197,6 @@ body {
 }
 
 .navigationIconProfilepicCircle {
-    /* box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2); */
     height: 9vh;
     width: 9vh;
     max-width: 33px;
@@ -235,21 +212,6 @@ body {
 .navigationIconProfilepicCircle:hover {
     cursor: pointer;
 }
-
-/* .navigationIconProfilepic {
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    height: 9vh;
-    max-height: 40px;
-} */
-
-/* .navigationIconProfilepic img {
-    height: 43px;
-    width: 43px;
-} */
-
-/* .navigationIconProfilepic:hover {
-    cursor: pointer;
-} */
 
 .logoIconMenu {
     margin: 1vh;
@@ -276,23 +238,13 @@ body {
     animation: 3s ease-in;
     width: 100%;
     height: 88%;
-    /* top: 10vh; */
-    /* margin: 10px 10px; */
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: center;
     position: absolute;
-    /* background-color: grey; */
 }
 
-/* .mapContainerUp {
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    position: relative;
-} */
 .mapInfoText{
     color: lightgrey;
     font-size: 0.8em;
@@ -301,21 +253,12 @@ body {
 }
 .mapContainerDown {
     width: 100%;
-    /* height: 96vh; */
     height: 90%;
-    /* margin: 2vh; */
-    /* background-color: orange; */
-    /* margin: 10px 10px; */
     display: flex;
     justify-content: center;
-    /* position: relative; */
-    /* flex-direction: column; */
-    /* align-items: center; */
 }
 
 .mapContainerLeft {
-    /* background-color: yellow; */
-    /* height: 70%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -324,10 +267,7 @@ body {
 
 .categoryList {
     width: 25vw;
-    /* height: 50vh; */
-    /* background-color: green; */
     margin: 10px;
-    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -335,9 +275,6 @@ body {
 }
 
 .categoryItem {
-    /* background-color: black; */
-    /* width: 90%; */
-    /* height: 30px; */
     margin: 0.5vh 0;
     display: flex;
     justify-content: flex-start;
@@ -399,7 +336,6 @@ body {
     justify-content: center;
     flex-direction: column;
     position: relative;
-    /* background-color: black; */
     height: 80%;
     width: 100%;
     min-height: 50vh;
@@ -410,7 +346,6 @@ body {
 }
 
 .mapArea {
-    /* backgroun d-image: url('/map.png'); */
     background-size: contain;
     border-radius: 2px;
     border: 2px solid #eaeced;
@@ -418,7 +353,6 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    /* position: relative; */
     position: absolute;
     display: flex;
     justify-content: center;
@@ -463,16 +397,13 @@ body {
 }
 
 .otherUserContainerUp {
-    /* background-color: orange; */
     width: 100%;
-    /* height: 30%; */
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .otherUserContainerDown {
-    /* background-color: purple; */
     width: 100%;
     height: 85%;
     align-items: center;
@@ -484,22 +415,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: purple; */
 }
 
 .otherUserContainerLeft {
-    /* background-color: yellow; */
     width: 30%;
     height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-evenly; */
     position: relative;
 }
 
 .otherUserContainerLeftUp {
-    /* background-color: orange; */
     width: 100%;
     height: 40%;
     display: flex;
@@ -509,7 +436,6 @@ body {
 }
 
 .otherUserContainerFriendshipButton {
-    /* height: 18%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -517,7 +443,6 @@ body {
 }
 
 .otherUserContainerDownRight {
-    /* background-color: purple; */
     width: 70%;
     height: 100%;
     display: flex;
@@ -534,11 +459,9 @@ body {
     justify-items: center;
     align-items: center;
     position: relative;
-    /* background-color: grey; */
 }
 
 .mapContainerUserLeft {
-    /* width: 30%; */
     padding-left: 1vh;
     height: 100%;
     display: flex;
@@ -551,9 +474,7 @@ body {
 .categoryListUSer {
     width: 25vw;
     height: 50vh;
-    /* background-color: green; */
     margin: 10px;
-    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -569,9 +490,7 @@ body {
 }
 
 .mapAreaUser {
-    /* background-image: url('/map.png'); */
     background-size: contain;
-    /* background-color: pink; */
     border-radius: 3px;
     box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.4);
     height: 80%;
@@ -582,10 +501,8 @@ body {
 .infoContainerUser {
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     padding-left: 20vh;
     width: 100%;
-    /* height: 20%; */
 }
 
 .profilePicUser {
@@ -635,12 +552,8 @@ body {
 .profilePageContainer {
     width: 100%;
     position: relative;
-    /* padding: 2vh; */
-    /* padding-top: 5vh; */
-    /* margin:3vh; */
     display: flex;
     justify-content: space-evenly;
-    /* align-items: center; */
 }
 
 .deleteAccountButton {
@@ -702,11 +615,8 @@ body {
 }
 
 .profilePageContainerLeft {
-    /* background-color: orange; */
     height: 40%;
     width: 40%;
-    /* width: 30%; */
-    /* min-width: 200px; */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -715,9 +625,6 @@ body {
 }
 
 .profilePicOwn {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     position: relative;
     padding: 9px;
 }
@@ -738,27 +645,19 @@ body {
     border: 3px solid rgba(0, 0, 0, 0.2);
     background-position: center center;
     background-size: cover;
-    /* border: 3px solid rgba(255, 255, 255, 1); */
-    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2); */
 }
 
 .profilePageContainerRight {
     height: 40%;
     width: 40%;
-    /* background-color: blue; */
     display: flex;
     flex-direction: column;
     position: relative;
     padding-top: 2vh;
-    /* padding-left: 2vh; */
 }
 
 .profileInfoContainer {
-    /* padding-top: 6vh; */
-    /* background-color: yellow; */
     font-size: 0.9em;
-    /* height: 30vh;
-    width: 40vw; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -776,8 +675,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid grey; */
-    /* box-shadow: -1px 1px 20px 9px rgba(137, 150, 208, .2); */
 }
 
 .profileInputField {
@@ -785,7 +682,6 @@ body {
     grid-template-columns: 15vh 15vh;
     justify-items: start;
     padding: 3px;
-    /* border: 1px solid grey; */
 }
 
 .inputPropertyName {
@@ -794,8 +690,6 @@ body {
 }
 
 .inputPropertyValue {
-    /* font-size: 0.8em; */
-    /* width: 15vh; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -803,7 +697,6 @@ body {
 
 .editBioTextArea {
     width: 15vh;
-    /* width: 90%; */
     height: 67px;
     border: 0.5px solid lightgrey;
     display: flex;
@@ -847,7 +740,6 @@ body {
 .dropDownMenu {
     position: absolute;
     padding: 1vw;
-    /* min-height: 10vh; */
     width: 9vw;
     min-width: 120px;
     top: 9vh;
@@ -855,13 +747,11 @@ body {
     display: flex;
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid grey;
-    /* margin: 20px; */
     border-radius: 2px;
     flex-direction: column;
     align-items: center;
     z-index: 13;
     transition: opacity 2s ease-in;
-    /* animation: dropDownMenu 0.3s; */
 }
 
 /************ FORM ***************/
@@ -901,7 +791,6 @@ body {
 .welcomeForm input {
     display: block;
     padding: 4px;
-    /* border-radius: 2px; */
     font-size: 14px;
     justify-self: center;
     justify-content: center;
@@ -1026,31 +915,6 @@ body {
     cursor: pointer;
 }
 
-/* ************ animation ************ */
-
-/* @keyframes dropDownMenu {
-    from {
-        top: 10vh;
-        z-index: 1;
-    }
-    to {
-        top: 20vh;
-        z-index: 13;
-    }
-} */
-
-/*
-@keyframes dropDownMenuOut {
-    from {
-        top: 10px;
-    }
-    to {
-        top: -20vh;
-    }
-} */
-
-/************ BUTTONS ***************/
-
 .inputButton {
     width: 162px;
     justify-content: center;
@@ -1060,12 +924,10 @@ body {
     background-color: #b52519;
     color: white;
     border-radius: 30px;
-    /* font-size: 1.1em; */
     font-size: 110%;
     box-shadow: inset -20px 0px 8px 0px rgba(0, 0, 0, 0.2);
     width: 15vh;
     border: 2px solid white;
-    /* font-family: 'Pacifico', cursive; */
     font-family: Roboto;
     font-weight: 500;
     padding: 5px;
@@ -1086,7 +948,6 @@ body {
     position: absolute;
     z-index: 1;
     opacity: 0.7;
-    /* transform: translate(-50%,-50%); */
 }
 
 .dropPinButton:hover {
@@ -1098,24 +959,19 @@ body {
     font-style: italic;
     color: grey;
     max-height: 50px;
-    /* font-family:inherit; */
 }
 
 button {
     display: block;
     color: #929A9F;
     font-size: 1.1em;
-    /* border: 2px solid #f6f6f6; */
     border-radius: 2px;
     margin: 10px;
-    /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); */
-    /* font-family: "Cutive Mono", monospace; */
 }
 
 button:hover {
     cursor: pointer;
     background-color: #eaeced;
-    /* background-color: #f6f6f6; */
 }
 
 .centerStuff {
@@ -1174,8 +1030,6 @@ button:hover {
 }
 
 .editIcon {
-    /* width: 15px;
-    height: 15px; */
     right: 2vh;
     top: 2vh;
     position: absolute;
@@ -1220,9 +1074,6 @@ button:hover {
     background-color: #ebeced;
 }
 
-/* #popupShare>button {
-    z-index: 20;
-} */
 #exitNewPin{
     position: absolute;
     color: white;
@@ -1320,7 +1171,6 @@ button:hover {
     color: grey;
 }
 #footer {
-    /* font-size: 0.9em; */
     font-weight: 200;
     width: 98%;
     height: 5vh;
@@ -1332,7 +1182,6 @@ button:hover {
 }
 
 .footerLink{
-    /* text-decoration: none; */
     color: lightgrey;
     font-size: 0.8em;
 }
@@ -1354,7 +1203,6 @@ button:hover {
 
     .appContainer {
         height: 90vh;
-        /* background-color: orange; */
     }
     .introTextArea {
         font-size: 0.9em;
@@ -1362,23 +1210,18 @@ button:hover {
     .infoText {
         font-size: 0.75em;
         font-weight: 100;
-        /* background-color: pink; */
     }
     .mapInfoText {
         font-size: 0.75em;
         font-weight: 100;
-        /* background-color: pink; */
     }
     .pinAppButton {
         font-size: 0.9em;
         width: auto;
         padding: auto;
         border: auto;
-        /* font-family: auto; */
         font-weight: 500;
-        /* background-color: yellow; */
     }
-    /* mapContainer */
     .mapContainer {
         position: absolute;
         top: 11vh;
@@ -1390,7 +1233,6 @@ button:hover {
     .mapContainerRightDOWN {
         height: 84%;
     }
-    /* otherUser */
     .otherUserContainerUp {
         height: 30%;
     }
@@ -1438,8 +1280,6 @@ button:hover {
     .profilePageContainer {
         align-items: center;
         justify-content: flex-start;
-        /* align-items: center;
-        display: block; */
     }
     .profilePageContainerLeft {
         height: 30%;
@@ -1448,12 +1288,10 @@ button:hover {
     .existingValues, .editingValues {
         padding-top: 0;
     }
-    /* editProfile */
     .editIcon {
         right: 3vh;
         top: 2vh;
     }
-    /* search */
     #searchUsersBox>textarea {
         max-width: 100%;
     }
@@ -1484,7 +1322,5 @@ button:hover {
     }
     #footer{
         font-size: 0.8em;
-        /* display: none; */
-        /* background: green; */
     }
 }

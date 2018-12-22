@@ -189,14 +189,12 @@
 }
 
 .chatBox {
-    /* background-color: pink; */
     margin-top: 50px;
     height: 50%;
     width: 60%;
 }
 
 .newChat {
-    /* background-color: grey; */
     height: 10%;
     width: 60%;
     position: relative;
@@ -228,39 +226,3 @@
         margin: 0;
     }
 }
-/********************************/
-
-/*  NOT SURE IF I AM USING THOSE*/
-
-/********************************/
-
-
-/* .editProfile {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-} */
-
-/* .editBioContainer {
-    padding: 20px;
-}
-
-.editBioBox {
-    display: flex;
-    width: 300px;
-} */
-
-/* .bioContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-} */
-
-/* .bioDisplayTextArea {
-    display: flex;
-    width: 80%;
-    height: 80px;
-    font-size: 0.9em;
-} */
