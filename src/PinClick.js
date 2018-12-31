@@ -130,7 +130,7 @@ class PinClick extends React.Component {
       this.setState({
         deleteAlertIsVisible: false
       })
-      this.props.togglePinClick()
+      this.togglePinClick()
     }
     // onClick={this.toggleEditMode}
   }
@@ -151,12 +151,10 @@ class PinClick extends React.Component {
     document.body.removeChild(dummy)
   }
   render() {
-    // console.log('???thi?',googleMapsApiKey);
     if (!this.state.ready && !this.props.markersArray.length > 0) {
       return <div>not ready</div>
     } else {
-      // console.log("props:\n",this.props);
-      // console.log("state:\n",this.state);
+
       const shareButtons = () => {
         return (
           <div className="colPinClick">
@@ -190,6 +188,7 @@ class PinClick extends React.Component {
           </div>
         )
       }
+
       const deleteAlert = () => {
         return (
           <div className="blackVailDelete">
@@ -215,11 +214,12 @@ class PinClick extends React.Component {
           </div>
         )
       }
+
       let currentPinInfo = []
 
       if (this.props.pinId) {
         currentPinInfo = this.props.markersArray.filter(item => {
-          return item.id == this.props.pinId
+          return item.id === this.props.pinId
         })
       } else if (this.props.flag) {
         currentPinInfo.push({
@@ -240,8 +240,9 @@ class PinClick extends React.Component {
       } else {
         imageUrl = '/pins/greyPin.png'
       }
+
       const edit = () => {
-        if (this.state.userId == this.props.id) {
+        if (this.state.userId === this.props.id) {
           return (
             <div className="pinEditSaveButtonArea box">
               <h1 className="saveButton" onClick={this.toggleEditMode}>
@@ -261,12 +262,13 @@ class PinClick extends React.Component {
       } else {
         bigPin = '/pins/bigPin.png'
       }
+
       return (
         <React.Fragment>
           <div className="pinClickContainer">
-            <div className="blackVail" onClick={this.props.togglePinClick} />
+            <div className="blackVail" onClick={this.togglePinClick} />
             <div className="fieldsContainer fieldsContainerPinClick">
-              <p className="exitPinClick" onClick={this.props.togglePinClick}>
+              <p className="exitPinClick" onClick={this.togglePinClick}>
                 X
               </p>
               <div className="pinTitlePinClick">

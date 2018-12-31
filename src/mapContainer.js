@@ -4,7 +4,6 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import AddNewPin from './addNewPin'
 import {getUserPins, selectActionBycategory} from './actions'
 import PinClick from './PinClick.js'
-// import { NamesToShow } from "./NamesToShow";
 import ListOfLocations from './ListOfLocations.js'
 
 class MapContainer extends React.Component {
@@ -68,12 +67,11 @@ class MapContainer extends React.Component {
   }
   pinClick(e) {
     this.clickedPinId = e.name
-    console.log(e)
     this.setState({
       clickedPinId: e.name,
       pinClickVisible: !this.state.pinClickVisible,
-      pinLat: e.position.lat,
-      pinLng: e.position.lng
+      lat: e.position.lat,
+      lng: e.position.lng
     })
   }
   togglePinClick() {
@@ -84,7 +82,7 @@ class MapContainer extends React.Component {
   watchMyLocation() {
     if (!this.state.myLat) {
       let watchId = navigator.geolocation.watchPosition(pos => {
-        console.log(pos.coords.latitude)
+        // console.log(pos.coords.latitude)
         this.setState({
           myLat: pos.coords.latitude,
           myLng: pos.coords.longitude,
@@ -104,7 +102,6 @@ class MapContainer extends React.Component {
     }
   }
   closeAddNewPinComponent() {
-    console.log('closing add new pin component...')
     this.setState({
       addNewPinIsVisible: false
     })
@@ -141,7 +138,7 @@ class MapContainer extends React.Component {
         '900'
     } else {
       this.state.arrayOfCategory = this.state.arrayOfCategory.filter(item => {
-        return item != e.target.value
+        return item !== e.target.value
       })
       document.querySelector(`label[for=${e.target.name}]`).style.color =
         'black'
