@@ -364,8 +364,8 @@ body {
     border-radius: 2px;
     width: 28px;
     height: 28px;
-    bottom: 127px;
-    right: 10px;
+    bottom: 107px;
+    right: 16px;
     background-image: url(/icons/targetLocationIcon.png);
     background-size: contain;
     box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
@@ -1314,8 +1314,8 @@ button:hover {
         top: 10vh;
     }
     .centerMapButton{
-        bottom: 32.5%;
-        right: 3.6%;
+        bottom: 31.5%;
+        right: 5.6%;
     }
     #exitNewPin{
         position: fixed;
