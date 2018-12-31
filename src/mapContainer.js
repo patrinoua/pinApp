@@ -396,11 +396,12 @@ class MapContainer extends React.Component {
                       <div
                         className="centerMapButton"
                         onClick={() => {
-                          this.forceUpdate()
-                          this.setState({
-                            dropPinInCurrentLocationButtonIsVisible: !this.state
-                              .dropPinInCurrentLocationButtonIsVisible
-                          })
+                          navigator.geolocation.getCurrentPosition((position) => {
+                              this.setState({
+                                  lat: position.coords.latitude,
+                                  lng: position.coords.longitude
+                              });
+                          });
                         }}
                       />
 
