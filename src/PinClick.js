@@ -323,9 +323,9 @@ class PinClick extends React.Component {
                         className="inputfile"
                         type="file"
                         name="file"
-                        onChange={() => {
-                          this.setFile()
-                          this.compileData()
+                        onChange={(e) => {
+                          this.setFile(e)
+                          this.compileData(e)
                         }}
                         data-multiple-caption="{count} files selected"
                         multiple
