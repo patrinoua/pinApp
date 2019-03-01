@@ -146,10 +146,8 @@ class AddNewPin extends React.Component {
                       className="inputfile"
                       type="file"
                       name="file"
-                      onChange={() => {
-                        this.setFile()
-                        this.compileData()
-                      }}
+                      onChange={this.setFile}
+                      onChange={this.compileData}
                       data-multiple-caption="{count} files selected"
                       multiple
                     />

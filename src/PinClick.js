@@ -24,7 +24,6 @@ class PinClick extends React.Component {
     this.toggleEditMode = this.toggleEditMode.bind(this)
     this.insertPinInfo = this.insertPinInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.setFile = this.setFile.bind(this)
     this.deletePinAlert = this.deletePinAlert.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.exportPin = this.exportPin.bind(this)

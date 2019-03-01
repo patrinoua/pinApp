@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import AddNewPin from './addNewPin'
+import AddNewPin from './AddNewPin'
 import {getUserPins, selectActionBycategory} from './actions'
 import PinClick from './PinClick.js'
 import ListOfLocations from './ListOfLocations.js'
