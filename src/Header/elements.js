@@ -47,7 +47,7 @@ export const NavigationBarRight = styled.div`
   align-items: center;
   justify-content: space-between;
   > * {
-    margin: 0 10px;
+    margin-right: 10px;
   }
 `
 
