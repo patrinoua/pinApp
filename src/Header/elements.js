@@ -26,7 +26,7 @@ export const NavigationContainerBig = styled.div`
   align-items: center;
 `
 export const NavigationSeperatingLine = styled.div`
-  height: 7vh;
+  height: 35px;
   border-right: 1px solid lightgrey;
 `
 export const NavigationContainer = styled.div`
@@ -47,13 +47,13 @@ export const NavigationBarRight = styled.div`
   align-items: center;
   justify-content: space-between;
   > * {
-    margin: 0 5px;
+    margin: 0 10px;
   }
 `
 export const AllPinsIcon = styled.div`
-  width: 35px;
+  width: 27px;
   height: 35px;
-  margin-right: 3px;
+  margin-right: 5px;
   background-image: url(../../icons/pinsIcon.png);
   background-size: contain;
   background-position: center;
@@ -66,5 +66,5 @@ export const HamburgerMenu = styled.div`
   background-image: url(/assets/menu.png);
   background-size: contain;
   background-position: center;
-  filter: invert(0.7);
+  filter: invert(0.6);
 `

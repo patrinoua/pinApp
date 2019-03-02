@@ -49,7 +49,8 @@ export default class Header extends React.Component {
     let pic = this.props.profilepic || '/user.png'
     const style = {
       backgroundImage: `url(${pic})`,
-      backgroundSize: 'contain'
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center'
     }
     document.addEventListener('keydown', e => {
       if (e.keyCode === 27) {
