@@ -3,7 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from './axios'
 import {ProfilePage, UploadProfilePic} from './profile'
-import {Navigation} from './navigation'
+import Header from './Header'
 import OtherProfilePage from './otherProfile'
 import Friends from './friends'
 import OnlineUsers from './onlineUsers'
@@ -74,7 +74,7 @@ class App extends React.Component {
       <div className="routeContainer">
         <BrowserRouter>
           <div className="appContainer">
-            <Navigation
+            <Header
               {...this.state}
               toggleUploader={this.toggleUploader}
               makeUploaderVisible={this.showUploader}

@@ -1,9 +1,20 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {NamesToShow} from './NamesToShow'
-import ListOfLocations from './ListOfLocations.js'
+import {NamesToShow} from '../NamesToShow'
+import ListOfLocations from '../ListOfLocations'
+import {
+  BrandLogo,
+  ProfilePicture,
+  HorizontalContainer,
+  NavigationContainer,
+  NavigationContainerBig,
+  NavigationSeperatingLine,
+  NavigationBarRight,
+  AllPinsIcon,
+  HamburgerMenu,
+} from './elements'
 
-export class Navigation extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -37,35 +48,35 @@ export class Navigation extends React.Component {
   render() {
     let pic = this.props.profilepic || '/user.png'
     const style = {
-      backgroundImage: `url(${pic})`
+      backgroundImage: `url(${pic})`,
+      backgroundSize: 'contain'
     }
     document.addEventListener('keydown', e => {
-      if (e.keyCode == 27) {
+      if (e.keyCode === 27) {
         this.closeUserMenu()
       }
     })
     return (
-      <div className="navigationContainerBig">
-        <div className="navigationContainer">
-          <Link to="/map" className="navigationBarRight">
-            <img className="logoIconMenu" src="/pinAppLogo.png" />
+      <NavigationContainerBig>
+        <NavigationContainer>
+          <Link to="/map">
+            <BrandLogo />
           </Link>
-          <div className="navigationBarRight">
+          <NavigationBarRight>
             <Link to="/map">
-              <div className="navigationIconProfilepicCircle" style={style} />
+              <HorizontalContainer>
+                <ProfilePicture style={style} />
+                <span>{this.props.first}</span>
+              </HorizontalContainer>
             </Link>
-            {this.props.first}
-            <div className="navigationSeperatingLine" />
-            <img
-              src="/icons/pinsIcon.png"
-              alt="pinsIcon"
-              className="navigationIcon"
+            <NavigationSeperatingLine />
+            <HorizontalContainer
               onClick={this.showListComponent}
-            />
-            <img
-              src="/assets/menu.png"
-              alt="menu"
-              className="navigationIcon menuIcon"
+            >
+              <AllPinsIcon />
+              My pins
+            </HorizontalContainer>
+            <HamburgerMenu
               onClick={this.toggleUserMenu}
             />
             {this.state.userMenuIsVisible && (
@@ -79,9 +90,9 @@ export class Navigation extends React.Component {
             {this.state.showListComponent && (
               <ListOfLocations closeListComponent={this.closeListComponent} />
             )}
-          </div>
-        </div>
-      </div>
+          </NavigationBarRight>
+        </NavigationContainer>
+      </NavigationContainerBig>
     )
   }
 }

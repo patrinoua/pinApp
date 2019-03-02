@@ -21,8 +21,7 @@ main {
 }
 
 body {
-    font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: .5px;
     margin: 0px;
     text-align: center;
     justify-content: center;
@@ -128,6 +127,7 @@ body {
 }
 
 /************NAVIGATION*****************/
+
 .navigationContainerBig{
     width:100%;
     background-color: #0e0d0d;
@@ -167,27 +167,6 @@ body {
     align-content: center;
 }
 
-.navigationBarRight {
-    display: flex;
-    align-items: center;
-    font-family: "roboto";
-    font-size: 0.9em;
-
-}
-.navigationSeperatingLine{
-    width: 10px;
-    height: 7vh;
-    min-height: 20px;
-    height: 40px;
-    margin: 5px;
-    border-right: 1px solid #4e4a4a;
-}
-.navigationIcon {
-    height: 6vh;
-    max-height: 35px;
-    min-height: 35px;
-    padding: 0.8vw;
-}
 .mapIcon{
     padding-bottom: 0;
 }
@@ -207,10 +186,6 @@ body {
     border: 2px solid grey;
     background-size: cover;
     background-position: center center;
-}
-
-.navigationIconProfilepicCircle:hover {
-    cursor: pointer;
 }
 
 .logoIconMenu {
