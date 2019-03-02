@@ -50,6 +50,7 @@ export const NavigationBarRight = styled.div`
     margin: 0 10px;
   }
 `
+
 export const AllPinsIcon = styled.div`
   width: 27px;
   height: 35px;
@@ -59,7 +60,6 @@ export const AllPinsIcon = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 `
-
 export const HamburgerMenu = styled.div`
   height: 30px;
   width: 30px;
