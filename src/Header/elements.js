@@ -58,8 +58,9 @@ export const NavigationSeperatingLine = styled.div`
   }
 `
 export const NavigationContainer = styled.div`
-  width: 95%;
-  height: 11vh;
+  width: 100%;
+  margin: 0 10px;
+  height: 60px;
   max-height: 55px;
   display: flex;
   justify-content: space-between;
