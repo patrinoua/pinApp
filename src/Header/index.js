@@ -2,9 +2,10 @@ import React from 'react'
 import ListOfLocations from '../ListOfLocations'
 import UserMenuPopUp from './components/UserMenuPopUp'
 import {
+  StyledRegular,
   StyledLink,
   BrandLogo,
-  ProfilePicture,
+  NavigationIcon,
   HorizontalContainer,
   NavigationContainer,
   NavigationContainerBig,
@@ -13,7 +14,6 @@ import {
   AllPinsIcon,
   HamburgerMenu,
 } from './elements'
-import {Regular} from '../typography'
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -50,8 +50,7 @@ export default class Header extends React.Component {
     let pic = this.props.profilepic || '/user.png'
     const style = {
       backgroundImage: `url(${pic})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center'
+      borderRadius: '50%'
     }
     document.addEventListener('keydown', e => {
       if (e.keyCode === 27) {
@@ -67,8 +66,8 @@ export default class Header extends React.Component {
           <NavigationBarRight>
             <StyledLink to="/map">
               <HorizontalContainer>
-                <ProfilePicture style={style} />
-                <Regular>{this.props.first}</Regular>
+                <NavigationIcon style={style} />
+                <StyledRegular>{this.props.first}</StyledRegular>
               </HorizontalContainer>
             </StyledLink>
             <NavigationSeperatingLine />
@@ -76,7 +75,7 @@ export default class Header extends React.Component {
               onClick={this.showListComponent}
             >
               <AllPinsIcon />
-              <Regular>My pins</Regular>
+              <StyledRegular>My pins</StyledRegular>
             </HorizontalContainer>
             <HamburgerMenu
               onClick={this.toggleUserMenu}

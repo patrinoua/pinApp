@@ -1,6 +1,30 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import {Regular} from '../typography'
 
+export const StyledRegular = styled(Regular)`
+  @media (max-width: 700px) {
+    display: none;
+  }
+`
+export const NavigationIcon = styled.div`
+  width: 35px;
+  height: 35px;
+  margin-right: 7px;
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  @media (max-width: 700px) {
+    margin-right: 0;
+  }
+`
+export const AllPinsIcon = styled(NavigationIcon)`
+  width: 27px;
+  height: 35px;
+  background-image: url(../../icons/pinsIcon.png);
+
+`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   &: visited{
@@ -10,12 +34,6 @@ export const StyledLink = styled(Link)`
 export const HorizontalContainer = styled.div`
   display: flex;
   align-items: center;
-`
-export const ProfilePicture = styled.div`
-  width: 35px;
-  height: 35px;
-  margin-right: 7px;
-  border-radius: 50%;
 `
 export const BrandLogo = styled.div`
   background-image:url('../../pinAppLogo.png');
@@ -35,6 +53,9 @@ export const NavigationContainerBig = styled.div`
 export const NavigationSeperatingLine = styled.div`
   height: 35px;
   border-right: 1px solid lightgrey;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `
 export const NavigationContainer = styled.div`
   width: 95%;
@@ -58,15 +79,7 @@ export const NavigationBarRight = styled.div`
   }
 `
 
-export const AllPinsIcon = styled.div`
-  width: 27px;
-  height: 35px;
-  margin-right: 5px;
-  background-image: url(../../icons/pinsIcon.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-`
+
 export const HamburgerMenu = styled.div`
   height: 30px;
   width: 30px;
