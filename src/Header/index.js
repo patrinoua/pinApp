@@ -1,8 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {NamesToShow} from '../NamesToShow'
 import ListOfLocations from '../ListOfLocations'
+import UserMenuPopUp from './components/UserMenuPopUp'
 import {
+  StyledLink,
   BrandLogo,
   ProfilePicture,
   HorizontalContainer,
@@ -13,6 +13,7 @@ import {
   AllPinsIcon,
   HamburgerMenu,
 } from './elements'
+import {Regular} from '../typography'
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -60,22 +61,22 @@ export default class Header extends React.Component {
     return (
       <NavigationContainerBig>
         <NavigationContainer>
-          <Link to="/map">
+          <StyledLink to="/map">
             <BrandLogo />
-          </Link>
+          </StyledLink>
           <NavigationBarRight>
-            <Link to="/map">
+            <StyledLink to="/map">
               <HorizontalContainer>
                 <ProfilePicture style={style} />
-                <span>{this.props.first}</span>
+                <Regular>{this.props.first}</Regular>
               </HorizontalContainer>
-            </Link>
+            </StyledLink>
             <NavigationSeperatingLine />
             <HorizontalContainer
               onClick={this.showListComponent}
             >
               <AllPinsIcon />
-              My pins
+              <Regular>My pins</Regular>
             </HorizontalContainer>
             <HamburgerMenu
               onClick={this.toggleUserMenu}
@@ -94,63 +95,6 @@ export default class Header extends React.Component {
           </NavigationBarRight>
         </NavigationContainer>
       </NavigationContainerBig>
-    )
-  }
-}
-
-export class UserMenuPopUp extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-    this.closePopUp = this.closePopUp.bind(this)
-  }
-  closePopUp() {
-    this.props.closeUserMenu()
-  }
-  render() {
-    document.addEventListener('anim', e => {
-      if (e.keyCode === 27) {
-        this.props.closeUserMenu()
-      }
-    })
-    return (
-      <React.Fragment>
-        <div
-          id="overley"
-          onClick={e => {
-            this.props.closeUserMenu()
-            // e.stopPropagation();
-            // e.preventDefault();
-          }}
-        />
-        <div className="dropDownMenu" id="anim">
-          {/*onMouseLeave={() => {
-                    this.props.closeUserMenu();
-                }}*/}
-          <Link
-            to="/friends"
-            className="dropDownMenuItem"
-            onClick={() => {
-              setTimeout(this.props.closeUserMenu, 200)
-            }}
-          >
-            Friends
-          </Link>
-          <Link
-            to="/profile"
-            className="dropDownMenuItem"
-            onClick={() => {
-              this.props.closeUserMenu()
-            }}
-          >
-            Edit Profile
-          </Link>
-          <a href="/logout" className="dropDownMenuItem">
-            Logout
-          </a>
-          <NamesToShow id={this.props.id} />
-        </div>
-      </React.Fragment>
     )
   }
 }

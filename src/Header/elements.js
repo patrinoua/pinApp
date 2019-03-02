@@ -1,5 +1,12 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  &: visited{
+    color: #2a2a2a;
+  }
+`
 export const HorizontalContainer = styled.div`
   display: flex;
   align-items: center;
@@ -66,5 +73,5 @@ export const HamburgerMenu = styled.div`
   background-image: url(/assets/menu.png);
   background-size: contain;
   background-position: center;
-  filter: invert(0.6);
+  filter: invert(0.4);
 `
