@@ -145,12 +145,6 @@ body {
     font-weight: 300;
     letter-spacing: 0.12em;
 }
-.mapContainerDown {
-    width: 100%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-}
 
 .mapContainerLeft {
     display: flex;
@@ -933,25 +927,6 @@ button:hover {
     align-items: center;
 }
 
-#popupShare {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0 1vh;
-    border: 1px solid grey;
-    box-shadow: 1px 1px 11px #dcd5d5;
-    height: 20vh;
-    width: 16vw;
-    top: -17vh;
-    left: 13vw;
-    background-color: white;
-    z-index: 1;
-    animation: aaron 6s;
-    background-color: #ebeced;
-}
-
 #exitNewPin{
     position: absolute;
     color: white;
@@ -1048,26 +1023,6 @@ button:hover {
 .selectedCategory{
     color: grey;
 }
-#footer {
-    font-weight: 200;
-    width: 98%;
-    height: 5vh;
-    position: absolute;
-    bottom:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.footerLink{
-    color: lightgrey;
-    font-size: 0.8em;
-}
-.footerLink:visited{
-    color: lightgrey;
-    text-decoration: none;
-}
-
 
 @media only screen and (max-width:400px) {
     h1 {
@@ -1089,21 +1044,12 @@ button:hover {
         font-size: 0.75em;
         font-weight: 100;
     }
-    .mapInfoText {
-        font-size: 0.75em;
-        font-weight: 100;
-    }
     .pinAppButton {
         font-size: 0.9em;
         width: auto;
         padding: auto;
         border: auto;
         font-weight: 500;
-    }
-    .mapContainer {
-        position: absolute;
-        top: 11vh;
-        height: 80%;
     }
     .mapContainerRight {
         width: 100%;
@@ -1194,8 +1140,5 @@ button:hover {
     }
     #exitNewPin{
         position: fixed;
-    }
-    #footer{
-        font-size: 0.8em;
     }
 }

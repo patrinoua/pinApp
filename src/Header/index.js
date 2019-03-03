@@ -1,5 +1,5 @@
 import React from 'react'
-import ListOfLocations from '../ListOfLocations'
+import ListOfPins from '../components/ListOfPins'
 import UserMenuPopUp from './components/UserMenuPopUp'
 import {
   StyledRegular,
@@ -27,6 +27,7 @@ export default class Header extends React.Component {
     this.closeListComponent = this.closeListComponent.bind(this)
   }
   showListComponent(e) {
+    console.log('ooooppppp')
     this.setState({
       showListComponent: true
     })
@@ -89,7 +90,7 @@ export default class Header extends React.Component {
               />
             )}
             {this.state.showListComponent && (
-              <ListOfLocations closeListComponent={this.closeListComponent} />
+              <ListOfPins closeListComponent={this.closeListComponent} />
             )}
           </NavigationBarRight>
         </NavigationContainer>

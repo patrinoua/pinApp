@@ -4,7 +4,9 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import AddNewPin from './AddNewPin'
 import {getUserPins, selectActionBycategory} from './actions'
 import PinClick from './PinClick.js'
-import ListOfLocations from './ListOfLocations.js'
+import ListOfPins from './components/ListOfPins'
+import {Container, MapContainerDown, MapInfoText, PopUpShare, Footer, FooterElement} from './elements'
+//na diagrapsw to ListOfLocations.js
 
 class MapContainer extends React.Component {
   constructor(props) {
@@ -48,7 +50,6 @@ class MapContainer extends React.Component {
   handleSearchboxChange(e) {
     this[e.target.name] = e.target.value
   }
-
   componentDidMount() {
     this.props.dispatch(getUserPins())
     // this.props.dispatch(getPinInfo());
@@ -195,12 +196,9 @@ class MapContainer extends React.Component {
     }
     return (
       <React.Fragment>
-        {this.state.showListComponent && (
-          <ListOfLocations closeListComponent={this.closeListComponent} />
-        )}
         {this.props.pinInfo &&
           this.state.showThePop && (
-            <div id="popupShare">
+            <PopUpShare>
               <p>{this.props.userName}</p>
               <span>shared a cool pin with you</span>
               <button
@@ -214,7 +212,7 @@ class MapContainer extends React.Component {
               >
                 view pin
               </button>
-            </div>
+            </PopUpShare>
           )}
         {this.state.showSharedPin && (
           <PinClick
@@ -233,9 +231,8 @@ class MapContainer extends React.Component {
               lng={this.state.pinLng}
             />
           )}
-        <div className="mapContainer">
-          {/*<div className="mapContainerUp" />*/}
-          <div className="mapContainerDown">
+        <Container>
+          <MapContainerDown>
             <div className="mapContainerLeft">
               <div className="categoryList">
                 <form id="myForm">
@@ -298,9 +295,9 @@ class MapContainer extends React.Component {
                                 </div>
                             </div>*/}
               <div className="newPinContainerRightUp">
-                <div className="mapInfoText">
+                <MapInfoText>
                   Click anywhere on the map to add a pin
-                </div>
+                </MapInfoText>
               </div>
               <div className="mapContainerRightDOWN">
                 {/*<div className="mapAreaContainer">*/}
@@ -450,30 +447,24 @@ class MapContainer extends React.Component {
                 {/*</div>*/}
               </div>
             </div>
-          </div>
-          <div id="footer">
-            <span className="container copyright">
-              <a
-                className="footerLink"
-                href="http://angeliki.herokuapp.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {' '}
-                Developed by Angeliki Patrinou &
-              </a>
-              <a
-                className="footerLink"
-                href="https://github.com/danielarielS"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {' '}
-                Daniel Ariel{' '}
-              </a>
-            </span>
-          </div>
-        </div>
+          </MapContainerDown>
+          <Footer>
+            <FooterElement
+              href="http://angeliki.herokuapp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Developed by Angeliki Patrinou &
+            </FooterElement>
+            <FooterElement
+              href="https://github.com/danielarielS"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Daniel Ariel
+            </FooterElement>
+          </Footer>
+        </Container>
         {this.state.addNewPinIsVisible && (
           <AddNewPin
             lat={this.state.lat}

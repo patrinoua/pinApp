@@ -11,7 +11,6 @@ export const NavigationIcon = styled.div`
   width: 35px;
   height: 35px;
   margin-right: 7px;
-
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -22,6 +21,7 @@ export const NavigationIcon = styled.div`
 export const AllPinsIcon = styled(NavigationIcon)`
   width: 27px;
   height: 35px;
+  // z-index: 9;
   background-image: url(../../icons/pinsIcon.png);
 
 `
@@ -76,7 +76,7 @@ export const NavigationBarRight = styled.div`
   align-items: center;
   justify-content: space-between;
   > * {
-    margin-right: 10px;
+    margin-right: 15px;
   }
 `
 
