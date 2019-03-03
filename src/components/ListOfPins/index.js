@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PinClick from '../../PinClick.js'
-import {BlackVail} from '../../elements.js'
+import PinClick from '../../components/PinClick'
+import {BlackVail, XIcon} from '../../elements.js'
 import {
   ListOfPinsContainer,
   ListOfLocationsHolder,
@@ -10,8 +10,7 @@ import {
   EachPin,
   PinImage,
   Description,
-  Date,
-  XIcon
+  Date
 } from './elements.js'
 
 class ListOfPins extends React.Component {

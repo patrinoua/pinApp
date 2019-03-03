@@ -977,8 +977,6 @@ button:hover {
     display: flex;
     top: 34%;
     left: 20%;
-    /* top: 60%;
-    left: 50%; */
     width: 300px;
     box-shadow: 11px -9px 20px rgba(0,0,0,0.6);
     display: flex;

@@ -5,7 +5,7 @@ import {FriendButton} from './friendButton'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {getUserPinInfo, selectActionBycategory} from './actions'
 import ListOfLocations from './ListOfLocations.js'
-import PinClick from './PinClick.js'
+import PinClick from './components/PinClick'
 
 class OtherProfilePage extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PinClick from './PinClick.js'
+import PinClick from './components/PinClick'
 class ListOfLocations extends React.Component {
   constructor(props) {
     super(props)

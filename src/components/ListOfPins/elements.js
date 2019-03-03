@@ -35,22 +35,8 @@ export const ListSmallHolder = styled.div`
     width: 100%;
     height: 100%;
   }
+`
 
-`
-export const XIcon = styled.p`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  z-index: 12;
-  cursor: pointer;
-  opacity: 0.4;
-  &:hover{
-    opacity: .9;
-  }
-  @media (max-width: 700px) {
-    top: 40px;
-  }
-`
 export const ListTitle = styled.div`
   font-size: 2em;
   padding-bottom: 4vh;

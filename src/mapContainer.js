@@ -3,9 +3,8 @@ import {connect} from 'react-redux'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import AddNewPin from './AddNewPin'
 import {getUserPins, selectActionBycategory} from './actions'
-import PinClick from './PinClick.js'
-import ListOfPins from './components/ListOfPins'
-import {Container, MapContainerDown, MapInfoText, PopUpShare, Footer, FooterElement} from './elements'
+import PinClick from './components/PinClick'
+import {ContainerMap, MapContainerDown, MapInfoText, PopUpShare, Footer, FooterElement} from './elements'
 //na diagrapsw to ListOfLocations.js
 
 class MapContainer extends React.Component {
@@ -191,6 +190,7 @@ class MapContainer extends React.Component {
     )
   }
   render() {
+    console.log(this.state);
     const style = {
       backgroundSize: 'contain'
     }
@@ -231,7 +231,7 @@ class MapContainer extends React.Component {
               lng={this.state.pinLng}
             />
           )}
-        <Container>
+        <ContainerMap>
           <MapContainerDown>
             <div className="mapContainerLeft">
               <div className="categoryList">
@@ -464,7 +464,7 @@ class MapContainer extends React.Component {
               Daniel Ariel
             </FooterElement>
           </Footer>
-        </Container>
+        </ContainerMap>
         {this.state.addNewPinIsVisible && (
           <AddNewPin
             lat={this.state.lat}

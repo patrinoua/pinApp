@@ -1,10 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import axios from './axios'
+import axios from '../../axios'
+import {deletePin} from '../../actions'
+import {updatePinInfo} from '../../actions'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import {deletePin} from './actions'
-import {updatePinInfo} from './actions'
-
+import {Container, BlackVail, XIcon} from '../../elements.js'
+import {
+  PinClickFieldsContainer,
+  PinTitle,
+  PinTitleText,
+  PinClickRow,
+  PinClickSecondRow,
+} from './elements.js'
 class PinClick extends React.Component {
   constructor(props) {
     super(props)
@@ -79,7 +86,6 @@ class PinClick extends React.Component {
   handleChange(e) {
     this[e.target.name] = e.target.value
   }
-
   checkValue(e) {
     this.category = e.target.name
     this.setState({
@@ -133,7 +139,6 @@ class PinClick extends React.Component {
     }
     // onClick={this.toggleEditMode}
   }
-
   exportPin() {
     const encryptedPinId = window.btoa(this.props.pinId)
     // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
@@ -165,7 +170,6 @@ class PinClick extends React.Component {
             >
               Copy Link
             </button>
-
             {this.state.pinUrl && (
               <div className="copyUrlVail">
                 <div
@@ -264,19 +268,19 @@ class PinClick extends React.Component {
 
       return (
         <React.Fragment>
-          <div className="pinClickContainer">
-            <div className="blackVail" onClick={this.togglePinClick} />
-            <div className="fieldsContainer fieldsContainerPinClick">
-              <p className="exitPinClick" onClick={this.togglePinClick}>
+          <Container>
+            <BlackVail onClick={this.togglePinClick} />
+            <PinClickFieldsContainer>
+              <XIcon onClick={this.togglePinClick}>
                 X
-              </p>
-              <div className="pinTitlePinClick">
+              </XIcon>
+              <PinTitle>
                 <img src={bigPin} />
-                <h1 className="addPinTitle">
+                <PinTitleText>
                   {currentPinInfo[0].title || 'clicked pin!'}
-                </h1>
-              </div>
-              <div className="secondRowPinClick">
+                </PinTitleText>
+              </PinTitle>
+              <PinClickSecondRow>
                 <div className="boxPinClick">
                   <Map
                     style={{
@@ -357,10 +361,10 @@ class PinClick extends React.Component {
                     />
                   )}
                 </div>
-              </div>
+              </PinClickSecondRow>
               {/* *******************THIRD ROW**********************/}
               {(this.state.editMode && (
-                <div className="thirdRowPinClick">
+                <PinClickRow>
                   <div className="colPinClick">
                     <div className="textFieldsPinClick">
                       <textarea
@@ -390,15 +394,15 @@ class PinClick extends React.Component {
                     </button>
                   </div>
                   {shareButtons()}
-                </div>
+                </PinClickRow>
               )) || (
-                <div className="thirdRowPinClick">
+                <PinClickRow>
                   <div className="colPinClick ">
                     <div>{currentPinInfo[0].title || 'Title'}</div>
                     <div>{currentPinInfo[0].description || 'Description'}</div>
                   </div>
                   {shareButtons()}
-                </div>
+                </PinClickRow>
               )}
               {/* *************************FOURTH ROW********************* */}
               {this.state.editMode && (
@@ -413,8 +417,8 @@ class PinClick extends React.Component {
                 </div>
               )}{' '}
               {!this.state.editMode && edit()}
-            </div>
-          </div>
+            </PinClickFieldsContainer>
+          </Container>
         </React.Fragment>
       )
     }

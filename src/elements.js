@@ -1,6 +1,18 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+`
+export const ContainerMap = styled.div`
   position: absolute;
   width: 100%;
   top: 60px;
@@ -16,6 +28,7 @@ export const BlackVail = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
+  background: white;
   top: 0;
   left: 0;
   z-index: 8;
@@ -47,6 +60,20 @@ export const PopUpShare = styled.div`
   z-index: 1;
   animation: aaron 6s;
   background-color: #ebeced;
+`
+export const XIcon = styled.p`
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 12;
+  cursor: pointer;
+  opacity: 0.4;
+  &:hover{
+    opacity: .9;
+  }
+  @media (max-width: 700px) {
+    top: 40px;
+  }
 `
 export const Footer = styled.div`
   font-weight: 200;

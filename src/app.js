@@ -9,7 +9,7 @@ import Friends from './friends'
 import OnlineUsers from './onlineUsers'
 import MapContainer from './Mapcontainer'
 import {saveUserInfo} from './actions'
-import PinClick from './PinClick.js'
+import PinClick from './components/PinClick'
 
 class App extends React.Component {
   constructor(props) {
