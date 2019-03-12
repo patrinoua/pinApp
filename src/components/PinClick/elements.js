@@ -8,12 +8,12 @@ export const FieldsContainer = styled.div`
   height: 70vh;
   max-width: 500px;
   max-height: 400px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #2d2c29;
+  border-radius: 20px;
   color: white;
   box-shadow: 1px 2px 4px 1px lightgrey;
   top: 0;
   z-index: 10;
-
   @media (max-width: 700px) {
     width: 100%;
   }
@@ -34,8 +34,8 @@ export const PinTitle = styled.div`
   justify-content: center;
   align-items: center;
 `
-export const PinTitleText = styled.h1`
-  margin-left: 30px;
+export const PinTitleText = styled.h2`
+  margin-left: 20px;
   font-family: 'Pacifico', cursive;
   @media (max-width: 700px) {
     margin-left: 10px;
