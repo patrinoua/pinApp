@@ -7,7 +7,7 @@ import Header from './Header'
 import OtherProfilePage from './otherProfile'
 import Friends from './friends'
 import OnlineUsers from './onlineUsers'
-import MapContainer from './Mapcontainer'
+import MapContainer from './MapContainer'
 import {saveUserInfo} from './actions'
 import PinClick from './components/PinClick'
 
