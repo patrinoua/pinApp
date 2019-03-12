@@ -190,7 +190,6 @@ class MapContainer extends React.Component {
     )
   }
   render() {
-    console.log(this.state);
     const style = {
       backgroundSize: 'contain'
     }
