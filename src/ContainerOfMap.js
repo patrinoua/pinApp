@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {getUserPins, selectActionBycategory} from './actions'
 import PinClick from './components/PinClick'
-import AddNewPin from './AddNewPin'
+import AddNewPin from './AddNewPinnnn'
 import {ContainerMap, MapContainerDown, MapInfoText, PopUpShare, Footer, FooterElement} from './elements'
 //na diagrapsw to ListOfLocations.js
 
