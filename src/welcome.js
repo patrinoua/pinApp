@@ -23,7 +23,8 @@ export function Welcome() {
               height: '100%',
               backgroundImage: "url('/assets/backgroundImage.jpg')",
               backgroundSize: 'cover',
-              position: 'absolute'
+              position: 'absolute',
+              filter: 'brightness(50%)'
             }}
           />
           <div className="welcomePageLogoImgContainer">

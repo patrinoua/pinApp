@@ -40,6 +40,7 @@ export default class Register extends React.Component {
     return (
       <div className="welcomeForm">
         <div className="welcomeText"> Register </div>
+        Create an account to save your pins
         <div className="error">
           {this.state.error && (
             <div className="errMsg"> Ops! {this.state.errorMsg}</div>
