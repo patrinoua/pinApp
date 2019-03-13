@@ -17,6 +17,12 @@ export const ContainerMap = styled.div`
   width: 100%;
   top: 60px;
   height: 85%;
+  @media (max-width: 700px) {
+    height: 100%;
+  }
+  @media (max-height: 400px) {
+    height: 85%;
+  }
 `
 export const BlackVail = styled.div`
   margin: 0;

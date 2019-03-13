@@ -294,9 +294,7 @@ class MapContainer extends React.Component {
                                 </div>
                             </div>*/}
               <div className="newPinContainerRightUp">
-                <MapInfoText>
-                  Click anywhere on the map to add a pin
-                </MapInfoText>
+
               </div>
               <div className="mapContainerRightDOWN">
                 {/*<div className="mapAreaContainer">*/}
@@ -363,7 +361,7 @@ class MapContainer extends React.Component {
                   )}
                   {this.props.lat && (
                     <div>
-                      {/****** search box *******/}
+                      {/****** search box
                       <input
                         id="searchboxInputField"
                         name="searchbox"
@@ -388,7 +386,9 @@ class MapContainer extends React.Component {
                           }
                         }}
                       />
-                      {/*******center button*******/}
+                       search box *******/}
+
+                      {/*******center button
                       <div
                         className="centerMapButton"
                         onClick={() => {
@@ -400,6 +400,7 @@ class MapContainer extends React.Component {
                           });
                         }}
                       />
+                    center button*******/}
 
                       {this.state.dropPinInCurrentLocationButtonIsVisible && (
                         <button
@@ -434,12 +435,10 @@ class MapContainer extends React.Component {
                               })
                             }}
                           >
-                            {' '}
-                            Close X{' '}
                           </div>
-                          Pin my current location
                         </button>
                       )}
+
                     </div>
                   )}
                 </div>
@@ -447,22 +446,6 @@ class MapContainer extends React.Component {
               </div>
             </div>
           </MapContainerDown>
-          <Footer>
-            <FooterElement
-              href="http://angeliki.herokuapp.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Developed by Angeliki Patrinou &
-            </FooterElement>
-            <FooterElement
-              href="https://github.com/danielarielS"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Daniel Ariel
-            </FooterElement>
-          </Footer>
         </ContainerMap>
         {this.state.addNewPinIsVisible && (
           <AddNewPin

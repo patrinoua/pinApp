@@ -9,7 +9,7 @@ a {
 }
 
 .pinAppStyle {
-    color: #b52519;
+    color: #d20607;
     font-family: 'Pacifico', cursive;
 }
 
@@ -163,7 +163,7 @@ body {
 }
 
 .categoryItem {
-    margin: 0.5vh 0;
+    margin: 10px 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -793,12 +793,12 @@ body {
 }
 
 .pinAppButton {
-    background-color: #b52519;
+    background-color: #d20607;
     color: white;
     border-radius: 30px;
     font-size: 110%;
-    box-shadow: inset -20px 0px 8px 0px rgba(0, 0, 0, 0.2);
-    width: 15vh;
+    box-shadow: inset -3px -4px 10px 0px rgba(0, 0, 0, 0.2);
+    width: 100px;
     border: 2px solid white;
     font-family: Roboto;
     font-weight: 500;
@@ -949,11 +949,10 @@ button:hover {
     opacity: 0.6;
 }
 #exitAddCurrentLocationButton{
-    position: absolute;
-    z-index: 20;
-    right: 0px;
-    top: -10px;
-    color: lightgrey;
+      position: absolute;
+      z-index: 10;
+      width: 100vh;
+      height: 100vw;
 }
 #exitAddCurrentLocationButton:hover{
     cursor: pointer;
@@ -1000,7 +999,7 @@ button:hover {
     font-size: 0.8em;
     line-height: 20pt;
     border: 3px solid white;
-    background-color: #b52519;
+    background-color: #d20607;
 }
 
 #searchboxInputField {
@@ -1021,7 +1020,15 @@ button:hover {
 .selectedCategory{
     color: grey;
 }
-
+@media only screen and (max-width:700px) {
+    .pinAppButton {
+        font-size: 0.9em;
+        padding: auto;
+        border: auto;
+        font-weight: 500;
+        margin: 0;
+    }
+}
 @media only screen and (max-width:400px) {
     h1 {
         font-size: 1.5em;
@@ -1051,9 +1058,10 @@ button:hover {
     }
     .mapContainerRight {
         width: 100%;
+        margin: 0;
     }
     .mapContainerRightDOWN {
-        height: 84%;
+        height: 100%;
     }
     .otherUserContainerUp {
         height: 30%;
