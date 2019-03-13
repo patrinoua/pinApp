@@ -1058,7 +1058,7 @@ button:hover {
     }
     .mapContainerRight {
         width: 100%;
-        margin: 0;
+        margin: 5px;
     }
     .mapContainerRightDOWN {
         height: 100%;

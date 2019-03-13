@@ -14,15 +14,10 @@ export const Container = styled.div`
 `
 export const ContainerMap = styled.div`
   position: absolute;
-  width: 100%;
+  width: 97%;
   top: 60px;
   height: 85%;
-  @media (max-width: 700px) {
-    height: 100%;
-  }
-  @media (max-height: 400px) {
-    height: 85%;
-  }
+  margin: 5px;
 `
 export const BlackVail = styled.div`
   margin: 0;
