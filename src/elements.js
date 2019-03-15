@@ -73,7 +73,8 @@ export const XIcon = styled.p`
     opacity: .9;
   }
   @media (max-width: 700px) {
-    top: 40px;
+    position: fixed;
+    top: 30px;
   }
 `
 export const Footer = styled.div`
