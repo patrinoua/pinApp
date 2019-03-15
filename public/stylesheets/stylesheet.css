@@ -394,8 +394,8 @@ body {
 }
 
 .profilePicUser {
-    min-width: 85px;
-    min-height: 85px;
+    min-width: 65px;
+    min-height: 65px;
     width: 15vh;
     height: 15vh;
     max-width: 150px;
@@ -418,7 +418,7 @@ body {
 .nameAndBioContainerUser {
     position: relative;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
     padding-left: 2vh;
@@ -1067,7 +1067,9 @@ button:hover {
         height: 30%;
     }
     .profilePicUser {
-        margin: 1.5vh;
+        margin: 10px;
+        width: 40px;
+        height: 40px;
     }
     .otherUserContainerFriendshipButton {
         position: relative;
@@ -1088,6 +1090,7 @@ button:hover {
     }
     .categoryListUser {
         width: 60%;
+        display: none;
     }
     .categoryListUser #myForm {
         display: flex;
