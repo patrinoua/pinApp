@@ -27,7 +27,6 @@ export default class Header extends React.Component {
     this.closeListComponent = this.closeListComponent.bind(this)
   }
   showListComponent(e) {
-    console.log('ooooppppp')
     this.setState({
       showListComponent: true
     })

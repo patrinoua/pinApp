@@ -26,7 +26,7 @@ class MapContainer extends React.Component {
       pinClickVisible: false,
       mapHasBinClicked: false,
       showListComponent: false,
-      dropPinInCurrentLocationButtonIsVisible: true,
+      currentLocationPinIsVisible: true,
       showThePop: true
     }
     this.closeListComponent = this.closeListComponent.bind(this)
@@ -314,18 +314,20 @@ class MapContainer extends React.Component {
                     <Map
                       style={style}
                       initialCenter={{
-                        lat: this.props.lat,
-                        lng: this.props.lng
+                        lat: this.state.lat || this.props.lat,
+                        lng: this.state.lng || this.props.lng
                         // lat: 52.4918854,
                         // lng: 13.360088699999999
                       }}
-                      center={{
-                        lat: this.state.lat || this.props.lat,
-                        lng: this.state.lng || this.props.lng
-                      }}
+
                       zoom={14}
                       google={this.props.google}
                       onClick={this.mapClicked}
+                      onDragend={e=>{
+                        this.setState({
+                        currentLocationPinIsVisible: false
+                        })
+                    }}
                       onReady={this.fetchPlaces}
                       visible={true}
                     >
@@ -401,44 +403,22 @@ class MapContainer extends React.Component {
                         }}
                       />
                     center button*******/}
-
-                      {this.state.dropPinInCurrentLocationButtonIsVisible && (
-                        <button
-                          id="dropPinInCurrentLocationButton"
-                          className="pinAppButton inARow"
-                          onClick={() => {
-                            this.forceUpdate()
-                            this.setState({
-                              addMyPinLocationVisible: !this.state
-                                .addMyPinLocationVisible
-                            })
-                          }}
-                        >
+                      {this.state.currentLocationPinIsVisible && (
                           <img
+                          id = "dropPinInCurrentLocationButton"
                             src="pins/bigPin.png"
                             alt="bigPin"
                             className="pinMyCurrentLocationPin"
                             onClick={() => {
+                              this.forceUpdate()
                               this.setState({
-                                dropPinInCurrentLocationButtonIsVisible: !this
-                                  .state.dropPinInCurrentLocationButtonIsVisible
+                                currentLocationPinIsVisible: !this
+                                  .state.currentLocationPinIsVisible,
+                                  addMyPinLocationVisible: !this.state.addMyPinLocationVisible
                               })
                             }}
                           />
-                          <div
-                            id="exitAddCurrentLocationButton"
-                            onClick={e => {
-                              e.stopPropagation()
-                              this.setState({
-                                dropPinInCurrentLocationButtonIsVisible: !this
-                                  .state.dropPinInCurrentLocationButtonIsVisible
-                              })
-                            }}
-                          >
-                          </div>
-                        </button>
                       )}
-
                     </div>
                   )}
                 </div>

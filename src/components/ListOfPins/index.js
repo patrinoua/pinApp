@@ -73,32 +73,34 @@ class ListOfPins extends React.Component {
                 {!this.props.first && 'my Pins'}
               </ListTitle>
               {this.props.markersArray &&
-                this.props.markersArray.map(item => {
-                  return (
-                    <EachPin
-                      key={item.id}
-                      onClick={() => {
-                        this.setState({
-                          clickedPinId: item.id,
-                          lat: item.lat,
-                          lng: item.lng
-                        })
-                        this.props.closeListComponent
-                      }}
-                    >
-                      <PinImage
-                        className="thePinImg"
-                        alt="thePinImg"
-                        src={item.color}
-                      />
-                      <span> {item.title} </span>
-                      <Description> {item.description} </Description>
-                      <Date>
-                        {item.created_at}
-                      </Date>
-                    </EachPin>
+                this.props.markersArray.map(item => (
+                    <React.Fragment>
+                      <EachPin
+                        key={item.id}
+                        onClick={() => {
+                          this.setState({
+                            clickedPinId: item.id,
+                            lat: item.lat,
+                            lng: item.lng
+                          })
+                          this.props.closeListComponent
+                        }}
+                      >
+                        <PinImage
+                          className="thePinImg"
+                          alt="thePinImg"
+                          src={item.color}
+                        />
+                        <span> {item.title} </span>
+                        <Description> {item.description} </Description>
+                        <Date>
+                          {item.created_at}
+                        </Date>
+                      </EachPin>
+                      <hr />
+                    </React.Fragment>
                   )
-                })}
+                )}
             </ListSmallHolder>
           </ListOfLocationsHolder>
         </ListOfPinsContainer>

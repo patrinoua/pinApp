@@ -261,7 +261,6 @@ body {
 #dropPinInCurrentLocationButton{
     position: absolute;
     font-size: 13px;
-    width: 128px;
     background: none;
     border: none;
     box-shadow: none;
