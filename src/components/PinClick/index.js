@@ -5,7 +5,7 @@ import {deletePin} from '../../actions'
 import {updatePinInfo} from '../../actions'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {ModalContainer, BlackVail, XIcon} from '../../elements.js'
-import {EditPinField} from '../AddNewPin/elements.js'
+import {EditPinField, TitleAndDescription} from '../AddNewPin/elements.js'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -396,10 +396,10 @@ class PinClick extends React.Component {
                 </PinClickRow>
               )) || (
                 <PinClickRow>
-                  <div className="colPinClick ">
+                  <TitleAndDescription>
                     <div>{currentPinInfo[0].title || 'Title'}</div>
                     <div>{currentPinInfo[0].description || 'Description'}</div>
-                  </div>
+                  </TitleAndDescription>
                   {shareButtons()}
                 </PinClickRow>
               )}

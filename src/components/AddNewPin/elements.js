@@ -154,7 +154,6 @@ export const CameraIconContainer = styled.div`
 `
 export const TitleAndDescription = styled.div`
   width: 90%;
-  margin: 10px;
   position: relative;
 `
 export const EditPinField = styled.textarea`

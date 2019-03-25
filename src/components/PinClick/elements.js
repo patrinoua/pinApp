@@ -7,6 +7,9 @@ export const PinClickFieldsContainer = styled(FieldsContainer)`
   grid-template-columns: 1fr;
   z-index: 20;
   position: relative;
+  @media (max-width: 700px){
+    grid-template-rows: 25% 30% 17% 7%;
+  }
 `
 
 export const PinTitle = styled.div`
@@ -15,7 +18,9 @@ export const PinTitle = styled.div`
   z-index: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  @media (max-width: 700px){
+    align-items: flex-end;
+  }
 `
 export const PinTitleText = styled.h2`
   margin-left: 20px;
