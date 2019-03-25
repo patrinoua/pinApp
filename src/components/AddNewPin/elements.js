@@ -92,7 +92,22 @@ export const PinTitle = styled.span`
   font-size: 2em;
   color: ${lettersColor};
 `
-export const SaveButton = styled.button`
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+export const PinAppButton = styled.button`
+  background: lightgreen;
+  color: white;
+  /* color: ${lettersColor}; */
+  border: none;
+  border-radius: 20px;
+  width: 120px;
+  height: 40px;
+  margin: 0;
+`
+export const SaveButton = styled(PinAppButton)`
   font-size: 1.5em;
   margin: 20px;
   font-family: 'Pacifico', cursive;
@@ -100,6 +115,7 @@ export const SaveButton = styled.button`
   color: ${lettersColor};
   border: none;
 `
+
 export const SaveCancelArea = styled.div`
   height: 100%;
   display: flex;
@@ -123,7 +139,6 @@ export const CloseModalX = styled.button`
 export const PinMenu = styled.div`
   height: 100%;
   position: relative;
-  left: 3vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

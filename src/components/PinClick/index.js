@@ -5,7 +5,7 @@ import {deletePin} from '../../actions'
 import {updatePinInfo} from '../../actions'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {ModalContainer, BlackVail, XIcon} from '../../elements.js'
-import {EditPinField, TitleAndDescription} from '../AddNewPin/elements.js'
+import {EditPinField, TitleAndDescription, ButtonContainer, PinAppButton} from '../AddNewPin/elements.js'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -161,15 +161,14 @@ class PinClick extends React.Component {
     } else {
       const shareButtons = () => {
         return (
-          <div className="colPinClick">
-            <button
-              className="pinAppButton"
+          <ButtonContainer>
+            <PinAppButton
               onClick={() => {
                 this.exportPin()
               }}
             >
               Copy Link
-            </button>
+            </PinAppButton>
             {this.state.pinUrl && (
               <div className="copyUrlVail">
                 <div
@@ -188,7 +187,7 @@ class PinClick extends React.Component {
                 </div>
               </div>
             )}
-          </div>
+          </ButtonContainer>
         )
       }
       const deleteAlert = () => {
@@ -368,7 +367,6 @@ class PinClick extends React.Component {
                     <div className="textFieldsPinClick">
                       <EditPinField
                         placeholder={currentPinInfo[0].title || 'Title'}
-                        className="titleTextareaPinClick"
                         type="text"
                         name="title"
                         rows="1"
@@ -378,7 +376,6 @@ class PinClick extends React.Component {
                         placeholder={
                           currentPinInfo[0].description || 'Description'
                         }
-                        className="descriptionTextareaPinClick"
                         type="text"
                         name="description"
                         onChange={this.handleChange}

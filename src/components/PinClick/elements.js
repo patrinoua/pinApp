@@ -20,6 +20,7 @@ export const PinTitle = styled.div`
   justify-content: center;
   @media (max-width: 700px){
     align-items: flex-end;
+    height: 80%;
   }
 `
 export const PinTitleText = styled.h2`
@@ -32,7 +33,9 @@ export const PinTitleText = styled.h2`
 export const PinClickRow = styled.div`
   width: 90%;
   display: grid;
+  height: 100%;
   grid-template-columns: 1fr 1fr;
+  justify-items: center;
 `
 export const PinClickSecondRow = styled(PinClickRow)`
   height: 90%;
