@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {getUserPins, selectActionBycategory} from './actions'
 import PinClick from './components/PinClick'
-import AddNewPin from './AddNewPinnnn'
+import AddNewPin from './components/AddNewPin'
 import {
   ContainerMap,
   MapContainerDown,
@@ -28,7 +28,7 @@ class MapContainer extends React.Component {
       activeMarker: {},
       selectedPlace: {},
       showingInfoWindow: false,
-      addNewPinIsVisible: false,
+      addNewPinIsVisible: true,
       clickedPinId: null,
       pinClickVisible: false,
       mapHasBinClicked: false,

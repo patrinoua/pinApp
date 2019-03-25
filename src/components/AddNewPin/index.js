@@ -1,6 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {insertPinInfo} from './actions'
+import {insertPinInfo} from '../../actions'
+import {BlackVail} from '../../elements'
+import {NewPinContainer,
+  FieldsContainerNewPin,
+  PinCategory,
+  PinCheckboxArea,
+  PinCheckbox,
+  PinIcon,
+  PinText,
+  PinTitleArea,
+  PinTitle,
+  SaveButton,
+  SaveCancelArea,
+  CloseModalX,
+  AddPinPicture,
+  CameraIconContainer,
+  TitleAndDescription,
+  EditPinField,
+} from './elements'
 
 class AddNewPin extends React.Component {
   constructor(props) {
@@ -87,17 +105,15 @@ class AddNewPin extends React.Component {
     const category = (color, text, variable) => {
       let str = '/pins/' + color + 'Pin.png'
       return (
-        <div className="pinCategory">
-          <div className="pinCheckBox">
-            <img
-              src="/pins/checkbox.png"
-              className="icons"
+        <PinCategory>
+          <PinCheckboxArea>
+            <PinCheckbox
+              src="/pins/checkboxBlack.png"
               alt="checkbox"
               name={variable}
               onClick={this.checkValue}
             />
-            <img src={str} className="pinIcon" alt="pinIcon" />
-
+            <PinIcon src={str} alt="pinIcon" />
             {this.state.holder === variable && (
               <img
                 src="/pins/pinkTick.png"
@@ -105,29 +121,28 @@ class AddNewPin extends React.Component {
                 alt="tickIcon"
               />
             )}
-          </div>
-          <div className="pinText">
+          </PinCheckboxArea>
+          <PinText>
             <label>{text}</label>
-          </div>
-        </div>
+          </PinText>
+        </PinCategory>
       )
     }
 
     return (
       <React.Fragment>
-        <div className="newPinContainer">
-          <div
-            className="blackVail"
+        <NewPinContainer>
+          <BlackVail
             onClick={this.props.closeAddNewPinComponent}
           />
-          <div className="fieldsContainer fieldsContainerNewPin">
-            <p id="exitNewPin" onClick={this.props.closeAddNewPinComponent}>
+          <FieldsContainerNewPin>
+            <CloseModalX onClick={this.props.closeAddNewPinComponent}>
               X
-            </p>
-            <div className="pinTitle box">
+            </CloseModalX>
+            <PinTitleArea>
               <img src="/pins/bigPin.png" alt="bigPin" />
-              <span className="addPinTitle pinTitle"> New Pin</span>
-            </div>
+              <PinTitle>New Pin</PinTitle>
+            </PinTitleArea>
             <div className="pinOptions">
               <div className="pinMenu">
                 <form>
@@ -138,9 +153,9 @@ class AddNewPin extends React.Component {
                   {category('purple', 'Sightseeing', 'sightseeing')}
                 </form>
               </div>
-              <div className="addPinPicture">
+              <AddPinPicture>
                 {(!this.state.dataUrl && (
-                  <div className="cameraIconContainer">
+                  <CameraIconContainer>
                     <input
                       id="inputfile"
                       className="inputfile"
@@ -160,10 +175,9 @@ class AddNewPin extends React.Component {
                         alt="cameraIcon"
                       />
                     </label>
-                  </div>
+                  </CameraIconContainer>
                 )) || (
-                  <div
-                    className="cameraIconContainer"
+                  <CameraIconContainer
                     style={{
                       backgroundColor: 'black'
                     }}
@@ -179,40 +193,36 @@ class AddNewPin extends React.Component {
                         zIndex: '50'
                       }}
                     />
-                  </div>
+                  </CameraIconContainer>
                 )}
-
-                <textarea
-                  placeholder="Title"
-                  className="titleTextarea"
-                  type="text"
-                  name="title"
-                  rows="1"
-                  onChange={this.handleChange}
-                />
-                <textarea
-                  placeholder="Add Description"
-                  className="descriptionTextarea"
-                  type="text"
-                  name="description"
-                  onChange={this.handleChange}
-                  rows="3"
-                />
-              </div>
+                <TitleAndDescription>
+                  <EditPinField
+                    placeholder="Title"
+                    type="text"
+                    name="title"
+                    rows="1"
+                    onChange={this.handleChange}
+                  />
+                  <EditPinField
+                    placeholder="Add Description"
+                    type="text"
+                    name="description"
+                    onChange={this.handleChange}
+                    rows="3"
+                  />
+                </TitleAndDescription>
+              </AddPinPicture>
             </div>
-            <div className="pinDescription inARow">
-              <h1 className="saveButton" onClick={this.insertPinInfos}>
+            <SaveCancelArea>
+              <SaveButton onClick={this.insertPinInfos}>
                 Save
-              </h1>
-              <h1
-                className="saveButton"
-                onClick={this.props.closeAddNewPinComponent}
-              >
+              </SaveButton>
+              <SaveButton onClick={this.props.closeAddNewPinComponent}>
                 Cancel
-              </h1>
-            </div>
-          </div>
-        </div>
+              </SaveButton>
+            </SaveCancelArea>
+          </FieldsContainerNewPin>
+        </NewPinContainer>
       </React.Fragment>
     )
   }
