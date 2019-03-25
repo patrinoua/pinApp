@@ -19,6 +19,37 @@ export const ContainerMap = styled.div`
   height: 85%;
   margin: 5px;
 `
+export const MapContainerLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+export const MapContainerRight = styled.div`
+  min-width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin: 0 5vw;
+  position: relative;
+  @media (max-width: 400px) {
+    width: 100%;
+    margin: 5px;
+  }
+`
+export const CategoryList = styled.div`
+  width: 25vw;
+  margin: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 400px) {
+    display: none;
+  }
+`
 export const BlackVail = styled.div`
   margin: 0;
   width: 100vw;

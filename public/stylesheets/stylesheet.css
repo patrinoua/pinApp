@@ -146,13 +146,6 @@ body {
     letter-spacing: 0.12em;
 }
 
-.mapContainerLeft {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .categoryList {
     width: 25vw;
     margin: 10px;

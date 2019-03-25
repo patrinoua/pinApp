@@ -4,7 +4,14 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {getUserPins, selectActionBycategory} from './actions'
 import PinClick from './components/PinClick'
 import AddNewPin from './AddNewPinnnn'
-import {ContainerMap, MapContainerDown, MapInfoText, PopUpShare, Footer, FooterElement} from './elements'
+import {
+  ContainerMap,
+  MapContainerDown,
+  PopUpShare,
+  MapContainerLeft,
+  MapContainerRight,
+  CategoryList
+} from './elements'
 //na diagrapsw to ListOfLocations.js
 
 class MapContainer extends React.Component {
@@ -232,8 +239,8 @@ class MapContainer extends React.Component {
           )}
         <ContainerMap>
           <MapContainerDown>
-            <div className="mapContainerLeft">
-              <div className="categoryList">
+            <MapContainerLeft>
+              <CategoryList>
                 <form id="myForm">
                   {this.categoryItems(
                     'blue',
@@ -272,39 +279,34 @@ class MapContainer extends React.Component {
                 >
                   My pins
                 </button>
-              </div>
-            </div>
-            <div className="mapContainerRight">
+              </CategoryList>
+            </MapContainerLeft>
+            <MapContainerRight>
               {/*<div className="mapContainerRightUP">
-                                <div className="inARow">
-                                    <button
-                                        className="pinAppButton"
-                                        onClick={this.watchMyLocation}>
-                                        my location
-                                    </button>
-                                    <button
-                                        className="pinAppButton"
-                                        onClick={() => {
-                                            console.log("bbbbb");
-                                            this.forceUpdate();
-                                        }}
-                                    >
-                                        center map
-                                    </button>
-                                </div>
-                            </div>*/}
-              <div className="newPinContainerRightUp">
-
-              </div>
+                  <div className="inARow">
+                      <button
+                          className="pinAppButton"
+                          onClick={this.watchMyLocation}>
+                          my location
+                      </button>
+                      <button
+                          className="pinAppButton"
+                          onClick={() => {
+                              console.log("bbbbb");
+                              this.forceUpdate();
+                          }}
+                      >
+                          center map
+                      </button>
+                  </div>
+                </div>*/}
               <div className="mapContainerRightDOWN">
-                {/*<div className="mapAreaContainer">*/}
-
                 {/*<button
-                                    className="pinAppButton roundButton dropPinButton"
-                                    onClick={this.toggleAddNewPinComponent}
-                                >
-                                    Drop pin
-                                </button>*/}
+                    className="pinAppButton roundButton dropPinButton"
+                    onClick={this.toggleAddNewPinComponent}
+                >
+                    Drop pin
+                </button>*/}
 
                 <div className="mapArea">
                   {!this.props.lat && (
@@ -422,9 +424,8 @@ class MapContainer extends React.Component {
                     </div>
                   )}
                 </div>
-                {/*</div>*/}
               </div>
-            </div>
+            </MapContainerRight>
           </MapContainerDown>
         </ContainerMap>
         {this.state.addNewPinIsVisible && (
