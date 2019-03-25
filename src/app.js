@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
-import MapContainer from './ContainerOfMap'
+import MapContainer from './MapContainer'
 import {connect} from 'react-redux'
 import axios from './axios'
 import {ProfilePage, UploadProfilePic} from './profile'
