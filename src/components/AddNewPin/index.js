@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {insertPinInfo} from '../../actions'
-import {BlackVail} from '../../elements'
-import {NewPinContainer,
+import {ModalContainer, BlackVail} from '../../elements'
+import {
   FieldsContainerNewPin,
   PinCategory,
   PinCheckboxArea,
@@ -18,6 +18,8 @@ import {NewPinContainer,
   CameraIconContainer,
   TitleAndDescription,
   EditPinField,
+  PinOptions,
+  PinMenu
 } from './elements'
 
 class AddNewPin extends React.Component {
@@ -131,7 +133,7 @@ class AddNewPin extends React.Component {
 
     return (
       <React.Fragment>
-        <NewPinContainer>
+        <ModalContainer>
           <BlackVail
             onClick={this.props.closeAddNewPinComponent}
           />
@@ -143,8 +145,8 @@ class AddNewPin extends React.Component {
               <img src="/pins/bigPin.png" alt="bigPin" />
               <PinTitle>New Pin</PinTitle>
             </PinTitleArea>
-            <div className="pinOptions">
-              <div className="pinMenu">
+            <PinOptions>
+              <PinMenu>
                 <form>
                   {category('blue', 'Museum', 'museums')}
                   {category('green', 'Park', 'parks')}
@@ -152,7 +154,7 @@ class AddNewPin extends React.Component {
                   {category('pink', 'Bar', 'bars')}
                   {category('purple', 'Sightseeing', 'sightseeing')}
                 </form>
-              </div>
+              </PinMenu>
               <AddPinPicture>
                 {(!this.state.dataUrl && (
                   <CameraIconContainer>
@@ -212,7 +214,7 @@ class AddNewPin extends React.Component {
                   />
                 </TitleAndDescription>
               </AddPinPicture>
-            </div>
+            </PinOptions>
             <SaveCancelArea>
               <SaveButton onClick={this.insertPinInfos}>
                 Save
@@ -222,7 +224,7 @@ class AddNewPin extends React.Component {
               </SaveButton>
             </SaveCancelArea>
           </FieldsContainerNewPin>
-        </NewPinContainer>
+        </ModalContainer>
       </React.Fragment>
     )
   }

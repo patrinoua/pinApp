@@ -1,23 +1,6 @@
 import styled from 'styled-components'
+import {FieldsContainer} from '../AddNewPin/elements'
 
-export const FieldsContainer = styled.div`
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  width: 70vw;
-  height: 70vh;
-  max-width: 500px;
-  max-height: 400px;
-  background-color: #2d2c29;
-  border-radius: 20px;
-  color: white;
-  box-shadow: 1px 2px 4px 1px lightgrey;
-  top: 0;
-  z-index: 10;
-  @media (max-width: 700px) {
-    width: 100%;
-  }
-`
 export const PinClickFieldsContainer = styled(FieldsContainer)`
   justify-items: center;
   grid-template-rows: 15% 50% 20% 15%;

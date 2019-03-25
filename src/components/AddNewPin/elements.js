@@ -4,19 +4,8 @@ import Colors from '../../constants/colors'
 const lettersColor = Colors.darkGray;
 const backgroundColor = Colors.white;
 
-export const NewPinContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  animation: fadein 1s;
-  z-index: 10;
-`
 export const FieldsContainer = styled.div`
+  display: grid;
   align-items: center;
   justify-content: center;
   width: 70vw;
@@ -25,9 +14,8 @@ export const FieldsContainer = styled.div`
   max-height: 400px;
   background-color: ${backgroundColor};
   border-radius: 2px;
-  box-shadow: 1px 1px 11px -4px black;
+  box-shadow: 1px 1px 11px -4px lightgrey;
   z-index: 10;
-  color: white;
   @media (max-width: 700px) {
     width:100%;
     height: 100%;
@@ -38,10 +26,9 @@ export const FieldsContainer = styled.div`
   }
 `
 export const FieldsContainerNewPin = styled(FieldsContainer)`
-  display: grid;
+  position: relative;
   grid-template-rows: 20% 60% 20%;
   grid-template-columns: 1fr;
-  position: relative;
   @media (max-width: 700px){
     grid-template-rows: 25% 50% 25%;
   }
@@ -93,13 +80,11 @@ export const PinIcon = styled.img`
 `
 export const PinTitleArea = styled.div`
   display: flex;
-  align-items: center;
+  height: 100%;
+  align-items: flex-end;
   justify-content: center;
   position: relative;
-  // /*  THIS IS NEW - it used to be center!*/
-  // width: 100%;
-  // height: 100%;
-  // position: relative;
+  padding-bottom: 20px;
   // z-index: 12;
 `
 export const PinTitle = styled.span`
@@ -125,17 +110,24 @@ export const CloseModalX = styled.button`
   background: none;
   border: none;
   position: absolute;
-  right: 30px;
-  top: 30px;
+  right: 20px;
+  top: 20px;
   color: black;
   font-size: 20px;
   z-index: 100;
-  @media (max-width: 400px){
+  @media (max-width: 700px){
     right: 20px;
     top: 20px;
   }
 `
-
+export const PinMenu = styled.div`
+  height: 100%;
+  position: relative;
+  left: 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
 export const AddPinPicture = styled.div`
   display: flex;
   flex-direction: column;
@@ -143,6 +135,13 @@ export const AddPinPicture = styled.div`
   align-items: center;
   position: relative;
 `
+export const PinOptions = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+  justify-items: center;
+`
+
 export const CameraIconContainer = styled.div`
   width: 110px;
   height: 110px;

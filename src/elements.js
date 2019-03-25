@@ -12,6 +12,19 @@ export const Container = styled.div`
   left: 0;
   z-index: 20;
 `
+
+export const ModalContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  animation: fadein 1s;
+  z-index: 10;
+`
 export const ContainerMap = styled.div`
   position: absolute;
   width: 97%;

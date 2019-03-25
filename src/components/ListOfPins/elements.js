@@ -51,9 +51,8 @@ export const EachPin = styled.div`
   grid-template-columns: 10% 25% 40% 25%;
   align-items: center;
   grid-column-gap: 0.5vw;
-  margin-top: 2vw;
-  margin-bottom: 1vw;
-  border-radius: 20px;
+  border-radius: 2px;
+  border-bottom: 1px solid #f5f5f5;
   &:hover{
     cursor: pointer;
     background-color: #f5f5f5;

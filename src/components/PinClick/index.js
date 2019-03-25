@@ -4,7 +4,8 @@ import axios from '../../axios'
 import {deletePin} from '../../actions'
 import {updatePinInfo} from '../../actions'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import {Container, BlackVail, XIcon} from '../../elements.js'
+import {ModalContainer, BlackVail, XIcon} from '../../elements.js'
+import {EditPinField} from '../AddNewPin/elements.js'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -24,7 +25,7 @@ class PinClick extends React.Component {
       editMode: false,
       title: '',
       url: '',
-      deleteAlertIsVisible: false
+      deleteAlertIsVisible: false,
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
@@ -158,7 +159,6 @@ class PinClick extends React.Component {
     if (!this.state.ready && !this.props.markersArray.length > 0) {
       return <div>not ready</div>
     } else {
-
       const shareButtons = () => {
         return (
           <div className="colPinClick">
@@ -191,7 +191,6 @@ class PinClick extends React.Component {
           </div>
         )
       }
-
       const deleteAlert = () => {
         return (
           <div className="blackVailDelete">
@@ -217,13 +216,12 @@ class PinClick extends React.Component {
           </div>
         )
       }
-
       let currentPinInfo = []
-
       if (this.props.pinId) {
         currentPinInfo = this.props.markersArray.filter(item => {
           return item.id === this.props.pinId
         })
+
       } else if (this.props.flag) {
         currentPinInfo.push({
           title: this.state.title,
@@ -236,7 +234,6 @@ class PinClick extends React.Component {
       } else {
         currentPinInfo = [this.state]
       }
-
       let imageUrl
       if (currentPinInfo[0].url || currentPinInfo[0].color) {
         imageUrl = currentPinInfo[0].url || currentPinInfo[0].color
@@ -244,8 +241,9 @@ class PinClick extends React.Component {
         imageUrl = '/pins/greyPin.png'
       }
 
-      const edit = () => {
-        if (this.state.userId === this.props.id) {
+      const editButton = () => {
+        const userCanEdit = this.state.userId === this.props.id
+        if (userCanEdit) {
           return (
             <div className="pinEditSaveButtonArea box">
               <h1 className="saveButton" onClick={this.toggleEditMode}>
@@ -265,10 +263,9 @@ class PinClick extends React.Component {
       } else {
         bigPin = '/pins/bigPin.png'
       }
-
       return (
         <React.Fragment>
-          <Container>
+          <ModalContainer>
             <BlackVail onClick={this.togglePinClick} />
             <PinClickFieldsContainer>
               <XIcon onClick={this.togglePinClick}>
@@ -362,12 +359,14 @@ class PinClick extends React.Component {
                   )}
                 </div>
               </PinClickSecondRow>
+
+
               {/* *******************THIRD ROW**********************/}
               {(this.state.editMode && (
                 <PinClickRow>
                   <div className="colPinClick">
                     <div className="textFieldsPinClick">
-                      <textarea
+                      <EditPinField
                         placeholder={currentPinInfo[0].title || 'Title'}
                         className="titleTextareaPinClick"
                         type="text"
@@ -375,7 +374,7 @@ class PinClick extends React.Component {
                         rows="1"
                         onChange={this.handleChange}
                       />
-                      <textarea
+                      <EditPinField
                         placeholder={
                           currentPinInfo[0].description || 'Description'
                         }
@@ -416,9 +415,19 @@ class PinClick extends React.Component {
                   {this.state.deleteAlertIsVisible && deleteAlert()}
                 </div>
               )}{' '}
-              {!this.state.editMode && edit()}
+              {!this.state.editMode && editButton()}
+
+              {/*{this.state.addNewPinIsVisible && (
+                <AddNewPin
+                  lat={123}
+                  lng={123}
+                  pinId={1}
+                  closeAddNewPinComponent={()=>{}}
+                />
+              )}*/}
+
             </PinClickFieldsContainer>
-          </Container>
+          </ModalContainer>
         </React.Fragment>
       )
     }

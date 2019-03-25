@@ -37,7 +37,7 @@ class ListOfLocations extends React.Component {
     // )}
   }
   render() {
-    // console.log("this.props.first in list of locations", this.props.first);
+    console.log("this.props.first in list of locations", this.props.first);
     // console.log('this.state',this.state);
 
     return (

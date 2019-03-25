@@ -28,7 +28,7 @@ class MapContainer extends React.Component {
       activeMarker: {},
       selectedPlace: {},
       showingInfoWindow: false,
-      addNewPinIsVisible: true,
+      addNewPinIsVisible: false,
       clickedPinId: null,
       pinClickVisible: false,
       mapHasBinClicked: false,
