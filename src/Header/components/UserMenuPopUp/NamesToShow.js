@@ -1,6 +1,8 @@
 import React from 'react'
-import axios from './axios'
+import axios from '../../../axios'
 import {Link} from 'react-router-dom'
+import {Textarea} from '../../../elements.js'
+
 
 export class NamesToShow extends React.Component {
   constructor(props) {
@@ -41,7 +43,7 @@ export class NamesToShow extends React.Component {
     return (
       <React.Fragment>
         <div className="dropDownMenuItem" onClick={this.search}>
-          Search
+        People
           <img
             src="/search.png"
             alt="search"
@@ -54,12 +56,12 @@ export class NamesToShow extends React.Component {
         </div>
         {this.state.showTextArea && (
           <div id="searchUsersBox">
-            <textarea
+            <Textarea
               rows="2"
               cols="15"
               name="name"
               onChange={this.handleChange}
-              placeholder="name?"
+              placeholder="Name"
             />
             {this.state.showNames && (
               <ListOfNames

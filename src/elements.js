@@ -25,6 +25,14 @@ export const ModalContainer = styled.div`
   animation: fadein 1s;
   z-index: 10;
 `
+export const Textarea = styled.textarea`
+  margin-top: 10px;
+  resize: none;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  padding: 5px;
+`
+
 export const ContainerMap = styled.div`
   position: absolute;
   width: 97%;

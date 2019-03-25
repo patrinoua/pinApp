@@ -171,10 +171,3 @@ export const TitleAndDescription = styled.div`
   width: 90%;
   position: relative;
 `
-export const EditPinField = styled.textarea`
-  margin-top: 10px;
-  resize: none;
-  border: 1px solid lightgray;
-  border-radius: 2px;
-  padding: 5px;
-`

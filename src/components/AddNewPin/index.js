@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {insertPinInfo} from '../../actions'
-import {ModalContainer, BlackVail} from '../../elements'
+import {ModalContainer, BlackVail, Textarea,} from '../../elements'
 import {
   FieldsContainerNewPin,
   PinCategory,
@@ -17,7 +17,6 @@ import {
   AddPinPicture,
   CameraIconContainer,
   TitleAndDescription,
-  EditPinField,
   PinOptions,
   PinMenu
 } from './elements'
@@ -198,14 +197,14 @@ class AddNewPin extends React.Component {
                   </CameraIconContainer>
                 )}
                 <TitleAndDescription>
-                  <EditPinField
+                  <Textarea
                     placeholder="Title"
                     type="text"
                     name="title"
                     rows="1"
                     onChange={this.handleChange}
                   />
-                  <EditPinField
+                  <Textarea
                     placeholder="Add Description"
                     type="text"
                     name="description"

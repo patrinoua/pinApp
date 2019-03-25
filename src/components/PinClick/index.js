@@ -4,8 +4,8 @@ import axios from '../../axios'
 import {deletePin} from '../../actions'
 import {updatePinInfo} from '../../actions'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import {ModalContainer, BlackVail, XIcon} from '../../elements.js'
-import {EditPinField, TitleAndDescription, ButtonContainer, PinAppButton} from '../AddNewPin/elements.js'
+import {ModalContainer, BlackVail, XIcon, Textarea,} from '../../elements.js'
+import {TitleAndDescription, ButtonContainer, PinAppButton} from '../AddNewPin/elements.js'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -365,14 +365,14 @@ class PinClick extends React.Component {
                 <PinClickRow>
                   <div className="colPinClick">
                     <div className="textFieldsPinClick">
-                      <EditPinField
+                      <Textarea
                         placeholder={currentPinInfo[0].title || 'Title'}
                         type="text"
                         name="title"
                         rows="1"
                         onChange={this.handleChange}
                       />
-                      <EditPinField
+                      <Textarea
                         placeholder={
                           currentPinInfo[0].description || 'Description'
                         }

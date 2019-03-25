@@ -27,7 +27,6 @@ export const DropDownMenu = styled.div`
 export const DropDownMenuLinkItem = styled(Link)`
   color: #2a2a2a;
   padding: 5px;
-  font-weight: 900;
   &:hover{
     color: #51B3C4;
     cursor: pointer;
@@ -36,7 +35,6 @@ export const DropDownMenuLinkItem = styled(Link)`
 export const DropDownMenuItem = styled.a`
   color: #2a2a2a;
   padding: 5px;
-  font-weight: 900;
   &:hover{
     color: #51B3C4;
     cursor: pointer;

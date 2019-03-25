@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {NamesToShow} from '../../../NamesToShow'
+import {NamesToShow} from './NamesToShow'
 import {DropDownMenu, DropDownMenuLinkItem, DropDownMenuItem} from './elements'
 
 export default class UserMenuPopUp extends React.Component {
