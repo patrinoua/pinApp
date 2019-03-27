@@ -1,17 +1,21 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import axios from '../../axios'
-import {deletePin} from '../../actions'
-import {updatePinInfo} from '../../actions'
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import {ModalContainer, BlackVail, XIcon, Textarea,} from '../../elements.js'
-import {TitleAndDescription, ButtonContainer, PinAppButton} from '../AddNewPin/elements.js'
+import { deletePin } from '../../actions'
+import { updatePinInfo } from '../../actions'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { ModalContainer, BlackVail, XIcon, Textarea } from '../../elements.js'
+import {
+  TitleAndDescription,
+  ButtonContainer,
+  PinAppButton
+} from '../AddNewPin/elements.js'
 import {
   PinClickFieldsContainer,
   PinTitle,
   PinTitleText,
   PinClickRow,
-  PinClickSecondRow,
+  PinClickSecondRow
 } from './elements.js'
 class PinClick extends React.Component {
   constructor(props) {
@@ -25,7 +29,7 @@ class PinClick extends React.Component {
       editMode: false,
       title: '',
       url: '',
-      deleteAlertIsVisible: false,
+      deleteAlertIsVisible: false
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
@@ -102,10 +106,10 @@ class PinClick extends React.Component {
     const formData = new FormData()
     formData.append('file', this.state.file)
     if (this.state.file) {
-      this.props.dispatch(updatePinInfo({formData, pinInfo}))
+      this.props.dispatch(updatePinInfo({ formData, pinInfo }))
       this.toggleEditMode()
     } else {
-      this.props.dispatch(updatePinInfo({pinInfo}))
+      this.props.dispatch(updatePinInfo({ pinInfo }))
       this.toggleEditMode()
     }
   }
@@ -119,7 +123,7 @@ class PinClick extends React.Component {
           let selectedImg = new FileReader()
           selectedImg.readAsDataURL(this.state.file)
           selectedImg.addEventListener('load', () => {
-            this.setState({dataUrl: selectedImg.result})
+            this.setState({ dataUrl: selectedImg.result })
           })
         } catch (err) {
           console.log(`error in compileData: ${err}`)
@@ -220,7 +224,6 @@ class PinClick extends React.Component {
         currentPinInfo = this.props.markersArray.filter(item => {
           return item.id === this.props.pinId
         })
-
       } else if (this.props.flag) {
         currentPinInfo.push({
           title: this.state.title,
@@ -267,9 +270,7 @@ class PinClick extends React.Component {
           <ModalContainer>
             <BlackVail onClick={this.togglePinClick} />
             <PinClickFieldsContainer>
-              <XIcon onClick={this.togglePinClick}>
-                X
-              </XIcon>
+              <XIcon onClick={this.togglePinClick}>X</XIcon>
               <PinTitle>
                 <img src={bigPin} />
                 <PinTitleText>
@@ -323,7 +324,7 @@ class PinClick extends React.Component {
                         className="inputfile"
                         type="file"
                         name="file"
-                        onChange={(e) => {
+                        onChange={e => {
                           this.setFile(e)
                           this.compileData(e)
                         }}
@@ -358,8 +359,6 @@ class PinClick extends React.Component {
                   )}
                 </div>
               </PinClickSecondRow>
-
-
               {/* *******************THIRD ROW**********************/}
               {(this.state.editMode && (
                 <PinClickRow>
@@ -413,7 +412,6 @@ class PinClick extends React.Component {
                 </div>
               )}{' '}
               {!this.state.editMode && editButton()}
-
               {/*{this.state.addNewPinIsVisible && (
                 <AddNewPin
                   lat={123}
@@ -422,7 +420,6 @@ class PinClick extends React.Component {
                   closeAddNewPinComponent={()=>{}}
                 />
               )}*/}
-
             </PinClickFieldsContainer>
           </ModalContainer>
         </React.Fragment>

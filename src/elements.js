@@ -31,7 +31,7 @@ export const ModalContainer = styled.div`
   position: absolute;
   top: 0;
   animation: fadein 1s;
-  z-index: 10;
+  z-index: 20;
 `
 export const Textarea = styled.textarea`
   margin-top: 10px;

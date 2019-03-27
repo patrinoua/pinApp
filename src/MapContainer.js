@@ -4,6 +4,8 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getUserPins, selectActionBycategory } from './actions'
 import PinClick from './components/PinClick'
 import AddNewPin from './components/AddNewPin'
+import ListOfPins from './components/ListOfPins'
+
 import {
   ContainerMap,
   MapContainerDown,
@@ -200,8 +202,13 @@ class MapContainer extends React.Component {
     const style = {
       backgroundSize: 'contain'
     }
+
     return (
       <React.Fragment>
+        {this.state.showListComponent && (
+          <ListOfPins closeListComponent={this.closeListComponent} />
+        )}
+
         {this.props.pinInfo &&
           this.state.showThePop && (
             <PopUpShare>
