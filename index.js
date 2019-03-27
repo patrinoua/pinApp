@@ -175,7 +175,8 @@ app.post('/login', function(req, res) {
     return
   }
   if (req.body.email && req.body.password) {
-    db.getUserInfoByEmail(req.body.email).then(userInfo => {
+    db.getUserInfoByEmail(req.body.email)
+    .then(userInfo => {
       if (userInfo.rows[0]) {
         db
           .checkPassword(req.body.password, userInfo.rows[0].pass)
@@ -211,7 +212,7 @@ app.post('/login', function(req, res) {
           errorMsg: 'user not found"'
         })
       }
-    })
+    }).catch(err=>console.log('err',err))
   } else {
     res.json({
       success: false,

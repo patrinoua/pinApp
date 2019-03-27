@@ -1,7 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import axios from './axios'
-
+import { Link } from 'react-router-dom'
+import axios from '../../../axios'
+import { PinAppButton, ErrorMessage } from '../../../elements'
+import { WelcomeForm, WelcomeFormText, WelcomeFormInput } from '../elements.js'
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -12,7 +13,6 @@ export default class Login extends React.Component {
   handleChange(e) {
     this[e.target.name] = e.target.value
   }
-
   submit() {
     axios
       .post('/login', {
@@ -37,26 +37,27 @@ export default class Login extends React.Component {
       }
     })
     return (
-      <div className="welcomeForm">
-        <div className="welcomeText"> Login </div>
+      <WelcomeForm>
+        <WelcomeFormText> Login </WelcomeFormText>
         {this.state.error && (
-          <div className="errMsg"> {this.state.errorMsg} </div>
+          <ErrorMessage> {this.state.errorMsg} </ErrorMessage>
         )}
-        <input name="email" onChange={this.handleChange} placeholder="Email" />
-        <input
+        <WelcomeFormInput
+          name="email"
+          onChange={this.handleChange}
+          placeholder="Email"
+        />
+        <WelcomeFormInput
           name="password"
           onChange={this.handleChange}
           placeholder="Password"
           type="password"
         />
-        <button onClick={this.submit} className="pinAppButton">
-          {' '}
-          Submit{' '}
-        </button>
-        <Link to="/" style={{color: 'white'}}>
+        <PinAppButton onClick={this.submit}> Submit </PinAppButton>
+        <Link to="/" style={{ color: 'white' }}>
           Register
         </Link>
-      </div>
+      </WelcomeForm>
     )
   }
 }

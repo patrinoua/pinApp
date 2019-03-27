@@ -1,8 +1,8 @@
 import React from 'react'
 import {HashRouter, Route} from 'react-router-dom'
-import Login from './Login'
-import Register from './Register'
-import WelcomeScreen from './WelcomeScreen'
+import Login from './components/Welcome/Login'
+import Register from './components/Welcome/Register'
+import WelcomeScreen from './components/Welcome/WelcomeScreen'
 
 export function Welcome() {
   return (

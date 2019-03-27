@@ -1,6 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import axios from './axios'
+import { Link } from 'react-router-dom'
+import axios from '../../../axios'
+import { PinAppButton, ErrorMessage } from '../../../elements'
+import { WelcomeForm, WelcomeFormText, WelcomeFormInput } from '../elements.js'
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -38,40 +40,38 @@ export default class Register extends React.Component {
       }
     })
     return (
-      <div className="welcomeForm">
-        <div className="welcomeText"> Register </div>
+      <WelcomeForm>
+        <WelcomeFormText> Register </WelcomeFormText>
         Create an account to save your pins
-        <div className="error">
-          {this.state.error && (
-            <div className="errMsg"> Ops! {this.state.errorMsg}</div>
-          )}
-        </div>
-        <input
+        {this.state.error && (
+          <ErrorMessage> Ops! {this.state.errorMsg}</ErrorMessage>
+        )}
+        <WelcomeFormInput
           name="first"
           onChange={this.handleChange}
           placeholder="First name"
         />
-        <input
+        <WelcomeFormInput
           name="last"
           onChange={this.handleChange}
           placeholder="Last name"
         />
-        <input name="email" onChange={this.handleChange} placeholder="Email" />
-        <input
+        <WelcomeFormInput
+          name="email"
+          onChange={this.handleChange}
+          placeholder="Email"
+        />
+        <WelcomeFormInput
           name="password"
           onChange={this.handleChange}
           placeholder="Password"
           type="password"
         />
-        {/*<div className="inARow">*/}
-        <button onClick={this.submit} className="pinAppButton">
-          {' '}
-          Submit{' '}
-        </button>
-        <Link to="/login" style={{color: 'white'}}>
+        <PinAppButton onClick={this.submit}> Submit </PinAppButton>
+        <Link to="/login" style={{ color: 'white' }}>
           Login
         </Link>
-      </div>
+      </WelcomeForm>
     )
   }
 }

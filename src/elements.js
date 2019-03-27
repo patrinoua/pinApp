@@ -121,8 +121,8 @@ export const XIcon = styled.p`
   z-index: 12;
   cursor: pointer;
   opacity: 0.4;
-  &:hover{
-    opacity: .9;
+  &:hover {
+    opacity: 0.9;
   }
   @media (max-width: 700px) {
     position: fixed;
@@ -134,7 +134,7 @@ export const Footer = styled.div`
   width: 98%;
   height: 5vh;
   position: absolute;
-  bottom:0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,9 +147,31 @@ export const Footer = styled.div`
 `
 export const FooterElement = styled.a`
   margin-left: 5px;
-  &:visited{
+  &:visited {
     color: #5b5b5b;
     text-decoration: none;
     background: blue;
   }
+`
+export const PinAppButton = styled.button`
+  background-color: #d20607;
+  color: white;
+  border-radius: 30px;
+  font-size: 110%;
+  box-shadow: inset -3px -4px 10px 0px rgba(0, 0, 0, 0.2);
+  width: 100px;
+  border: 2px solid white;
+  font-family: Roboto;
+  font-weight: 500;
+  padding: 5px;
+  &:hover {
+    background-color: black;
+    background-color: #b52519;
+  }
+`
+
+export const ErrorMessage = styled.div`
+  color: #ff6b6b;
+  padding: 4px;
+  border-radius: 3px;
 `
