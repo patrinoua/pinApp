@@ -1,10 +1,11 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PinClick from './components/PinClick'
 class ListOfLocations extends React.Component {
   constructor(props) {
+    console.log('wooppp!')
     super(props)
-    this.state = {clickedPinId: null}
+    this.state = { clickedPinId: null }
     this.closeClickedPinList = this.closeClickedPinList.bind(this)
     this.getLatAndLang = this.getLatAndLang.bind(this)
   }
@@ -37,7 +38,7 @@ class ListOfLocations extends React.Component {
     // )}
   }
   render() {
-    console.log("this.props.first in list of locations", this.props.first);
+    console.log('this.props.first in list of locations', this.props.first)
     // console.log('this.state',this.state);
 
     return (

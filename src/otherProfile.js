@@ -1,10 +1,10 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import axios from './axios'
-import {FriendButton} from './friendButton'
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import {getUserPinInfo, selectActionBycategory} from './actions'
-import ListOfLocations from './ListOfLocations.js'
+import { FriendButton } from './friendButton'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { getUserPinInfo, selectActionBycategory } from './actions'
+import ListOfPins from './components/ListOfPins'
 import PinClick from './components/PinClick'
 
 class OtherProfilePage extends React.Component {
@@ -34,21 +34,20 @@ class OtherProfilePage extends React.Component {
     this.closeListComponent = this.closeListComponent.bind(this)
   }
   componentDidMount() {
-    // console.log('other Profile is loaded.');
     this.whatToDoOnLoad(this.props.match.params.id)
   }
   whatToDoOnLoad(id) {
     axios
       .get(`/getUser/${id}`)
       .then(response => {
-        this.setState({user: response.data.user})
+        this.setState({ user: response.data.user })
       })
       .catch(err => {
         console.log(`error in getUser: ${err}`)
       })
     axios
       .get(`/getUserPins`, {
-        params: {id: id}
+        params: { id: id }
       })
       .then(response => {
         this.setState({
@@ -148,7 +147,7 @@ class OtherProfilePage extends React.Component {
     return (
       <React.Fragment>
         {this.state.showListComponent && (
-          <ListOfLocations
+          <ListOfPins
             closeListComponent={this.closeListComponent}
             id={this.props.id}
             first={this.state.user.first}
