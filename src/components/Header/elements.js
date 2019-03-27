@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
-import {Regular} from '../typography'
+import { Link } from 'react-router-dom'
+import { Regular } from '../../typography'
 
 export const StyledRegular = styled(Regular)`
   @media (max-width: 700px) {
@@ -23,11 +23,10 @@ export const AllPinsIcon = styled(NavigationIcon)`
   height: 35px;
   // z-index: 9;
   background-image: url(../../icons/pinsIcon.png);
-
 `
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  &: visited{
+  &: visited {
     color: #2a2a2a;
   }
 `
@@ -36,7 +35,7 @@ export const HorizontalContainer = styled.div`
   align-items: center;
 `
 export const BrandLogo = styled.div`
-  background-image:url('../../pinAppLogo.png');
+  background-image: url('../../pinAppLogo.png');
   background-size: contain;
   background-position: center;
   width: 50px;
@@ -44,8 +43,8 @@ export const BrandLogo = styled.div`
 `
 
 export const NavigationContainerBig = styled.div`
-  width:100%;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  width: 100%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +78,6 @@ export const NavigationBarRight = styled.div`
     margin-right: 15px;
   }
 `
-
 
 export const HamburgerMenu = styled.div`
   height: 30px;

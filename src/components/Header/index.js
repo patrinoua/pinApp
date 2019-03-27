@@ -1,5 +1,5 @@
 import React from 'react'
-import ListOfPins from '../components/ListOfPins'
+import ListOfPins from '../ListOfPins'
 import UserMenuPopUp from './components/UserMenuPopUp'
 import {
   StyledRegular,
@@ -12,7 +12,7 @@ import {
   NavigationSeperatingLine,
   NavigationBarRight,
   AllPinsIcon,
-  HamburgerMenu,
+  HamburgerMenu
 } from './elements'
 
 export default class Header extends React.Component {
@@ -71,15 +71,11 @@ export default class Header extends React.Component {
               </HorizontalContainer>
             </StyledLink>
             <NavigationSeperatingLine />
-            <HorizontalContainer
-              onClick={this.showListComponent}
-            >
+            <HorizontalContainer onClick={this.showListComponent}>
               <AllPinsIcon />
               <StyledRegular>My pins</StyledRegular>
             </HorizontalContainer>
-            <HamburgerMenu
-              onClick={this.toggleUserMenu}
-            />
+            <HamburgerMenu onClick={this.toggleUserMenu} />
             {this.state.userMenuIsVisible && (
               <UserMenuPopUp
                 id={this.props.id}

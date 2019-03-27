@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import axios from './axios'
+import axios from '../../axios'
 import { FriendButton } from './friendButton'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-import { getUserPinInfo, selectActionBycategory } from './actions'
-import ListOfPins from './components/ListOfPins'
-import PinClick from './components/PinClick'
+import { getUserPinInfo, selectActionBycategory } from '../../actions'
+import ListOfPins from '../ListOfPins'
+import PinClick from '../PinClick'
 
-class OtherProfilePage extends React.Component {
+class OtherProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -274,4 +274,4 @@ const mapStateToProps = function(state) {
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d'
-})(connect(mapStateToProps)(OtherProfilePage))
+})(connect(mapStateToProps)(OtherProfile))

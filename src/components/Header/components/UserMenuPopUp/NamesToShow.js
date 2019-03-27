@@ -1,13 +1,12 @@
 import React from 'react'
-import axios from '../../../axios'
-import {Link} from 'react-router-dom'
-import {Textarea} from '../../../elements.js'
-
+import axios from '../../../../axios'
+import { Link } from 'react-router-dom'
+import { Textarea } from '../../../../elements.js'
 
 export class NamesToShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {arrayOfNames: []}
+    this.state = { arrayOfNames: [] }
     this.handleChange = this.handleChange.bind(this)
     this.search = this.search.bind(this)
     this.removeSearchBar = this.removeSearchBar.bind(this)
@@ -16,34 +15,34 @@ export class NamesToShow extends React.Component {
     this[e.target.name] = e.target.value
     if (this.name) {
       axios
-        .post('/userName', {name: this.name})
+        .post('/userName', { name: this.name })
         .then(response => {
           let arr = response.data.data
 
-          this.setState({arrayOfNames: arr, showNames: true})
+          this.setState({ arrayOfNames: arr, showNames: true })
         })
         .catch(err => {
           console.log(`error in post/userName: ${err}`)
         })
     } else {
-      this.setState({showNames: null})
+      this.setState({ showNames: null })
     }
   }
   search() {
     if (!this.state.showTextArea) {
-      this.setState({showTextArea: true})
+      this.setState({ showTextArea: true })
     } else {
-      this.setState({showTextArea: null})
+      this.setState({ showTextArea: null })
     }
   }
   removeSearchBar() {
-    this.setState({showTextArea: null})
+    this.setState({ showTextArea: null })
   }
   render() {
     return (
       <React.Fragment>
         <div className="dropDownMenuItem" onClick={this.search}>
-        People
+          People
           <img
             src="/search.png"
             alt="search"

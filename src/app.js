@@ -1,14 +1,14 @@
 import React from 'react'
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import MapContainer from './MapContainer'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import axios from './axios'
-import {ProfilePage, UploadProfilePic} from './profile'
-import Header from './Header'
-import OtherProfilePage from './otherProfile'
+import { ProfilePage, UploadProfilePic } from './profile'
+import Header from './components/Header'
+import OtherProfile from './components/OtherProfile'
 import Friends from './friends'
 import OnlineUsers from './onlineUsers'
-import {saveUserInfo} from './actions'
+import { saveUserInfo } from './actions'
 import PinClick from './components/PinClick'
 
 class App extends React.Component {
@@ -37,7 +37,7 @@ class App extends React.Component {
     })
   }
   changeInputValues(inputValues) {
-    let {id, first, last, email, bio} = inputValues
+    let { id, first, last, email, bio } = inputValues
     this.setState({
       id,
       first,
@@ -104,7 +104,7 @@ class App extends React.Component {
               path="/user/:id"
               render={x => (
                 <React.Fragment>
-                  <OtherProfilePage
+                  <OtherProfile
                     lat={this.state.lat}
                     lng={this.state.lng}
                     match={x.match}
