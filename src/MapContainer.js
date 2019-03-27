@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import {getUserPins, selectActionBycategory} from './actions'
+import { connect } from 'react-redux'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { getUserPins, selectActionBycategory } from './actions'
 import PinClick from './components/PinClick'
 import AddNewPin from './components/AddNewPin'
 import {
@@ -321,15 +321,14 @@ class MapContainer extends React.Component {
                         // lat: 52.4918854,
                         // lng: 13.360088699999999
                       }}
-
                       zoom={14}
                       google={this.props.google}
                       onClick={this.mapClicked}
-                      onDragend={e=>{
+                      onDragend={e => {
                         this.setState({
-                        currentLocationPinIsVisible: false
+                          currentLocationPinIsVisible: false
                         })
-                    }}
+                      }}
                       onReady={this.fetchPlaces}
                       visible={true}
                     >
@@ -406,20 +405,21 @@ class MapContainer extends React.Component {
                       />
                     center button*******/}
                       {this.state.currentLocationPinIsVisible && (
-                          <img
-                          id = "dropPinInCurrentLocationButton"
-                            src="pins/bigPin.png"
-                            alt="bigPin"
-                            className="pinMyCurrentLocationPin"
-                            onClick={() => {
-                              this.forceUpdate()
-                              this.setState({
-                                currentLocationPinIsVisible: !this
-                                  .state.currentLocationPinIsVisible,
-                                  addMyPinLocationVisible: !this.state.addMyPinLocationVisible
-                              })
-                            }}
-                          />
+                        <img
+                          id="dropPinInCurrentLocationButton"
+                          src="pins/bigPin.png"
+                          alt="bigPin"
+                          className="pinMyCurrentLocationPin"
+                          onClick={() => {
+                            this.forceUpdate()
+                            this.setState({
+                              currentLocationPinIsVisible: !this.state
+                                .currentLocationPinIsVisible,
+                              addMyPinLocationVisible: !this.state
+                                .addMyPinLocationVisible
+                            })
+                          }}
+                        />
                       )}
                     </div>
                   )}

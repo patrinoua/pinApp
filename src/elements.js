@@ -13,6 +13,14 @@ export const Container = styled.div`
   z-index: 20;
 `
 
+export const ComponentContainer = styled.div`
+  width: 96vw;
+  height: 80vh;
+  top: 55px;
+  padding: 2vw;
+  display: flex;
+  position: absolute;
+`
 export const ModalContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -60,17 +68,6 @@ export const MapContainerRight = styled.div`
     margin: 5px;
   }
 `
-export const CategoryList = styled.div`
-  width: 25vw;
-  margin: 10px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (max-width: 400px) {
-    display: none;
-  }
-`
 export const BlackVail = styled.div`
   margin: 0;
   width: 100vw;
@@ -95,6 +92,13 @@ export const MapContainerDown = styled.div`
 export const MapInfoText = styled.div`
   font-size: 0.8em;
   font-weight: 200;
+`
+export const CategoryList = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 export const PopUpShare = styled.div`
   position: absolute;

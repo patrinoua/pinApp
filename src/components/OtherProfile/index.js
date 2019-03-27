@@ -6,7 +6,22 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getUserPinInfo, selectActionBycategory } from '../../actions'
 import ListOfPins from '../ListOfPins'
 import PinClick from '../PinClick'
-
+import { ComponentContainer, CategoryList } from '../../elements'
+import {
+  OtherUserContainer,
+  OtherUserContainerUp,
+  ProfilePicUser,
+  NameAndBioContainerUser,
+  UserName,
+  UserBio,
+  OtherUserContainerFriendshipButton,
+  OtherUserContainerDown,
+  OtherUserContainerDownLeft,
+  OtherUserContainerDownRight,
+  MapContainer,
+  Form,
+  UsersPinsButton
+} from './elements'
 class OtherProfile extends React.Component {
   constructor(props) {
     super(props)
@@ -27,7 +42,7 @@ class OtherProfile extends React.Component {
       mapHasBinClicked: false
     }
 
-    this.checkValue = this.checkValue.bind(this)
+    this.checkedCategory = this.checkedCategory.bind(this)
     this.pinClick = this.pinClick.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.showListComponent = this.showListComponent.bind(this)
@@ -78,13 +93,21 @@ class OtherProfile extends React.Component {
       pinClickVisible: !this.state.pinClickVisible
     })
   }
-  checkValue(e) {
+  checkedCategory(e) {
     if (e.target.checked) {
       this.state.arrayOfCategory.push(e.target.value)
+      document.querySelector(`label[for=${e.target.name}]`).style.color =
+        '#b52519'
+      document.querySelector(`label[for=${e.target.name}]`).style.fontWeight =
+        '900'
     } else {
       this.state.arrayOfCategory = this.state.arrayOfCategory.filter(item => {
         return item !== e.target.value
       })
+      document.querySelector(`label[for=${e.target.name}]`).style.color =
+        'black'
+      document.querySelector(`label[for=${e.target.name}]`).style.fontWeight =
+        '400'
     }
     this.props.dispatch(
       selectActionBycategory(
@@ -104,6 +127,33 @@ class OtherProfile extends React.Component {
       showListComponent: false
     })
   }
+  categoryItems(color, text, variable, myFunction) {
+    const style = {
+      backgroundSize: 'contain'
+    }
+    let str = '/pins/' + color + 'Pin.png'
+    return (
+      <div className="categoryItem">
+        <input
+          style={style}
+          type="checkbox"
+          id={variable}
+          name={variable}
+          value={variable}
+          className="check"
+          onClick={myFunction}
+        />
+        <img
+          src={str}
+          className="categoryItemPinIcon"
+          alt="categoryItemPinIcon"
+        />
+        <label htmlFor={variable} className="pinText">
+          {text}
+        </label>
+      </div>
+    )
+  }
   render() {
     if (!this.state.user) {
       return <h1>no such user found</h1>
@@ -114,30 +164,6 @@ class OtherProfile extends React.Component {
       borderRadius: '2px',
       width: '100%',
       height: '100%'
-    }
-    const categoryItems = function(color, text, variable, myFunction) {
-      let str = '/pins/' + color + 'Pin.png'
-      return (
-        <div className="categoryItem">
-          <input
-            type="checkbox"
-            id={variable}
-            name={variable}
-            value={variable}
-            className="check"
-            onClick={myFunction}
-          />
-          <img
-            src={str}
-            alt="categoryItemPinIcon"
-            className="categoryItemPinIcon"
-          />
-          <label htmlFor="museums" className="pinText">
-            {' '}
-            {text}{' '}
-          </label>
-        </div>
-      )
     }
     const userAvatar = this.state.user.profilepic || '/user.png'
     const profilePicStyle = {
@@ -162,56 +188,64 @@ class OtherProfile extends React.Component {
               id={this.props.id}
             />
           )}
-        <div className="componentContainer">
-          <div className="otherUserContainer">
-            <div className="otherUserContainerUp">
-              <div className="profilePicUser" style={profilePicStyle} />
-              <div className="nameAndBioContainerUser">
-                <div className="nameUser">
-                  {this.state.user.first} {this.state.user.last}
-                </div>
-                <div className="bioUser">{this.state.user.bio}</div>
+        <ComponentContainer>
+          <OtherUserContainer>
+            <OtherUserContainerUp>
+              <div className="inARow">
+                <ProfilePicUser style={profilePicStyle} />
+                <NameAndBioContainerUser>
+                  <UserName>
+                    {this.state.user.first} {this.state.user.last}
+                  </UserName>
+                  <UserBio>{this.state.user.bio}</UserBio>
+                </NameAndBioContainerUser>
               </div>
-
-              <div className="otherUserContainerFriendshipButton">
+              <OtherUserContainerFriendshipButton>
                 <FriendButton otherId={this.props.match.params.id} />
-              </div>
-            </div>
-            <div className="otherUserContainerDown">
-              <div className="otherUserContainerDownLeft">
-                <div className="categoryListUser">
-                  <form id="myForm">
-                    {categoryItems(
+              </OtherUserContainerFriendshipButton>
+            </OtherUserContainerUp>
+            <OtherUserContainerDown>
+              <OtherUserContainerDownLeft>
+                <CategoryList>
+                  <Form>
+                    {this.categoryItems(
                       'blue',
+                      'Museums',
                       'museums',
-                      'museums',
-                      this.checkValue
+                      this.checkedCategory
                     )}
-                    {categoryItems('green', 'Parks', 'parks', this.checkValue)}
-                    {categoryItems(
+                    {this.categoryItems(
+                      'green',
+                      'Parks',
+                      'parks',
+                      this.checkedCategory
+                    )}
+                    {this.categoryItems(
                       'yellow',
+                      'Restaurants',
                       'restaurants',
-                      'restaurants',
-                      this.checkValue
+                      this.checkedCategory
                     )}
-                    {categoryItems('pink', 'bars', 'bars', this.checkValue)}
-                    {categoryItems(
+                    {this.categoryItems(
+                      'pink',
+                      'Bars',
+                      'bars',
+                      this.checkedCategory
+                    )}
+                    {this.categoryItems(
                       'purple',
+                      'Sightseeings',
                       'sightseeing',
-                      'sightseeing',
-                      this.checkValue
+                      this.checkedCategory
                     )}
-                  </form>
-                </div>
-                <button
-                  className="pinAppButton"
-                  onClick={this.showListComponent}
-                >
-                  {this.state.user.first}'s Pins
-                </button>
-              </div>
-              <div className="otherUserContainerDownRight">
-                <div className="mapAreaUser">
+                  </Form>
+                  <UsersPinsButton onClick={this.showListComponent}>
+                    {this.state.user.first}'s Pins
+                  </UsersPinsButton>
+                </CategoryList>
+              </OtherUserContainerDownLeft>
+              <OtherUserContainerDownRight>
+                <MapContainer>
                   <Map
                     style={style}
                     initialCenter={{
@@ -255,11 +289,11 @@ class OtherProfile extends React.Component {
                         )
                       })}
                   </Map>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                </MapContainer>
+              </OtherUserContainerDownRight>
+            </OtherUserContainerDown>
+          </OtherUserContainer>
+        </ComponentContainer>
       </React.Fragment>
     )
   }
@@ -273,5 +307,5 @@ const mapStateToProps = function(state) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d'
+  apiKey: 'AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d4'
 })(connect(mapStateToProps)(OtherProfile))
