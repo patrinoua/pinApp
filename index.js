@@ -67,7 +67,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 app.post('/api/mail', corsMiddleware, (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   let mailOptions = {
     to: `${mail}`, // list of receivers
     subject: `PinApp Mail - ${req.body.subject}`, // Subject line
@@ -88,7 +88,7 @@ on ${new Date()}
     if (error) {
       return console.log(error)
     }
-    console.log('successfully sent' + info.response)
+    // console.log('successfully sent' + info.response)
   })
   res.json({
     success: true
