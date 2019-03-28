@@ -102,8 +102,8 @@ export default class Contact extends React.Component {
             placeholder="Message*"
             required
           />
-          <MailButton onClick={this.sendMail}> Send </MailButton>
           {this.state.error && <div>Please fill in all required fields</div>}
+          <MailButton onClick={this.sendMail}> Send </MailButton>
         </InputContainer>
       </MailContainer>
     )
