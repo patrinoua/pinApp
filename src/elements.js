@@ -53,6 +53,9 @@ export const MapContainerLeft = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 400px) {
+    display: none;
+  }
 `
 export const MapContainerRight = styled.div`
   min-width: 50%;

@@ -6,7 +6,7 @@ export const DropDownMenu = styled.div`
   padding: 1vw;
   width: 9vw;
   min-width: 120px;
-  top: 9vh;
+  top: 60px;
   right: 0vw;
   display: flex;
   background-color: rgba(255, 255, 255, 0.9);
@@ -19,9 +19,6 @@ export const DropDownMenu = styled.div`
   &:hover {
     color: #51b3c4;
     cursor: pointer;
-  }
-  @media (max-width: 700px) {
-    top: 60px;
   }
 `
 export const DropDownMenuLinkItem = styled(Link)`
