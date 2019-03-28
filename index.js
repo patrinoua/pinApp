@@ -52,12 +52,16 @@ app.use(compression())
 app.use(express.static('./public'))
 
 app.use(bodyParser.json())
+
+let mail = ''
+let pass = ''
 if (process.env.NODE_ENV) {
-  const mail = process.env.MAIL
-  const pass = process.env.PASS
+  mail = process.env.mail
+  pass = process.env.pass
+} else {
+  mail = require('./secrets.json').mail
+  pass = require('./secrets.json').pass
 }
-const mail = require('./secrets.json').mail
-const pass = require('./secrets.json').pass
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
