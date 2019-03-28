@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const DropDownMenu = styled.div`
   position: absolute;
   padding: 1vw;
   width: 9vw;
   min-width: 120px;
-  top: 9vh;
+  top: 60px;
   right: 0vw;
   display: flex;
   background-color: rgba(255, 255, 255, 0.9);
@@ -16,27 +16,24 @@ export const DropDownMenu = styled.div`
   align-items: center;
   z-index: 13;
   transition: opacity 2s ease-in;
-  &:hover{
-    color: #51B3C4;
+  &:hover {
+    color: #51b3c4;
     cursor: pointer;
-  }
-  @media (max-width: 700px) {
-    top: 60px;
   }
 `
 export const DropDownMenuLinkItem = styled(Link)`
   color: #2a2a2a;
   padding: 5px;
-  &:hover{
-    color: #51B3C4;
+  &:hover {
+    color: #51b3c4;
     cursor: pointer;
   }
 `
 export const DropDownMenuItem = styled.a`
   color: #2a2a2a;
   padding: 5px;
-  &:hover{
-    color: #51B3C4;
+  &:hover {
+    color: #51b3c4;
     cursor: pointer;
   }
 `
