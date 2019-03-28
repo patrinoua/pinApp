@@ -1,6 +1,6 @@
 import React from 'react'
 import Contact from './components/Contact'
-import { Headline, SummaryContainer, Summary, Li } from './elements'
+import { Headline, SummaryContainer, Summary, Ul, Li } from './elements'
 class About extends React.Component {
   constructor() {
     super()
@@ -26,7 +26,7 @@ class About extends React.Component {
         </SummaryContainer>
         <Headline>Features</Headline>
         <SummaryContainer>
-          <ul style={{ width: '50%' }}>
+          <Ul>
             <Li>
               Add a Pin in your current location or any place on the map and add
               to it specific information such as a Title, Description and a
@@ -39,7 +39,7 @@ class About extends React.Component {
               Filter Pins by Category (eg. only See Restaurants, or Restaurants
               and Bars)
             </Li>
-          </ul>
+          </Ul>
         </SummaryContainer>
         <Contact>
           <Headline>Contact</Headline>

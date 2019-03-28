@@ -26,3 +26,9 @@ export const Li = styled.li`
   text-align: left;
   margin-bottom: 10px;
 `
+export const Ul = styled.ul`
+  width: 50vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
