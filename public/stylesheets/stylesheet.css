@@ -58,30 +58,6 @@ body {
   margin-bottom: 20px;
 }
 
-.secondInputContainer input {
-  margin-bottom: 15px;
-  font-size: 15px;
-}
-
-.mailButton {
-  position: relative;
-  width: 100%;
-  height: 75px;
-}
-
-.mailButton button {
-  position: absolute;
-  width: 200px;
-  height: 50px;
-  /* right: 0; */
-  margin: 10px 0;
-  font-size: 13px;
-}
-
-.mailButton button:hover {
-  cursor: pointer;
-}
-
 .componentContainer {
   width: 96vw;
   height: 80vh;

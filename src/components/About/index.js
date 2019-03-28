@@ -1,101 +1,58 @@
 import React from 'react'
-import axios from 'axios'
-import { WelcomeFormInput } from '../Welcome/elements'
-import {
-  MailContainer,
-  ModalBG,
-  ConfirmModal,
-  ConfirmModalText,
-  StyledLink,
-  ΙnputContainer,
-  Contact,
-  MailMessage
-} from './elements'
+import Contact from './components/Contact'
+import { Headline, SummaryContainer, Summary, Li } from './elements'
 class About extends React.Component {
   constructor() {
     super()
     this.state = {}
-    this.sendMail = this.sendMail.bind(this)
   }
-  async sendMail() {
-    let message = {
-      name: this.name.value,
-      mail: this.mail.value,
-      subject: this.subject.value,
-      message: this.message.value
-    }
-    try {
-      const response = await axios.post('/api/mail', message)
-      if (!response.data.success) {
-        console.log('No success')
-      }
-      this.setState({
-        mailSent: true
-      })
-    } catch (e) {
-      console.log(e)
-    }
-  }
+
   render() {
     return (
-      <MailContainer>
-        {this.state.mailSent && (
-          <ModalBG>
-            <ConfirmModal>
-              <ConfirmModalText>Your email was sent!</ConfirmModalText>
-              <StyledLink
-                to="/"
-                onClick={() => {
-                  this.setState({
-                    mailSent: false
-                  })
-                }}
-              >
-                OK
-              </StyledLink>
-            </ConfirmModal>
-          </ModalBG>
-        )}
-        <ΙnputContainer>
-          <Contact>Contact</Contact>
-          <div className="secondInputContainer">
-            <WelcomeFormInput
-              ref={name => {
-                this.name = name
-              }}
-              placeholder="Name *"
-              className="mailUserName"
-              required
-            />
-            <WelcomeFormInput
-              ref={mail => {
-                this.mail = mail
-              }}
-              type="email"
-              placeholder="E-mail *"
-              className="mailInput"
-              required
-            />
-            <WelcomeFormInput
-              ref={subject => (this.subject = subject)}
-              placeholder="Subject"
-              className="mailInput"
-            />
-          </div>
-          <MailMessage
-            ref={message => {
-              this.message = message
-            }}
-            placeholder="Message"
-            required
-          />
-          <div className="mailButton">
-            <a href="#modal">
-              <button onClick={this.sendMail}>Send</button>
-            </a>
-          </div>
-        </ΙnputContainer>
-      </MailContainer>
+      <div>
+        <Headline>About</Headline>
+        <SummaryContainer>
+          <Summary>
+            PinApp is a hobby Web Application built with React and Node, that
+            started as a final project for Spiced Academy Coding Bootcamp in
+            Berlin, in May of 2018. It continues to be developed and will soon
+            also be available as mobile application, built with React Native.
+          </Summary>
+          <Summary>
+            If you have any feedback, suggestions, features you would like to
+            see, would like to contribute in Design or Development, or just want
+            to say hi, feel free to come in contact by using the form below.
+          </Summary>
+        </SummaryContainer>
+        <Headline>Features</Headline>
+        <SummaryContainer>
+          <ul style={{ width: '50%' }}>
+            <Li>
+              Add a Pin in your current location or any place on the map and add
+              to it specific information such as a Title, Description and a
+              photo.
+            </Li>
+            <Li>Share your pins with other people</Li>
+            <Li>Add people as Friends and see their Pins</Li>
+            <Li>See a List of all your Pins</Li>
+            <Li>
+              Filter Pins by Category (eg. only See Restaurants, or Restaurants
+              and Bars)
+            </Li>
+          </ul>
+        </SummaryContainer>
+        <Contact>
+          <Headline>Contact</Headline>
+          <SummaryContainer>
+            <Summary>
+              If you have any feedback, suggestions, features you would like to
+              see, would like to contribute in Design or Development, or just
+              want to say hi, feel free to come in contact by using the form
+              below.
+            </Summary>
+          </SummaryContainer>
+        </Contact>
+      </div>
     )
   }
 }
