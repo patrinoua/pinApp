@@ -6,6 +6,7 @@ import axios from './axios'
 import { ProfilePage, UploadProfilePic } from './profile'
 import Header from './components/Header'
 import OtherProfile from './components/OtherProfile'
+import About from './components/About'
 import Friends from './friends'
 import OnlineUsers from './onlineUsers'
 import { saveUserInfo } from './actions'
@@ -97,6 +98,7 @@ class App extends React.Component {
               )}
             />
 
+            <Route path="/about" component={About} />
             <Route path="/friends" component={Friends} />
 
             <Route

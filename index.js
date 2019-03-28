@@ -4,7 +4,7 @@ const compression = require('compression')
 const db = require('./database/database')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
-const {hashPassword} = require('./database/database')
+const { hashPassword } = require('./database/database')
 const secret = require('./config.json')
 const csurf = require('csurf')
 
@@ -18,6 +18,7 @@ const uidSafe = require('uid-safe')
 const path = require('path')
 const s3 = require('./s3') //check
 const config = require('./config.json')
+const nodemailer = require('nodemailer')
 
 // let apiSecret = process.env.REACT_APP_API_SECRET;
 const diskStorage = multer.diskStorage({
@@ -31,7 +32,15 @@ const diskStorage = multer.diskStorage({
   }
 })
 
-var uploader = multer({
+let corsMiddleware = (req, res, next) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  next()
+}
+
+const uploader = multer({
   storage: diskStorage,
   limits: {
     fileSize: 2097152
@@ -43,6 +52,48 @@ app.use(compression())
 app.use(express.static('./public'))
 
 app.use(bodyParser.json())
+if (process.env.NODE_ENV) {
+  const mail = process.env.MAIL
+  const pass = process.env.PASS
+}
+const mail = require('./secrets.json').mail
+const pass = require('./secrets.json').pass
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: `${mail}`,
+    pass: `${pass}`
+  }
+})
+app.post('/api/mail', corsMiddleware, (req, res) => {
+  console.log(req.body)
+  let mailOptions = {
+    to: `${mail}`, // list of receivers
+    subject: `PinApp Mail - ${req.body.subject}`, // Subject line
+    text: `
+
+${req.body.message}
+
+----------------
+
+send from ${req.body.name} ${req.body.mail}
+
+on ${new Date()}
+` // plain text body
+  }
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error)
+    }
+    console.log('successfully sent' + info.response)
+  })
+  res.json({
+    success: true
+  })
+})
 
 const cookieSessionMiddleWare = cookieSession({
   secret: secret.secret,
@@ -175,44 +226,46 @@ app.post('/login', function(req, res) {
     return
   }
   if (req.body.email && req.body.password) {
-    db.getUserInfoByEmail(req.body.email)
-    .then(userInfo => {
-      if (userInfo.rows[0]) {
-        db
-          .checkPassword(req.body.password, userInfo.rows[0].pass)
-          .then(doesMatch => {
-            if (doesMatch) {
-              req.session.user = {
-                id: userInfo.rows[0].id,
-                first: userInfo.rows[0].first,
-                last: userInfo.rows[0].last,
-                email: userInfo.rows[0].email,
-                profilepic: userInfo.rows[0].profilepic,
-                bio: userInfo.rows[0].bio,
-                sex: userInfo.rows[0].sex,
-                isLoggedIn: true
+    db
+      .getUserInfoByEmail(req.body.email)
+      .then(userInfo => {
+        if (userInfo.rows[0]) {
+          db
+            .checkPassword(req.body.password, userInfo.rows[0].pass)
+            .then(doesMatch => {
+              if (doesMatch) {
+                req.session.user = {
+                  id: userInfo.rows[0].id,
+                  first: userInfo.rows[0].first,
+                  last: userInfo.rows[0].last,
+                  email: userInfo.rows[0].email,
+                  profilepic: userInfo.rows[0].profilepic,
+                  bio: userInfo.rows[0].bio,
+                  sex: userInfo.rows[0].sex,
+                  isLoggedIn: true
+                }
+                res.json({
+                  success: true,
+                  user: req.session.user
+                })
+              } else {
+                res.json({
+                  success: false,
+                  errorMsg: "passwords don't match"
+                })
               }
-              res.json({
-                success: true,
-                user: req.session.user
-              })
-            } else {
-              res.json({
-                success: false,
-                errorMsg: "passwords don't match"
-              })
-            }
+            })
+            .catch(err => {
+              console.log('error when checking passwords', err)
+            })
+        } else {
+          res.json({
+            success: false,
+            errorMsg: 'user not found"'
           })
-          .catch(err => {
-            console.log('error when checking passwords', err)
-          })
-      } else {
-        res.json({
-          success: false,
-          errorMsg: 'user not found"'
-        })
-      }
-    }).catch(err=>console.log('err',err))
+        }
+      })
+      .catch(err => console.log('err', err))
   } else {
     res.json({
       success: false,
@@ -241,7 +294,7 @@ app.post('/updateUserInfo', function(req, res) {
         sex: result.rows[0].sex
       }
 
-      res.json({user: req.session.user})
+      res.json({ user: req.session.user })
     })
     .catch(err => {
       console.log('opss.!!!.', err)

@@ -1,7 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {NamesToShow} from './NamesToShow'
-import {DropDownMenu, DropDownMenuLinkItem, DropDownMenuItem} from './elements'
+import { Link } from 'react-router-dom'
+import { NamesToShow } from './NamesToShow'
+import {
+  DropDownMenu,
+  DropDownMenuLinkItem,
+  DropDownMenuItem
+} from './elements'
 
 export default class UserMenuPopUp extends React.Component {
   constructor(props) {
@@ -22,11 +26,19 @@ export default class UserMenuPopUp extends React.Component {
       <React.Fragment>
         <div
           id="overley"
-          onClick={ e => {
+          onClick={e => {
             this.props.closeUserMenu()
           }}
         />
         <DropDownMenu id="anim">
+          <DropDownMenuLinkItem
+            to="/about"
+            onClick={() => {
+              setTimeout(this.props.closeUserMenu, 200)
+            }}
+          >
+            About
+          </DropDownMenuLinkItem>
           <DropDownMenuLinkItem
             to="/friends"
             onClick={() => {
@@ -43,9 +55,7 @@ export default class UserMenuPopUp extends React.Component {
           >
             Edit Profile
           </DropDownMenuLinkItem>
-          <DropDownMenuItem href="/logout" >
-            Logout
-          </DropDownMenuItem>
+          <DropDownMenuItem href="/logout">Logout</DropDownMenuItem>
           <NamesToShow id={this.props.id} />
         </DropDownMenu>
       </React.Fragment>

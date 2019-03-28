@@ -37,9 +37,9 @@ export const WelcomeFormText = styled.div`
 `
 export const WelcomeFormInput = styled.input`
   display: block;
-  padding: 4px;
+  padding: 5px;
   font-size: 14px;
   justify-self: center;
   justify-content: center;
-  margin: 5px;
+  margin: 5px 0;
 `
