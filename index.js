@@ -74,7 +74,7 @@ app.post('/api/mail', corsMiddleware, (req, res) => {
   // console.log(req.body)
   let mailOptions = {
     to: `${mail}`, // list of receivers
-    subject: `PinApp Mail - ${req.body.subject}`, // Subject line
+    subject: `PinApp: ${req.body.subject} from ${req.body.name}`, // Subject line
     text: `
 
 ${req.body.message}
