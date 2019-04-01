@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import Colors from '../../constants/colors'
 
-const lettersColor = Colors.darkGray;
-const backgroundColor = Colors.white;
+const lettersColor = Colors.darkGray
+const backgroundColor = Colors.white
 
 export const FieldsContainer = styled.div`
   display: grid;
@@ -16,8 +16,8 @@ export const FieldsContainer = styled.div`
   border-radius: 2px;
   box-shadow: 1px 1px 11px -4px lightgrey;
   z-index: 10;
-  @media (max-width: 700px) {
-    width:100%;
+  @media (max-width: 400px) {
+    width: 100%;
     height: 100%;
     position: absolute;
     border: none;
@@ -29,7 +29,7 @@ export const FieldsContainerNewPin = styled(FieldsContainer)`
   position: relative;
   grid-template-rows: 20% 60% 20%;
   grid-template-columns: 1fr;
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     grid-template-rows: 25% 50% 25%;
   }
 `
@@ -39,7 +39,7 @@ export const PinText = styled.div`
   align-items: center;
   font-size: 0.9em;
   @media (max-width: 700px) {
-    font-size: .8em;
+    font-size: 0.8em;
     padding-left: 5px;
   }
 `
@@ -59,9 +59,9 @@ export const PinCheckboxArea = styled.div`
 export const PinCheckbox = styled.img`
   height: 13px;
   width: 13px;
-  opacity: .5;
+  opacity: 0.5;
   padding: 10px;
-  &: hover{
+  &: hover {
     cursor: pointer;
   }
   @media (max-width: 700px) {
@@ -73,7 +73,7 @@ export const PinIcon = styled.img`
   max-width: 25px;
   height: auto;
   padding-right: 10px;
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     max-width: 20px;
     padding-right: 5px;
   }
@@ -131,7 +131,7 @@ export const CloseModalX = styled.button`
   color: black;
   font-size: 20px;
   z-index: 100;
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     right: 20px;
     top: 20px;
   }
@@ -165,7 +165,7 @@ export const CameraIconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 `
 export const TitleAndDescription = styled.div`
   width: 90%;

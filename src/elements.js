@@ -39,6 +39,7 @@ export const Textarea = styled.textarea`
   border: 1px solid lightgray;
   border-radius: 2px;
   padding: 5px;
+  max-width: 70%;
 `
 
 export const ContainerMap = styled.div`
