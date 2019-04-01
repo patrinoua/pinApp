@@ -1,279 +1,280 @@
 .existingWebPage {
-    width: 90vw;
-    height: 90vh;
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  width: 90vw;
+  height: 90vh;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .blackVail {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    /* background-color: black; */
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 8;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: black; */
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
 }
 
 .blackVailDelete {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    opacity: 0.9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 6;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
 }
 
 /* ******** PINCLICK  *********/
 
-#exit {}
+#exit {
+}
 
 #exitPinClick:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .exitPinClick {
-    position: absolute;
-    top: 5vh;
-    right: 5vh;
-    font-size: 2vw;
-    color: white;
-    cursor: pointer;
-    opacity: 0.6;
-    z-index: 20;
+  position: absolute;
+  top: 5vh;
+  right: 5vh;
+  font-size: 2vw;
+  color: white;
+  cursor: pointer;
+  opacity: 0.6;
+  z-index: 20;
 }
 
 .fieldsContainerPinClick {
-    justify-items: center;
-    display: grid;
-    grid-template-rows: 15% 50% 20% 15%;
-    grid-template-columns: 1fr;
-    /* position: relative; */
-    z-index: 20;
-    position: relative;
+  justify-items: center;
+  display: grid;
+  grid-template-rows: 15% 50% 20% 15%;
+  grid-template-columns: 1fr;
+  /* position: relative; */
+  z-index: 20;
+  position: relative;
 }
 
 .secondRowPinClick {
-    width: 90%;
-    height: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  width: 90%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .thirdRowPinClick {
-    width: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .boxPinClick {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    max-width: 30vw;
-    width: 90%;
-    height: 90%;
-    overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  max-width: 30vw;
+  width: 90%;
+  height: 90%;
+  overflow: hidden;
 }
 
 .textFieldsPinClick {
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .mapContainerPinClick img {
-    width: 90%;
-    height: 90%;
-    background-color: rgba(254, 228, 241, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
-    position: relative;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(254, 228, 241, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  position: relative;
 }
 
 .overlayPin {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 12;
-    /* background-color: purple; */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 12;
+  /* background-color: purple; */
 }
 
 .colPinClick {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .galleryItemsContainer {
-    width: 100%;
-    height: 100%;
-    /* background-color: rgba(254, 228, 241, 1); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1);
-    position: relative;
-    /* background-color: #101010; */
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    /* background-size: cover; */
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(254, 228, 241, 1); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1);
+  position: relative;
+  /* background-color: #101010; */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  /* background-size: cover; */
+  overflow: hidden;
 }
 
 .galleryItemsContainer label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .cameraIconContainerPinClick {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(254, 228, 241, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-    position: relative;
-    background-size: cover;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(254, 228, 241, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .existingPhoto {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .uploadedImagePinclick {
-    background-position: center center;
-    width: 100%;
-    position: absolute;
+  background-position: center center;
+  width: 100%;
+  position: absolute;
 }
 
 .pinImageContainer {
-    width: 20vw;
-    height: 20vh;
-    overflow: hidden;
+  width: 20vw;
+  height: 20vh;
+  overflow: hidden;
 }
 
 .addPinPicturePinClick {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .shareButtons {
-    width: 50px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+  width: 50px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 }
 
 .shareButtons:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .removePin {
-    content: 'lalala';
+  content: 'lalala';
 }
 
 .removePin:hover {
-    color: red;
-    content: 'NEWttgg';
+  color: red;
+  content: 'NEWttgg';
 }
 
 /* ********* pinClick.css ************ */
 
 #clickPinHolder {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .pinClickHolder {
-    width: 70vw;
-    height: 70vh;
-    background-color: rgb(71, 36, 83);
-    z-index: 12;
+  width: 70vw;
+  height: 70vh;
+  background-color: rgb(71, 36, 83);
+  z-index: 12;
 }
 
 .pinTitle {
-    font-family: 'Pacifico', cursive;
-    /* font-size: 25px; */
-    width: 100%;
-    z-index: 12;
+  font-family: 'Pacifico', cursive;
+  /* font-size: 25px; */
+  width: 100%;
+  z-index: 12;
 }
 
 /* ******** newPinContainer  *********/
 
 .newPinContainer {
-    width: 100vw;
-    height: 100vh;
-    /* color: white; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    animation: fadein 1s;
-    z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  /* color: white; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  animation: fadein 1s;
+  z-index: 10;
 }
 
 .fieldsContainer {
@@ -291,326 +292,329 @@
 }
 
 .fieldsContainerNewPin {
-    display: grid;
-    grid-template-rows: 20% 60% 20%;
-    grid-template-columns: 1fr;
-    position: relative;
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
+  grid-template-columns: 1fr;
+  position: relative;
 }
 
 .box {
-    display: flex;
-    align-items: center;
-    /*  THIS IS NEW - it used to be center!*/
-    justify-content: space-evenly;
-    width: 100%;
-    height: 100%;
-    position: relative;
+  display: flex;
+  align-items: center;
+  /*  THIS IS NEW - it used to be center!*/
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .pinTitle {
-    font-family: 'Pacifico', cursive;
-    /* font-size: 25px; */
-    width: 100%;
-    z-index: 1;
-    display: flex;
-    /* justify-content: center; */
+  font-family: 'Pacifico', cursive;
+  /* font-size: 25px; */
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  /* justify-content: center; */
 }
 
 .pinTitlePinClick {
-    font-family: 'Pacifico', cursive;
-    /* font-size: 25px; */
-    width: 100%;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: 'Pacifico', cursive;
+  /* font-size: 25px; */
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pinTitle img {
-    transform: translate(30%, -25%);
-    max-width: 25%;
+  transform: translate(30%, -25%);
+  max-width: 25%;
 }
 
 .pinTitlePinClick img {
-    transform: translate(30%, -25%);
-    max-width: 25%;
+  transform: translate(30%, -25%);
+  max-width: 25%;
 }
 
 .pinOptions {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+  justify-items: center;
 }
 
 .pinMenu {
-    /* width: 50%; */
-    height: 100%;
-    position: relative;
-    left: 3vw;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
+  /* width: 50%; */
+  height: 100%;
+  position: relative;
+  left: 3vw;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
 }
 
 .pinCategory {
-    display: flex;
-    color: whitesmoke;
-    height: 50px;
-    /* height: 5%; */
+  display: flex;
+  color: whitesmoke;
+  height: 50px;
+  /* height: 5%; */
 }
 
 .pinCheckBox {
-    display: flex;
-    align-items: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .pinText {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 5px;
-    font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5px;
+  font-size: 0.9em;
 }
 
 .addPinPicture {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .cameraIconContainer {
-    /* width: 50%;
+  /* width: 50%;
     height: 50%; */
-    max-width: 150px;
-    max-height: 150px;
-    width: 25vh;
-    height: 25vh;
-    background-color: rgba(254, 228, 241, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  max-width: 150px;
+  max-height: 150px;
+  width: 25vh;
+  height: 25vh;
+  background-color: rgba(254, 228, 241, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }
 
-.titleTextarea, .titleTextareaPinClick {
-    border-radius: 2px;
-    width: 24vh;
-    max-width: 143px;
-    background-color: whitesmoke;
-    margin: 10px;
-    resize: none;
+.titleTextarea,
+.titleTextareaPinClick {
+  border-radius: 2px;
+  width: 24vh;
+  max-width: 143px;
+  background-color: whitesmoke;
+  margin: 10px;
+  resize: none;
 }
 
-.descriptionTextarea, .descriptionTextareaPinClick {
-    border-radius: 2px;
-    /* width: 47%; */
-    width: 24vh;
-    max-width: 143px;
-    background-color: whitesmoke;
+.descriptionTextarea,
+.descriptionTextareaPinClick {
+  border-radius: 2px;
+  /* width: 47%; */
+  width: 24vh;
+  max-width: 143px;
+  background-color: whitesmoke;
 }
 
 .pinEditSaveButtonArea {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saveButton {
-    font-size: 1.2em;
-    margin: 20px;
-    font-family: 'Pacifico', cursive;
+  font-size: 1.2em;
+  margin: 20px;
+  font-family: 'Pacifico', cursive;
 }
 
 .saveButton:hover {
-    cursor: pointer;
-    margin: 20px;
+  cursor: pointer;
+  margin: 20px;
 }
 
 .cameraIconContainer:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .pinIcon {
-    max-width: 25px;
-    height: auto;
-    padding-right: 10px;
+  max-width: 25px;
+  height: auto;
+  padding-right: 10px;
 }
 
 .cameraIcon {
-    max-width: 50px;
-    height: auto;
+  max-width: 50px;
+  height: auto;
 }
 
 .tickIcon {
-    max-width: 15px;
-    height: auto;
-    position: absolute;
-    padding-left: 15px;
-    top: 30%;
+  max-width: 15px;
+  height: auto;
+  position: absolute;
+  padding-left: 12px;
+  top: 18%;
+  filter: opacity(70%);
 }
 
 #exit {
-    position: absolute;
-    top: 18%;
-    right: 18%;
-    font-size: 2vw;
-    color: white;
-    cursor: pointer;
-    z-index: 5;
-    opacity: 0.6;
+  position: absolute;
+  top: 18%;
+  right: 18%;
+  font-size: 2vw;
+  color: white;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0.6;
 }
 
 #exit:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* *********** List of Pins **********/
 
 .listOfPinsContainer {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left:0;
-    z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .listOfLocationsHolder {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #listSmallHolder {
-    min-width: 70vw;
-    height: 70vh;
-    overflow: scroll;
-    border-radius: 30px;
-    background: red;
-    background-color: rgb(255, 255, 255);
-    padding: 4vw;
-    color: black;
-    box-shadow: 2px 2px 35px -5px black;
-    z-index: 10;
-    position: relative;
+  min-width: 70vw;
+  height: 70vh;
+  overflow: scroll;
+  border-radius: 30px;
+  background: red;
+  background-color: rgb(255, 255, 255);
+  padding: 4vw;
+  color: black;
+  box-shadow: 2px 2px 35px -5px black;
+  z-index: 10;
+  position: relative;
 }
 
 #listClose {
-    position: absolute;
-    top: 3vh;
-    right: 3vw;
-    z-index: 12;
-    cursor: pointer;
-    opacity: 0.4;
+  position: absolute;
+  top: 3vh;
+  right: 3vw;
+  z-index: 12;
+  cursor: pointer;
+  opacity: 0.4;
 }
 
 #listClose:hover {
-    opacity: .9;
+  opacity: 0.9;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-
 .descHolder {
-    overflow: scroll;
-    color: grey;
-    font-size: 0.8em;
-    font-style: italic;
-    padding: 5px;
-    margin: 10px;
+  overflow: scroll;
+  color: grey;
+  font-size: 0.8em;
+  font-style: italic;
+  padding: 5px;
+  margin: 10px;
 }
 
 .dateHolder {
-    font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 @media only screen and (max-width: 400px) {
-    .pinText {
-        font-size: 0.7em;
-    }
-    .profilePageContainer {
-        flex-direction: column;
-    }
-    .profileInfoContainer {
-        padding-top: 0;
-        font-size: 0.8em;
-    }
-    .eachPin {
-        grid-template-columns: 30% 60%;
-    }
-    .descHolder, .dateHolder {
-        display: none;
-    }
-    .thePinImg {
-        justify-self: center;
-    }
-   .mapContainerLeft{
-        display: none;
-    }
-    .boxPinClick {
-        max-width: 100%;
-    }
-    .exitPinClick {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        font-size: 5vw;
-    }
-    .pinTitlePinClick img{
-        display: none;
-        max-height: 22vw;
-        width: auto;
-        transform: translate(30%, -3%);
-    }
-    .blackVail{
-        opacity: 1;
-    }
-    .fieldsContainer{
-        width:100%;
-        height: 100%;
-        position: absolute;
-        border: none;
-        top:10vh;
-    }
-    .addPinTitle{
-        font-size: 2em;
-        margin-left: 35px;
-    }
-    .pinMenu{
-        left: 0;
-    }
-    .pinIcon{
-        max-width: 22px;
-        padding-right: 5px;
-    }
-    .secondRowPinClick {
-        width: 100%;
-        height: 80%;
-    }
-    #listSmallHolder{
-        width: 90%;
-    }
+  .pinText {
+    font-size: 0.7em;
+  }
+  .profilePageContainer {
+    flex-direction: column;
+  }
+  .profileInfoContainer {
+    padding-top: 0;
+    font-size: 0.8em;
+  }
+  .eachPin {
+    grid-template-columns: 30% 60%;
+  }
+  .descHolder,
+  .dateHolder {
+    display: none;
+  }
+  .thePinImg {
+    justify-self: center;
+  }
+  .mapContainerLeft {
+    display: none;
+  }
+  .boxPinClick {
+    max-width: 100%;
+  }
+  .exitPinClick {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 5vw;
+  }
+  .pinTitlePinClick img {
+    display: none;
+    max-height: 22vw;
+    width: auto;
+    transform: translate(30%, -3%);
+  }
+  .blackVail {
+    opacity: 1;
+  }
+  .fieldsContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: none;
+    top: 10vh;
+  }
+  .addPinTitle {
+    font-size: 2em;
+    margin-left: 35px;
+  }
+  .pinMenu {
+    left: 0;
+  }
+  .pinIcon {
+    max-width: 22px;
+    padding-right: 5px;
+  }
+  .secondRowPinClick {
+    width: 100%;
+    height: 80%;
+  }
+  #listSmallHolder {
+    width: 90%;
+  }
 }
 
 .flexHolder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

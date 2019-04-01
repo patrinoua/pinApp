@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {insertPinInfo} from '../../actions'
-import {ModalContainer, BlackVail, Textarea,} from '../../elements'
+import { connect } from 'react-redux'
+import { insertPinInfo } from '../../actions'
+import { ModalContainer, BlackVail, Textarea } from '../../elements'
 import {
   FieldsContainerNewPin,
   PinCategory,
@@ -76,7 +76,7 @@ class AddNewPin extends React.Component {
     const formData = new FormData()
     formData.append('file', this.state.file)
 
-    this.props.dispatch(insertPinInfo({formData, pinInfo}))
+    this.props.dispatch(insertPinInfo({ formData, pinInfo }))
     this.props.closeAddNewPinComponent()
   }
   compileData(e) {
@@ -89,7 +89,7 @@ class AddNewPin extends React.Component {
           let selectedImg = new FileReader()
           selectedImg.readAsDataURL(this.state.file)
           selectedImg.addEventListener('load', () => {
-            this.setState({dataUrl: selectedImg.result})
+            this.setState({ dataUrl: selectedImg.result })
           })
         } catch (err) {
           console.log(`error in compileData: ${err}`)
@@ -116,11 +116,7 @@ class AddNewPin extends React.Component {
             />
             <PinIcon src={str} alt="pinIcon" />
             {this.state.holder === variable && (
-              <img
-                src="/pins/pinkTick.png"
-                className="tickIcon"
-                alt="tickIcon"
-              />
+              <img src="/pins/tick.png" className="tickIcon" alt="tickIcon" />
             )}
           </PinCheckboxArea>
           <PinText>
@@ -133,9 +129,7 @@ class AddNewPin extends React.Component {
     return (
       <React.Fragment>
         <ModalContainer>
-          <BlackVail
-            onClick={this.props.closeAddNewPinComponent}
-          />
+          <BlackVail onClick={this.props.closeAddNewPinComponent} />
           <FieldsContainerNewPin>
             <CloseModalX onClick={this.props.closeAddNewPinComponent}>
               X
@@ -162,7 +156,7 @@ class AddNewPin extends React.Component {
                       className="inputfile"
                       type="file"
                       name="file"
-                      onChange={(e) => {
+                      onChange={e => {
                         this.setFile(e)
                         this.compileData(e)
                       }}
@@ -215,9 +209,7 @@ class AddNewPin extends React.Component {
               </AddPinPicture>
             </PinOptions>
             <SaveCancelArea>
-              <SaveButton onClick={this.insertPinInfos}>
-                Save
-              </SaveButton>
+              <SaveButton onClick={this.insertPinInfos}>Save</SaveButton>
               <SaveButton onClick={this.props.closeAddNewPinComponent}>
                 Cancel
               </SaveButton>
