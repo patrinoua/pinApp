@@ -1,7 +1,7 @@
 import axios from './axios'
 
 export async function receiveFriends() {
-  const {data} = await axios.get('/getFriendsAndWannabes')
+  const { data } = await axios.get('/getFriendsAndWannabes')
 
   return {
     type: 'RECEIVE_FRIENDS_AND_WANNABES',
@@ -10,7 +10,7 @@ export async function receiveFriends() {
 }
 
 export async function removeFriend(id) {
-  const {data} = await axios.post('updateFriendshipStatus', {
+  const { data } = await axios.post('/updateFriendshipStatus', {
     id: id,
     status: 4
   })
@@ -21,7 +21,7 @@ export async function removeFriend(id) {
 }
 
 export async function acceptFriend(id) {
-  const {data} = await axios.post('updateFriendshipStatus', {
+  const { data } = await axios.post('/updateFriendshipStatus', {
     id: id,
     status: 3
   })
@@ -31,7 +31,7 @@ export async function acceptFriend(id) {
   }
 }
 export async function denyFriend(id) {
-  const {data} = await axios.post('updateFriendshipStatus', {
+  const { data } = await axios.post('/updateFriendshipStatus', {
     id: id,
     status: 5
   })
@@ -142,7 +142,7 @@ export function getUserPins() {
 
 export function getUserPinInfo(id) {
   return axios
-    .get(`/getUserPins`, {params: {id}})
+    .get(`/getUserPins`, { params: { id } })
     .then(response => {
       return {
         type: 'GET_USER_PIN_INFO',
@@ -176,7 +176,7 @@ export function selectActionBycategory(categories, pinsArray) {
 }
 export function deletePin(pinId) {
   return axios
-    .post('/deletePin', {pinId})
+    .post('/deletePin', { pinId })
     .then(response => {
       return {
         type: 'DELETE_PIN',

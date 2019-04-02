@@ -11,6 +11,7 @@ import { ComponentContainer } from '../../elements'
 import {
   PendingFriends,
   FriendBox,
+  PendingFriendBox,
   RemoveFriendXImage,
   PictureContainer,
   ExistingFriendsList,
@@ -34,37 +35,35 @@ class Friends extends React.Component {
       )
     } else {
       return (
-        <div key={friend.id}>
-          <FriendBox to={`user/${friend.id}`} key={friend.id}>
-            <PictureContainer style={{ backgroundImage: `url(${pic})` }} />
-            {friend.first} {friend.last}
-            <AcceptDeny>
-              <PendingAccept
-                onClick={() => {
-                  this.props.dispatch(acceptFriend(friend.id))
-                }}
-              >
-                Accept
-                <img src="tick.png" className="icons" alt="tick" />
-              </PendingAccept>
-              <PendingAccept
-                onClick={() => {
-                  this.props.dispatch(denyFriend(friend.id))
-                }}
-              >
-                Deny
-                <img src="x.png" className="icons" alt="x" />
-              </PendingAccept>
-            </AcceptDeny>
-          </FriendBox>
-        </div>
+        <PendingFriendBox to={`user/${friend.id}`} key={friend.id}>
+          <PictureContainer style={{ backgroundImage: `url(${pic})` }} />
+          {friend.first} {friend.last}
+          <AcceptDeny>
+            <PendingAccept
+              onClick={() => {
+                this.props.dispatch(acceptFriend(friend.id))
+              }}
+            >
+              Accept
+              <img src="tick.png" className="icons" alt="tick" />
+            </PendingAccept>
+            <PendingAccept
+              onClick={() => {
+                this.props.dispatch(denyFriend(friend.id))
+              }}
+            >
+              Deny
+              <img src="x.png" className="icons" alt="x" />
+            </PendingAccept>
+          </AcceptDeny>
+        </PendingFriendBox>
       )
     }
   }
   render() {
     const { friends } = this.props
     if (!friends) {
-      return null
+      return <div> Use the menu on the right to find some friends!</div>
     }
     const existingFriends = this.props.existingFriends.map(existing => {
       return this.friendFormat(existing, 'exists')
@@ -77,10 +76,12 @@ class Friends extends React.Component {
     return (
       <ComponentContainer>
         <PendingFriends>
-          <h1> Pending Friends </h1>
-          <div className="pendingFriends">
-            <div className="pendingFriendsList">{pendingFriends}</div>
-          </div>
+          {pendingFriends.length > 0 && (
+            <React.Fragment>
+              <h1> Pending Friends </h1>
+              <ExistingFriendsList>{pendingFriends}</ExistingFriendsList>
+            </React.Fragment>
+          )}
           <h1> Friends </h1>
           <ExistingFriendsList>{existingFriends}</ExistingFriendsList>
         </PendingFriends>
