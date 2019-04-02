@@ -48,6 +48,9 @@ export const NavigationContainerBig = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: white;
+  position: fixed;
+  z-index: 1;
 `
 export const NavigationSeperatingLine = styled.div`
   height: 35px;
