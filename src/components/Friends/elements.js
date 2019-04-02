@@ -14,15 +14,53 @@ export const PendingFriends = styled.div`
 export const FriendBox = styled(Link)`
   margin: 10px;
   display: flex;
-  color: black;
   min-width: 300px;
-  border-radius: 20px;
+  border-radius: 24px;
+  background: rgba(250, 238, 208, 1);
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(250, 238, 208, 1) 0%,
+    rgba(250, 227, 170, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right bottom,
+    color-stop(0%, rgba(250, 238, 208, 1)),
+    color-stop(100%, rgba(250, 227, 170, 1))
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(250, 238, 208, 1) 0%,
+    rgba(250, 227, 170, 1) 100%
+  );
+  background: -o-linear-gradient(
+    -45deg,
+    rgba(250, 238, 208, 1) 0%,
+    rgba(250, 227, 170, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    -45deg,
+    rgba(250, 238, 208, 1) 0%,
+    rgba(250, 227, 170, 1) 100%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(250, 238, 208, 1) 0%,
+    rgba(250, 227, 170, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr='#faeed0',
+      endColorstr='#fae3aa',
+      GradientType=1
+    );
+  color: #303138;
+  // font-family: Galano, Helvetica, sans-serif;
   align-items: center;
   position: relative;
   padding: 10px;
   flex-shrink: 0;
-  border: 1px solid lightgray;
-  border-bottom: 2px solid lightgray;
+  // border-right: 1px solid lightgray;
+  // border-bottom: 1px solid lightgray;
   &:hover {
     cursor: pointer;
   }
@@ -34,7 +72,7 @@ export const FriendBox = styled(Link)`
     align-items: center;
   }
   &: visited {
-    color: black;
+    color: #454650;
   }
 `
 
