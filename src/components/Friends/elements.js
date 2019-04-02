@@ -74,6 +74,9 @@ export const FriendBox = styled(Link)`
   &: visited {
     color: #454650;
   }
+  &: hover {
+    filter: saturate(2);
+  }
 `
 
 export const PendingFriendBox = styled(FriendBox)`
