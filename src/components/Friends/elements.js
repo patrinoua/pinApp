@@ -102,6 +102,7 @@ export const PictureContainer = styled.img`
   background-position: center;
   @media (max-width: 400px) {
     margin-bottom: 0;
+    margin-right: 0px;
   }
 `
 export const ExistingFriendsList = styled.div`
