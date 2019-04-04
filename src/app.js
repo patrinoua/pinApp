@@ -8,7 +8,7 @@ import Header from './components/Header'
 import OtherProfile from './components/OtherProfile'
 import About from './components/About'
 import Friends from './components/Friends'
-import OnlineUsers from './onlineUsers'
+// import OnlineUsers from './onlineUsers'
 import { saveUserInfo } from './actions'
 import PinClick from './components/PinClick'
 
@@ -140,7 +140,7 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route exact path="/onlineUsers" component={OnlineUsers} />
+            {/*<Route exact path="/onlineUsers" component={OnlineUsers} />*/}
             {/*<Route exact path="/chat" component={Chat} />*/}
             <Route
               exact
