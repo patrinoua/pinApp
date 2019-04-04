@@ -177,7 +177,12 @@ export const PinAppButton = styled.button`
     background-color: #b52519;
   }
 `
-
+export const SubtleButton = styled.button`
+  width: 110px;
+  padding: 5px;
+  font-size: 0.9em;
+  color: darkgray;
+`
 export const ErrorMessage = styled.div`
   color: #ff6b6b;
   padding: 4px;

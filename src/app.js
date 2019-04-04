@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import MapContainer from './MapContainer'
 import { connect } from 'react-redux'
 import axios from './axios'
-import { ProfilePage, UploadProfilePic } from './profile'
+import { EditProfile, UploadProfilePic } from './components/EditProfile'
 import Header from './components/Header'
 import OtherProfile from './components/OtherProfile'
 import About from './components/About'
@@ -87,7 +87,7 @@ class App extends React.Component {
               exact
               path="/profile"
               render={() => (
-                <ProfilePage
+                <EditProfile
                   {...this.state}
                   toggleUploader={this.toggleUploader}
                   makeUploaderVisible={this.showUploader}
