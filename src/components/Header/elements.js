@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Regular } from '../../typography'
+import { Regular } from '../typography'
 
 export const StyledRegular = styled(Regular)`
   @media (max-width: 700px) {

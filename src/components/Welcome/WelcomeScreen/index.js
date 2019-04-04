@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { PinAppButton } from '../../../elements'
+import { PinAppButton } from '../../elements'
 import { WelcomeScreenContainer, WelcomeText } from '../elements'
 
 export default function WelcomeScreen() {

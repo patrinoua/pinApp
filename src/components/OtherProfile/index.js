@@ -6,7 +6,7 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getUserPinInfo, selectActionBycategory } from '../../actions'
 import ListOfPins from '../ListOfPins'
 import PinClick from '../PinClick'
-import { ComponentContainer, CategoryList } from '../../elements'
+import { ComponentContainer, CategoryList } from '../elements'
 import {
   OtherUserContainer,
   OtherUserContainerUp,

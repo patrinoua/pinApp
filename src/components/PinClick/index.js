@@ -4,7 +4,7 @@ import axios from '../../axios'
 import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-import { ModalContainer, BlackVail, XIcon, Textarea } from '../../elements.js'
+import { ModalContainer, BlackVail, XIcon, Textarea } from '../elements.js'
 import {
   TitleAndDescription,
   ButtonContainer,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from '../../../axios'
-import { PinAppButton, ErrorMessage } from '../../../elements'
+import { PinAppButton, ErrorMessage } from '../../elements'
 import { WelcomeForm, WelcomeFormText, WelcomeFormInput } from '../elements.js'
 
 export default class Register extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from '../../axios'
-import { ComponentContainer, SubtleButton } from '../../elements'
+import { ComponentContainer, SubtleButton } from '../elements'
 import {
   ProfilePageContainer,
   ProfilePageContainerLeft,

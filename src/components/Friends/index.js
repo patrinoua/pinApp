@@ -7,7 +7,7 @@ import {
   acceptFriend,
   denyFriend
 } from '../../actions'
-import { ComponentContainer } from '../../elements'
+import { ComponentContainer } from '../elements'
 import {
   PendingFriends,
   FriendBox,

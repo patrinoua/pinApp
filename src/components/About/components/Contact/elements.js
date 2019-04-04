@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Textarea } from '../../../../elements'
+import { Textarea } from '../../../elements'
 import { WelcomeFormInput } from '../../../Welcome/elements'
 
 export const MailContainer = styled.div`

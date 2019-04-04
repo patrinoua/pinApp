@@ -13,7 +13,7 @@ import {
   MapContainerLeft,
   MapContainerRight,
   CategoryList
-} from '../../elements'
+} from '../elements'
 //na diagrapsw to ListOfLocations.js
 
 class MapContainer extends React.Component {

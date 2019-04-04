@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from '../../../../axios'
 import { Link } from 'react-router-dom'
-import { Textarea } from '../../../../elements.js'
+import { Textarea } from '../../../elements.js'
 
 export class NamesToShow extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { insertPinInfo } from '../../actions'
-import { ModalContainer, BlackVail, Textarea } from '../../elements'
+import { ModalContainer, BlackVail, Textarea } from '../elements'
 import {
   FieldsContainerNewPin,
   PinCategory,

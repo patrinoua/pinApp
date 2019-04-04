@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { SubtleButton } from '../../elements'
+import { SubtleButton } from '../elements'
 
 export const ProfilePageContainer = styled.div`
   width: 100%;

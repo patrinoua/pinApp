@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { PinAppButton } from '../../elements'
+import { PinAppButton } from '../elements'
 
 export const OtherUserContainer = styled.div`
   width: 100%;
