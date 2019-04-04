@@ -179,6 +179,7 @@ export const PinAppButton = styled.button`
 `
 export const SubtleButton = styled.button`
   width: 110px;
+  min-height: 25px;
   padding: 5px;
   font-size: 0.9em;
   color: darkgray;
