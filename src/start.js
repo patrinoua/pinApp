@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Welcome } from './welcome'
-import App from './App'
+import App from './TheApp'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reduxPromise from 'redux-promise'
