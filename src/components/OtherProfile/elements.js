@@ -16,12 +16,8 @@ export const OtherUserContainerUp = styled.div`
   justify-content: space-between;
 `
 export const ProfilePicUser = styled.div`
-  min-width: 65px;
-  min-height: 65px;
-  width: 15vh;
-  height: 15vh;
-  max-width: 150px;
-  max-height: 150px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   border: 3px solid rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -31,8 +27,10 @@ export const ProfilePicUser = styled.div`
   background-position: center center;
   background-size: cover;
   margin-left: 10vh;
+
+  flex-shrink: 0;
   @media (max-width: 400px) {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 `
 export const NameAndBioContainerUser = styled.div`
