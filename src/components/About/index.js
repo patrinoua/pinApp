@@ -1,6 +1,13 @@
 import React from 'react'
 import Contact from './components/Contact'
-import { Headline, SummaryContainer, Summary, Ul, Li } from './elements'
+import {
+  Headline,
+  SummaryContainer,
+  Summary,
+  Ul,
+  Li,
+  AboutContainer
+} from './elements'
 class About extends React.Component {
   constructor() {
     super()
@@ -9,7 +16,7 @@ class About extends React.Component {
 
   render() {
     return (
-      <div>
+      <AboutContainer>
         <Headline>About</Headline>
         <SummaryContainer>
           <Summary>
@@ -52,7 +59,7 @@ class About extends React.Component {
             </Summary>
           </SummaryContainer>
         </Contact>
-      </div>
+      </AboutContainer>
     )
   }
 }

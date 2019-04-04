@@ -1,5 +1,9 @@
 import styled from 'styled-components'
+import { ComponentContainer } from '../elements'
 
+export const AboutContainer = styled(ComponentContainer)`
+  flex-direction: column;
+`
 export const Headline = styled.div`
   margin-top: 30px;
   justify-self: center;
