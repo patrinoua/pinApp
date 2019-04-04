@@ -16,18 +16,16 @@ import {
   EditButtonsContainer,
   StyledTextarea,
   HiddenInput,
-  DeleteAccountContainer,
-  DeleteAccountWindowPopUp,
-  DeletingAccountButton,
   EditProfilePictureIcon
 } from './elements'
+import DeleteAccount from './components/DeleteAccount'
 
 export class EditProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       editorIsVisible: false,
-      deleteAccountNotificationWindowIsVisible: false
+      deleteAccountWindowIsVisible: false
     }
     this.pic = this.props.profilepic
     this.bio = this.props.bio
@@ -35,13 +33,11 @@ export class EditProfile extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.saveNewInputValue = this.saveNewInputValue.bind(this)
     this.setFile = this.setFile.bind(this)
-    this.showDeleteAccountNotification = this.showDeleteAccountNotification.bind(
-      this
-    )
+    this.toggleDeleteProfile = this.toggleDeleteProfile.bind(this)
   }
-  showDeleteAccountNotification() {
+  toggleDeleteProfile() {
     this.setState({
-      deleteAccountNotificationWindowIsVisible: true
+      deleteAccountWindowIsVisible: !this.state.deleteAccountWindowIsVisible
     })
   }
   toggleEditor() {
@@ -49,6 +45,7 @@ export class EditProfile extends React.Component {
       editorIsVisible: !this.state.editorIsVisible
     })
   }
+
   inputField(inputValue, state) {
     return <div>I wonder...</div>
   }
@@ -102,13 +99,12 @@ export class EditProfile extends React.Component {
     let pic = this.props.profilepic || '/user.png'
     let bio = this.props.bio || 'Tell us something about yourself!'
 
-    const existingValue = (textToShow, propertyKey) => (
+    const existingField = (textToShow, propertyKey) => (
       <InputFieldContainer>
         <FieldName>{textToShow}</FieldName>
         <FieldValue>{propertyKey}</FieldValue>
       </InputFieldContainer>
     )
-
     const editingInputField = (textToShow, fieldname, propertyKey) => (
       <InputFieldContainer>
         <FieldName>{textToShow}</FieldName>
@@ -185,10 +181,10 @@ export class EditProfile extends React.Component {
                 </FieldsContainer>
               )) || (
                 <FieldsContainer>
-                  {existingValue('Firstname', first)}
-                  {existingValue('Lastname', last)}
-                  {existingValue('Email', email)}
-                  {existingValue('Password', '*******')}
+                  {existingField('Firstname', first)}
+                  {existingField('Lastname', last)}
+                  {existingField('Email', email)}
+                  {existingField('Password', '*******')}
                   <InputFieldContainer>
                     <FieldName>Bio</FieldName>
                     <FieldValue
@@ -206,43 +202,13 @@ export class EditProfile extends React.Component {
           </ProfilePageContainerRight>
           <DeleteAccountButton
             onClick={() => {
-              this.showDeleteAccountNotification()
+              this.toggleDeleteProfile()
             }}
           >
             Delete Account
-          </DeleteAccountButton>
-          {this.state.deleteAccountNotificationWindowIsVisible && (
-            <DeleteAccountContainer
-              onClick={() => {
-                this.setState({
-                  deleteAccountNotificationWindowIsVisible: false
-                })
-              }}
-            >
-              <DeleteAccountWindowPopUp>
-                Are you sure you want to delete your account?
-                <DeletingAccountButton
-                  onClick={() => {
-                    axios.get('deleteUserAccount').then(response => {
-                      location.replace('/welcome')
-                    })
-                  }}
-                >
-                  {' '}
-                  yes, I want to delete my account and all my pins{' '}
-                </DeletingAccountButton>
-                <DeletingAccountButton
-                  onClick={() => {
-                    this.setState({
-                      deleteAccountNotificationWindowIsVisible: false
-                    })
-                  }}
-                >
-                  {' '}
-                  Cancel{' '}
-                </DeletingAccountButton>
-              </DeleteAccountWindowPopUp>
-            </DeleteAccountContainer>
+          </DeleteAccountButton>*/}
+          {this.state.deleteAccountWindowIsVisible && (
+            <DeleteAccount toggleDeleteProfile={this.toggleDeleteProfile} />
           )}
         </ProfilePageContainer>
       </ComponentContainer>
