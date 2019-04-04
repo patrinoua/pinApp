@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-import { getUserPins, selectActionBycategory } from './actions'
-import PinClick from './components/PinClick'
-import AddNewPin from './components/AddNewPin'
-import ListOfPins from './components/ListOfPins'
+import { getUserPins, selectActionBycategory } from '../../actions'
+import PinClick from '../PinClick'
+import AddNewPin from '../AddNewPin'
+import ListOfPins from '../ListOfPins'
 
 import {
   ContainerMap,
@@ -13,7 +13,7 @@ import {
   MapContainerLeft,
   MapContainerRight,
   CategoryList
-} from './elements'
+} from '../../elements'
 //na diagrapsw to ListOfLocations.js
 
 class MapContainer extends React.Component {
