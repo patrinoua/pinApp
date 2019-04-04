@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 import Colors from '../../constants/colors'
-
+import { BlackVail } from '../elements'
 const lettersColor = Colors.darkGray
 const backgroundColor = Colors.white
 
+export const BlackVailPinClick = styled(BlackVail)`
+  z-index: 15;
+  opacity: 0.5;
+`
 export const FieldsContainer = styled.div`
   display: grid;
   align-items: center;

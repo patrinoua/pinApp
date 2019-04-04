@@ -8,7 +8,8 @@ import { ModalContainer, BlackVail, XIcon, Textarea } from '../elements.js'
 import {
   TitleAndDescription,
   ButtonContainer,
-  PinAppButton
+  PinAppButton,
+  BlackVailPinClick
 } from '../AddNewPin/elements.js'
 import {
   PinClickFieldsContainer,
@@ -268,7 +269,7 @@ class PinClick extends React.Component {
       return (
         <React.Fragment>
           <ModalContainer>
-            <BlackVail onClick={this.togglePinClick} />
+            <BlackVailPinClick onClick={this.togglePinClick} />
             <PinClickFieldsContainer>
               <XIcon onClick={this.togglePinClick}>X</XIcon>
               <PinTitle>

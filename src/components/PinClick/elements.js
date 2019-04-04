@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {FieldsContainer} from '../AddNewPin/elements'
+import { FieldsContainer } from '../AddNewPin/elements'
 
 export const PinClickFieldsContainer = styled(FieldsContainer)`
   justify-items: center;
@@ -7,7 +7,7 @@ export const PinClickFieldsContainer = styled(FieldsContainer)`
   grid-template-columns: 1fr;
   z-index: 20;
   position: relative;
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     grid-template-rows: 25% 30% 17% 7%;
   }
 `
@@ -18,7 +18,8 @@ export const PinTitle = styled.div`
   z-index: 1;
   display: flex;
   justify-content: center;
-  @media (max-width: 700px){
+  align-items: center;
+  @media (max-width: 700px) {
     align-items: flex-end;
     height: 80%;
   }

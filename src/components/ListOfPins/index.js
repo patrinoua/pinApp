@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PinClick from '../../components/PinClick'
+import PinClick from '../PinClick'
 import { BlackVail, XIcon } from '../elements.js'
 import {
   ListOfPinsContainer,
@@ -70,14 +70,14 @@ class ListOfPins extends React.Component {
                 {!this.props.first && 'my Pins'}
               </ListTitle>
               {this.props.markersArray &&
-                this.props.markersArray.map(item => (
+                this.props.markersArray.map(clickedPin => (
                   <EachPin
-                    key={item.title + item.id}
+                    key={clickedPin.title + clickedPin.id}
                     onClick={() => {
                       this.setState({
-                        clickedPinId: item.id,
-                        lat: item.lat,
-                        lng: item.lng
+                        clickedPinId: clickedPin.id,
+                        lat: clickedPin.lat,
+                        lng: clickedPin.lng
                       })
                       this.props.closeListComponent
                     }}
@@ -85,11 +85,11 @@ class ListOfPins extends React.Component {
                     <PinImage
                       className="thePinImg"
                       alt="thePinImg"
-                      src={item.color}
+                      src={clickedPin.color}
                     />
-                    <span> {item.title} </span>
-                    <Description> {item.description} </Description>
-                    <Date>{item.created_at}</Date>
+                    <span> {clickedPin.title} </span>
+                    <Description> {clickedPin.description} </Description>
+                    <Date>{clickedPin.created_at}</Date>
                   </EachPin>
                 ))}
             </ListSmallHolder>

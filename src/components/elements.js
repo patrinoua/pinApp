@@ -30,6 +30,7 @@ export const ModalContainer = styled.div`
   justify-content: center;
   position: absolute;
   top: 0;
+  left: 0;
   animation: fadein 1s;
   z-index: 20;
 `
