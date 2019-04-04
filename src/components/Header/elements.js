@@ -89,4 +89,7 @@ export const HamburgerMenu = styled.div`
   background-size: contain;
   background-position: center;
   filter: invert(0.4);
+  @media (max-width: 400px) {
+    margin-right: 0;
+  }
 `
