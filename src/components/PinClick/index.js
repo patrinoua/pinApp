@@ -4,13 +4,12 @@ import axios from '../../axios'
 import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-import { ModalContainer, BlackVail, XIcon, Textarea } from '../elements.js'
+import { ModalContainer, XIcon, Textarea } from '../elements.js'
 import {
   TitleAndDescription,
-  ButtonContainer,
-  PinAppButton,
   BlackVailPinClick
 } from '../AddNewPin/elements.js'
+import { DeletePinAlert, ShareButton, EditButton } from './ButtonsAndAlerts'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -30,7 +29,8 @@ class PinClick extends React.Component {
       editMode: false,
       title: '',
       url: '',
-      deleteAlertIsVisible: false
+      deleteAlertIsVisible: false,
+      pinUrl: null
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
@@ -40,9 +40,8 @@ class PinClick extends React.Component {
     this.deletePinAlert = this.deletePinAlert.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.exportPin = this.exportPin.bind(this)
-  }
-  togglePinClick() {
-    this.props.togglePinClick()
+    this.toggleDeleteAlert = this.toggleDeleteAlert.bind(this)
+    this.togglePinUrl = this.togglePinUrl.bind(this)
   }
   componentDidMount() {
     axios
@@ -52,20 +51,27 @@ class PinClick extends React.Component {
           window.atob(this.props.match.params.encryptedPinId)
       })
       .then(response => {
-        // console.log("response.data.pinInfo in pinClick", response.data.pinInfo);
+        const {
+          title,
+          category,
+          color,
+          url,
+          description,
+          created_at,
+          user_id,
+          lat,
+          lng
+        } = response.data.pinInfo
         this.setState({
-          title: response.data.pinInfo.title,
-          category: response.data.pinInfo.category,
-          color: response.data.pinInfo.color,
-          url:
-            response.data.pinInfo.url ||
-            response.data.pinInfo.color ||
-            '/pins/greyPin.png',
-          description: response.data.pinInfo.description,
-          created_at: response.data.pinInfo.created_at,
-          userId: response.data.pinInfo.user_id,
-          lat: response.data.pinInfo.lat,
-          lng: response.data.pinInfo.lng,
+          title,
+          category,
+          color,
+          url: url || color || '/pins/greyPin.png',
+          description,
+          created_at,
+          userId: user_id,
+          lat,
+          lng,
           ready: true
         })
       })
@@ -73,16 +79,23 @@ class PinClick extends React.Component {
         console.log(`error in PinClick componentDidMount: ${err}`)
       })
   }
+  togglePinClick() {
+    this.props.togglePinClick()
+  }
+  toggleDeleteAlert() {
+    this.setState({
+      deleteAlertIsVisible: !this.state.deleteAlertIsVisible
+    })
+  }
+  togglePinUrl(pinUrl) {
+    this.setState({
+      pinUrl: pinUrl
+    })
+  }
   toggleEditMode(e) {
-    if (!this.state.editMode) {
-      this.setState({
-        editMode: true
-      })
-    } else {
-      this.setState({
-        editMode: false
-      })
-    }
+    this.setState({
+      editMode: !this.state.editMode
+    })
   }
   setFile(e) {
     this.setState({
@@ -133,9 +146,7 @@ class PinClick extends React.Component {
     )
   }
   deletePinAlert() {
-    this.setState({
-      deleteAlertIsVisible: true
-    })
+    this.toggleDeleteAlert()
     if (this.state.deleteAlertIsVisible === true) {
       this.props.dispatch(deletePin(this.props.pinId))
       this.setState({
@@ -149,9 +160,7 @@ class PinClick extends React.Component {
     const encryptedPinId = window.btoa(this.props.pinId)
     // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
     const pinUrl = `https://pinapp-spiced.herokuapp.com/sharedpin/${encryptedPinId}`
-    this.setState({
-      pinUrl
-    })
+    this.togglePinUrl(pinUrl)
     //copy to clipboard:
     var dummy = document.createElement('textarea')
     document.body.appendChild(dummy)
@@ -161,78 +170,27 @@ class PinClick extends React.Component {
     document.body.removeChild(dummy)
   }
   render() {
-    if (!this.state.ready && !this.props.markersArray.length > 0) {
+    const { pinId, markersArray, flag, id } = this.props
+    const { editMode, pinUrl } = this.state
+    if (!this.state.ready && !markersArray.length > 0) {
       return <div>not ready</div>
     } else {
-      const shareButtons = () => {
-        return (
-          <ButtonContainer>
-            <PinAppButton
-              onClick={() => {
-                this.exportPin()
-              }}
-            >
-              Copy Link
-            </PinAppButton>
-            {this.state.pinUrl && (
-              <div className="copyUrlVail">
-                <div
-                  className="closeCopyUrlVail"
-                  onClick={() => {
-                    this.setState({
-                      pinUrl: false
-                    })
-                  }}
-                >
-                  {' '}
-                  X
-                </div>
-                <div className="copyUrl" id="copyUrl">
-                  {this.state.pinUrl} link copied to clipboard
-                </div>
-              </div>
-            )}
-          </ButtonContainer>
-        )
-      }
-      const deleteAlert = () => {
-        return (
-          <div className="blackVailDelete">
-            Are you sure you want to delete this pin?
-            <div className="inARow">
-              <button
-                onClick={() => {
-                  this.deletePinAlert()
-                }}
-              >
-                yes
-              </button>
-              <button
-                onClick={() => {
-                  this.setState({
-                    deleteAlertIsVisible: false
-                  })
-                }}
-              >
-                no
-              </button>
-            </div>
-          </div>
-        )
-      }
       let currentPinInfo = []
-      if (this.props.pinId) {
-        currentPinInfo = this.props.markersArray.filter(item => {
-          return item.id === this.props.pinId
+      let userCanEdit = this.state.userId === id
+
+      if (pinId) {
+        currentPinInfo = markersArray.filter(item => {
+          return item.id === pinId
         })
-      } else if (this.props.flag) {
+      } else if (flag) {
+        const { title, category, color, url, lat, lng } = this.state
         currentPinInfo.push({
-          title: this.state.title,
-          url: this.state.url,
-          lat: this.state.lat,
-          lng: this.state.lng,
-          category: this.state.category,
-          color: this.state.color
+          title,
+          url,
+          lat,
+          lng,
+          category,
+          color
         })
       } else {
         currentPinInfo = [this.state]
@@ -243,23 +201,6 @@ class PinClick extends React.Component {
       } else {
         imageUrl = '/pins/greyPin.png'
       }
-
-      const editButton = () => {
-        const userCanEdit = this.state.userId === this.props.id
-        if (userCanEdit) {
-          return (
-            <div className="pinEditSaveButtonArea box">
-              <h1 className="saveButton" onClick={this.toggleEditMode}>
-                {' '}
-                edit{' '}
-              </h1>
-            </div>
-          )
-        } else {
-          return <div />
-        }
-      }
-
       let bigPin
       if (currentPinInfo[0]) {
         bigPin = currentPinInfo[0].color || '/pins/bigPin.png'
@@ -267,163 +208,170 @@ class PinClick extends React.Component {
         bigPin = '/pins/bigPin.png'
       }
       return (
-        <React.Fragment>
-          <ModalContainer>
-            <BlackVailPinClick onClick={this.togglePinClick} />
-            <PinClickFieldsContainer>
-              <XIcon onClick={this.togglePinClick}>X</XIcon>
-              <PinTitle>
-                <img src={bigPin} />
-                <PinTitleText>
-                  {currentPinInfo[0].title || 'clicked pin!'}
-                </PinTitleText>
-              </PinTitle>
-              <PinClickSecondRow>
-                <div className="boxPinClick">
-                  <Map
-                    style={{
-                      width: '100%',
-                      height: '100%'
-                    }}
-                    center={{
-                      lat: this.props.lat || this.state.lat || 52.4918854,
-                      lng:
-                        this.props.lng || this.state.lng || 13.360088699999999
-                    }}
-                    zoom={14}
-                    google={this.props.google}
-                    onReady={this.fetchPlaces}
-                    visible={true}
-                  >
-                    {this.props.markersArray &&
-                      currentPinInfo.map(item => {
-                        return (
-                          <Marker
-                            key={item.id}
-                            onClick={this.pinClick}
-                            name={item.id}
-                            position={{
-                              lat: item.lat,
-                              lng: item.lng
-                            }}
-                            icon={{
-                              url: item.color,
-                              anchor: new google.maps.Point(15, 35),
-                              scaledSize: new google.maps.Size(25, 35)
-                            }}
-                          />
-                        )
-                      })}
-                  </Map>
-                  {/* <img src="/map.png" /> */}
-                </div>
-                <div className="boxPinClick">
-                  {(this.state.editMode && (
-                    <div className="galleryItemsContainer">
-                      <input
-                        id="inputfile"
-                        className="inputfile"
-                        type="file"
-                        name="file"
-                        onChange={e => {
-                          this.setFile(e)
-                          this.compileData(e)
-                        }}
-                        data-multiple-caption="{count} files selected"
-                        multiple
-                      />
-                      <label htmlFor="inputfile">
-                        {(this.state.dataUrl && (
-                          <img
-                            src={this.state.dataUrl}
-                            className="uploadedImagePinclick"
-                            alt="uploadedImagePinclick"
-                          />
-                        )) || (
-                          <div className="cameraIconContainerPinClick">
-                            <img
-                              alt="cameraIcon"
-                              src="/pins/camera.png"
-                              className="cameraIcon"
-                            />
-                          </div>
-                        )}
-                      </label>
-                    </div>
-                  )) || (
-                    <div
-                      className="galleryItemsContainer"
-                      style={{
-                        backgroundImage: `url(${imageUrl})`
+        <ModalContainer>
+          <BlackVailPinClick onClick={this.togglePinClick} />
+          <PinClickFieldsContainer>
+            <XIcon onClick={this.togglePinClick}>X</XIcon>
+            <PinTitle>
+              <img src={bigPin} alt={'pinIcon'} />
+              <PinTitleText>
+                {currentPinInfo[0].title || 'clicked pin!'}
+              </PinTitleText>
+            </PinTitle>
+            <PinClickSecondRow>
+              <div className="boxPinClick">
+                <Map
+                  style={{
+                    width: '100%',
+                    height: '100%'
+                  }}
+                  center={{
+                    lat: this.props.lat || this.state.lat || 52.4918854,
+                    lng: this.props.lng || this.state.lng || 13.360088699999999
+                  }}
+                  zoom={14}
+                  google={this.props.google}
+                  onReady={this.fetchPlaces}
+                  visible={true}
+                >
+                  {this.props.markersArray &&
+                    currentPinInfo.map(item => {
+                      const { id, lat, lng, color } = item
+                      return (
+                        <Marker
+                          key={lat}
+                          onClick={this.pinClick}
+                          name={id}
+                          position={{
+                            lat,
+                            lng
+                          }}
+                          icon={{
+                            url: color,
+                            anchor: new google.maps.Point(15, 35),
+                            scaledSize: new google.maps.Size(25, 35)
+                          }}
+                        />
+                      )
+                    })}
+                </Map>
+              </div>
+              <div className="boxPinClick">
+                {(editMode && (
+                  <div className="galleryItemsContainer">
+                    <input
+                      id="inputfile"
+                      className="inputfile"
+                      type="file"
+                      name="file"
+                      onChange={e => {
+                        this.setFile(e)
+                        this.compileData(e)
                       }}
+                      data-multiple-caption="{count} files selected"
+                      multiple
                     />
-                  )}
+                    <label htmlFor="inputfile">
+                      {(this.state.dataUrl && (
+                        <img
+                          src={this.state.dataUrl}
+                          className="uploadedImagePinclick"
+                          alt="uploadedImagePinclick"
+                        />
+                      )) || (
+                        <div className="cameraIconContainerPinClick">
+                          <img
+                            alt="cameraIcon"
+                            src="/pins/camera.png"
+                            className="cameraIcon"
+                          />
+                        </div>
+                      )}
+                    </label>
+                  </div>
+                )) || (
+                  <div
+                    className="galleryItemsContainer"
+                    style={{
+                      backgroundImage: `url(${imageUrl})`
+                    }}
+                  />
+                )}
+              </div>
+            </PinClickSecondRow>
+            {/* *******************THIRD ROW**********************/}
+            {(editMode && (
+              <PinClickRow>
+                <div className="colPinClick">
+                  <div className="textFieldsPinClick">
+                    <Textarea
+                      placeholder={currentPinInfo[0].title || 'Title'}
+                      type="text"
+                      name="title"
+                      rows="1"
+                      onChange={this.handleChange}
+                    />
+                    <Textarea
+                      placeholder={
+                        currentPinInfo[0].description || 'Description'
+                      }
+                      type="text"
+                      name="description"
+                      onChange={this.handleChange}
+                      rows="1"
+                    />
+                  </div>
+                  <button
+                    className="subtleButton"
+                    onClick={this.deletePinAlert}
+                  >
+                    Unpin
+                  </button>
                 </div>
-              </PinClickSecondRow>
-              {/* *******************THIRD ROW**********************/}
-              {(this.state.editMode && (
-                <PinClickRow>
-                  <div className="colPinClick">
-                    <div className="textFieldsPinClick">
-                      <Textarea
-                        placeholder={currentPinInfo[0].title || 'Title'}
-                        type="text"
-                        name="title"
-                        rows="1"
-                        onChange={this.handleChange}
-                      />
-                      <Textarea
-                        placeholder={
-                          currentPinInfo[0].description || 'Description'
-                        }
-                        type="text"
-                        name="description"
-                        onChange={this.handleChange}
-                        rows="1"
-                      />
-                    </div>
-                    <button
-                      className="subtleButton"
-                      onClick={this.deletePinAlert}
-                    >
-                      Unpin
-                    </button>
-                  </div>
-                  {shareButtons()}
-                </PinClickRow>
-              )) || (
-                <PinClickRow>
-                  <TitleAndDescription>
-                    <div>{currentPinInfo[0].title || 'Title'}</div>
-                    <div>{currentPinInfo[0].description || 'Description'}</div>
-                  </TitleAndDescription>
-                  {shareButtons()}
-                </PinClickRow>
-              )}
-              {/* *************************FOURTH ROW********************* */}
-              {this.state.editMode && (
-                <div className="pinEditSaveButtonArea box">
-                  <div className="saveButton" onClick={this.insertPinInfo}>
-                    Save
-                  </div>
-                  <div className="saveButton" onClick={this.toggleEditMode}>
-                    Cancel
-                  </div>
-                  {this.state.deleteAlertIsVisible && deleteAlert()}
-                </div>
-              )}{' '}
-              {!this.state.editMode && editButton()}
-              {/*{this.state.addNewPinIsVisible && (
-                <AddNewPin
-                  lat={123}
-                  lng={123}
-                  pinId={1}
-                  closeAddNewPinComponent={()=>{}}
+                <ShareButton
+                  togglePinUrl={this.togglePinUrl}
+                  exportPin={this.exportPin}
+                  pinUrl={pinUrl}
                 />
-              )}*/}
-            </PinClickFieldsContainer>
-          </ModalContainer>
-        </React.Fragment>
+              </PinClickRow>
+            )) || (
+              <PinClickRow>
+                <TitleAndDescription>
+                  <div>{currentPinInfo[0].title || 'Title'}</div>
+                  <div>{currentPinInfo[0].description || 'Description'}</div>
+                </TitleAndDescription>
+                <ShareButton
+                  togglePinUrl={this.togglePinUrl}
+                  exportPin={this.exportPin}
+                  pinUrl={pinUrl}
+                />
+              </PinClickRow>
+            )}
+            {/* *************************FOURTH ROW********************* */}
+            {editMode && (
+              <div className="pinEditSaveButtonArea box">
+                <div className="saveButton" onClick={this.insertPinInfo}>
+                  Save
+                </div>
+                <div className="saveButton" onClick={this.toggleEditMode}>
+                  Cancel
+                </div>
+                {this.state.deleteAlertIsVisible && (
+                  <DeletePinAlert
+                    toggleDeleteAlert={this.toggleDeleteAlert}
+                    deletePinAlert={this.deletePinAlert}
+                  />
+                )}
+              </div>
+            )}{' '}
+            {!editMode && (
+              <EditButton
+                userCanEdit={userCanEdit}
+                toggleEditMode={this.toggleEditMode}
+              />
+            )}
+          </PinClickFieldsContainer>
+        </ModalContainer>
       )
     }
   }

@@ -134,7 +134,7 @@ export const XIcon = styled.p`
     opacity: 0.9;
   }
   @media (max-width: 700px) {
-    position: fixed;
+    /* position: fixed; */
     top: 30px;
   }
 `
