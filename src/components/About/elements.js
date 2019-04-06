@@ -3,6 +3,7 @@ import { ComponentContainer } from '../elements'
 
 export const AboutContainer = styled(ComponentContainer)`
   flex-direction: column;
+  position: relative;
 `
 export const Headline = styled.div`
   margin-top: 30px;
@@ -21,6 +22,7 @@ export const Summary = styled.div`
   margin: 10px 0;
   width: 50vw;
   text-align: left;
+  position: relative;
   @media (max-width: 700px) {
     width: 80vw;
   }
