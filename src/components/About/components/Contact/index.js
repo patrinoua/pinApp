@@ -12,7 +12,7 @@ import {
   MailMessage,
   MailButton
 } from './elements'
-import { Summary } from '../../elements'
+import { SummaryParagraph } from '../../elements'
 
 export default class Contact extends React.Component {
   constructor() {
@@ -40,6 +40,7 @@ export default class Contact extends React.Component {
         this.setState({
           mailSent: true
         })
+        this.forceUpdate()
       } catch (e) {
         console.log(e)
       }
@@ -69,42 +70,39 @@ export default class Contact extends React.Component {
             </ConfirmModal>
           </ModalBG>
         )}
-        <InputContainer>
-          {this.props.children}
-          <Summary>
-            <StyledInput
-              ref={name => {
-                this.name = name
-              }}
-              placeholder="Name*"
-              className="mailUserName"
-              required
-            />
-            <StyledInput
-              ref={mail => {
-                this.mail = mail
-              }}
-              type="email"
-              placeholder="E-mail*"
-              className="mailInput"
-              required
-            />
-            <StyledInput
-              ref={subject => (this.subject = subject)}
-              placeholder="Subject"
-              className="mailInput"
-            />
-            <MailMessage
-              ref={message => {
-                this.message = message
-              }}
-              placeholder="Message*"
-              required
-            />
-            {this.state.error && <div>Please fill in all required fields</div>}
-            <MailButton onClick={this.sendMail}> Send </MailButton>
-          </Summary>
-        </InputContainer>
+        <SummaryParagraph>
+          <StyledInput
+            ref={name => {
+              this.name = name
+            }}
+            placeholder="Name*"
+            className="mailUserName"
+            required
+          />
+          <StyledInput
+            ref={mail => {
+              this.mail = mail
+            }}
+            type="email"
+            placeholder="E-mail*"
+            className="mailInput"
+            required
+          />
+          <StyledInput
+            ref={subject => (this.subject = subject)}
+            placeholder="Subject"
+            className="mailInput"
+          />
+          <MailMessage
+            ref={message => {
+              this.message = message
+            }}
+            placeholder="Message*"
+            required
+          />
+          {this.state.error && <div>Please fill in all required fields</div>}
+          <MailButton onClick={this.sendMail}> Send </MailButton>
+        </SummaryParagraph>
       </MailContainer>
     )
   }

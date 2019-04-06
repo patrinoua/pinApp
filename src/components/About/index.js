@@ -2,8 +2,8 @@ import React from 'react'
 import Contact from './components/Contact'
 import {
   Headline,
-  SummaryContainer,
-  Summary,
+  SummaryBlock,
+  SummaryParagraph,
   Ul,
   Li,
   AboutContainer
@@ -17,23 +17,23 @@ class About extends React.Component {
   render() {
     return (
       <AboutContainer>
-        <SummaryContainer>
+        <SummaryBlock>
           <Headline>About</Headline>
-          <Summary>
+          <SummaryParagraph>
             PinApp is a hobby Web Application built with React and Node, that
             started as a final project for Spiced Academy Coding Bootcamp in
             Berlin, in May of 2018. It continues to be developed and will soon
             also be available as mobile application, built with React Native.
-          </Summary>
-          <Summary>
+          </SummaryParagraph>
+          <SummaryParagraph>
             If you have any feedback, suggestions, features you would like to
             see, would like to contribute in Design or Development, or just want
             to say hi, feel free to come in contact by using the form below.
-          </Summary>
-        </SummaryContainer>
-        <SummaryContainer>
+          </SummaryParagraph>
+        </SummaryBlock>
+        <SummaryBlock>
           <Headline>Features</Headline>
-          <Summary>
+          <SummaryParagraph>
             <Ul>
               <Li>
                 Add a Pin in your current location or any place on the map and
@@ -48,20 +48,18 @@ class About extends React.Component {
                 Restaurants and Bars)
               </Li>
             </Ul>
-          </Summary>
-        </SummaryContainer>
+          </SummaryParagraph>
+        </SummaryBlock>
 
-        <Contact>
+        <SummaryBlock>
           <Headline>Contact</Headline>
-          <SummaryContainer>
-            <Summary>
-              If you have any feedback, suggestions, features you would like to
-              see, would like to contribute in Design or Development, or just
-              want to say hi, feel free to come in contact by using the form
-              below.
-            </Summary>
-          </SummaryContainer>
-        </Contact>
+          <SummaryParagraph>
+            If you have any feedback, suggestions, features you would like to
+            see, would like to contribute in Design or Development, or just want
+            to say hi, feel free to come in contact by using the form below.
+          </SummaryParagraph>
+          <Contact />
+        </SummaryBlock>
       </AboutContainer>
     )
   }

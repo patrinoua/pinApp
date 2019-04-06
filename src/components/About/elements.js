@@ -10,14 +10,9 @@ export const Headline = styled.div`
   justify-self: center;
   font-size: 30px;
 `
-export const SummaryContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-`
-export const Summary = styled.div`
+export const Summary = styled.div``
+export const SummaryBlock = styled.div``
+export const SummaryParagraph = styled.div`
   margin: 20px;
   width: 50vw;
   text-align: left;

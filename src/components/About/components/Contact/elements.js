@@ -45,12 +45,22 @@ export const ConfirmModal = styled.div`
 `
 export const ModalBG = styled.div`
   position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+  z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
   background-color: white;
   display: grid;
+  -webkit-animation: textOpacity 1s;
   animation: textOpacity 1s;
+  /* position: absolute;
+  z-index: 20;
+  width: 100vh;
+  height: 100vw;
+  background-color: white;
+  display: grid;
+  animation: textOpacity 1s; */
 `
 export const Headline = styled.div`
   justify-self: center;
