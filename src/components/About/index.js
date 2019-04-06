@@ -18,8 +18,6 @@ class About extends React.Component {
     return (
       <AboutContainer>
         <Headline>About</Headline>
-        <SummaryContainer>
-          
         <Contact>
           <Headline>Contact</Headline>
           <SummaryContainer>
