@@ -4,7 +4,7 @@ import { Textarea } from '../../../elements'
 import { WelcomeFormInput } from '../../../Welcome/elements'
 
 export const MailContainer = styled.div`
-  /* height: 100%; */
+  position: relative;
   width: 100%;
 `
 
@@ -72,7 +72,9 @@ export const MailButton = styled.button`
 export const InputContainer = styled.div`
   display: grid;
   justify-content: center;
+  /* background: green; */
 `
+
 export const MailMessage = styled(Textarea)`
   height: 20vh;
   width: 50vw;

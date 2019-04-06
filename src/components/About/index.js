@@ -17,7 +17,40 @@ class About extends React.Component {
   render() {
     return (
       <AboutContainer>
-        <Headline>About</Headline>
+        <SummaryContainer>
+          <Headline>About</Headline>
+          <Summary>
+            PinApp is a hobby Web Application built with React and Node, that
+            started as a final project for Spiced Academy Coding Bootcamp in
+            Berlin, in May of 2018. It continues to be developed and will soon
+            also be available as mobile application, built with React Native.
+          </Summary>
+          <Summary>
+            If you have any feedback, suggestions, features you would like to
+            see, would like to contribute in Design or Development, or just want
+            to say hi, feel free to come in contact by using the form below.
+          </Summary>
+        </SummaryContainer>
+        <SummaryContainer>
+          <Headline>Features</Headline>
+          <Summary>
+            <Ul>
+              <Li>
+                Add a Pin in your current location or any place on the map and
+                add to it specific information such as a Title, Description and
+                a photo.
+              </Li>
+              <Li>Share your pins with other people</Li>
+              <Li>Add people as Friends and see their Pins</Li>
+              <Li>See a List of all your Pins</Li>
+              <Li>
+                Filter Pins by Category (eg. only See Restaurants, or
+                Restaurants and Bars)
+              </Li>
+            </Ul>
+          </Summary>
+        </SummaryContainer>
+
         <Contact>
           <Headline>Contact</Headline>
           <SummaryContainer>

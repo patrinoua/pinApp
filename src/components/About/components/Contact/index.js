@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 
 import {
-  Headline,
   MailContainer,
   StyledInput,
   ModalBG,
@@ -13,6 +12,7 @@ import {
   MailMessage,
   MailButton
 } from './elements'
+import { Summary } from '../../elements'
 
 export default class Contact extends React.Component {
   constructor() {
@@ -71,7 +71,7 @@ export default class Contact extends React.Component {
         )}
         <InputContainer>
           {this.props.children}
-          <div>
+          <Summary>
             <StyledInput
               ref={name => {
                 this.name = name
@@ -94,16 +94,16 @@ export default class Contact extends React.Component {
               placeholder="Subject"
               className="mailInput"
             />
-          </div>
-          <MailMessage
-            ref={message => {
-              this.message = message
-            }}
-            placeholder="Message*"
-            required
-          />
-          {this.state.error && <div>Please fill in all required fields</div>}
-          <MailButton onClick={this.sendMail}> Send </MailButton>
+            <MailMessage
+              ref={message => {
+                this.message = message
+              }}
+              placeholder="Message*"
+              required
+            />
+            {this.state.error && <div>Please fill in all required fields</div>}
+            <MailButton onClick={this.sendMail}> Send </MailButton>
+          </Summary>
         </InputContainer>
       </MailContainer>
     )

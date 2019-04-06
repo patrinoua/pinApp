@@ -6,10 +6,9 @@ export const AboutContainer = styled(ComponentContainer)`
   position: relative;
 `
 export const Headline = styled.div`
-  margin-top: 30px;
+  margin-top: 20px;
   justify-self: center;
   font-size: 30px;
-  margin-bottom: 20px;
 `
 export const SummaryContainer = styled.div`
   display: flex;
@@ -19,12 +18,12 @@ export const SummaryContainer = styled.div`
   margin-bottom: 10px;
 `
 export const Summary = styled.div`
-  margin: 10px 0;
+  margin: 20px;
   width: 50vw;
   text-align: left;
   position: relative;
   @media (max-width: 700px) {
-    width: 80vw;
+    width: auto;
   }
 `
 
@@ -33,8 +32,7 @@ export const Li = styled.li`
   margin-bottom: 10px;
 `
 export const Ul = styled.ul`
-  width: 50vw;
   @media (max-width: 700px) {
-    width: 80vw;
+    padding-right: 10px;
   }
 `
