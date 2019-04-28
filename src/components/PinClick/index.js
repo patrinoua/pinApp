@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from '../../axios'
 import { deletePin } from '../../actions'
@@ -376,6 +377,13 @@ class PinClick extends React.Component {
     }
   }
 }
+PinClick.propTypes = {
+  pinId: PropTypes.number.isRequired,
+  pinInfo: PropTypes.string,
+  lat: PropTypes.string.isRequired,
+  lng: PropTypes.string.isRequired
+}
+
 const mapStateToProps = function(state) {
   return {
     markersArray: state.markersArray,
