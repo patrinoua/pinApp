@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
 import axios from '../../axios'
 import { FriendButton } from './friendButton'
@@ -169,7 +171,6 @@ class OtherProfile extends React.Component {
     const profilePicStyle = {
       backgroundImage: `url(${userAvatar})`
     }
-
     return (
       <React.Fragment>
         {this.state.showListComponent && (
@@ -297,6 +298,11 @@ class OtherProfile extends React.Component {
       </React.Fragment>
     )
   }
+}
+OtherProfile.propTypes = {
+  id: PropTypes.number.isRequired,
+  lat: PropTypes.number,
+  lng: PropTypes.number
 }
 
 const mapStateToProps = function(state) {

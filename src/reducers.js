@@ -1,4 +1,4 @@
-export default function reducer(state = {markersArray: []}, action) {
+export default function reducer(state = { markersArray: [] }, action) {
   if (action.type === 'RECEIVE_FRIENDS_AND_WANNABES') {
     state = Object.assign({}, state, {
       friends: action.friends
@@ -80,8 +80,7 @@ export default function reducer(state = {markersArray: []}, action) {
   if (action.type === 'GET_PIN_INFO') {
     state = {
       ...state,
-      markersArray: [...action.pinsArray],
-      copyOfMarkersArray: [...action.pinsArray]
+      markersArray: [...action.pinsArray]
     }
   }
   if (action.type === 'GET_USER_PIN_INFO') {

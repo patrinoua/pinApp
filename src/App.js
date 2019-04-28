@@ -178,9 +178,7 @@ class App extends React.Component {
     )
   }
 }
-const mapStateToProps = function(state) {
-  return {
-    markersArray: state.markersArray
-  }
-}
+const mapStateToProps = state => ({
+  markersArray: state.markersArray
+})
 export default connect(mapStateToProps)(App)

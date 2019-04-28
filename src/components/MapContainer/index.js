@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getUserPins, selectActionBycategory } from '../../actions'
@@ -21,7 +23,6 @@ class MapContainer extends React.Component {
     this.state = {
       arrayOfCategory: [],
       showCategorySelect: false,
-      copyOfPinsArray: [],
       addMyPinLocationVisible: false,
       myLat: null,
       myLng: null,
@@ -156,7 +157,7 @@ class MapContainer extends React.Component {
     this.props.dispatch(
       selectActionBycategory(
         this.state.arrayOfCategory,
-        this.props.copyOfMarkersArray
+        this.props.markersArray
       )
     )
   }
@@ -201,7 +202,6 @@ class MapContainer extends React.Component {
     const style = {
       backgroundSize: 'contain'
     }
-
     return (
       <React.Fragment>
         {this.state.showListComponent && (
@@ -454,11 +454,17 @@ class MapContainer extends React.Component {
     )
   }
 }
-
+MapContainer.propTypes = {
+  id: PropTypes.number.isRequired,
+  first: PropTypes.string.isRequired,
+  last: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  lat: PropTypes.number,
+  lng: PropTypes.number
+}
 const mapStateToProps = function(state) {
   return {
     markersArray: state.markersArray,
-    copyOfMarkersArray: state.copyOfMarkersArray,
     pinInfo: state.pinInfo,
     userName: state.userName
   }
