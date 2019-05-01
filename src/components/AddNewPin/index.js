@@ -77,7 +77,7 @@ class AddNewPin extends React.Component {
     formData.append('file', this.state.file)
 
     this.props.dispatch(insertPinInfo({ formData, pinInfo }))
-    this.props.closeAddNewPinComponent()
+    this.props.toggleAddNewPinComponent()
   }
   compileData(e) {
     this.setState(
@@ -98,9 +98,10 @@ class AddNewPin extends React.Component {
     )
   }
   render() {
+    const { toggleAddNewPinComponent } = this.props
     document.addEventListener('keydown', e => {
       if (e.keyCode === 27) {
-        this.props.closeAddNewPinComponent()
+        this.props.toggleAddNewPinComponent()
       }
     })
     const category = (color, text, variable) => {
@@ -125,15 +126,12 @@ class AddNewPin extends React.Component {
         </PinCategory>
       )
     }
-
     return (
       <React.Fragment>
         <ModalContainer>
-          <BlackVail onClick={this.props.closeAddNewPinComponent} />
+          <BlackVail onClick={toggleAddNewPinComponent} />
           <FieldsContainerNewPin>
-            <CloseModalX onClick={this.props.closeAddNewPinComponent}>
-              X
-            </CloseModalX>
+            <CloseModalX onClick={toggleAddNewPinComponent}>X</CloseModalX>
             <PinTitleArea>
               <img src="/pins/bigPin.png" alt="bigPin" />
               <PinTitle>New Pin</PinTitle>
@@ -210,9 +208,7 @@ class AddNewPin extends React.Component {
             </PinOptions>
             <SaveCancelArea>
               <SaveButton onClick={this.insertPinInfos}>Save</SaveButton>
-              <SaveButton onClick={this.props.closeAddNewPinComponent}>
-                Cancel
-              </SaveButton>
+              <SaveButton onClick={toggleAddNewPinComponent}>Cancel</SaveButton>
             </SaveCancelArea>
           </FieldsContainerNewPin>
         </ModalContainer>

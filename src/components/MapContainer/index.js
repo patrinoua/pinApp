@@ -50,7 +50,6 @@ class MapContainer extends React.Component {
     this.pinClick = this.pinClick.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.mapHasBinClicked = this.mapHasBinClicked.bind(this)
-    this.closeAddNewPinComponent = this.closeAddNewPinComponent.bind(this)
     this.closePopPin = this.closePopPin.bind(this)
     this.handleSearchboxChange = this.handleSearchboxChange.bind(this)
     this.categoryItems = this.categoryItems.bind(this)
@@ -109,11 +108,6 @@ class MapContainer extends React.Component {
         watchId: null
       })
     }
-  }
-  closeAddNewPinComponent() {
-    this.setState({
-      addNewPinIsVisible: false
-    })
   }
   toggleAddMyPinLocationVisible() {
     this.setState({
@@ -438,7 +432,7 @@ class MapContainer extends React.Component {
           <AddNewPin
             lat={this.state.lat}
             lng={this.state.lng}
-            closeAddNewPinComponent={this.closeAddNewPinComponent}
+            toggleAddNewPinComponent={this.toggleAddNewPinComponent}
             pinId={this.state.clickedPinId}
           />
         )}
@@ -446,7 +440,7 @@ class MapContainer extends React.Component {
           <AddNewPin
             lat={this.props.lat}
             lng={this.props.lng}
-            closeAddNewPinComponent={this.toggleAddMyPinLocationVisible}
+            toggleAddNewPinComponent={this.toggleAddNewPinComponent}
             pinId={this.state.clickedPinId}
           />
         )}
