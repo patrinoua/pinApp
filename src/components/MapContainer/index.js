@@ -464,6 +464,10 @@ const mapStateToProps = function(state) {
   }
 }
 
+//if there is no internet the GoogleApiWrapper doesnt work
+//so the component will run if we do this:
+// export default connect(mapStateToProps)(MapContainer)
+
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyAM59_tOly6RmV6eSBYguDKRMukEgQ20d4'
 })(connect(mapStateToProps)(MapContainer))

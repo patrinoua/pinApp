@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import axios from '../../axios'
 import { ComponentContainer, SubtleButton } from '../elements'
 import {
@@ -98,7 +100,6 @@ export class EditProfile extends React.Component {
   render() {
     let pic = this.props.profilepic || '/user.png'
     let bio = this.props.bio || 'Tell us something about yourself!'
-
     const existingField = (textToShow, propertyKey) => (
       <InputFieldContainer>
         <FieldName>{textToShow}</FieldName>
@@ -206,7 +207,7 @@ export class EditProfile extends React.Component {
             }}
           >
             Delete Account
-          </DeleteAccountButton>*/}
+          </DeleteAccountButton>
           {this.state.deleteAccountWindowIsVisible && (
             <DeleteAccount toggleDeleteProfile={this.toggleDeleteProfile} />
           )}
@@ -214,4 +215,13 @@ export class EditProfile extends React.Component {
       </ComponentContainer>
     )
   }
+}
+EditProfile.propTypes = {
+  id: PropTypes.number.isRequired,
+  first: PropTypes.string.isRequired,
+  last: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  changeImage: PropTypes.func.isRequired,
+  hideUploader: PropTypes.func.isRequired,
+  changeInputValues: PropTypes.func.isRequired
 }

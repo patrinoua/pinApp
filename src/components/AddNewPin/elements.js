@@ -108,7 +108,6 @@ export const PinAppButton = styled.button`
   border: none;
   border-radius: 20px;
   width: 120px;
-  height: 40px;
   margin: 0;
 `
 export const SaveButton = styled(PinAppButton)`

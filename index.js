@@ -55,6 +55,7 @@ app.use(bodyParser.json())
 
 let mail = ''
 let pass = ''
+
 if (process.env.NODE_ENV) {
   mail = process.env.mail
   pass = process.env.pass
@@ -76,14 +77,14 @@ app.post('/api/mail', corsMiddleware, (req, res) => {
     subject: `PinApp: ${req.body.subject} from ${req.body.name}`, // Subject line
     text: `
 
-${req.body.message}
+    ${req.body.message}
 
-----------------
+    ----------------
 
-send from ${req.body.name} ${req.body.mail}
+    send from ${req.body.name} ${req.body.mail}
 
-on ${new Date()}
-` // plain text body
+    on ${new Date()}
+    ` // plain text body
   }
 
   // send mail with defined transport object
@@ -163,64 +164,69 @@ app.get('/welcome', function(req, res) {
 })
 
 app.post('/register', function(req, res) {
-  db.checkForUser(req.body.email).then(function(result) {
-    if (result.rows[0]) {
-      req.session.email = req.body.email
-      res.json({
-        success: false,
-        errorMsg: 'User exists. go to login'
-      })
-    } else if (!result.rows[0]) {
-      if (
-        req.body.first &&
-        req.body.last &&
-        req.body.email &&
-        req.body.password
-      ) {
-        hashPassword(req.body.password)
-          .then(hashedPassword => {
-            db
-              .saveUser(
-                req.body.first,
-                req.body.last,
-                req.body.email,
-                hashedPassword
-              )
-              .then(result => {
-                req.session.user = {
-                  first: req.body.first,
-                  last: req.body.last,
-                  email: req.body.email,
-                  id: result.rows[0].id,
-                  bio: result.rows[0].bio,
-                  profilepic: result.rows[0].profilepic,
-                  isLoggedIn: true
-                }
-                res.json({
-                  success: true
-                })
-              })
-              .catch(err => {
-                console.log(err)
-                res.json({
-                  success: false
-                })
-              })
-          })
-          .catch(err => {
-            console.log(err)
-            res.json({
-              success: false
-            })
-          })
-      } else {
+  db
+    .checkForUser(req.body.email)
+    .then(function(result) {
+      if (result.rows[0]) {
+        req.session.email = req.body.email
         res.json({
           success: false,
-          errorMsg: 'please fill out everything'
+          errorMsg: 'User exists. go to login'
         })
+      } else if (!result.rows[0]) {
+        if (
+          req.body.first &&
+          req.body.last &&
+          req.body.email &&
+          req.body.password
+        ) {
+          hashPassword(req.body.password)
+            .then(hashedPassword => {
+              db
+                .saveUser(
+                  req.body.first,
+                  req.body.last,
+                  req.body.email,
+                  hashedPassword
+                )
+                .then(result => {
+                  req.session.user = {
+                    first: req.body.first,
+                    last: req.body.last,
+                    email: req.body.email,
+                    id: result.rows[0].id,
+                    bio: result.rows[0].bio,
+                    profilepic: result.rows[0].profilepic,
+                    isLoggedIn: true
+                  }
+                  res.json({
+                    success: true
+                  })
+                })
+                .catch(err => {
+                  console.log(err)
+                  res.json({
+                    success: false
+                  })
+                })
+            })
+            .catch(err => {
+              console.log(err)
+              res.json({
+                success: false
+              })
+            })
+        } else {
+          res.json({
+            success: false,
+            errorMsg: 'please fill out everything'
+          })
+        }
       }
-    }
-  })
+    })
+    .catch(err => {
+      console.log('err while registering user', err)
+    })
 })
 
 app.post('/login', function(req, res) {
@@ -268,7 +274,7 @@ app.post('/login', function(req, res) {
           })
         }
       })
-      .catch(err => console.log('err', err))
+      .catch(err => console.log('err in getUserInfoByEmail', err))
   } else {
     res.json({
       success: false,

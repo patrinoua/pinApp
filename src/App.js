@@ -29,7 +29,12 @@ class App extends React.Component {
   }
   toggleUploader() {
     this.setState({
-      toggleUploader: !this.state.toggleUploader
+      toggleUploaderIsVisible: !this.state.toggleUploaderIsVisible
+    })
+  }
+  hideUploader() {
+    this.setState({
+      uploaderIsVisible: false
     })
   }
   changeImage(img) {
@@ -45,11 +50,6 @@ class App extends React.Component {
       last,
       email,
       bio
-    })
-  }
-  hideUploader() {
-    this.setState({
-      uploaderIsVisible: false
     })
   }
 
@@ -77,9 +77,6 @@ class App extends React.Component {
           <div className="appContainer">
             <Header
               {...this.state}
-              toggleUploader={this.toggleUploader}
-              makeUploaderVisible={this.showUploader}
-              hideUploader={this.hideUploader}
               userMenuPopUpStatus={this.state.toggleUserMenu}
             />
 
@@ -167,7 +164,7 @@ class App extends React.Component {
           </div>
         </BrowserRouter>
 
-        {this.state.toggleUploader && (
+        {this.state.toggleUploaderIsVisible && (
           <UploadProfilePic
             changeImage={this.changeImage}
             hideUploader={this.hideUploader}
