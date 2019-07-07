@@ -8,7 +8,7 @@ export const PinClickFieldsContainer = styled(FieldsContainer)`
   z-index: 20;
   position: relative;
   @media (max-width: 700px) {
-    grid-template-rows: 25% 30% 17% 7%;
+    grid-template-rows: 25% 30% 30% 7%;
   }
 `
 
