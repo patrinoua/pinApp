@@ -201,7 +201,6 @@ class MapContainer extends React.Component {
         {this.state.showListComponent && (
           <ListOfPins closeListComponent={this.closeListComponent} />
         )}
-
         {this.props.pinInfo &&
           this.state.showThePop && (
             <PopUpShare>
@@ -415,9 +414,10 @@ class MapContainer extends React.Component {
                             this.setState({
                               currentLocationPinIsVisible: !this.state
                                 .currentLocationPinIsVisible,
-                              addMyPinLocationVisible: !this.state
-                                .addMyPinLocationVisible
+                              lat: this.props.lat,
+                              lng: this.props.lng
                             })
+                            this.toggleAddNewPinComponent()
                           }}
                         />
                       )}

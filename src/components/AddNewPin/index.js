@@ -75,7 +75,6 @@ class AddNewPin extends React.Component {
     }
     const formData = new FormData()
     formData.append('file', this.state.file)
-
     this.props.dispatch(insertPinInfo({ formData, pinInfo }))
     this.props.toggleAddNewPinComponent()
   }

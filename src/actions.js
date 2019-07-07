@@ -113,7 +113,11 @@ export function insertPinInfo(info) {
           }
         })
         .catch(err => {
-          console.log('here we are!!!', pinInfo.marker, pinInfo.marker.color)
+          console.log(
+            'inside catch of insertPinInfo',
+            pinInfo.marker,
+            pinInfo.marker.color
+          )
           pinInfo.marker.url = pinInfo.marker.color || '/pins/greyPin.png'
           return {
             type: 'INSERT_PIN_INFO',

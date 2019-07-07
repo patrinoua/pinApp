@@ -380,8 +380,8 @@ class PinClick extends React.Component {
 PinClick.propTypes = {
   pinId: PropTypes.number.isRequired,
   pinInfo: PropTypes.string,
-  lat: PropTypes.string.isRequired,
-  lng: PropTypes.string.isRequired
+  lat: PropTypes.string,
+  lng: PropTypes.string
 }
 
 const mapStateToProps = function(state) {
