@@ -4,11 +4,13 @@ export const colors = {
 
 const Colors = {
   white: '#FFFFFF',
-  seaNavy: '#15539F',
-  landGreen: '#7bb835',
-  airBlue: '#53A2D9',
-  red: '#CF0912',
-  yellow: '#ECB400',
+  skyBlue: '#61BEE5',
+  parkGreen: '#7bb835',
+  pinRed:'#E71325',
+  yellow: '#FBCF4D',
+  purple:'#9E42AA', 
+  pink:'#EF87D1',
+
   darkGray: '#51565C',
   semiDarkGray: '#8B8E92',
   mediumGray: '#B2B3B5',

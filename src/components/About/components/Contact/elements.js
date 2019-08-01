@@ -6,8 +6,21 @@ import { WelcomeFormInput } from '../../../Welcome/elements'
 export const MailContainer = styled.div`
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
+`
+export const OneLine = styled.div`
 `
 
+export const SummaryParagraph = styled.div`
+  margin: 20px;
+  width: 50vw;
+  text-align: left;
+  position: relative;
+  @media (max-width: 700px) {
+    width: auto;
+  }
+`
 export const StyledLink = styled(Link)`
   color: #616161;
   font-size: 25px;
@@ -28,7 +41,9 @@ export const ConfirmModalText = styled.div`
 `
 
 export const StyledInput = styled(WelcomeFormInput)`
+  display: inline-block;
   margin-bottom: 10px;
+  margin-right: 10px;
 `
 export const ConfirmModal = styled.div`
   position: relative;

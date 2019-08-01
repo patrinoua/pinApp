@@ -11,7 +11,11 @@ export const Headline = styled.div`
   font-size: 30px;
 `
 export const Summary = styled.div``
-export const SummaryBlock = styled.div``
+export const SummaryBlock = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`
 export const SummaryParagraph = styled.div`
   margin: 20px;
   width: 50vw;

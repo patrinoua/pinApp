@@ -8,11 +8,11 @@ import {
   ConfirmModal,
   ConfirmModalText,
   StyledLink,
-  InputContainer,
   MailMessage,
-  MailButton
+  MailButton,
+  SummaryParagraph,
+  OneLine
 } from './elements'
-import { SummaryParagraph } from '../../elements'
 
 export default class Contact extends React.Component {
   constructor() {
@@ -71,6 +71,7 @@ export default class Contact extends React.Component {
           </ModalBG>
         )}
         <SummaryParagraph>
+          <OneLine>
           <StyledInput
             ref={name => {
               this.name = name
@@ -88,6 +89,7 @@ export default class Contact extends React.Component {
             className="mailInput"
             required
           />
+          </OneLine>
           <StyledInput
             ref={subject => (this.subject = subject)}
             placeholder="Subject"
