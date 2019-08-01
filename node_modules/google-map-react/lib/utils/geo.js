@@ -57,34 +57,29 @@ var Geo = function () {
     return this.hasSize_;
   };
 
-  Geo.prototype.unproject = function unproject(ptXY, viewFromLeftTop) {
-    var ptRes = void 0;
-    if (viewFromLeftTop) {
-      var ptxy = _extends({}, ptXY);
-      ptxy.x -= this.transform_.width / 2;
-      ptxy.y -= this.transform_.height / 2;
-      ptRes = this.transform_.pointLocation(_pointGeometry2.default.convert(ptxy));
-    } else {
-      ptRes = this.transform_.pointLocation(_pointGeometry2.default.convert(ptXY));
-    }
+  /** Returns the pixel position relative to the map center. */
 
-    ptRes.lng -= 360 * Math.round(ptRes.lng / 360); // convert 2 google format
-    return ptRes;
-  };
 
-  Geo.prototype.project = function project(ptLatLng, viewFromLeftTop) {
-    if (viewFromLeftTop) {
-      var pt = this.transform_.locationPoint(_lat_lng2.default.convert(ptLatLng));
-      pt.x -= this.transform_.worldSize * Math.round(pt.x / this.transform_.worldSize);
-
-      pt.x += this.transform_.width / 2;
-      pt.y += this.transform_.height / 2;
-
-      return pt;
-    }
-
+  Geo.prototype.fromLatLngToCenterPixel = function fromLatLngToCenterPixel(ptLatLng) {
     return this.transform_.locationPoint(_lat_lng2.default.convert(ptLatLng));
   };
+
+  /**
+   * Returns the pixel position relative to the map panes,
+   * or relative to the map center if there are no panes.
+   */
+
+
+  Geo.prototype.fromLatLngToDivPixel = function fromLatLngToDivPixel(ptLatLng) {
+    if (this.mapCanvasProjection_) {
+      var latLng = new this.maps_.LatLng(ptLatLng.lat, ptLatLng.lng);
+      return this.mapCanvasProjection_.fromLatLngToDivPixel(latLng);
+    }
+    return this.fromLatLngToCenterPixel(ptLatLng);
+  };
+
+  /** Returns the pixel position relative to the map top-left. */
+
 
   Geo.prototype.fromLatLngToContainerPixel = function fromLatLngToContainerPixel(ptLatLng) {
     if (this.mapCanvasProjection_) {
@@ -92,7 +87,31 @@ var Geo = function () {
       return this.mapCanvasProjection_.fromLatLngToContainerPixel(latLng);
     }
 
-    return this.project(ptLatLng, true);
+    var pt = this.fromLatLngToCenterPixel(ptLatLng);
+    pt.x -= this.transform_.worldSize * Math.round(pt.x / this.transform_.worldSize);
+
+    pt.x += this.transform_.width / 2;
+    pt.y += this.transform_.height / 2;
+
+    return pt;
+  };
+
+  /** Returns the LatLng for the given offset from the map top-left. */
+
+
+  Geo.prototype.fromContainerPixelToLatLng = function fromContainerPixelToLatLng(ptXY) {
+    if (this.mapCanvasProjection_) {
+      var latLng = this.mapCanvasProjection_.fromContainerPixelToLatLng(ptXY);
+      return { lat: latLng.lat(), lng: latLng.lng() };
+    }
+
+    var ptxy = _extends({}, ptXY);
+    ptxy.x -= this.transform_.width / 2;
+    ptxy.y -= this.transform_.height / 2;
+    var ptRes = this.transform_.pointLocation(_pointGeometry2.default.convert(ptxy));
+
+    ptRes.lng -= 360 * Math.round(ptRes.lng / 360); // convert 2 google format
+    return ptRes;
   };
 
   Geo.prototype.getWidth = function getWidth() {
@@ -120,14 +139,14 @@ var Geo = function () {
     var bndL = margins && margins[3] || 0;
 
     if (this.getWidth() - bndR - bndL > 0 && this.getHeight() - bndT - bndB > 0) {
-      var topLeftCorner = this.unproject({
+      var topLeftCorner = this.transform_.pointLocation(_pointGeometry2.default.convert({
         x: bndL - this.getWidth() / 2,
         y: bndT - this.getHeight() / 2
-      });
-      var bottomRightCorner = this.unproject({
+      }));
+      var bottomRightCorner = this.transform_.pointLocation(_pointGeometry2.default.convert({
         x: this.getWidth() / 2 - bndR,
         y: this.getHeight() / 2 - bndB
-      });
+      }));
 
       var res = [topLeftCorner.lat, topLeftCorner.lng, // NW
       bottomRightCorner.lat, bottomRightCorner.lng, // SE

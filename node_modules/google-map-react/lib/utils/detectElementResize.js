@@ -1,5 +1,15 @@
 'use strict';
 
+var _passiveEvents = require('./passiveEvents');
+
+var _passiveEvents2 = _interopRequireDefault(_passiveEvents);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Reliable `window` and `document` detection
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+// Check `document` and `window` in case of server-side rendering
 /* eslint-disable */
 /**
 * Detect Element Resize.
@@ -11,10 +21,6 @@
 * version: 0.5.3
 **/
 
-// Reliable `window` and `document` detection
-var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-// Check `document` and `window` in case of server-side rendering
 var _window;
 if (canUseDOM) {
   _window = window;
@@ -145,7 +151,8 @@ var addResizeListener = function addResizeListener(element, fn) {
       element.__resizeTriggers__.innerHTML = '<div class="expand-trigger"><div></div></div>' + '<div class="contract-trigger"></div>';
       element.appendChild(element.__resizeTriggers__);
       resetTriggers(element);
-      element.addEventListener('scroll', scrollListener, true);
+
+      (0, _passiveEvents2.default)(element, 'scroll', scrollListener, true);
 
       /* Listen for a css animation to detect element display/re-attach */
       animationstartevent && element.__resizeTriggers__.addEventListener(animationstartevent, function (e) {
