@@ -4,6 +4,8 @@ PinApp was developed as a final project for Spiced Academy.
 
 It helps the user add their favorite pins, or places they find interesting and want to check out later to the map.
 
+![](https://github.com/patrinoua/finalproject/blob/master/public/PinAppScreenshot.png)
+
 in order to run it run 
 ----------------------
 on one window: node bundle-server
