@@ -15,7 +15,7 @@ export const FieldsContainer = styled.div`
   width: 70vw;
   height: 70vh;
   max-width: 500px;
-  max-height: 400px;
+  max-height: 500px;
   background-color: ${backgroundColor};
   border-radius: 2px;
   box-shadow: 1px 1px 11px -4px lightgrey;
