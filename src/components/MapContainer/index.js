@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getUserPins, selectActionBycategory } from '../../actions'
 import PinClick from '../PinClick'
 import AddNewPin from '../AddNewPin'
 import ListOfPins from '../ListOfPins'
+import { SearchInput } from './elements'
 
 import {
   ContainerMap,
@@ -171,22 +171,22 @@ class MapContainer extends React.Component {
     }
     let str = '/pins/' + color + 'Pin.png'
     return (
-      <div className="categoryItem">
+      <div className='categoryItem'>
         <input
           style={style}
-          type="checkbox"
+          type='checkbox'
           id={variable}
           name={variable}
           value={variable}
-          className="check"
+          className='check'
           onClick={myFunction}
         />
         <img
           src={str}
-          className="categoryItemPinIcon"
-          alt="categoryItemPinIcon"
+          className='categoryItemPinIcon'
+          alt='categoryItemPinIcon'
         />
-        <label htmlFor={variable} className="pinText">
+        <label htmlFor={variable} className='pinText'>
           {text}
         </label>
       </div>
@@ -201,24 +201,23 @@ class MapContainer extends React.Component {
         {this.state.showListComponent && (
           <ListOfPins closeListComponent={this.closeListComponent} />
         )}
-        {this.props.pinInfo &&
-          this.state.showThePop && (
-            <PopUpShare>
-              <p>{this.props.userName}</p>
-              <span>shared a cool pin with you</span>
-              <button
-                onClick={() => {
-                  // sharedPin(this.props.pinInfo.id);
-                  this.setState({
-                    showSharedPin: true,
-                    showThePop: false
-                  })
-                }}
-              >
-                view pin
-              </button>
-            </PopUpShare>
-          )}
+        {this.props.pinInfo && this.state.showThePop && (
+          <PopUpShare>
+            <p>{this.props.userName}</p>
+            <span>shared a cool pin with you</span>
+            <button
+              onClick={() => {
+                // sharedPin(this.props.pinInfo.id);
+                this.setState({
+                  showSharedPin: true,
+                  showThePop: false
+                })
+              }}
+            >
+              view pin
+            </button>
+          </PopUpShare>
+        )}
         {this.state.showSharedPin && (
           <PinClick
             pinId={this.props.pinInfo.id}
@@ -226,21 +225,20 @@ class MapContainer extends React.Component {
             id={this.props.id}
           />
         )}
-        {this.state.pinClickVisible &&
-          this.state.clickedPinId && (
-            <PinClick
-              pinId={this.state.clickedPinId}
-              togglePinClick={this.togglePinClick}
-              id={this.props.id}
-              lat={this.state.pinLat}
-              lng={this.state.pinLng}
-            />
-          )}
+        {this.state.pinClickVisible && this.state.clickedPinId && (
+          <PinClick
+            pinId={this.state.clickedPinId}
+            togglePinClick={this.togglePinClick}
+            id={this.props.id}
+            lat={this.state.pinLat}
+            lng={this.state.pinLng}
+          />
+        )}
         <ContainerMap>
           <MapContainerDown>
             <MapContainerLeft>
               <CategoryList>
-                <form id="myForm">
+                <form id='myForm'>
                   {this.categoryItems(
                     'blue',
                     'Museums',
@@ -273,7 +271,7 @@ class MapContainer extends React.Component {
                   )}
                 </form>
                 <button
-                  className="pinAppButton"
+                  className='pinAppButton'
                   onClick={this.showListComponent}
                 >
                   My pins
@@ -299,7 +297,7 @@ class MapContainer extends React.Component {
                       </button>
                   </div>
                 </div>*/}
-              <div className="mapContainerRightDOWN">
+              <div className='mapContainerRightDOWN'>
                 {/*<button
                     className="pinAppButton roundButton dropPinButton"
                     onClick={this.toggleAddNewPinComponent}
@@ -307,12 +305,16 @@ class MapContainer extends React.Component {
                     Drop pin
                 </button>*/}
 
-                <div className="mapArea">
+                <div className='mapArea'>
                   {!this.props.lat && (
-                    <img src="assets/loading.gif" alt="loading" />
+                    <img src='assets/loading.gif' alt='loading' />
                   )}
                   {this.props.lat && (
                     <Map
+                      mapTypeControl={false}
+                      fullscreenControl={false}
+                      zoomControl={false}
+                      streetViewControl={false}
                       style={style}
                       initialCenter={{
                         lat: this.state.lat || this.props.lat,
@@ -363,11 +365,9 @@ class MapContainer extends React.Component {
                   )}
                   {this.props.lat && (
                     <div>
-                      {/****** search box
-                      <input
-                        id="searchboxInputField"
-                        name="searchbox"
-                        placeholder="search"
+                      <SearchInput
+                        name='searchbox'
+                        placeholder='search'
                         onChange={this.handleSearchboxChange}
                         onKeyDown={e => {
                           if (e.keyCode === 13) {
@@ -388,7 +388,6 @@ class MapContainer extends React.Component {
                           }
                         }}
                       />
-                       search box *******/}
 
                       {/*******center button
                       <div
@@ -405,10 +404,10 @@ class MapContainer extends React.Component {
                     center button*******/}
                       {this.state.currentLocationPinIsVisible && (
                         <img
-                          id="dropPinInCurrentLocationButton"
-                          src="pins/bigPin.png"
-                          alt="bigPin"
-                          className="pinMyCurrentLocationPin"
+                          id='dropPinInCurrentLocationButton'
+                          src='pins/bigPin.png'
+                          alt='bigPin'
+                          className='pinMyCurrentLocationPin'
                           onClick={() => {
                             this.forceUpdate()
                             this.setState({
