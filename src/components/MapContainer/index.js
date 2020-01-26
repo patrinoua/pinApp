@@ -18,6 +18,7 @@ import {
   MapContainerRight,
   CategoryList
 } from '../elements'
+import { MapArea } from './elements'
 
 class MapContainer extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class MapContainer extends React.Component {
     this.mapHasBinClicked = this.mapHasBinClicked.bind(this)
     this.closePopPin = this.closePopPin.bind(this)
     this.handleSearchboxChange = this.handleSearchboxChange.bind(this)
-    this.categoryItems = this.categoryItems.bind(this)
+    this.categoryItem = this.categoryItem.bind(this)
   }
   handleSearchboxChange(e) {
     this[e.target.name] = e.target.value
@@ -191,7 +192,8 @@ class MapContainer extends React.Component {
       showSharedPin: false
     })
   }
-  categoryItems(color, text, variable, myFunction) {
+  categoryItem(color, category) {
+    const text = category.charAt(0).toUpperCase() + category.substring(1)
     const style = {
       backgroundSize: 'contain'
     }
@@ -201,18 +203,18 @@ class MapContainer extends React.Component {
         <input
           style={style}
           type='checkbox'
-          id={variable}
-          name={variable}
-          value={variable}
+          id={category}
+          name={category}
+          value={category}
           className='check'
-          onClick={myFunction}
+          onClick={this.checkedCategory}
         />
         <img
           src={str}
           className='categoryItemPinIcon'
           alt='categoryItemPinIcon'
         />
-        <label htmlFor={variable} className='pinText'>
+        <label htmlFor={category} className='pinText'>
           {text}
         </label>
       </div>
@@ -285,36 +287,11 @@ class MapContainer extends React.Component {
             <MapContainerLeft>
               <CategoryList>
                 <form id='myForm'>
-                  {this.categoryItems(
-                    'blue',
-                    'Museums',
-                    'museums',
-                    this.checkedCategory
-                  )}
-                  {this.categoryItems(
-                    'green',
-                    'Parks',
-                    'parks',
-                    this.checkedCategory
-                  )}
-                  {this.categoryItems(
-                    'yellow',
-                    'Restaurants',
-                    'restaurants',
-                    this.checkedCategory
-                  )}
-                  {this.categoryItems(
-                    'pink',
-                    'Bars',
-                    'bars',
-                    this.checkedCategory
-                  )}
-                  {this.categoryItems(
-                    'purple',
-                    'Sightseeings',
-                    'sightseeing',
-                    this.checkedCategory
-                  )}
+                  {this.categoryItem('blue', 'museums')}
+                  {this.categoryItem('green', 'parks')}
+                  {this.categoryItem('yellow', 'restaurants')}
+                  {this.categoryItem('pink', 'bars')}
+                  {this.categoryItem('purple', 'sightseeing')}
                 </form>
                 <button
                   className='pinAppButton'
@@ -351,7 +328,7 @@ class MapContainer extends React.Component {
                     Drop pin
                 </button>*/}
 
-                <div className='mapArea'>
+                <MapArea>
                   {!this.props.lat && (
                     <img src='assets/loading.gif' alt='loading' />
                   )}
@@ -467,7 +444,7 @@ class MapContainer extends React.Component {
                       )}
                     </div>
                   )}
-                </div>
+                </MapArea>
               </div>
             </MapContainerRight>
           </MapContainerDown>

@@ -229,20 +229,6 @@ body {
   align-items: center;
 }
 
-.mapArea {
-  background-size: contain;
-  border-radius: 2px;
-  border: 2px solid #eaeced;
-  box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.4);
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .centerMapButton {
   position: absolute;
   border-radius: 2px;
