@@ -152,14 +152,22 @@ export default class EditPin extends React.Component {
     document.body.removeChild(dummy)
   }
   render() {
-    // const { pinId, markersArray, flag, id } = this.props
-    // const { editMode, pinUrl } = this.state
+    const {
+      id,
+      title,
+      category,
+      url,
+      description,
+      color
+    } = this.props.currentPinInfo[0]
+    console.log('this.props.currentPinInfo', this.props.currentPinInfo)
+    const bigPin = color || '/pins/bigPin.png'
 
     return (
       <ModalContainer>
         <BlackVailPinClick onClick={this.togglePinClick} />
         <EditPinFieldsContainer>
-          <XIcon onClick={this.togglePinClick}>X</XIcon>
+          <XIcon onClick={this.props.toggleEditMode}>X</XIcon>
           <div
             style={{
               display: 'flex',
@@ -168,10 +176,11 @@ export default class EditPin extends React.Component {
             }}
           >
             <PinTitle>
-              {/* <img src={bigPin} alt={'pinIcon'} /> */}
+              <img src={bigPin} alt={'pinIcon'} />
               <PinTitleText>clicked pin!</PinTitleText>
             </PinTitle>
           </div>
+          {/* !!!I need to figure out the logic here and fix it, to properly upload an image. */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             {1 ? (
               <div
@@ -236,7 +245,7 @@ export default class EditPin extends React.Component {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              padding: '20px'
+              paddingTop: '20px'
             }}
           >
             <div className='colPinClick'>
@@ -263,7 +272,7 @@ export default class EditPin extends React.Component {
             <div className='saveButton' onClick={this.insertPinInfo}>
               Save
             </div>
-            <div className='saveButton' onClick={this.toggleEditMode}>
+            <div className='saveButton' onClick={this.props.toggleEditMode}>
               Cancel
             </div>
             {this.state.deleteAlertIsVisible && (

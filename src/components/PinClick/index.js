@@ -36,7 +36,6 @@ class PinClick extends React.Component {
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
-    this.toggleEditMode = this.toggleEditMode.bind(this)
     this.insertPinInfo = this.insertPinInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.deletePinAlert = this.deletePinAlert.bind(this)
@@ -92,11 +91,6 @@ class PinClick extends React.Component {
   togglePinUrl(pinUrl) {
     this.setState({
       pinUrl: pinUrl
-    })
-  }
-  toggleEditMode(e) {
-    this.setState({
-      editMode: !this.state.editMode
     })
   }
   setFile(e) {
@@ -365,11 +359,12 @@ class PinClick extends React.Component {
                   />
                 )}
               </div>
-            )}{' '}
+            )}
+            {console.log('here?', currentPinInfo)}
             {!editMode && (
               <EditButton
                 userCanEdit={userCanEdit}
-                toggleEditMode={this.toggleEditMode}
+                toggleEditMode={() => this.props.toggleEditMode(currentPinInfo)}
               />
             )}
           </PinClickFieldsContainer>

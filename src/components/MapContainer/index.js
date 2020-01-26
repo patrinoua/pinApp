@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getUserPins, selectActionBycategory } from '../../actions'
 import PinClick from '../PinClick'
+import EditPin from '../EditPin'
 import AddNewPin from '../AddNewPin'
 import ListOfPins from '../ListOfPins'
 
@@ -36,7 +37,8 @@ class MapContainer extends React.Component {
       mapHasBinClicked: false,
       showListComponent: false,
       currentLocationPinIsVisible: true,
-      showThePop: true
+      showThePop: true,
+      currentPinInfo: []
     }
     this.closeListComponent = this.closeListComponent.bind(this)
     this.showListComponent = this.showListComponent.bind(this)
@@ -49,6 +51,7 @@ class MapContainer extends React.Component {
     )
     this.pinClick = this.pinClick.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
+    this.toggleEditMode = this.toggleEditMode.bind(this)
     this.mapHasBinClicked = this.mapHasBinClicked.bind(this)
     this.closePopPin = this.closePopPin.bind(this)
     this.handleSearchboxChange = this.handleSearchboxChange.bind(this)
@@ -85,6 +88,13 @@ class MapContainer extends React.Component {
   togglePinClick() {
     this.setState({
       pinClickVisible: !this.state.pinClickVisible
+    })
+  }
+  toggleEditMode(currentPinInfo) {
+    console.log('whooooooooooop??', currentPinInfo)
+    this.setState({
+      editMode: !this.state.editMode,
+      currentPinInfo
     })
   }
   watchMyLocation() {
@@ -201,6 +211,7 @@ class MapContainer extends React.Component {
         {this.state.showListComponent && (
           <ListOfPins closeListComponent={this.closeListComponent} />
         )}
+
         {this.props.pinInfo && this.state.showThePop && (
           <PopUpShare>
             <p>{this.props.userName}</p>
@@ -229,9 +240,17 @@ class MapContainer extends React.Component {
           <PinClick
             pinId={this.state.clickedPinId}
             togglePinClick={this.togglePinClick}
+            toggleEditMode={this.toggleEditMode}
             id={this.props.id}
             lat={this.state.pinLat}
             lng={this.state.pinLng}
+          />
+        )}
+        {this.state.editMode && (
+          <EditPin
+            toggleEditMode={this.toggleEditMode}
+            pinId={this.state.clickedPinId}
+            currentPinInfo={this.state.currentPinInfo}
           />
         )}
         <ContainerMap>
