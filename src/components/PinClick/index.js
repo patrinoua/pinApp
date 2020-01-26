@@ -220,7 +220,7 @@ class PinClick extends React.Component {
               </PinTitleText>
             </PinTitle>
             <PinClickSecondRow>
-              <div className="boxPinClick">
+              <div className='boxPinClick'>
                 <Map
                   style={{
                     width: '100%',
@@ -257,34 +257,34 @@ class PinClick extends React.Component {
                     })}
                 </Map>
               </div>
-              <div className="boxPinClick">
+              <div className='boxPinClick'>
                 {(editMode && (
-                  <div className="galleryItemsContainer">
+                  <div className='galleryItemsContainer'>
                     <input
-                      id="inputfile"
-                      className="inputfile"
-                      type="file"
-                      name="file"
+                      id='inputfile'
+                      className='inputfile'
+                      type='file'
+                      name='file'
                       onChange={e => {
                         this.setFile(e)
                         this.compileData(e)
                       }}
-                      data-multiple-caption="{count} files selected"
+                      data-multiple-caption='{count} files selected'
                       multiple
                     />
-                    <label htmlFor="inputfile">
+                    <label htmlFor='inputfile'>
                       {(this.state.dataUrl && (
                         <img
                           src={this.state.dataUrl}
-                          className="uploadedImagePinclick"
-                          alt="uploadedImagePinclick"
+                          className='uploadedImagePinclick'
+                          alt='uploadedImagePinclick'
                         />
                       )) || (
-                        <div className="cameraIconContainerPinClick">
+                        <div className='cameraIconContainerPinClick'>
                           <img
-                            alt="cameraIcon"
-                            src="/pins/camera.png"
-                            className="cameraIcon"
+                            alt='cameraIcon'
+                            src='/pins/camera.png'
+                            className='cameraIcon'
                           />
                         </div>
                       )}
@@ -292,7 +292,7 @@ class PinClick extends React.Component {
                   </div>
                 )) || (
                   <div
-                    className="galleryItemsContainer"
+                    className='galleryItemsContainer'
                     style={{
                       backgroundImage: `url(${imageUrl})`
                     }}
@@ -303,27 +303,27 @@ class PinClick extends React.Component {
             {/* *******************THIRD ROW**********************/}
             {(editMode && (
               <PinClickRow>
-                <div className="colPinClick">
-                  <div className="textFieldsPinClick">
+                <div className='colPinClick'>
+                  <div className='textFieldsPinClick'>
                     <Textarea
                       placeholder={currentPinInfo[0].title || 'Title'}
-                      type="text"
-                      name="title"
-                      rows="1"
+                      type='text'
+                      name='title'
+                      rows='1'
                       onChange={this.handleChange}
                     />
                     <Textarea
                       placeholder={
                         currentPinInfo[0].description || 'Description'
                       }
-                      type="text"
-                      name="description"
+                      type='text'
+                      name='description'
                       onChange={this.handleChange}
-                      rows="1"
+                      rows='1'
                     />
                   </div>
                   <button
-                    className="subtleButton"
+                    className='subtleButton'
                     onClick={this.deletePinAlert}
                   >
                     Unpin
@@ -350,11 +350,11 @@ class PinClick extends React.Component {
             )}
             {/* *************************FOURTH ROW********************* */}
             {editMode && (
-              <div className="pinEditSaveButtonArea box">
-                <div className="saveButton" onClick={this.insertPinInfo}>
+              <div className='pinEditSaveButtonArea box'>
+                <div className='saveButton' onClick={this.insertPinInfo}>
                   Save
                 </div>
-                <div className="saveButton" onClick={this.toggleEditMode}>
+                <div className='saveButton' onClick={this.toggleEditMode}>
                   Cancel
                 </div>
                 {this.state.deleteAlertIsVisible && (
