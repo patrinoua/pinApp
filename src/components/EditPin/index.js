@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import axios from '../../axios'
 import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { ModalContainer, XIcon, Textarea } from '../elements.js'
 import styled from 'styled-components'
 import { BlackVailPinClick } from '../AddNewPin/elements.js'
@@ -31,6 +30,22 @@ const EditPinFieldsContainer = styled.div`
     border: none;
     max-width: 600px;
     max-height: 100%;
+  }
+`
+const UnpinButton = styled(XIcon)`
+  top: 60px;
+  right: 30px;
+  @media (max-width: 700px) {
+    top: 55px;
+  }
+`
+
+const SaveCancelButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 400px) {
+    flex-direction: column;
   }
 `
 
@@ -172,7 +187,8 @@ export default class EditPin extends React.Component {
       <ModalContainer>
         <BlackVailPinClick onClick={this.togglePinClick} />
         <EditPinFieldsContainer>
-          <XIcon onClick={this.props.toggleEditMode}>X</XIcon>
+          <UnpinButton onClick={this.deletePinAlert}>Unpin</UnpinButton>
+          <XIcon onClick={this.props.toggleEditMode}>Close X</XIcon>
           <div
             style={{
               display: 'flex',
@@ -261,31 +277,25 @@ export default class EditPin extends React.Component {
             </div>
           </div>
           {/* *******************THIRD ROW**********************/}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <div className='colPinClick'>
-              <div className='textFieldsPinClick'>
-                <Textarea
-                  placeholder={'Title'}
-                  type='text'
-                  name='title'
-                  rows='1'
-                  onChange={this.handleChange}
-                />
-                <Textarea
-                  placeholder={'Description'}
-                  type='text'
-                  name='description'
-                  onChange={this.handleChange}
-                  rows='1'
-                />
-              </div>
-            </div>
-          </div>
+          <SaveCancelButtons>
+            <Textarea
+              placeholder={'Title'}
+              type='text'
+              name='title'
+              rows='1'
+              onChange={this.handleChange}
+              style={{ margin: '10px' }}
+            />
+            <Textarea
+              placeholder={'Description'}
+              type='text'
+              name='description'
+              onChange={this.handleChange}
+              rows='1'
+              style={{ margin: '10px' }}
+            />
+          </SaveCancelButtons>
+
           {/* *************************FOURTH ROW********************* */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div className='saveButton' onClick={this.insertPinInfo}>
@@ -300,15 +310,6 @@ export default class EditPin extends React.Component {
                 deletePinAlert={this.deletePinAlert}
               />
             )}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button
-              className='subtleButton'
-              onClick={this.deletePinAlert}
-              style={{ width: '80px' }}
-            >
-              Unpin
-            </button>
           </div>
         </EditPinFieldsContainer>
       </ModalContainer>
