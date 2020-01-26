@@ -321,13 +321,6 @@ class MapContainer extends React.Component {
                   </div>
                 </div>*/}
               <div className='mapContainerRightDOWN'>
-                {/*<button
-                    className="pinAppButton roundButton dropPinButton"
-                    onClick={this.toggleAddNewPinComponent}
-                >
-                    Drop pin
-                </button>*/}
-
                 <MapArea>
                   {!this.props.lat && (
                     <img src='assets/loading.gif' alt='loading' />
