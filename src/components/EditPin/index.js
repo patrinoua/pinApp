@@ -162,7 +162,12 @@ export default class EditPin extends React.Component {
     } = this.props.currentPinInfo[0]
     console.log('this.props.currentPinInfo', this.props.currentPinInfo)
     const bigPin = color || '/pins/bigPin.png'
-
+    let imageUrl
+    if (url || color) {
+      imageUrl = url || color
+    } else {
+      imageUrl = '/pins/greyPin.png'
+    }
     return (
       <ModalContainer>
         <BlackVailPinClick onClick={this.togglePinClick} />
@@ -172,7 +177,7 @@ export default class EditPin extends React.Component {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              padding: '20px'
+              paddingTop: '20px'
             }}
           >
             <PinTitle>
@@ -180,72 +185,86 @@ export default class EditPin extends React.Component {
               <PinTitleText>clicked pin!</PinTitleText>
             </PinTitle>
           </div>
-          {/* !!!I need to figure out the logic here and fix it, to properly upload an image. */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {1 ? (
+            <div className='boxPinClick'>
               <div
                 style={{
+                  position: 'relative',
+                  border: '2px solid lightgrey',
                   width: '170px',
                   height: '170px',
                   borderRadius: '50%',
-                  background: 'lightgrey',
                   zIndex: 30
                 }}
-              ></div>
-            ) : (
-              <div className='boxPinClick'>
-                {(0 && (
-                  <div className='galleryItemsContainer'>
-                    <input
-                      id='inputfile'
-                      className='inputfile'
-                      type='file'
-                      name='file'
-                      onChange={e => {
-                        this.setFile(e)
-                        this.compileData(e)
-                      }}
-                      data-multiple-caption='{count} files selected'
-                      multiple
-                    />
-                    <label htmlFor='inputfile'>
-                      {(this.state.dataUrl && (
-                        <img
-                          src={this.state.dataUrl}
-                          className='uploadedImagePinclick'
-                          alt='uploadedImagePinclick'
-                        />
-                      )) || (
-                        <div className='cameraIconContainerPinClick'>
-                          <img
-                            alt='cameraIcon'
-                            src='/pins/camera.png'
-                            className='cameraIcon'
-                          />
-                        </div>
-                      )}
-                    </label>
-                  </div>
-                )) || (
-                  //if there is an image.. show it (probably!)
+              >
+                {this.state.dataUrl ? (
+                  // the new image the user just uploaded. this doesn't work yet
+                  <img
+                    src={this.state.dataUrl}
+                    className='uploadedImagePinclick'
+                    alt='uploadedImagePinclick'
+                  />
+                ) : (
                   <div
-                    className='galleryItemsContainer'
-                    style={
-                      {
-                        // backgroundImage: `url(${imageUrl})`
-                      }
-                    }
+                    style={{
+                      backgroundImage: `url(${imageUrl})`,
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center center',
+                      backgroundRepeat: 'no-repeat',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '50%'
+                    }}
                   />
                 )}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0
+                  }}
+                >
+                  <label htmlFor='inputfile'>
+                    <div
+                      style={{
+                        width: '170px',
+                        height: '170px',
+                        borderRadius: '50%',
+                        zIndex: 30,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: ' rgba(256, 256, 256, 0.4)',
+                        zIndex: 50
+                      }}
+                    >
+                      <img
+                        alt='cameraIcon'
+                        src='/pins/camera.png'
+                        className='cameraIcon'
+                      />
+                    </div>
+                  </label>
+                  <input
+                    id='inputfile'
+                    className='inputfile'
+                    type='file'
+                    name='file'
+                    onChange={e => {
+                      this.setFile(e)
+                      this.compileData(e)
+                    }}
+                    data-multiple-caption='{count} files selected'
+                    multiple
+                  />
+                </div>
               </div>
-            )}
+            </div>
           </div>
           {/* *******************THIRD ROW**********************/}
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center',
-              paddingTop: '20px'
+              justifyContent: 'center'
             }}
           >
             <div className='colPinClick'>

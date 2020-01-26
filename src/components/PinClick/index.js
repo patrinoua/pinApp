@@ -253,46 +253,14 @@ class PinClick extends React.Component {
                 </Map>
               </div>
               <div className='boxPinClick'>
-                {(editMode && (
-                  <div className='galleryItemsContainer'>
-                    <input
-                      id='inputfile'
-                      className='inputfile'
-                      type='file'
-                      name='file'
-                      onChange={e => {
-                        this.setFile(e)
-                        this.compileData(e)
-                      }}
-                      data-multiple-caption='{count} files selected'
-                      multiple
-                    />
-                    <label htmlFor='inputfile'>
-                      {(this.state.dataUrl && (
-                        <img
-                          src={this.state.dataUrl}
-                          className='uploadedImagePinclick'
-                          alt='uploadedImagePinclick'
-                        />
-                      )) || (
-                        <div className='cameraIconContainerPinClick'>
-                          <img
-                            alt='cameraIcon'
-                            src='/pins/camera.png'
-                            className='cameraIcon'
-                          />
-                        </div>
-                      )}
-                    </label>
-                  </div>
-                )) || (
+               
                   <div
                     className='galleryItemsContainer'
                     style={{
                       backgroundImage: `url(${imageUrl})`
                     }}
                   />
-                )}
+
               </div>
             </PinClickSecondRow>
             {/* *******************THIRD ROW**********************/}
