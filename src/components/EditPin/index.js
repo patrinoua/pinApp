@@ -5,49 +5,14 @@ import axios from '../../axios'
 import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
 import { ModalContainer, XIcon, Textarea } from '../elements.js'
-import styled from 'styled-components'
 import { BlackVailPinClick } from '../AddNewPin/elements.js'
 import { DeletePinAlert } from '../PinClick/ButtonsAndAlerts'
 import { PinTitle, PinTitleText } from '../PinClick/elements.js'
-
-const EditPinFieldsContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  z-index: 20;
-  width: 70vw;
-  height: 70vh;
-  max-width: 500px;
-  max-height: 500px;
-  background: white;
-  border-radius: 2px;
-  box-shadow: 1px 1px 11px -4px lightgrey;
-
-  @media (max-width: 400px) {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border: none;
-    max-width: 600px;
-    max-height: 100%;
-  }
-`
-const UnpinButton = styled(XIcon)`
-  top: 60px;
-  right: 30px;
-  @media (max-width: 700px) {
-    top: 55px;
-  }
-`
-
-const SaveCancelButtons = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 400px) {
-    flex-direction: column;
-  }
-`
+import {
+  EditPinFieldsContainer,
+  UnpinButton,
+  SaveCancelButtons
+} from './elements.js'
 
 export default class EditPin extends React.Component {
   constructor(props) {
