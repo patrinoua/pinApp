@@ -130,6 +130,7 @@ export const XIcon = styled.p`
   z-index: 12;
   cursor: pointer;
   opacity: 0.4;
+  font-size: 0.9em;
   &:hover {
     opacity: 0.9;
   }

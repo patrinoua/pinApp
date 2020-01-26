@@ -22,6 +22,7 @@ class EditPin extends React.Component {
       removeButtonText: 'X',
       editMode: false,
       title: '',
+      description: '',
       url: '',
       deleteAlertIsVisible: false,
       pinUrl: null
@@ -45,7 +46,10 @@ class EditPin extends React.Component {
     })
   }
   handleChange(e) {
-    this[e.target.name] = e.target.value
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+    console.log('state', this.state)
   }
   checkValue(e) {
     this.category = e.target.name
@@ -54,11 +58,15 @@ class EditPin extends React.Component {
     })
   }
   insertPinInfo(e) {
+    console.log('mpainei', this.state)
     let pinInfo = {
-      description: this.description,
-      title: this.title,
+      description: this.props.currentPinInfo.description,
+      title: this.props.currentPinInfo.title,
       pinId: this.props.pinId
     }
+    if (this.state.description.length > 0)
+      pinInfo.description = this.state.description
+    if (this.state.title.length > 0) pinInfo.title = this.state.title
     const formData = new FormData()
     formData.append('file', this.state.file)
     if (this.state.file) {
@@ -106,7 +114,7 @@ class EditPin extends React.Component {
       currentPinInfo,
       toggleDeleteAlert
     } = this.props
-    const { url, color } = currentPinInfo
+    const { url, color, description, title } = currentPinInfo
     const { dataUrl } = this.state
     const bigPin = color || '/pins/bigPin.png'
     let imageUrl
@@ -201,7 +209,7 @@ class EditPin extends React.Component {
           </div>
           <SaveCancelButtons>
             <Textarea
-              placeholder={'Title'}
+              placeholder={title || 'Title'}
               type='text'
               name='title'
               rows='1'
@@ -209,12 +217,12 @@ class EditPin extends React.Component {
               style={{ marginTop: '10px' }}
             />
             <Textarea
-              placeholder={'Description'}
+              placeholder={description || 'Description'}
               type='text'
               name='description'
               onChange={this.handleChange}
               rows='1'
-              style={{ marginTop: '10px', marginBottom: '20px' }}
+              style={{ marginTop: '10px' }}
             />
           </SaveCancelButtons>
 
