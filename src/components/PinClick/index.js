@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from '../../axios'
-import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { ModalContainer, XIcon, Textarea } from '../elements.js'
@@ -10,7 +9,7 @@ import {
   TitleAndDescription,
   BlackVailPinClick
 } from '../AddNewPin/elements.js'
-import { DeletePinAlert, ShareButton, EditButton } from './ButtonsAndAlerts'
+import { ShareButton, EditButton } from './ButtonsAndAlerts'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -18,6 +17,7 @@ import {
   PinClickRow,
   PinClickSecondRow
 } from './elements.js'
+import EditPin from '../EditPin'
 class PinClick extends React.Component {
   constructor(props) {
     super(props)
@@ -30,15 +30,12 @@ class PinClick extends React.Component {
       editMode: false,
       title: '',
       url: '',
-      deleteAlertIsVisible: false,
       pinUrl: null
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
-    this.toggleEditMode = this.toggleEditMode.bind(this)
     this.insertPinInfo = this.insertPinInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.deletePinAlert = this.deletePinAlert.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.exportPin = this.exportPin.bind(this)
     this.toggleDeleteAlert = this.toggleDeleteAlert.bind(this)
@@ -93,11 +90,6 @@ class PinClick extends React.Component {
       pinUrl: pinUrl
     })
   }
-  toggleEditMode(e) {
-    this.setState({
-      editMode: !this.state.editMode
-    })
-  }
   setFile(e) {
     this.setState({
       file: e.target.files[0]
@@ -146,17 +138,7 @@ class PinClick extends React.Component {
       }
     )
   }
-  deletePinAlert() {
-    this.toggleDeleteAlert()
-    if (this.state.deleteAlertIsVisible === true) {
-      this.props.dispatch(deletePin(this.props.pinId))
-      this.setState({
-        deleteAlertIsVisible: false
-      })
-      this.togglePinClick()
-    }
-    // onClick={this.toggleEditMode}
-  }
+
   exportPin() {
     const encryptedPinId = window.btoa(this.props.pinId)
     // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
@@ -172,7 +154,7 @@ class PinClick extends React.Component {
   }
   render() {
     const { pinId, markersArray, flag, id } = this.props
-    const { editMode, pinUrl } = this.state
+    const { pinUrl } = this.state
     if (!this.state.ready && !markersArray.length > 0) {
       return <div>not ready</div>
     } else {
@@ -220,7 +202,7 @@ class PinClick extends React.Component {
               </PinTitleText>
             </PinTitle>
             <PinClickSecondRow>
-              <div className="boxPinClick">
+              <div className='boxPinClick'>
                 <Map
                   style={{
                     width: '100%',
@@ -257,120 +239,32 @@ class PinClick extends React.Component {
                     })}
                 </Map>
               </div>
-              <div className="boxPinClick">
-                {(editMode && (
-                  <div className="galleryItemsContainer">
-                    <input
-                      id="inputfile"
-                      className="inputfile"
-                      type="file"
-                      name="file"
-                      onChange={e => {
-                        this.setFile(e)
-                        this.compileData(e)
-                      }}
-                      data-multiple-caption="{count} files selected"
-                      multiple
-                    />
-                    <label htmlFor="inputfile">
-                      {(this.state.dataUrl && (
-                        <img
-                          src={this.state.dataUrl}
-                          className="uploadedImagePinclick"
-                          alt="uploadedImagePinclick"
-                        />
-                      )) || (
-                        <div className="cameraIconContainerPinClick">
-                          <img
-                            alt="cameraIcon"
-                            src="/pins/camera.png"
-                            className="cameraIcon"
-                          />
-                        </div>
-                      )}
-                    </label>
-                  </div>
-                )) || (
-                  <div
-                    className="galleryItemsContainer"
-                    style={{
-                      backgroundImage: `url(${imageUrl})`
-                    }}
-                  />
-                )}
+              <div className='boxPinClick'>
+                <div
+                  className='galleryItemsContainer'
+                  style={{
+                    backgroundImage: `url(${imageUrl})`
+                  }}
+                />
               </div>
             </PinClickSecondRow>
             {/* *******************THIRD ROW**********************/}
-            {(editMode && (
-              <PinClickRow>
-                <div className="colPinClick">
-                  <div className="textFieldsPinClick">
-                    <Textarea
-                      placeholder={currentPinInfo[0].title || 'Title'}
-                      type="text"
-                      name="title"
-                      rows="1"
-                      onChange={this.handleChange}
-                    />
-                    <Textarea
-                      placeholder={
-                        currentPinInfo[0].description || 'Description'
-                      }
-                      type="text"
-                      name="description"
-                      onChange={this.handleChange}
-                      rows="1"
-                    />
-                  </div>
-                  <button
-                    className="subtleButton"
-                    onClick={this.deletePinAlert}
-                  >
-                    Unpin
-                  </button>
-                </div>
-                <ShareButton
-                  togglePinUrl={this.togglePinUrl}
-                  exportPin={this.exportPin}
-                  pinUrl={pinUrl}
-                />
-              </PinClickRow>
-            )) || (
-              <PinClickRow>
-                <TitleAndDescription>
-                  <div>{currentPinInfo[0].title || 'Title'}</div>
-                  <div>{currentPinInfo[0].description || 'Description'}</div>
-                </TitleAndDescription>
-                <ShareButton
-                  togglePinUrl={this.togglePinUrl}
-                  exportPin={this.exportPin}
-                  pinUrl={pinUrl}
-                />
-              </PinClickRow>
-            )}
-            {/* *************************FOURTH ROW********************* */}
-            {editMode && (
-              <div className="pinEditSaveButtonArea box">
-                <div className="saveButton" onClick={this.insertPinInfo}>
-                  Save
-                </div>
-                <div className="saveButton" onClick={this.toggleEditMode}>
-                  Cancel
-                </div>
-                {this.state.deleteAlertIsVisible && (
-                  <DeletePinAlert
-                    toggleDeleteAlert={this.toggleDeleteAlert}
-                    deletePinAlert={this.deletePinAlert}
-                  />
-                )}
-              </div>
-            )}{' '}
-            {!editMode && (
-              <EditButton
-                userCanEdit={userCanEdit}
-                toggleEditMode={this.toggleEditMode}
+            <PinClickRow>
+              <TitleAndDescription>
+                <div>{currentPinInfo[0].title || 'Title'}</div>
+                <div>{currentPinInfo[0].description || 'Description'}</div>
+              </TitleAndDescription>
+              <ShareButton
+                togglePinUrl={this.togglePinUrl}
+                exportPin={this.exportPin}
+                pinUrl={pinUrl}
               />
-            )}
+            </PinClickRow>
+            {/* *************************FOURTH ROW********************* */}
+            <EditButton
+              userCanEdit={userCanEdit}
+              toggleEditMode={() => this.props.toggleEditMode(currentPinInfo)}
+            />
           </PinClickFieldsContainer>
         </ModalContainer>
       )

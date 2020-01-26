@@ -137,6 +137,9 @@ export const XIcon = styled.p`
     /* position: fixed; */
     top: 30px;
   }
+  @media (max-width: 400px) {
+    font-size: 0.8em;
+  }
 `
 export const Footer = styled.div`
   font-weight: 200;

@@ -72,9 +72,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="routeContainer">
+      <div className='routeContainer'>
         <BrowserRouter>
-          <div className="appContainer">
+          <div className='appContainer'>
             <Header
               {...this.state}
               userMenuPopUpStatus={this.state.toggleUserMenu}
@@ -82,7 +82,7 @@ class App extends React.Component {
 
             <Route
               exact
-              path="/profile"
+              path='/profile'
               render={() => (
                 <EditProfile
                   {...this.state}
@@ -95,12 +95,12 @@ class App extends React.Component {
               )}
             />
 
-            <Route path="/about" component={About} />
-            <Route path="/friends" component={Friends} />
+            <Route path='/about' component={About} />
+            <Route path='/friends' component={Friends} />
 
             <Route
               exact
-              path="/user/:id"
+              path='/user/:id'
               render={x => (
                 <React.Fragment>
                   <OtherProfile
@@ -115,7 +115,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/pin/:encryptedPinId"
+              path='/pin/:encryptedPinId'
               render={x => (
                 <PinClick
                   match={x.match}
@@ -127,7 +127,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/sharedpin/:encryptedPinId"
+              path='/sharedpin/:encryptedPinId'
               render={x => (
                 <PinClick
                   match={x.match}
@@ -141,7 +141,7 @@ class App extends React.Component {
             {/*<Route exact path="/chat" component={Chat} />*/}
             <Route
               exact
-              path="/"
+              path='/'
               render={() => (
                 <MapContainer
                   lat={this.state.lat}
@@ -152,7 +152,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/map"
+              path='/map'
               render={() => (
                 <MapContainer
                   lat={this.state.lat}
