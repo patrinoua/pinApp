@@ -18,6 +18,7 @@ import {
   PinClickRow,
   PinClickSecondRow
 } from './elements.js'
+import EditPin from '../EditPin'
 class PinClick extends React.Component {
   constructor(props) {
     super(props)
