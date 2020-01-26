@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.js",
     "start": "node index.js",
+    "storybook": "start-storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -15,7 +16,7 @@
     "axios": "^0.19.2",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.26.3",
-    "babel-loader": "^6.2.9",
+    "babel-loader": "^7.0.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
@@ -48,22 +49,23 @@
     "redux-promise": "^0.5.3",
     "socket.io": "^2.3.0",
     "spiced-pg": "github:spicedacademy/spiced-pg",
-    "styled-components": "^4.4.1",
+    "styled-components": "^5.0.0",
     "uid-safe": "^2.1.4",
-    "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.8.4"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@storybook/react": "^5.3.9",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.16.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.0"
+    "eslint-plugin-react": "^7.18.0",
+    "webpack": "^4.41.5"
   },
   "eslintConfig": {
     "extends": "react-app"
