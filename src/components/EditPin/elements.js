@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { XIcon } from '../elements.js'
+
 export const EditPinFieldsContainer = styled.div`
   position: relative;
   display: flex;
@@ -34,7 +35,5 @@ export const SaveCancelButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: 400px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 `

@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from '../../axios'
-import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { ModalContainer, XIcon, Textarea } from '../elements.js'
@@ -10,7 +9,7 @@ import {
   TitleAndDescription,
   BlackVailPinClick
 } from '../AddNewPin/elements.js'
-import { DeletePinAlert, ShareButton, EditButton } from './ButtonsAndAlerts'
+import { ShareButton, EditButton } from './ButtonsAndAlerts'
 import {
   PinClickFieldsContainer,
   PinTitle,
@@ -31,14 +30,12 @@ class PinClick extends React.Component {
       editMode: false,
       title: '',
       url: '',
-      deleteAlertIsVisible: false,
       pinUrl: null
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
     this.insertPinInfo = this.insertPinInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.deletePinAlert = this.deletePinAlert.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.exportPin = this.exportPin.bind(this)
     this.toggleDeleteAlert = this.toggleDeleteAlert.bind(this)
@@ -141,17 +138,7 @@ class PinClick extends React.Component {
       }
     )
   }
-  deletePinAlert() {
-    this.toggleDeleteAlert()
-    if (this.state.deleteAlertIsVisible === true) {
-      this.props.dispatch(deletePin(this.props.pinId))
-      this.setState({
-        deleteAlertIsVisible: false
-      })
-      this.togglePinClick()
-    }
-    // onClick={this.toggleEditMode}
-  }
+
   exportPin() {
     const encryptedPinId = window.btoa(this.props.pinId)
     // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-import { getUserPins, selectActionBycategory } from '../../actions'
+import { getUserPins, selectActionBycategory, deletePin } from '../../actions'
 import PinClick from '../PinClick'
+import { DeletePinAlert } from '../PinClick/ButtonsAndAlerts'
 import EditPin from '../EditPin'
 import AddNewPin from '../AddNewPin'
 import ListOfPins from '../ListOfPins'
@@ -37,6 +38,7 @@ class MapContainer extends React.Component {
       mapHasBinClicked: false,
       showListComponent: false,
       currentLocationPinIsVisible: true,
+      deleteAlertIsVisible: false,
       showThePop: true,
       currentPinInfo: []
     }
@@ -49,9 +51,13 @@ class MapContainer extends React.Component {
     this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
       this
     )
+
     this.pinClick = this.pinClick.bind(this)
     this.togglePinClick = this.togglePinClick.bind(this)
     this.toggleEditMode = this.toggleEditMode.bind(this)
+    this.toggleDeleteAlert = this.toggleDeleteAlert.bind(this)
+    this.deletePin = this.deletePin.bind(this)
+
     this.mapHasBinClicked = this.mapHasBinClicked.bind(this)
     this.closePopPin = this.closePopPin.bind(this)
     this.handleSearchboxChange = this.handleSearchboxChange.bind(this)
@@ -91,11 +97,21 @@ class MapContainer extends React.Component {
     })
   }
   toggleEditMode(currentPinInfo) {
-    console.log('whooooooooooop??', currentPinInfo)
     this.setState({
       editMode: !this.state.editMode,
       currentPinInfo
     })
+  }
+  toggleDeleteAlert() {
+    this.setState({
+      deleteAlertIsVisible: !this.state.deleteAlertIsVisible
+    })
+  }
+  deletePin(pinId) {
+    this.props.dispatch(deletePin(pinId))
+    this.toggleDeleteAlert()
+    this.togglePinClick()
+    this.toggleEditMode()
   }
   watchMyLocation() {
     if (!this.state.myLat) {
@@ -206,6 +222,7 @@ class MapContainer extends React.Component {
     const style = {
       backgroundSize: 'contain'
     }
+    const { editMode, deleteAlertIsVisible } = this.state
     return (
       <React.Fragment>
         {this.state.showListComponent && (
@@ -246,13 +263,23 @@ class MapContainer extends React.Component {
             lng={this.state.pinLng}
           />
         )}
-        {this.state.editMode && (
+        {editMode && (
           <EditPin
             toggleEditMode={this.toggleEditMode}
+            togglePinClick={this.togglePinClick}
             pinId={this.state.clickedPinId}
-            currentPinInfo={this.state.currentPinInfo}
+            currentPinInfo={this.state.currentPinInfo[0]}
+            toggleDeleteAlert={this.toggleDeleteAlert}
           />
         )}
+
+        {deleteAlertIsVisible && (
+          <DeletePinAlert
+            deletePin={() => this.deletePin(this.state.clickedPinId)}
+            toggleDeleteAlert={this.toggleDeleteAlert}
+          />
+        )}
+
         <ContainerMap>
           <MapContainerDown>
             <MapContainerLeft>

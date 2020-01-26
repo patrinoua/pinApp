@@ -2,24 +2,12 @@ import React from 'react'
 import { ButtonContainer, PinAppButton } from '../../AddNewPin/elements.js'
 import { CopyUrlContainer } from './elements.js'
 
-export const DeletePinAlert = ({ deletePinAlert, toggleDeleteAlert }) => (
-  <div className="blackVailDelete">
+export const DeletePinAlert = ({ deletePin, toggleDeleteAlert }) => (
+  <div className='blackVailDelete'>
     Are you sure you want to delete this pin?
-    <div className="inARow">
-      <button
-        onClick={() => {
-          deletePinAlert()
-        }}
-      >
-        Yes
-      </button>
-      <button
-        onClick={() => {
-          toggleDeleteAlert()
-        }}
-      >
-        No
-      </button>
+    <div className='inARow'>
+      <button onClick={deletePin}>Yes</button>
+      <button onClick={toggleDeleteAlert}>No</button>
     </div>
   </div>
 )
@@ -36,12 +24,11 @@ export const ShareButton = ({ togglePinUrl, exportPin, pinUrl }) => (
     {pinUrl && (
       <CopyUrlContainer>
         <div
-          className="closeCopyUrlVail"
+          className='closeCopyUrlVail'
           onClick={() => {
             togglePinUrl(null)
           }}
         >
-          {' '}
           X
         </div>
         <div>{pinUrl} </div>
@@ -54,15 +41,14 @@ export const ShareButton = ({ togglePinUrl, exportPin, pinUrl }) => (
 export const EditButton = ({ userCanEdit, toggleEditMode }) => {
   if (userCanEdit) {
     return (
-      <div className="pinEditSaveButtonArea box">
+      <div className='pinEditSaveButtonArea box'>
         <h1
-          className="saveButton"
+          className='saveButton'
           onClick={() => {
             toggleEditMode()
           }}
         >
-          {' '}
-          edit{' '}
+          Edit
         </h1>
       </div>
     )

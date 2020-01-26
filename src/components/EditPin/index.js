@@ -1,12 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import axios from '../../axios'
-import { deletePin } from '../../actions'
 import { updatePinInfo } from '../../actions'
 import { ModalContainer, XIcon, Textarea } from '../elements.js'
 import { BlackVailPinClick } from '../AddNewPin/elements.js'
-import { DeletePinAlert } from '../PinClick/ButtonsAndAlerts'
 import { PinTitle, PinTitleText } from '../PinClick/elements.js'
 import {
   EditPinFieldsContainer,
@@ -14,7 +11,7 @@ import {
   SaveCancelButtons
 } from './elements.js'
 
-export default class EditPin extends React.Component {
+class EditPin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,32 +28,15 @@ export default class EditPin extends React.Component {
     }
     this.setFile = this.setFile.bind(this)
     this.compileData = this.compileData.bind(this)
-    this.toggleEditMode = this.toggleEditMode.bind(this)
     this.insertPinInfo = this.insertPinInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.deletePinAlert = this.deletePinAlert.bind(this)
-    this.togglePinClick = this.togglePinClick.bind(this)
     this.exportPin = this.exportPin.bind(this)
-    this.toggleDeleteAlert = this.toggleDeleteAlert.bind(this)
     this.togglePinUrl = this.togglePinUrl.bind(this)
   }
 
-  togglePinClick() {
-    this.props.togglePinClick()
-  }
-  toggleDeleteAlert() {
-    this.setState({
-      deleteAlertIsVisible: !this.state.deleteAlertIsVisible
-    })
-  }
   togglePinUrl(pinUrl) {
     this.setState({
       pinUrl: pinUrl
-    })
-  }
-  toggleEditMode(e) {
-    this.setState({
-      editMode: !this.state.editMode
     })
   }
   setFile(e) {
@@ -83,10 +63,8 @@ export default class EditPin extends React.Component {
     formData.append('file', this.state.file)
     if (this.state.file) {
       this.props.dispatch(updatePinInfo({ formData, pinInfo }))
-      this.toggleEditMode()
     } else {
       this.props.dispatch(updatePinInfo({ pinInfo }))
-      this.toggleEditMode()
     }
   }
   compileData(e) {
@@ -107,17 +85,7 @@ export default class EditPin extends React.Component {
       }
     )
   }
-  deletePinAlert() {
-    this.toggleDeleteAlert()
-    if (this.state.deleteAlertIsVisible === true) {
-      this.props.dispatch(deletePin(this.props.pinId))
-      this.setState({
-        deleteAlertIsVisible: false
-      })
-      this.togglePinClick()
-    }
-    // onClick={this.toggleEditMode}
-  }
+
   exportPin() {
     const encryptedPinId = window.btoa(this.props.pinId)
     // const pinUrl = `localhost:8080/sharedpin/${encryptedPinId}`;
@@ -133,14 +101,13 @@ export default class EditPin extends React.Component {
   }
   render() {
     const {
-      id,
-      title,
-      category,
-      url,
-      description,
-      color
-    } = this.props.currentPinInfo[0]
-    console.log('this.props.currentPinInfo', this.props.currentPinInfo)
+      toggleEditMode,
+      togglePinClick,
+      currentPinInfo,
+      toggleDeleteAlert
+    } = this.props
+    const { url, color } = currentPinInfo
+    const { dataUrl } = this.state
     const bigPin = color || '/pins/bigPin.png'
     let imageUrl
     if (url || color) {
@@ -150,10 +117,11 @@ export default class EditPin extends React.Component {
     }
     return (
       <ModalContainer>
-        <BlackVailPinClick onClick={this.togglePinClick} />
+        <BlackVailPinClick onClick={togglePinClick} />
         <EditPinFieldsContainer>
-          <UnpinButton onClick={this.deletePinAlert}>Unpin</UnpinButton>
-          <XIcon onClick={this.props.toggleEditMode}>Close X</XIcon>
+          <UnpinButton onClick={toggleDeleteAlert}>Unpin</UnpinButton>
+
+          <XIcon onClick={toggleEditMode}>Close X</XIcon>
           <div
             style={{
               display: 'flex',
@@ -171,33 +139,23 @@ export default class EditPin extends React.Component {
               <div
                 style={{
                   position: 'relative',
-                  border: '2px solid lightgrey',
                   width: '170px',
                   height: '170px',
                   borderRadius: '50%',
                   zIndex: 30
                 }}
               >
-                {this.state.dataUrl ? (
-                  // the new image the user just uploaded. this doesn't work yet
-                  <img
-                    src={this.state.dataUrl}
-                    className='uploadedImagePinclick'
-                    alt='uploadedImagePinclick'
-                  />
-                ) : (
-                  <div
-                    style={{
-                      backgroundImage: `url(${imageUrl})`,
-                      backgroundSize: 'contain',
-                      backgroundPosition: 'center center',
-                      backgroundRepeat: 'no-repeat',
-                      width: '100%',
-                      height: '100%',
-                      borderRadius: '50%'
-                    }}
-                  />
-                )}
+                <div
+                  style={{
+                    backgroundImage: `url(${dataUrl ? dataUrl : imageUrl})`,
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '50%'
+                  }}
+                />
                 <div
                   style={{
                     position: 'absolute',
@@ -241,7 +199,6 @@ export default class EditPin extends React.Component {
               </div>
             </div>
           </div>
-          {/* *******************THIRD ROW**********************/}
           <SaveCancelButtons>
             <Textarea
               placeholder={'Title'}
@@ -249,7 +206,7 @@ export default class EditPin extends React.Component {
               name='title'
               rows='1'
               onChange={this.handleChange}
-              style={{ margin: '10px' }}
+              style={{ marginTop: '10px' }}
             />
             <Textarea
               placeholder={'Description'}
@@ -257,24 +214,23 @@ export default class EditPin extends React.Component {
               name='description'
               onChange={this.handleChange}
               rows='1'
-              style={{ margin: '10px' }}
+              style={{ marginTop: '10px', marginBottom: '20px' }}
             />
           </SaveCancelButtons>
 
-          {/* *************************FOURTH ROW********************* */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className='saveButton' onClick={this.insertPinInfo}>
+            <div
+              className='saveButton'
+              onClick={() => {
+                this.insertPinInfo()
+                toggleEditMode()
+              }}
+            >
               Save
             </div>
-            <div className='saveButton' onClick={this.props.toggleEditMode}>
+            <div className='saveButton' onClick={toggleEditMode}>
               Cancel
             </div>
-            {this.state.deleteAlertIsVisible && (
-              <DeletePinAlert
-                toggleDeleteAlert={this.toggleDeleteAlert}
-                deletePinAlert={this.deletePinAlert}
-              />
-            )}
           </div>
         </EditPinFieldsContainer>
       </ModalContainer>
@@ -282,17 +238,16 @@ export default class EditPin extends React.Component {
   }
 }
 
-// EditPin.propTypes = {
-// pinId: PropTypes.number.isRequired
-// pinInfo: PropTypes.string,
-// lat: PropTypes.string,
-// lng: PropTypes.string
-// }
+EditPin.propTypes = {
+  currentPinInfo: PropTypes.object.isRequired
+}
 
-// const mapStateToProps = function(state) {
-//   return {
-//     markersArray: state.markersArray,
-//     pinInfo: state.pinInfo,
-//     userName: state.userName
-//   }
-// }
+const mapStateToProps = function(state) {
+  return {
+    markersArray: state.markersArray,
+    pinInfo: state.pinInfo,
+    userName: state.userName
+  }
+}
+
+export default connect(mapStateToProps)(EditPin)
