@@ -109,14 +109,14 @@ class AddNewPin extends React.Component {
         <PinCategory>
           <PinCheckboxArea>
             <PinCheckbox
-              src="/pins/checkboxBlack.png"
-              alt="checkbox"
+              src='/pins/checkboxBlack.png'
+              alt='checkbox'
               name={variable}
               onClick={this.checkValue}
             />
-            <PinIcon src={str} alt="pinIcon" />
+            <PinIcon src={str} alt='pinIcon' />
             {this.state.holder === variable && (
-              <img src="/pins/tick.png" className="tickIcon" alt="tickIcon" />
+              <img src='/pins/tick.png' className='tickIcon' alt='tickIcon' />
             )}
           </PinCheckboxArea>
           <PinText>
@@ -132,7 +132,7 @@ class AddNewPin extends React.Component {
           <FieldsContainerNewPin>
             <CloseModalX onClick={toggleAddNewPinComponent}>X</CloseModalX>
             <PinTitleArea>
-              <img src="/pins/bigPin.png" alt="bigPin" />
+              <img src='/pins/bigPin.png' alt='bigPin' />
               <PinTitle>New Pin</PinTitle>
             </PinTitleArea>
             <PinOptions>
@@ -149,22 +149,22 @@ class AddNewPin extends React.Component {
                 {(!this.state.dataUrl && (
                   <CameraIconContainer>
                     <input
-                      id="inputfile"
-                      className="inputfile"
-                      type="file"
-                      name="file"
+                      id='inputfile'
+                      className='inputfile'
+                      type='file'
+                      name='file'
                       onChange={e => {
                         this.setFile(e)
                         this.compileData(e)
                       }}
-                      data-multiple-caption="{count} files selected"
+                      data-multiple-caption='{count} files selected'
                       multiple
                     />
-                    <label htmlFor="inputfile">
+                    <label htmlFor='inputfile'>
                       <img
-                        src="/pins/camera.png"
-                        className="cameraIcon"
-                        alt="cameraIcon"
+                        src='/pins/camera.png'
+                        className='cameraIcon'
+                        alt='cameraIcon'
                       />
                     </label>
                   </CameraIconContainer>
@@ -189,18 +189,18 @@ class AddNewPin extends React.Component {
                 )}
                 <TitleAndDescription>
                   <Textarea
-                    placeholder="Title"
-                    type="text"
-                    name="title"
-                    rows="1"
+                    placeholder='Title'
+                    type='text'
+                    name='title'
+                    rows='1'
                     onChange={this.handleChange}
                   />
                   <Textarea
-                    placeholder="Add Description"
-                    type="text"
-                    name="description"
+                    placeholder='Add Description'
+                    type='text'
+                    name='description'
                     onChange={this.handleChange}
-                    rows="3"
+                    rows='3'
                   />
                 </TitleAndDescription>
               </AddPinPicture>

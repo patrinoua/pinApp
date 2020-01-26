@@ -112,7 +112,7 @@ export const PinAppButton = styled.button`
   margin: 0;
 `
 export const SaveButton = styled(PinAppButton)`
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin: 20px;
   font-family: 'Pacifico', cursive;
   background: none;
