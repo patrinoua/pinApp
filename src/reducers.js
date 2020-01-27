@@ -90,9 +90,14 @@ export default function reducer(state = { markersArray: [] }, action) {
     }
   }
   if (action.type === 'SELECT_CATEGORY') {
+    console.log('\n-------- ------- R E D U C E R ------- -------- \n\n')
+    console.log('state', state)
+    console.log('action', action)
+    console.log('\n')
+
     state = {
       ...state,
-      markersArray: [...action.pinsArray]
+      filteredByCategory: [...action.filteredByCategories]
     }
   }
   if (action.type === 'DELETE_PIN') {

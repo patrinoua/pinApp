@@ -158,23 +158,33 @@ export function getUserPinInfo(id) {
     })
 }
 
-export function selectActionBycategory(categories, pinsArray) {
+export function selectActionBycategory(
+  categories,
+  pinsArray,
+) {
+  console.log('\n---------  --------- A C T I O N S ---------  --------- \n\n')
+  // console.log('\ncategories', pinsArray, categories)
   if (categories.length === 0) {
     return {
       type: 'SELECT_CATEGORY',
-      pinsArray: pinsArray
+      filteredByCategory: [],
+      pinsArray: []
     }
   } else {
-    pinsArray = pinsArray.filter(item => {
-      for (let i = 0; i < categories.length; i++) {
-        if (categories[i] === item.category) {
-          return item
-        }
-      }
+    //apo ola, pare mono auta pou exoun tis swstes katigories.
+    let filtered
+    let allFiltered = []
+    categories.forEach(category => {
+      filtered = pinsArray.filter(pin => pin.category === category)
+      // console.log('category:', category)
+      console.log('filtered', filtered)
+      allFiltered.push(...filtered)
     })
+    console.log('allFiltered - actions. ', allFiltered)
+    console.log('Actions. sending type and filteredByCategory ')
     return {
       type: 'SELECT_CATEGORY',
-      pinsArray: pinsArray
+      filteredByCategory: allFiltered
     }
   }
 }
