@@ -162,19 +162,19 @@ export function selectActionBycategory(categories, pinsArray) {
   if (categories.length === 0) {
     return {
       type: 'SELECT_CATEGORY',
-      pinsArray: pinsArray
+      filteredByCategory: pinsArray,
+      pinsArray: []
     }
   } else {
-    pinsArray = pinsArray.filter(item => {
-      for (let i = 0; i < categories.length; i++) {
-        if (categories[i] === item.category) {
-          return item
-        }
-      }
+    let filtered
+    let allFiltered = []
+    categories.forEach(category => {
+      filtered = pinsArray.filter(pin => pin.category === category)
+      allFiltered.push(...filtered)
     })
     return {
       type: 'SELECT_CATEGORY',
-      pinsArray: pinsArray
+      filteredByCategory: allFiltered
     }
   }
 }

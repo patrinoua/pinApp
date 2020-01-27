@@ -9,6 +9,7 @@ import { DeletePinAlert } from '../PinClick/ButtonsAndAlerts'
 import EditPin from '../EditPin'
 import AddNewPin from '../AddNewPin'
 import ListOfPins from '../ListOfPins'
+import Category from './Category'
 
 import {
   ContainerMap,
@@ -47,7 +48,7 @@ class MapContainer extends React.Component {
     this.showListComponent = this.showListComponent.bind(this)
     this.mapClicked = this.mapClicked.bind(this)
     this.toggleAddNewPinComponent = this.toggleAddNewPinComponent.bind(this)
-    this.checkedCategory = this.checkedCategory.bind(this)
+    this.checkCategory = this.checkCategory.bind(this)
     this.watchMyLocation = this.watchMyLocation.bind(this)
     this.toggleAddMyPinLocationVisible = this.toggleAddMyPinLocationVisible.bind(
       this
@@ -62,7 +63,6 @@ class MapContainer extends React.Component {
     this.mapHasBinClicked = this.mapHasBinClicked.bind(this)
     this.closePopPin = this.closePopPin.bind(this)
     this.handleSearchboxChange = this.handleSearchboxChange.bind(this)
-    this.categoryItem = this.categoryItem.bind(this)
   }
   handleSearchboxChange(e) {
     this[e.target.name] = e.target.value
@@ -159,7 +159,11 @@ class MapContainer extends React.Component {
       lng: clickEvent.latLng.lng()
     })
   }
-  checkedCategory(e) {
+  //this broke somehow... I gotta fix it! When you select the category the filtering doesnt happen
+  //auto pou thelw edw einai na filtrarw k na deixnw mono ta pins sugkekrimenis katigorias.
+  //na ta kanw add kai sto state. stin arxi na einai ola ta pins sto state. K meta filtered.
+  //check Actions & Reducer
+  checkCategory(e) {
     if (e.target.checked) {
       this.state.arrayOfCategory.push(e.target.value)
       document.querySelector(`label[for=${e.target.name}]`).style.color =
@@ -192,39 +196,14 @@ class MapContainer extends React.Component {
       showSharedPin: false
     })
   }
-  categoryItem(color, category) {
-    const text = category.charAt(0).toUpperCase() + category.substring(1)
-    const style = {
-      backgroundSize: 'contain'
-    }
-    let str = '/pins/' + color + 'Pin.png'
-    return (
-      <div className='categoryItem'>
-        <input
-          style={style}
-          type='checkbox'
-          id={category}
-          name={category}
-          value={category}
-          className='check'
-          onClick={this.checkedCategory}
-        />
-        <img
-          src={str}
-          className='categoryItemPinIcon'
-          alt='categoryItemPinIcon'
-        />
-        <label htmlFor={category} className='pinText'>
-          {text}
-        </label>
-      </div>
-    )
-  }
+
   render() {
     const style = {
       backgroundSize: 'contain'
     }
     const { editMode, deleteAlertIsVisible } = this.state
+    const { markersArray, filteredByCategory } = this.props
+    const markersToDisplay = filteredByCategory || markersArray
     return (
       <React.Fragment>
         {this.state.showListComponent && (
@@ -287,11 +266,31 @@ class MapContainer extends React.Component {
             <MapContainerLeft>
               <CategoryList>
                 <form id='myForm'>
-                  {this.categoryItem('blue', 'museums')}
-                  {this.categoryItem('green', 'parks')}
-                  {this.categoryItem('yellow', 'restaurants')}
-                  {this.categoryItem('pink', 'bars')}
-                  {this.categoryItem('purple', 'sightseeing')}
+                  <Category
+                    color='blue'
+                    category='museums'
+                    checkCategory={this.checkCategory}
+                  />
+                  <Category
+                    color='green'
+                    category='parks'
+                    checkCategory={this.checkCategory}
+                  />
+                  <Category
+                    color='yellow'
+                    category='restaurants'
+                    checkCategory={this.checkCategory}
+                  />
+                  <Category
+                    color='pink'
+                    category='bars'
+                    checkCategory={this.checkCategory}
+                  />
+                  <Category
+                    color='purple'
+                    category='sightseeing'
+                    checkCategory={this.checkCategory}
+                  />
                 </form>
                 <button
                   className='pinAppButton'
@@ -354,8 +353,8 @@ class MapContainer extends React.Component {
                           }}
                         />
                       )}
-                      {this.props.markersArray &&
-                        this.props.markersArray.map(item => {
+                      {markersToDisplay &&
+                        markersToDisplay.map(item => {
                           return (
                             <Marker
                               key={item.id}
@@ -473,6 +472,7 @@ MapContainer.propTypes = {
 const mapStateToProps = function(state) {
   return {
     markersArray: state.markersArray,
+    filteredByCategory: state.filteredByCategory,
     pinInfo: state.pinInfo,
     userName: state.userName
   }

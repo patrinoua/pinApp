@@ -92,7 +92,7 @@ export default function reducer(state = { markersArray: [] }, action) {
   if (action.type === 'SELECT_CATEGORY') {
     state = {
       ...state,
-      markersArray: [...action.pinsArray]
+      filteredByCategory: [...action.filteredByCategory]
     }
   }
   if (action.type === 'DELETE_PIN') {
