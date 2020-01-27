@@ -179,7 +179,6 @@ class MapContainer extends React.Component {
       document.querySelector(`label[for=${e.target.name}]`).style.fontWeight =
         '400'
     }
-    console.log('  this.state.arrayOfCategory,', this.state.arrayOfCategory)
     this.props.dispatch(
       selectActionBycategory(
         this.state.arrayOfCategory,
@@ -205,14 +204,6 @@ class MapContainer extends React.Component {
     const { editMode, deleteAlertIsVisible } = this.state
     const { markersArray, filteredByCategory } = this.props
     const markersToDisplay = filteredByCategory || markersArray
-    console.log(
-      '\n*^*^*^*^*^*^*^*^ MapContainer *^*^*^*^*^*^*^*^ ',
-      filteredByCategory
-    )
-    console.log(' *^*^*^*^*markersToDisplay', markersToDisplay)
-    console.log(' *^*^*^*^**^*^*^*^* filteredByCategory', filteredByCategory)
-    console.log('\n')
-
     return (
       <React.Fragment>
         {this.state.showListComponent && (

@@ -158,30 +158,20 @@ export function getUserPinInfo(id) {
     })
 }
 
-export function selectActionBycategory(
-  categories,
-  pinsArray,
-) {
-  console.log('\n---------  --------- A C T I O N S ---------  --------- \n\n')
-  // console.log('\ncategories', pinsArray, categories)
+export function selectActionBycategory(categories, pinsArray) {
   if (categories.length === 0) {
     return {
       type: 'SELECT_CATEGORY',
-      filteredByCategory: [],
+      filteredByCategory: pinsArray,
       pinsArray: []
     }
   } else {
-    //apo ola, pare mono auta pou exoun tis swstes katigories.
     let filtered
     let allFiltered = []
     categories.forEach(category => {
       filtered = pinsArray.filter(pin => pin.category === category)
-      // console.log('category:', category)
-      console.log('filtered', filtered)
       allFiltered.push(...filtered)
     })
-    console.log('allFiltered - actions. ', allFiltered)
-    console.log('Actions. sending type and filteredByCategory ')
     return {
       type: 'SELECT_CATEGORY',
       filteredByCategory: allFiltered
