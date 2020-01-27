@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Category = ({ color, category, checkCategory }) => {
   const text = category.charAt(0).toUpperCase() + category.substring(1)
   const style = {
     backgroundSize: 'contain'
   }
-  let str = '/pins/' + color + 'Pin.png'
+  let pinUrl = `/pins/${color}Pin.png`
   return (
     <div className='categoryItem'>
       <input
@@ -18,7 +19,7 @@ const Category = ({ color, category, checkCategory }) => {
         onClick={checkCategory}
       />
       <img
-        src={str}
+        src={pinUrl}
         className='categoryItemPinIcon'
         alt='categoryItemPinIcon'
       />
@@ -27,6 +28,12 @@ const Category = ({ color, category, checkCategory }) => {
       </label>
     </div>
   )
+}
+
+Category.propTypes = {
+  color: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  checkCategory: PropTypes.func.isRequired
 }
 
 export default Category
