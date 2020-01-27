@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Category = ({ color, category, checkCategory }) => {
-  const text = category.charAt(0).toUpperCase() + category.substring(1)
+  const label = category.charAt(0).toUpperCase() + category.substring(1)
   const style = {
     backgroundSize: 'contain'
   }
@@ -24,7 +24,7 @@ const Category = ({ color, category, checkCategory }) => {
         alt='categoryItemPinIcon'
       />
       <label htmlFor={category} className='pinText'>
-        {text}
+        {label}
       </label>
     </div>
   )
