@@ -97,7 +97,7 @@ export default function reducer(state = { markersArray: [] }, action) {
 
     state = {
       ...state,
-      filteredByCategory: [...action.filteredByCategories]
+      filteredByCategory: [...action.filteredByCategory]
     }
   }
   if (action.type === 'DELETE_PIN') {
