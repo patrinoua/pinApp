@@ -159,10 +159,6 @@ class MapContainer extends React.Component {
       lng: clickEvent.latLng.lng()
     })
   }
-  //this broke somehow... I gotta fix it! When you select the category the filtering doesnt happen
-  //auto pou thelw edw einai na filtrarw k na deixnw mono ta pins sugkekrimenis katigorias.
-  //na ta kanw add kai sto state. stin arxi na einai ola ta pins sto state. K meta filtered.
-  //check Actions & Reducer
   checkCategory(e) {
     if (e.target.checked) {
       this.state.arrayOfCategory.push(e.target.value)
