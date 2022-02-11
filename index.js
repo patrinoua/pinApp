@@ -127,12 +127,12 @@ app.use(function(req, res, next) {
 })
 
 function requireLogin(req, res, next) {
-  if (!req.session.user) {
-    console.log('requireLogin is fired')
-    res.sendStatus(403)
-  } else {
+  // if (!req.session.user) {
+  //   console.log('requireLogin is fired')
+  //   res.sendStatus(403)
+  // } else {
     next()
-  }
+  // }
 }
 app.get('/getUser/:userId', requireLogin, function(req, res) {
   console.log('getting user./userid..')
@@ -155,13 +155,13 @@ app.get('/getUser', requireLogin, function(req, res) {
   })
 })
 
-app.get('/welcome', function(req, res) {
-  if (!req.session.user) {
-    res.sendFile(__dirname + '/index.html')
-  } else {
-    res.redirect('/')
-  }
-})
+// app.get('/welcome', function(req, res) {
+//   // if (!req.session.user) {
+//   //   res.sendFile(__dirname + '/index.html')
+//   // } else {
+//     res.redirect('/')
+//   // }
+// })
 
 app.post('/register', function(req, res) {
   db
@@ -540,24 +540,25 @@ app.get('/deleteUserAccount', function(req, res) {
 
 app.get('/logout', function(req, res) {
   req.session = null
-  res.redirect('/welcome')
+  // res.redirect('/welcome')
 })
 app.get('*', function(req, res) {
   console.log('the url is', req.url)
-  if (req.url === '/welcome' && req.session.user) {
-    res.redirect('/')
-    return
-  }
-  if (!req.session.user) {
-    if (req.params[0].startsWith('/pin/')) {
-      res.sendFile(__dirname + '/index.html')
-    } else {
-      res.redirect('/welcome')
-      return
-    }
-  } else {
-    res.sendFile(__dirname + '/index.html')
-  }
+  // if (req.url === '/welcome' && req.session.user) {
+    // res.redirect('/')
+    // return
+  // }
+  // if (!req.session.user) {
+  //   if (req.params[0].startsWith('/pin/')) {
+  //     res.sendFile(__dirname + '/index.html')
+  //   } else {
+  //     res.redirect('/welcome')
+  //     return
+  //   }
+  // } else {
+  //   res.sendFile(__dirname + '/index.html')
+  // }
+  res.sendFile(__dirname + '/index.html')
 })
 
 app.get('/', function(req, res) {

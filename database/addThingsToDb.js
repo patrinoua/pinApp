@@ -30,6 +30,8 @@
 
 //ADD USERS: (exports.saveUser)
 
+//set up db https://github.com/spicedacademy/cilantro/tree/master/wk7_sql
+
 psql mapappdb
 
 DROP TABLE users CASCADE;
